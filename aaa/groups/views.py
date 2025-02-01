@@ -7,7 +7,6 @@ from django.views.generic import View, TemplateView, ListView, DetailView, FormV
 from django.contrib import messages
 from groups.models import Group, GroupMember
 
-from django_htmx.middleware import HtmxDetails
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from django.http import HttpRequest, HttpResponse
@@ -84,21 +83,6 @@ class GroupView(ListView):
 
 
 
-class HtmxHttpRequest(HttpRequest):
-    htmx: HtmxDetails
-
-@require_GET
-def middleware_tester(request: HtmxHttpRequest) -> HttpResponse:
-    return render(request, "groups/middleware-tester2.html")
-
-
-@require_http_methods(["DELETE", "POST", "PUT"])
-def middleware_tester_table(request: HtmxHttpRequest) -> HttpResponse:
-    return render(
-        request,
-        "groups/middleware-tester-table2.html",
-        {"timestamp": time.time()},
-    )
 
 
 
