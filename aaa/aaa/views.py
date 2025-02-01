@@ -19,22 +19,16 @@ from django.shortcuts import render
 class Home(TemplateView):
     template_name = "index.html"
 
-class ThanksPage(TemplateView):
-    template_name = "thanks.html"
-
-class TestPage(TemplateView):
-    template_name = "test.html"
-
 class PostView(ListView):
     model = Group
     template_name = "index.html"
-    context_object_name = "products"
+    context_object_name = "index_grid"
     paginate_by = 20
     ordering = "pk"
     # new method added ⬇️
     def get_template_names(self, *args, **kwargs):
         if self.request.htmx:
-            return "product_list.html"
+            return "index_grid.html"
         else:
             return self.template_name
 

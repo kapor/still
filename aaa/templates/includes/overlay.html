@@ -3,24 +3,21 @@
 
 {% load bootstrap5 %}
 
+{% block group_content %}
 <div id="overlay" class="overlay-event">
   <div class="flex">
     <div id="overlay-inner">
-      <p>Overlay</p>
 
-
-
-  {% block group_content %}
-    <h1>Add Group</h1>
-    <form method="POST" action="{% url 'groups:create' %}" id="groupForm">
-      {% csrf_token %}
-      {{ form }}
-    <input type="submit" value="Create" class="btn btn-primary btn-large">
+      <h1>Add Group</h1>
+      <form method="POST" action="{% url 'groups:add' %}" id="overlay">
+        {% csrf_token %}
+        {{ form }}
+      <input type="submit" value="Create" class="button">
       </form>
-  {% endblock %}
+   
 
-      <button id="close-btn" class="overlay-event" type=button>Close</button>
+      <button id="close-btn" class="overlay-event" type=button>Cancel</button>
     </div>
   </div>
 </div>
-<button id="open-btn" class="overlay-event" "type="button">Click</button>
+{% endblock %}

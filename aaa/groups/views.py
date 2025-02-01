@@ -6,6 +6,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView, RedirectView
 from django.contrib import messages
 from groups.models import Group, GroupMember
+from groups.forms import GroupForm
 
 from django_htmx.middleware import HtmxDetails
 from django.core.paginator import Paginator
@@ -103,11 +104,14 @@ def middleware_tester_table(request: HtmxHttpRequest) -> HttpResponse:
 
 
 
+class CreateGroup2(LoginRequiredMixin, CreateView):
+	context_object_name = "overlay"
+	model = Group
+	template_name = "includes/overlay.html"
+	form_class = GroupForm
 
-
-
-
-
+	class Meta():
+		fields = ('name', 'description')
 
 
 

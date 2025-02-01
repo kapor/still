@@ -478,6 +478,7 @@ a {
   margin: 0px;
   padding: 0px;
   line-height: 26px;
+  cursor: pointer;
 }
 
 .button_group {
@@ -500,6 +501,7 @@ a {
   letter-spacing: 3px;
   border-radius: 4px;
   text-align: center;
+  border: none;
 }
 .button_group .button input.button {
   padding: 12px 20px;

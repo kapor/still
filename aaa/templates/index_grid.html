@@ -1,7 +1,7 @@
 <!-- aaa/templates/product_list.html -->
 <div class="group_container">
   <div class="group_list">
-  {% for group in products %}
+  {% for group in index_grid %}
     {% if forloop.last %}
       
       <div 
@@ -16,15 +16,16 @@
       <div class="group_card">
     {% endif %}
 
-      <a href="#" class="group_title">
+      <a href="{% url 'groups:single' slug=group.slug %}" class="group_title">
         <h3 class='group_name'>{{ group.name | title }}</h3>
       </a>
 
       <div class="leave_join">
         {% if user in group.members.all %}
-          [<a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>]
+          Member
+          <!-- [<a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>] -->
         {% else %}
-          [<a href="{% url 'groups:join' slug=group.slug %}">Join</a>]
+          [<a href="{% url 'groups:join' slug=group.slug %}">Join Group</a>]
         {% endif %}
       </div>
 
@@ -50,6 +51,7 @@
   {% endfor %}
   </div>
 </div>
+
 
 
 

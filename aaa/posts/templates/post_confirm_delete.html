@@ -12,8 +12,8 @@
 	<form method="POST">
 		{% csrf_token %}
 		<input type="submit" value="Confirm" class="btn btn-danger">
-		<div class="cancel">
-			<a href="{% url 'posts:single' username=user.username pk=object.pk %}">Cancel</a>
+		<div class="cancel"><a onClick="javascript:history.go(-1);">
+			<a href="{% url 'posts:single' username=user.username %}">Cancel</a>
 			<!-- <a onclick="javascript:history.go(-1);">Cancel</a> -->
 		</div>
 	</form>

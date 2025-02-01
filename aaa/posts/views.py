@@ -21,9 +21,9 @@ User = get_user_model()
 
 
 # Shows lists of posts for user and/or group
-class PostList(SelectRelatedMixin, generic.ListView):
+class PostList(PrefetchRelatedMixin, generic.ListView):
 	model = models.Post
-	select_related = ('user', 'group')
+	prefetch_related = ('user', 'group')
 
 
 
@@ -74,9 +74,9 @@ class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 
 
 
-class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
+class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 	model = models.Post
-	select_related = ('user', 'group')
+	prefetch_related = ('user', 'group')
 	success_url = reverse_lazy('posts:all')
 
 	def get_queryset(self):
@@ -88,8 +88,8 @@ class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
 		return super().delete(*args, **kwargs)
 
 
-
-
+class SingleGroup(generic.DetailView):
+	model = Group
 
 
 
