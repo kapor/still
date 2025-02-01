@@ -1,0 +1,191 @@
+// styles.scss
+$font-stack1: Helvetica neue, sans-serif;
+$font-stack2: Courier new, Roboto;
+$primary: #333;
+$secondary: #F2F2F2;
+$background_color: #EEEEEE;
+$accent1: #8F00FF;
+$accent2: red;
+
+
+
+select {
+  // A reset of styles, including removing the default dropdown arrow
+  appearance: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
+
+#image-clear_id {
+  display: none;
+}
+
+
+.forms {
+
+  font-family: $font-stack2;
+  padding-top: 10px;
+  color: $primary;
+  font-weight: 400;
+  height: 56px;
+
+  input,
+  textarea,
+  .editable {
+    height: 56px;
+    width: -webkit-fill-available;
+    background-color: $secondary;
+    border: none;
+    width: -webkit-fill-available;
+    font-size: 24px;
+    resize: none;
+    font-family: $font-stack2;
+    padding: 8px;
+    overflow: scroll;
+  }
+
+  input[type="file" i] {
+    height: auto;
+    font-family: $font-stack2;
+    padding: 8px;
+  }
+
+
+  .editable {
+    height: 200px;
+    padding: 8px;
+  }
+
+  .medium-editor-placeholder-relative:after, .medium-editor-placeholder:after {
+    content: attr(data-placeholder) !important;
+    white-space: pre;
+    padding: inherit;
+    font-style: normal;
+  }
+
+  div label {
+    width: auto;
+    font-family: $font-stack1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: left;
+    color: $accent2;
+    padding: 0px 0px 16px 0px;
+    font-size: 20px;
+    border: none;
+  }
+
+  .btn_save {
+    height: 80px;
+    width: 100%;
+    color: white;
+    background-color: red;
+    font-size: 24px;
+    border: none;
+    margin-top: 80px;
+  }
+
+  div {
+    margin-bottom: 40px;
+  }
+
+  input.btn {
+    height: 80px;
+    background-color: $accent1;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 4px;
+    display: flex;
+    margin: 40px 0px 20px 0px;
+
+  }
+
+  .cancel {
+    height: 80px;
+    width: 100%;
+    margin-bottom: 40px;
+    display: flex;
+    background-color: $secondary;
+    cursor: pointer;
+    font-size: 24px;
+    color: #222;
+    text-align: center;
+    border-radius: 4px;
+    display: inline-block;
+    font-family: courier new, monospace;
+    line-height: 80px;
+    border: none;
+
+    a {
+      display: block;
+      width: 100%;
+    }
+
+  }
+
+
+
+  select:-internal-list-box {
+      appearance: auto;
+      align-items: flex-start;
+      vertical-align: text-bottom;
+      white-space: nowrap;
+      border-radius: 2px;
+  }
+
+  select {
+      height: 56px;
+      text-rendering: auto;
+      text-indent: 0px;
+      text-shadow: none;
+      display: inline-block;
+      text-align: start;
+      appearance: auto;
+      box-sizing: border-box;
+      align-items: center;
+      -webkit-rtl-ordering: logical;
+      background-color: $secondary;
+      cursor: default;
+      white-space: pre;
+      border: none;
+      font-size: 24px;
+      padding: 8px;
+  }
+
+   select[multiple] { 
+      padding-right: 0;
+      height: 12rem;
+      margin: 0em;
+ 
+
+      option {
+        font-size: 24px;
+        font-weight: normal;
+        display: block;
+        padding-block-start: 0px;
+        padding-block-end: 1px;
+        min-block-size: 1.2em;
+        padding-inline: 2px;
+        white-space: nowrap;
+      }
+  } 
+
+  label {
+    padding-top: 20px;
+  }
+
+  .file_input {
+    display: none;
+  }
+
+
+}

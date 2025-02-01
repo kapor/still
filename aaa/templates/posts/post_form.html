@@ -1,0 +1,13 @@
+<!-- aaa/templates/posts/post_form.html -->
+{% extends "posts/post_base.html" %}
+{% load bootstrap5 %}
+
+{% block post_content %}
+  <h1>Add Post</h1>
+	<form method="POST" action="{% url 'posts:create' %}" id="postForm">
+			{% csrf_token %}
+			{% bootstrap_form form %}
+		<input type="submit" value="Post" class="btn btn-primary btn-large">
+  </form>
+
+{% endblock %}

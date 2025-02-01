@@ -1,0 +1,17 @@
+<!-- aaa/templates/groups/group_base.html -->
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div>
+	<div>
+		{% block pre_group %}{% endblock %}
+		{% block group_content %}{% endblock %}
+		{% block post_group %}{% endblock %}
+	</div>
+</div>
+
+
+
+{% endblock %}

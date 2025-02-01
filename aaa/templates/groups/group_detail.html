@@ -1,0 +1,52 @@
+{% extends "groups/group_base.html" %}
+<!-- aaa/templates/groups/group_detail.html -->
+{% block pre_group %}
+
+<div class="top_part">
+	<div class="header">
+		<h1>{{group.name}}</h1>
+      <div class="group_count">
+        <div class="group_count_row">
+          <span class="badge">{{ group.members.count }}</span>
+          Member{{ group.members.count | pluralize }}
+        </div>
+        <div class="group_count_row">
+          <span class="badge">{{ group.posts.count }}</span>
+          Post{{ group.posts.count | pluralize }}
+        </div>
+      </div>
+	</div>
+</div>
+
+
+<div class="button_container">
+	<div class="button">
+	  {% if user in group.members.all %}
+	    <a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>
+	  {% else %}
+	    <a href="{% url 'groups:join' slug=group.slug %}">Join</a>
+	  {% endif %}
+	</div>
+</div>
+
+
+
+{% endblock %}
+
+
+{% block group_content %}
+
+<div class="col-md-8">
+	
+	{% if group.posts.count == 0 %}
+	<h2>No posts in this group yet!</h2>
+
+	{% else %}
+
+		{% for post in group.posts.all %}
+			{% include "posts/_post.html" %}
+		{% endfor %}
+
+	{% endif %}
+</div>
+{% endblock %}

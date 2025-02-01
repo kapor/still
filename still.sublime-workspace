@@ -1,0 +1,1635 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"des",
+				"description"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"Comm",
+				"CommentForm"
+			],
+			[
+				"login",
+				"login_required"
+			],
+			[
+				"Post",
+				"PostDetailView"
+			],
+			[
+				"app",
+				"approve_comments"
+			],
+			[
+				"revers",
+				"reverse_lazy"
+			],
+			[
+				"BookLi",
+				"BookListView"
+			],
+			[
+				"templa",
+				"template_name"
+			],
+			[
+				"tem",
+				"TemplateView"
+			],
+			[
+				"templ",
+				"template_name"
+			],
+			[
+				"prof",
+				"prof_form"
+			],
+			[
+				"bot",
+				"botcatch"
+			],
+			[
+				"blu",
+				"lightblue"
+			],
+			[
+				"light",
+				"lightcoral"
+			],
+			[
+				"pad",
+				"padding-bottom"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"static",
+				"STATIC_DIR"
+			],
+			[
+				"TEMPL",
+				"TEMPLATE_DIR"
+			],
+			[
+				"TEMP",
+				"TEMPLATES"
+			],
+			[
+				"de",
+				"deposit"
+			],
+			[
+				"wi",
+				"widthdraw"
+			],
+			[
+				"descr",
+				"description\tcommands.description"
+			],
+			[
+				"up",
+				"update_btn"
+			],
+			[
+				"del",
+				"delete_btn"
+			],
+			[
+				"__",
+				"__name__"
+			],
+			[
+				"class1",
+				"class1_method2"
+			],
+			[
+				"c",
+				"class1_method1"
+			],
+			[
+				"l",
+				"self"
+			],
+			[
+				"padding-",
+				"padding-bottom"
+			],
+			[
+				"backgr",
+				"background-position"
+			],
+			[
+				"background-",
+				"background-size"
+			],
+			[
+				"di",
+				"flex-direction"
+			],
+			[
+				"yell",
+				"yellowgreen"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"bord",
+				"border-radius"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"tile",
+				"tile_bg_pink"
+			],
+			[
+				"tile_bg",
+				"tile_bg_blue"
+			],
+			[
+				"tile_bg_b",
+				"tile_bg_light_blue"
+			],
+			[
+				"tile_b",
+				"tile_bg_pink"
+			],
+			[
+				"padding",
+				"padding-bottom"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"flex",
+				"flex-direction"
+			],
+			[
+				"fle",
+				"flex-direction"
+			],
+			[
+				"billboard_",
+				"billboard_portait"
+			],
+			[
+				"line",
+				"line-height"
+			],
+			[
+				"fl",
+				"flex-direction"
+			],
+			[
+				"text-",
+				"text-align"
+			],
+			[
+				"colu",
+				"column-reverse"
+			],
+			[
+				"icon",
+				"iconography"
+			],
+			[
+				"flex-",
+				"flex-direction"
+			],
+			[
+				"gap",
+				"column-gap"
+			],
+			[
+				"get",
+				"getElementsByClassName"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "aaa/aaa/urls.py",
+			"settings":
+			{
+				"buffer_size": 1251,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					19,
+					1,
+					"toggle_comment",
+					{
+						"block": true
+					},
+					"AgAAABgEAAAAAAAAGgQAAAAAAAAAAAAA1wMAAAAAAADZAwAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAATQQAAAAAAADTAwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					41,
+					1,
+					"toggle_comment",
+					{
+						"block": true
+					},
+					"AgAAABoEAAAAAAAAGgQAAAAAAAACAAAAIyDXAwAAAAAAANcDAAAAAAAAAgAAACMg",
+					"AQAAAAAAAAABAAAAUQQAAAAAAADTAwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					59,
+					2,
+					"left_delete",
+					null,
+					"AgAAABQEAAAAAAAAFAQAAAAAAAA5AAAAICAgIHBhdGgoJ2dyb3Vwcy8nLCBpbmNsdWRlKCdkamFuZ28uY29udHJpYi5hdXRoLnVybHMnKSksEwQAAAAAAAATBAAAAAAAAAEAAAAK",
+					"AQAAAAAAAAABAAAATQQAAAAAAAAUBAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					65,
+					2,
+					"left_delete",
+					null,
+					"AgAAABQEAAAAAAAAFAQAAAAAAAABAAAAChMEAAAAAAAAEwQAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAAFQQAAAAAAAAVBAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					66,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAABMEAAAAAAAAFAQAAAAAAAAAAAAAFAQAAAAAAAAYBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAEwQAAAAAAAATBAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "aaa/templates/groups/group_list.html",
+			"redo_stack":
+			[
+				[
+					143,
+					1,
+					"left_delete",
+					null,
+					"AgAAABQBAAAAAAAAFQEAAAAAAAAAAAAAFQEAAAAAAAAdAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAFAEAAAAAAAAUAQAAAAAAAAAAAAAAAPC/"
+				]
+			],
+			"settings":
+			{
+				"buffer_size": 1327,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+			]
+		},
+		{
+			"file": "aaa/groups/templates/groups/group_base.html",
+			"redo_stack":
+			[
+				[
+					13,
+					1,
+					"paste",
+					null,
+					"AQAAAEEAAAAAAAAAQQAAAAAAAAAHAAAAZ3JvdXBzLw",
+					"AQAAAAAAAAABAAAASAAAAAAAAABIAAAAAAAAAAAAAAAAAPC/"
+				]
+			],
+			"settings":
+			{
+				"buffer_size": 293,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					3,
+					1,
+					"insert",
+					{
+						"characters": "groups?/"
+					},
+					"CAAAABoAAAAAAAAAGwAAAAAAAAAAAAAAGwAAAAAAAAAcAAAAAAAAAAAAAAAcAAAAAAAAAB0AAAAAAAAAAAAAAB0AAAAAAAAAHgAAAAAAAAAAAAAAHgAAAAAAAAAfAAAAAAAAAAAAAAAfAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAIQAAAAAAAAAAAAAAIQAAAAAAAAAiAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAGgAAAAAAAAAaAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					4,
+					2,
+					"left_delete",
+					null,
+					"AgAAACEAAAAAAAAAIQAAAAAAAAABAAAALyAAAAAAAAAAIAAAAAAAAAABAAAAPw",
+					"AQAAAAAAAAABAAAAIgAAAAAAAAAiAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					5,
+					1,
+					"insert",
+					{
+						"characters": "/"
+					},
+					"AQAAACAAAAAAAAAAIQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAIAAAAAAAAAAgAAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "aaa/groups/templates/groups/group_list.html",
+			"settings":
+			{
+				"buffer_size": 1327,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					5,
+					1,
+					"paste",
+					null,
+					"AQAAADoAAAAAAAAAQQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAOgAAAAAAAAA6AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					8,
+					1,
+					"paste",
+					null,
+					"AQAAABoAAAAAAAAAIQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAGgAAAAAAAAAaAAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "aaa/groups/views.py",
+			"settings":
+			{
+				"buffer_size": 548,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+			]
+		},
+		{
+			"file": "aaa/posts/urls.py",
+			"settings":
+			{
+				"buffer_size": 131,
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+			]
+		},
+		{
+			"file": "aaa/groups/admin.py",
+			"settings":
+			{
+				"buffer_size": 273,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					39,
+					1,
+					"insert",
+					{
+						"characters": "\n\n\n"
+					},
+					"AwAAAGsAAAAAAAAAbAAAAAAAAAAAAAAAbAAAAAAAAABtAAAAAAAAAAAAAABtAAAAAAAAAG4AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAABrAAAAAAAAAGsAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					41,
+					1,
+					"insert",
+					{
+						"characters": "class"
+					},
+					"BQAAAG0AAAAAAAAAbgAAAAAAAAAAAAAAbgAAAAAAAABvAAAAAAAAAAAAAABvAAAAAAAAAHAAAAAAAAAAAAAAAHAAAAAAAAAAcQAAAAAAAAAAAAAAcQAAAAAAAAByAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAABtAAAAAAAAAG0AAAAAAAAAAAAAAAAAAAA"
+				],
+				[
+					42,
+					1,
+					"insert",
+					{
+						"characters": " ="
+					},
+					"AgAAAHIAAAAAAAAAcwAAAAAAAAAAAAAAcwAAAAAAAAB0AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAByAAAAAAAAAHIAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					43,
+					1,
+					"insert",
+					{
+						"characters": " g"
+					},
+					"AgAAAHQAAAAAAAAAdQAAAAAAAAAAAAAAdQAAAAAAAAB2AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAB0AAAAAAAAAHQAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					44,
+					3,
+					"left_delete",
+					null,
+					"AwAAAHUAAAAAAAAAdQAAAAAAAAABAAAAZ3QAAAAAAAAAdAAAAAAAAAABAAAAIHMAAAAAAAAAcwAAAAAAAAABAAAAPQ",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAB2AAAAAAAAAHYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					45,
+					1,
+					"insert",
+					{
+						"characters": "GroupMember"
+					},
+					"CwAAAHMAAAAAAAAAdAAAAAAAAAAAAAAAdAAAAAAAAAB1AAAAAAAAAAAAAAB1AAAAAAAAAHYAAAAAAAAAAAAAAHYAAAAAAAAAdwAAAAAAAAAAAAAAdwAAAAAAAAB4AAAAAAAAAAAAAAB4AAAAAAAAAHkAAAAAAAAAAAAAAHkAAAAAAAAAegAAAAAAAAAAAAAAegAAAAAAAAB7AAAAAAAAAAAAAAB7AAAAAAAAAHwAAAAAAAAAAAAAAHwAAAAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAAAB+AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAABzAAAAAAAAAHMAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					46,
+					1,
+					"insert",
+					{
+						"characters": "Inline"
+					},
+					"BgAAAH4AAAAAAAAAfwAAAAAAAAAAAAAAfwAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAIEAAAAAAAAAAAAAAIEAAAAAAAAAggAAAAAAAAAAAAAAggAAAAAAAACDAAAAAAAAAAAAAACDAAAAAAAAAIQAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAB+AAAAAAAAAH4AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					47,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAIQAAAAAAAAAhgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAACEAAAAAAAAAIQAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					48,
+					1,
+					"insert",
+					{
+						"characters": "admin.Tabular"
+					},
+					"DQAAAIUAAAAAAAAAhgAAAAAAAAAAAAAAhgAAAAAAAACHAAAAAAAAAAAAAACHAAAAAAAAAIgAAAAAAAAAAAAAAIgAAAAAAAAAiQAAAAAAAAAAAAAAiQAAAAAAAACKAAAAAAAAAAAAAACKAAAAAAAAAIsAAAAAAAAAAAAAAIsAAAAAAAAAjAAAAAAAAAAAAAAAjAAAAAAAAACNAAAAAAAAAAAAAACNAAAAAAAAAI4AAAAAAAAAAAAAAI4AAAAAAAAAjwAAAAAAAAAAAAAAjwAAAAAAAACQAAAAAAAAAAAAAACQAAAAAAAAAJEAAAAAAAAAAAAAAJEAAAAAAAAAkgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAACFAAAAAAAAAIUAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					49,
+					1,
+					"insert",
+					{
+						"characters": "InLine"
+					},
+					"BgAAAJIAAAAAAAAAkwAAAAAAAAAAAAAAkwAAAAAAAACUAAAAAAAAAAAAAACUAAAAAAAAAJUAAAAAAAAAAAAAAJUAAAAAAAAAlgAAAAAAAAAAAAAAlgAAAAAAAACXAAAAAAAAAAAAAACXAAAAAAAAAJgAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAACSAAAAAAAAAJIAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					51,
+					1,
+					"insert",
+					{
+						"characters": ":"
+					},
+					"AQAAAJkAAAAAAAAAmgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAACZAAAAAAAAAJkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					52,
+					1,
+					"insert",
+					{
+						"characters": "\nmode"
+					},
+					"BgAAAJoAAAAAAAAAmwAAAAAAAAAAAAAAmwAAAAAAAACcAAAAAAAAAAAAAACcAAAAAAAAAJ0AAAAAAAAAAAAAAJ0AAAAAAAAAngAAAAAAAAAAAAAAngAAAAAAAACfAAAAAAAAAAAAAACfAAAAAAAAAKAAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAACaAAAAAAAAAJoAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					53,
+					1,
+					"insert",
+					{
+						"characters": "l"
+					},
+					"AQAAAKAAAAAAAAAAoQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAACgAAAAAAAAAKAAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					54,
+					1,
+					"insert",
+					{
+						"characters": " ="
+					},
+					"AgAAAKEAAAAAAAAAogAAAAAAAAAAAAAAogAAAAAAAACjAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAChAAAAAAAAAKEAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					55,
+					1,
+					"insert",
+					{
+						"characters": " models."
+					},
+					"CAAAAKMAAAAAAAAApAAAAAAAAAAAAAAApAAAAAAAAAClAAAAAAAAAAAAAAClAAAAAAAAAKYAAAAAAAAAAAAAAKYAAAAAAAAApwAAAAAAAAAAAAAApwAAAAAAAACoAAAAAAAAAAAAAACoAAAAAAAAAKkAAAAAAAAAAAAAAKkAAAAAAAAAqgAAAAAAAAAAAAAAqgAAAAAAAACrAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAACjAAAAAAAAAKMAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					60,
+					1,
+					"insert",
+					{
+						"characters": "model."
+					},
+					"BgAAAMEAAAAAAAAAwgAAAAAAAAAAAAAAwgAAAAAAAADDAAAAAAAAAAAAAADDAAAAAAAAAMQAAAAAAAAAAAAAAMQAAAAAAAAAxQAAAAAAAAAAAAAAxQAAAAAAAADGAAAAAAAAAAAAAADGAAAAAAAAAMcAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAADBAAAAAAAAAMEAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					65,
+					1,
+					"insert",
+					{
+						"characters": "GroupM"
+					},
+					"BgAAAKsAAAAAAAAArAAAAAAAAAAAAAAArAAAAAAAAACtAAAAAAAAAAAAAACtAAAAAAAAAK4AAAAAAAAAAAAAAK4AAAAAAAAArwAAAAAAAAAAAAAArwAAAAAAAACwAAAAAAAAAAAAAACwAAAAAAAAALEAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAACrAAAAAAAAAKsAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					66,
+					1,
+					"insert_completion",
+					{
+						"completion": "GroupMember",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "GroupMember"
+					},
+					"AgAAAKsAAAAAAAAAqwAAAAAAAAAGAAAAR3JvdXBNqwAAAAAAAAC2AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAACxAAAAAAAAALEAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					69,
+					1,
+					"toggle_comment",
+					{
+						"block": true
+					},
+					"AQAAANkAAAAAAAAA2wAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAD5AAAAAAAAANkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					79,
+					1,
+					"paste",
+					null,
+					"AgAAAIsAAAAAAAAAmAAAAAAAAAAAAAAAmAAAAAAAAACYAAAAAAAAAA0AAABUYWJ1bGFySW5MaW5l",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAACLAAAAAAAAAJgAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					90,
+					1,
+					"insert",
+					{
+						"characters": "\nfrom"
+					},
+					"BQAAACAAAAAAAAAAIQAAAAAAAAAAAAAAIQAAAAAAAAAiAAAAAAAAAAAAAAAiAAAAAAAAACMAAAAAAAAAAAAAACMAAAAAAAAAJAAAAAAAAAAAAAAAJAAAAAAAAAAlAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					91,
+					1,
+					"insert",
+					{
+						"characters": " ."
+					},
+					"AgAAACUAAAAAAAAAJgAAAAAAAAAAAAAAJgAAAAAAAAAnAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAUgAAAAAAAABSAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAAlAAAAAAAAACUAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					92,
+					1,
+					"insert",
+					{
+						"characters": " immport"
+					},
+					"CAAAACcAAAAAAAAAKAAAAAAAAAAAAAAAKAAAAAAAAAApAAAAAAAAAAAAAAApAAAAAAAAACoAAAAAAAAAAAAAACoAAAAAAAAAKwAAAAAAAAAAAAAAKwAAAAAAAAAsAAAAAAAAAAAAAAAsAAAAAAAAAC0AAAAAAAAAAAAAAC0AAAAAAAAALgAAAAAAAAAAAAAALgAAAAAAAAAvAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAVAAAAAAAAABUAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAAnAAAAAAAAACcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					93,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAC8AAAAAAAAAMAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAXAAAAAAAAABcAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAAvAAAAAAAAAC8AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					94,
+					7,
+					"left_delete",
+					null,
+					"BwAAAC8AAAAAAAAALwAAAAAAAAABAAAAIC4AAAAAAAAALgAAAAAAAAABAAAAdC0AAAAAAAAALQAAAAAAAAABAAAAciwAAAAAAAAALAAAAAAAAAABAAAAbysAAAAAAAAAKwAAAAAAAAABAAAAcCoAAAAAAAAAKgAAAAAAAAABAAAAbSkAAAAAAAAAKQAAAAAAAAABAAAAbQ",
+					"AgAAAAAAAAABAAAAXQAAAAAAAABdAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAAwAAAAAAAAADAAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					95,
+					1,
+					"insert",
+					{
+						"characters": "mport"
+					},
+					"BQAAACkAAAAAAAAAKgAAAAAAAAAAAAAAKgAAAAAAAAArAAAAAAAAAAAAAAArAAAAAAAAACwAAAAAAAAAAAAAACwAAAAAAAAALQAAAAAAAAAAAAAALQAAAAAAAAAuAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAVgAAAAAAAABWAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAApAAAAAAAAACkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					96,
+					1,
+					"insert",
+					{
+						"characters": " models"
+					},
+					"BwAAAC4AAAAAAAAALwAAAAAAAAAAAAAALwAAAAAAAAAwAAAAAAAAAAAAAAAwAAAAAAAAADEAAAAAAAAAAAAAADEAAAAAAAAAMgAAAAAAAAAAAAAAMgAAAAAAAAAzAAAAAAAAAAAAAAAzAAAAAAAAADQAAAAAAAAAAAAAADQAAAAAAAAANQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAWwAAAAAAAABbAAAAAAAAAAAAAAAAAPC/AQAAAAEAAAAuAAAAAAAAAC4AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					104,
+					1,
+					"insert",
+					{
+						"characters": "s"
+					},
+					"AQAAAOUAAAAAAAAA5gAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAYgAAAAAAAABiAAAAAAAAAAAAAAAAAPC/AQAAAAEAAADlAAAAAAAAAOUAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					105,
+					1,
+					"left_delete",
+					null,
+					"AQAAAOUAAAAAAAAA5QAAAAAAAAABAAAAcw",
+					"AgAAAAAAAAABAAAAYgAAAAAAAABiAAAAAAAAAAAAAAAAAPC/AQAAAAEAAADmAAAAAAAAAOYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					107,
+					1,
+					"insert",
+					{
+						"characters": "s"
+					},
+					"AQAAAOYAAAAAAAAA5wAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAYgAAAAAAAABiAAAAAAAAAAAAAAAAAPC/AQAAAAEAAADmAAAAAAAAAOYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					136,
+					1,
+					"left_delete",
+					null,
+					"AQAAAOEAAAAAAAAA4QAAAAAAAAAGAAAAbW9kZWxz",
+					"AgAAAAAAAAABAAAAYgAAAAAAAABiAAAAAAAAAAAAAAAAAPC/AQAAAAEAAADhAAAAAAAAAOcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					138,
+					1,
+					"left_delete",
+					null,
+					"AQAAAOEAAAAAAAAA4QAAAAAAAAABAAAALg",
+					"AgAAAAAAAAABAAAAYgAAAAAAAABiAAAAAAAAAAAAAAAAAPC/AQAAAAEAAADiAAAAAAAAAOIAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					165,
+					1,
+					"insert",
+					{
+						"characters": "models."
+					},
+					"BwAAAOEAAAAAAAAA4gAAAAAAAAAAAAAA4gAAAAAAAADjAAAAAAAAAAAAAADjAAAAAAAAAOQAAAAAAAAAAAAAAOQAAAAAAAAA5QAAAAAAAAAAAAAA5QAAAAAAAADmAAAAAAAAAAAAAADmAAAAAAAAAOcAAAAAAAAAAAAAAOcAAAAAAAAA6AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAYgAAAAAAAABiAAAAAAAAAAAAAAAAAPC/AQAAAAEAAADhAAAAAAAAAOEAAAAAAAAAAAAAAAAA8L8"
+				]
+			]
+		},
+		{
+			"file": "aaa/static/scss/styles.scss",
+			"settings":
+			{
+				"buffer_size": 8494,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					3,
+					1,
+					"paste",
+					null,
+					"AQAAAAggAAAAAAAAMiEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAACCAAAAAAAAAIIAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					6,
+					1,
+					"unindent",
+					null,
+					"DgAAAAggAAAAAAAACCAAAAAAAAACAAAAICANIAAAAAAAAA0gAAAAAAAAAgAAACAgKiAAAAAAAAAqIAAAAAAAAAIAAAAgIDggAAAAAAAAOCAAAAAAAAACAAAAICBVIAAAAAAAAFUgAAAAAAAAAgAAACAgbiAAAAAAAABuIAAAAAAAAAIAAAAgIIIgAAAAAAAAgiAAAAAAAAACAAAAICCZIAAAAAAAAJkgAAAAAAAAAgAAACAgrCAAAAAAAACsIAAAAAAAAAIAAAAgIMUgAAAAAAAAxSAAAAAAAAACAAAAICDUIAAAAAAAANQgAAAAAAAAAgAAACAg5CAAAAAAAADkIAAAAAAAAAIAAAAgIPogAAAAAAAA+iAAAAAAAAACAAAAICAVIQAAAAAAABUhAAAAAAAAAgAAACAg",
+					"AQAAAAAAAAABAAAAMiEAAAAAAAAIIAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					22,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAIAEAAAAAAAAgQQAAAAAAAAAAAAAgQQAAAAAAACDBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgAQAAAAAAACABAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					28,
+					1,
+					"paste",
+					null,
+					"AQAAAIMEAAAAAAAAkwQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgwQAAAAAAACDBAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "aaa/groups/urls.py",
+			"redo_stack":
+			[
+			],
+			"settings":
+			{
+				"buffer_size": 458,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					9,
+					1,
+					"toggle_comment",
+					{
+						"block": true
+					},
+					"BAAAAIkBAAAAAAAAiQEAAAAAAAACAAAAIyBGAQAAAAAAAEYBAAAAAAAAAgAAACMg+wAAAAAAAAD7AAAAAAAAAAIAAAAjILsAAAAAAAAAuwAAAAAAAAACAAAAIyA",
+					"AQAAAAAAAAABAAAAygEAAAAAAAC3AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					66,
+					1,
+					"toggle_comment",
+					{
+						"block": true
+					},
+					"AwAAAMMBAAAAAAAAxQEAAAAAAAAAAAAAfwEAAAAAAACBAQAAAAAAAAAAAAA+AQAAAAAAAEABAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAxAEAAAAAAAA+AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					76,
+					1,
+					"toggle_comment",
+					{
+						"block": true
+					},
+					"AQAAAMcBAAAAAAAAxwEAAAAAAAACAAAAIyA",
+					"AQAAAAAAAAABAAAAygEAAAAAAADHAQAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "aaa/groups/models.py",
+			"settings":
+			{
+				"buffer_size": 1213,
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+			]
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"emmet",
+				"Preferences: Emmet Settings"
+			],
+			[
+				"Snippet: ",
+				"Snippet: html"
+			],
+			[
+				"packag",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"package install",
+				"Package Control: Advanced Install Packages"
+			],
+			[
+				"outline",
+				"Browse Mode: Outline (Right)"
+			],
+			[
+				"test",
+				"Test Runner: Run tests with coverage"
+			],
+			[
+				"",
+				"Set Syntax: Git Ignore"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"insta",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"colorthe",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"install",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"scss",
+				"Set Syntax: SCSS"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 172.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/aaronkapor/repos/still",
+		"/Users/aaronkapor/repos/still/aaa",
+		"/Users/aaronkapor/repos/still/aaa/aaa",
+		"/Users/aaronkapor/repos/still/aaa/groups",
+		"/Users/aaronkapor/repos/still/aaa/groups/migrations",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups",
+		"/Users/aaronkapor/repos/still/aaa/posts",
+		"/Users/aaronkapor/repos/still/aaa/posts/__pycache__",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates"
+	],
+	"file_history":
+	[
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/nav_desktop.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_detail.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_form.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/group_base.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/group_form.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/group_list.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/group_detail.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/index.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/urls.py",
+		"/Users/aaronkapor/repos/still/aaa/posts/models.py",
+		"/Users/aaronkapor/repos/still/aaa/groups/models.py",
+		"/Users/aaronkapor/repos/still/aaa/aaa/urls.py",
+		"/Users/aaronkapor/repos/still/aaa/posts/admin.py",
+		"/Users/aaronkapor/repos/still/aaa/groups/views.py",
+		"/Users/aaronkapor/repos/still/aaa/groups/admin.py",
+		"/Users/aaronkapor/repos/still/aaa/aaa/settings.py",
+		"/Users/aaronkapor/repos/still/aaa/accounts/templates/signup.html",
+		"/Users/aaronkapor/repos/still/aaa/accounts/templates/login.html",
+		"/Users/aaronkapor/repos/still/aaa/accounts/urls.py",
+		"/Users/aaronkapor/repos/still/aaa/templates/test.html",
+		"/Users/aaronkapor/repos/still/aaa/accounts/forms.py",
+		"/Users/aaronkapor/repos/still/aaa/templates/thanks.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/_post.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/user_post_list.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/post_list.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/post_form.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/post_detail.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/post_confirm_delete.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/post_base.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/base.html",
+		"/Users/aaronkapor/repos/still/aaa/static/css/styles.css",
+		"/Users/aaronkapor/repos/still/aaa/templates/nav_desktop.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/urls.py",
+		"/Users/aaronkapor/repos/still/aaa/posts/views.py",
+		"/Users/aaronkapor/repos/still/aaa/aaa/views.py",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/overlay.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/custom_clearable_file_input.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/posts/index.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/base/base.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/base/index.html",
+		"/Users/aaronkapor/repos/still/aaa/accounts/models.py",
+		"/Users/aaronkapor/repos/still/aaa/accounts/views.py",
+		"/Users/aaronkapor/repos/still/aaa/posts/forms.py",
+		"/Users/aaronkapor/repos/still/aaa/groups/forms.py",
+		"/Users/aaronkapor/repos/still/aaa/templates/base/nav_desktop.html",
+		"/Users/aaronkapor/repos/still/aaa/static/scss/styles.scss",
+		"/Users/aaronkapor/repos/still/aaa/templates/posts/custom_clearable_file_input.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/posts/nav_desktop.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/posts/product_list.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/product_list.html",
+		"/Users/aaronkapor/repos/still/aaa/static/js/scripts.js",
+		"/Users/aaronkapor/repos/still/aaa/posts/management/commands/load-fixtures.py",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/product_list.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/nav_desktop.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/base.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/index.html",
+		"/Users/aaronkapor/repos/still/infinite-scroll-django-htmx/core/templates/core/index.html",
+		"/Users/aaronkapor/repos/still/infinite-scroll-django-htmx/manage.py",
+		"/Users/aaronkapor/repos/still/aaa/manage.py",
+		"/Users/aaronkapor/repos/still/aaa/aaa/asgi.py",
+		"/Users/aaronkapor/repos/still/aaa/aaa/wsgi.py",
+		"/Users/aaronkapor/repos/still/phase1/phase1/settings.py",
+		"/Users/aaronkapor/repos/still/phase_01/app/settings.py",
+		"/Users/aaronkapor/repos/still/infinite-scroll-django-htmx/static/css/styles.css",
+		"/Users/aaronkapor/repos/still/infinite-scroll-django-htmx/core/views.py",
+		"/Users/aaronkapor/repos/still/infinite-scroll-django-htmx/core/templates/core/product-list.html",
+		"/Users/aaronkapor/repos/still/infinite-scroll-django-htmx/core/management/commands/load-fixtures.py",
+		"/Users/aaronkapor/repos/still/infinite-scroll-django-htmx/infinitescroll/settings.py",
+		"/Users/aaronkapor/repos/still/infinite-scroll-django-htmx/infinitescroll/urls.py",
+		"/Users/aaronkapor/repos/python/clone/site/static/scss/forms.scss",
+		"/Users/aaronkapor/repos/python/clone/site/static/scss/styles.scss",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/forms.py",
+		"/Users/aaronkapor/repos/python/clone/site/static/css/styles.css",
+		"/Users/aaronkapor/repos/python/clone/site/static/css/blog.css",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/models.py",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/views.py",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/index.html",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/reg/login.html",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/admin.py",
+		"/Users/aaronkapor/repos/python/clone/site/clone/urls.py",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/blog/post_form.html",
+		"/Users/aaronkapor/repos/python/clone/site/clone/settings.py",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/blog/base.html",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/blog/post_update.html",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/blog/post_detail.html",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/blog/about.html",
+		"/Users/aaronkapor/repos/python/clone/site/clone/__init__.py",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/blog/post_draft_list.html",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/blog/post_list.html",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/blog/comment_form.html",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/urls.py",
+		"/Users/aaronkapor/repos/python/clone/site/static/scss/loader.scss",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/migrations/0004_rename_approved_comment_comment_approved_comments.py",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/migrations/0001_initial.py",
+		"/Users/aaronkapor/repos/python/clone/site/static/css/medium-editor.css",
+		"/Users/aaronkapor/repos/python/clone/site/static/css/styles.scss",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/registration/login.html",
+		"/Users/aaronkapor/repos/python/clone/site/clone_01/templates/blog/post_confirm_delete.html",
+		"/Users/aaronkapor/Library/Application Support/Sublime Text/Packages/User/py_temv.sublime-snippet",
+		"/Users/aaronkapor/Library/Application Support/Sublime Text/Packages/User/py_tem.sublime-snippet",
+		"/Users/aaronkapor/Library/Application Support/Sublime Text/Packages/User/pyht.sublime-snippet",
+		"/Users/aaronkapor/Library/Application Support/Sublime Text/Packages/User/html.sublime-snippet",
+		"/Users/aaronkapor/Library/Application Support/Sublime Text/Packages/User/py_extends.sublime-snippet",
+		"/Users/aaronkapor/repos/python/clone/clone/clone_01/admin.py",
+		"/Users/aaronkapor/repos/python/clone/clone/clone/settings.py",
+		"/Users/aaronkapor/repos/python/clone/clone/clone_01/urls.py",
+		"/Users/aaronkapor/repos/python/clone/clone/clone_01/forms.py",
+		"/Users/aaronkapor/repos/python/clone/clone_01/admin.py",
+		"/Users/aaronkapor/repos/collect/books/collection/templates/books/delete.html",
+		"/Users/aaronkapor/repos/collect/books/collection/urls.py",
+		"/Users/aaronkapor/repos/collect/books/templates/base/index.html",
+		"/Users/aaronkapor/repos/collect/books/collection/templates/books/book_list.html",
+		"/Users/aaronkapor/repos/collect/books/profiles/templates/profile/bm_view.html",
+		"/Users/aaronkapor/repos/collect/books/profiles/templates/profile/bm_detail.html",
+		"/Users/aaronkapor/repos/collect/books/collection/templates/books/update.html",
+		"/Users/aaronkapor/repos/collect/books/collection/models.py",
+		"/Users/aaronkapor/repos/collect/books/collection/forms.py",
+		"/Users/aaronkapor/repos/collect/books/static/css/forms.css",
+		"/Users/aaronkapor/repos/collect/books/collection/views.py",
+		"/Users/aaronkapor/repos/collect/books/books/settings.py",
+		"/Users/aaronkapor/repos/collect/books/collection/templates/books/book_detail.html",
+		"/Users/aaronkapor/repos/collect/books/static/css/styles.css",
+		"/Users/aaronkapor/repos/collect/books/collection/templates/books/edit.html",
+		"/Users/aaronkapor/repos/collect/books/profiles/models.py",
+		"/Users/aaronkapor/repos/collect/books/collection/templates/books/admin.html",
+		"/Users/aaronkapor/repos/collect/books/collection/templates/entry/create.html",
+		"/Users/aaronkapor/repos/collect/books/collection/admin.py",
+		"/Users/aaronkapor/repos/collect/books/profiles/views.py"
+	],
+	"find":
+	{
+		"height": 45.0
+	},
+	"find_in_files":
+	{
+		"height": 190.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"for_user",
+			"postgroup",
+			"for_user",
+			"overlay",
+			"accent",
+			"nav",
+			"anonymous",
+			"nav_desktop",
+			"posts.views.HomeView",
+			"red",
+			"big_p",
+			"htmx",
+			"core",
+			"aaa",
+			"phase1",
+			"infinitescroll.settings",
+			"infinitescroll",
+			"pagination",
+			"revealed",
+			"grid_after",
+			"htmx",
+			"description"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"$accent2",
+			"phase1",
+			"aaa"
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/Users/aaronkapor/repos/still"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "aaa/aaa/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1251,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								884,
+								884
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "aaa/templates/groups/group_list.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1327,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								327,
+								327
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "aaa/groups/templates/groups/group_base.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 293,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								277,
+								277
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "aaa/groups/templates/groups/group_list.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1327,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								114,
+								114
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "aaa/groups/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 548,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								458,
+								458
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "aaa/posts/urls.py",
+					"selected": true,
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								131,
+								131
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "aaa/groups/admin.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 273,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								98,
+								98
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "aaa/static/scss/styles.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8494,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4778,
+								4778
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS-bundle/SCSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5133.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+				{
+					"buffer": 8,
+					"file": "aaa/groups/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 458,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								111,
+								111
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "aaa/groups/admin.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 273,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								128,
+								128
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "aaa/groups/models.py",
+					"selected": true,
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1213,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								241,
+								241
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 66.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 229.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.test_runner":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"test runner",
+				"Test Runner/TestRunner.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 294.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
