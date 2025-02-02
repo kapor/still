@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from django.views.generic import ListView, TemplateView
-from posts.models import Product
+from posts.models import Product, Post
 from groups.models import Group
 
 from django_htmx.middleware import HtmxDetails
@@ -20,6 +20,21 @@ class Home(TemplateView):
     template_name = "index.html"
 
 class PostView(ListView):
+    model = Post
+    template_name = "posts/post_grid.html"
+    context_object_name = "post_grid"
+    paginate_by = 20
+    ordering = "pk"
+    # new method added ⬇️
+    def get_template_names(self, *args, **kwargs):
+        if self.request.htmx:
+            return "posts/post_list.html"
+        else:
+            return self.template_name
+
+
+
+class IndexView(ListView):
     model = Group
     template_name = "index.html"
     context_object_name = "index_grid"
@@ -46,5 +61,9 @@ class GroupView(ListView):
             return "groups/group_list2.html"
         else:
             return self.template_name
+
+
+
+
 
 

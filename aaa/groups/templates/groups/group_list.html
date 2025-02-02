@@ -1,50 +1,53 @@
-<!-- aaa/groups/templates/groups/group_list.html -->
-{% extends "groups/group_base.html" %}
+<!-- aaa/templates/product_list.html -->
+<div class="group_container">
+  <div class="group_list">
+  {% for group in grouplist %}
+    {% if forloop.last %}
+      
+      <div 
+        class="group_card"
+        hx-trigger="revealed"
+        hx-get="{% url 'home' %}?page={{ page_obj.number|add:1 }}"
+        hx-swap="afterend">
 
-{% block pregroup %}
 
-<div class="col-md-4">
 
-	<div class="content">
-		{% if user.is_authenticated %}
-		<h2>Hey!</h2>
-			<!-- link to all the user's posts -->
-			<a href="{% url 'posts:for_user' username=user.username %}">
-			@{{user.username}}
-			</a>
-		{% endif %}
-		<h1>Groups</h1>
-		<p>Welcome to Groups</p>
-	</div>
+    {% else %}
+      <div class="group_card">
+    {% endif %}
 
-	{% if user.is_authenticated %}
-	<a href="{% url 'groups:create' %}" class="btn btn-lg btn-fill btn-warning"></span>Create</a>
-	{% endif %}
+      <a href="{% url 'groups:single' slug=group.slug %}" class="group_title">
+        <h3 class='group_name'>{{ group.name | title }}</h3>
+      </a>
+
+      <div class="leave_join">
+        {% if user in group.members.all %}
+          Member
+          <!-- [<a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>] -->
+        {% else %}
+          [<a href="{% url 'groups:join' slug=group.slug %}">Join Group</a>]
+        {% endif %}
+      </div>
+
+      <div class="group_description">
+      {{ group.description_html | safe }}
+      </div>
+
+
+      <div class="group_count">
+        <div class="group_count_row">
+          <span class="badge">{{ group.members.count }}</span>
+          Member{{ group.members.count | pluralize }}
+        </div>
+        <div class="group_count_row">
+          <span class="badge">{{ group.posts.count }}</span>
+          Post{{ group.posts.count | pluralize }}
+        </div>
+      </div>
+
+        <p>{{ group.price }}</p>
+      </div>
+
+  {% endfor %}
+  </div>
 </div>
-{% endblock %}
-
-
-{% block group_content %}
-<div class="col-md-8">
-	<div class="list-group">
-		{% for group in object_list %}
-			<a href="{% url 'groups:single' slug=group.slug %}" class="list-group-item">
-				<h3 class='title list-group-item-heading'>{{group.name}}</h3>
-				<div class="list-group-item-text container=fluid">
-					{{ group.description_html | safe }}
-					<div class="row">
-						<div class="col-md-4">
-							<span class="badge">{{ group.members.count }}</span>
-							Members {{ group.members.count | pluralize }}
-						</div>
-						<div class="col-md-4">
-							<span class="badge">{{ group.posts.count }}</span>
-							Posts {{ group.posts.count | pluralize }}
-						</div>
-					</div>
-				</div>
-			</a>
-		{% endfor %}
-	</div>
-</div>
-{% endblock %}

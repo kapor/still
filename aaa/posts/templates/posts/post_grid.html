@@ -1,7 +1,7 @@
-<!-- aaa/templates/product_list.html -->
+<!-- aaa/templates/posts/posts_grid.html -->
 <div class="group_container">
   <div class="group_list">
-  {% for group in grouplist %}
+  {% for group in index_grid %}
     {% if forloop.last %}
       
       <div 
@@ -51,3 +51,34 @@
   {% endfor %}
   </div>
 </div>
+
+
+
+
+
+
+<!-- aaa/templates/product_list.html -->
+<!-- <div class="grid_container">
+{% for post in products %}
+  {% if forloop.last %}
+    
+    <div 
+      class="grid_after"
+      hx-trigger="revealed"
+      hx-get="{% url 'home' %}?page={{ page_obj.number|add:1 }}"
+      hx-swap="afterend">
+
+
+
+  {% else %}
+    <div class="grid_info">
+  {% endif %}
+      <h2>{{ post.name }}</h2>
+      <p>{{ post.description }}</p>
+      <p>{{ post.price }}</p>
+    </div>
+
+{% endfor %}
+
+
+</div> -->

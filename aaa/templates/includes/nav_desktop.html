@@ -7,8 +7,9 @@
 		<!-- <button hx-get="{% url 'groups:add' %}" hx-modal="overlay">Placeholder</button> -->
 	</div>
 	<div class="navbar_right">
-		<li><a class="nav_link" href="{% url 'groups:all' %}"">Groups</a></li>
+		<li><a class="nav_link" href="{% url 'posts:all' %}">Posts</a></li>
 		<li><a class="nav_link" href="{% url 'posts:create' %}">Add_Post</a></li>
+		<li><a class="nav_link" href="{% url 'groups:all' %}"">Groups</a></li>
 		<li><a class="nav_link" href="{% url 'groups:create' %}">Add_Group</a></li>
 		<li><a class="nav_link" href="{% url 'admin:index' %}" target="_blank">Admin</a></li>
 		<li><a class="nav_link" href="{% url 'accounts:logout' %}">Logout</a></li>
@@ -21,7 +22,7 @@
 <!-- 		<li><a id="open-btn" class="overlay-event" type="button">Click</a></li> -->
 	</div>
 	<div class="navbar_right">
-		<li><a class="nav_link" href="{% url 'groups:all' %}"">Groups</a></li>
+		<li><a class="nav_link" href="{% url 'groups:all' %}">Groups</a></li>
 		<li><a class="nav_link" href="{% url 'accounts:login' %}">Login</a></li>
 		<li><a class="nav_link" href="{% url 'accounts:signup' %}">Sign_Up</a></li>	</div>
 </ul>
