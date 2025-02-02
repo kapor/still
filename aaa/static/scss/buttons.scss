@@ -1,0 +1,76 @@
+// buttons.scss
+$font-stack1: Helvetica neue, sans-serif;
+$font-stack2: Courier new, Roboto;
+$primary: #333;
+$secondary: #F2F2F2;
+$accent1: #8F00FF;
+$accent2: #00FF7F;
+
+
+.button_small {
+  font-family: $font-stack2;
+  font-style: normal;
+  color: $accent1;
+  font-weight: 200;
+  list-style-type: none;
+  letter-spacing: 0px;
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: none;
+  margin: 0px;
+  padding: 0px;
+  line-height: 26px;
+  cursor: pointer;
+}
+
+
+
+.button_container,
+.button_container form {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+
+
+  .button,
+  input.button,
+  .button_secondary,
+  .button_action {
+    padding: 12px 20px;
+    background-color: $accent1;
+    color: white;
+    display: inline-block;
+    border-radius: 4px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+
+    font-family: $font-stack1;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 400;
+    line-height: 20px;
+
+    a {
+      color: white;
+    }
+
+  }
+
+  .button_secondary {
+    background-color: #CCCCCC;
+  }
+
+  .button_action {
+    background-color: $accent2;
+    color: $primary;
+
+    a {
+      color: $primary
+    }
+  }
+
+}
+

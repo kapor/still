@@ -50,18 +50,7 @@ select {
   padding: inherit;
   font-style: normal;
 }
-.forms div label {
-  width: auto;
-  font-family: Helvetica neue, sans-serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  display: inline-block;
-  text-align: left;
-  color: red;
-  padding: 0px 0px 16px 0px;
-  font-size: 20px;
-  border: none;
-}
+
 .forms .btn_save {
   height: 80px;
   width: 100%;

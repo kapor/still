@@ -1,24 +1,40 @@
-<!-- aaa/groups/templates/groups/group_detail.html -->
+<!-- aaa/groups/templates/groups/groups_detail.html -->
 {% extends "groups/group_base.html" %}
+{% block pre_group %}
 
-{% block pregroup %}
-
-
-<h1>{{group.name}}</h1>
-<h2> Member Count: {{group.members.count}}</h2>
-
-  <div class="content">
-
-
-{% if user in group.members.all %}
-	<a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-fill btn-warning">Leave</a>
-{% else %}
-	<a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-fill btn-warning"></span>Join</a>
-{% endif %}
-
-
-
+<div class="top_part">
+	<div class="header">
+		<h1>{{group.name}}</h1>
+      <div class="group_count">
+        <div class="group_count_row">
+          <span class="badge">{{ group.members.count }}</span>
+          Member{{ group.members.count | pluralize }}
+        </div>
+        <div class="group_count_row">
+          <span class="badge">{{ group.posts.count }}</span>
+          Post{{ group.posts.count | pluralize }}
+        </div>
+      </div>
+	</div>
 </div>
+
+
+<div class="button_container">
+	{% if user in group.members.all %}
+	<div class="button_secondary">
+		<a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>
+	</div>
+		{% else %}
+	<div class="button_action" href="{% url 'groups:join' slug=group.slug %}">
+		<a href="{% url 'groups:join' slug=group.slug %}">Join</a>
+	</div>
+	{% endif %}
+	<div class="button">
+		<a href="{% url 'groups:all' %}">Back to Groups</a>
+	</div>
+</div>
+
+
 
 {% endblock %}
 
