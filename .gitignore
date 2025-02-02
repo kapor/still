@@ -9,7 +9,7 @@ _site/
 
 django-htmx/
 __pycache__/
-
+.pyc
 
 # Additional Ruby/bundler ignore for when you run: bundle install
 /vendor
