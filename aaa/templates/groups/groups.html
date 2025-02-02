@@ -1,0 +1,49 @@
+<!-- aaa/templates/groups/group_list.html -->
+{% extends "groups/group_base.html" %}
+
+
+{% block pre_group %}
+
+
+<div class="top_part">
+	<div class="header">
+		{% if user.is_authenticated %}
+		<h1>Hey
+			<!-- link to all the user's posts -->
+			<a href="{% url 'posts:for_user' username=user.username %}">
+			{{user.username}}</a>.
+		</h1>
+		
+		{% endif %}
+		<h1>
+			These are groups
+		</h1>
+
+		{% if user.is_authenticated %}
+		<h1>
+			<a href="{% url 'groups:create' %}" class="h1_link">
+			Create one
+			</a>
+		</h1>
+		{% endif %}
+	</div>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+{% block group_content %}
+
+  <div>
+        {% include 'groups/group_list.html' %}
+  </div>
+{% endblock %}
+
+
+{% block post_group %}
+
+{% endblock %}

@@ -8,7 +8,6 @@ from django.contrib import messages
 from groups.models import Group, GroupMember
 from groups.forms import GroupForm
 
-from django_htmx.middleware import HtmxDetails
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from django.http import HttpRequest, HttpResponse
@@ -81,13 +80,6 @@ class GroupView(ListView):
             return "groups/group_list.html"
         else:
             return self.template_name
-
-
-
-
-class HtmxHttpRequest(HttpRequest):
-    htmx: HtmxDetails
-
 
 
 
