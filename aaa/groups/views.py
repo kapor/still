@@ -88,32 +88,6 @@ class GroupView(ListView):
 class HtmxHttpRequest(HttpRequest):
     htmx: HtmxDetails
 
-@require_GET
-def middleware_tester(request: HtmxHttpRequest) -> HttpResponse:
-    return render(request, "groups/middleware-tester2.html")
-
-
-@require_http_methods(["DELETE", "POST", "PUT"])
-def middleware_tester_table(request: HtmxHttpRequest) -> HttpResponse:
-    return render(
-        request,
-        "groups/middleware-tester-table2.html",
-        {"timestamp": time.time()},
-    )
-
-
-
-
-class CreateGroup2(LoginRequiredMixin, CreateView):
-	context_object_name = "overlay"
-	model = Group
-	template_name = "includes/overlay.html"
-	form_class = GroupForm
-
-	class Meta():
-		fields = ('name', 'description')
-
-
 
 
 

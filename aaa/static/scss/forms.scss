@@ -69,19 +69,6 @@ select {
     font-style: normal;
   }
 
-  div label {
-    width: auto;
-    font-family: $font-stack1;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    display: inline-block;
-    text-align: left;
-    color: $accent2;
-    padding: 0px 0px 16px 0px;
-    font-size: 20px;
-    border: none;
-  }
-
   .btn_save {
     height: 80px;
     width: 100%;
@@ -187,5 +174,79 @@ select {
     display: none;
   }
 
+}
+
+textarea.form-control {
+  height: 56px;
+  width: -webkit-fill-available;
+  background-color: #F2F2F2;
+  font-size: 24px;
+  resize: none;
+  font-family: $font-stack2;
+  overflow: scroll;
+  height: 200px;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 8px $accent1 solid;
+}
+
+
+input.form-control {
+  border: none;
+  width: -webkit-fill-available;
+  background-color: #F2F2F2;
+  font-size: 24px;
+  resize: none;
+  font-family: $font-stack2;
+  overflow: scroll;
+  padding: 8px;
+  margin-bottom: 20px;
+}
+
+
+
+.form_container {
+ margin-bottom: 40px;
+}
+
+
+
+
+
+div label {
+  width: auto;
+  font-family: $font-stack1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: left;
+  color: $accent2;
+  padding: 0px 0px 16px 0px;
+  font-size: 20px;
+  border: none;
+}
+
+.form-select {
+  height: 180px;
+  font-family: $font-stack2;
+  font-size: 24px;
+  background-color: $background_color;
+
+
+  border: none;
+  width: -webkit-fill-available;
+  font-size: 24px;
+  resize: none;
+  overflow: scroll;
+  padding: 8px;
 
 }
+
+
+
+
+
+
+
+

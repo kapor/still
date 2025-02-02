@@ -1,5 +1,5 @@
+<!-- aaa/groups/templates/groups/groups_detail.html -->
 {% extends "groups/group_base.html" %}
-<!-- aaa/templates/groups/group_detail.html -->
 {% block pre_group %}
 
 <div class="top_part">
@@ -25,7 +25,7 @@
 		<a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>
 	</div>
 		{% else %}
-	<div class="button" href="{% url 'groups:join' slug=group.slug %}">
+	<div class="button_action" href="{% url 'groups:join' slug=group.slug %}">
 		<a href="{% url 'groups:join' slug=group.slug %}">Join</a>
 	</div>
 	{% endif %}

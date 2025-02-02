@@ -10,7 +10,7 @@ $accent2: #00FF7F;
 
 @use 'forms';
 @use 'loader';
-
+@use 'buttons';
 
 
 /* reset margins */
@@ -322,127 +322,6 @@ a {
 
 }
 
-
-.button_small {
-  font-family: $font-stack2;
-  font-style: normal;
-  color: $accent1;
-  font-weight: 200;
-  list-style-type: none;
-  letter-spacing: 0px;
-  font-size: 18px;
-  text-decoration: none;
-  text-transform: none;
-  margin: 0px;
-  padding: 0px;
-  line-height: 26px;
-  cursor: pointer;
-}
-
-
-
-
-.button_group {
-  margin-top: 40px;
-  text-transform: uppercase;
-  width: auto;
-  font-family: $font-stack1;
-  color: $primary;
-
-  .button {
-    padding: 12px 20px;
-    font-weight: 400;
-    line-height: 20px;
-    background-color: $accent1;
-    color: white;
-    display: inline-block;
-    text-transform: uppercase;
-    margin-right: 8px;
-    font-size: 12px;
-    letter-spacing: 3px;
-    border-radius: 4px;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-
-
-    input.button {
-      padding: 12px 20px;
-      text-align: center;
-      font-weight: 400;
-      line-height: 20px;
-      text-transform: uppercase;
-      background-color: $accent1;
-      color: white;
-      display: inline-block;
-      margin-right: 0px;
-      font-size: 12px;
-      letter-spacing: 3px;
-      border-radius: 4px;
-      border: none;
-      padding-block: 0px;
-      padding-inline: 0px;
-    }
-
-  }
-
-  a {
-    color: white;
-  }
-
-
-}
-
-
-.button_container {
-  margin-bottom: 20px;
-
-
-  .button {
-    font-family: $font-stack1;
-    padding: 12px 20px;
-    font-weight: 400;
-    line-height: 20px;
-    background-color: $accent1;
-    color: white;
-    display: inline-block;
-    text-transform: uppercase;
-    margin-right: 0px;
-    font-size: 12px;
-    letter-spacing: 3px;
-    border-radius: 4px;
-    text-align: center;
-    cursor: pointer;
-
-
-    a {
-      color: white;
-    }
-  }
-
-}
-
-.button_secondary {
-  font-family: $font-stack1;
-  padding: 12px 20px;
-  font-weight: 400;
-  line-height: 20px;
-  color: white;
-  display: inline-block;
-  text-transform: uppercase;
-  margin-right: 8px;
-  font-size: 12px;
-  letter-spacing: 3px;
-  border-radius: 4px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  background-color: #CCCCCC;
-  
-  a {
-    color: white;
-  }
-}
 
 
 

@@ -1,10 +1,8 @@
-<!-- aaa/templates/nav_desktop.html -->
+<!-- aaa/templates/includes/nav_desktop.html -->
 {% if user.is_authenticated %}
 <ul class="nav_bar">
 	<div class="navbar_left">
 		<li><a class="nav_link" href="{% url 'home' %}">AAA</a></li>
-		<li><a id="open-btn" class="overlay-event" type="button">Placeholder</a></li>
-		<!-- <button hx-get="{% url 'groups:add' %}" hx-modal="overlay">Placeholder</button> -->
 	</div>
 	<div class="navbar_right">
 		<li><a class="nav_link" href="{% url 'posts:all' %}">Posts</a></li>
@@ -19,7 +17,6 @@
 <ul class="nav_bar">
 	<div class="navbar_left">
 		<li><a class="nav_link" href="{% url 'home' %}">AAA</a></li>
-<!-- 		<li><a id="open-btn" class="overlay-event" type="button">Click</a></li> -->
 	</div>
 	<div class="navbar_right">
 		<li><a class="nav_link" href="{% url 'groups:all' %}">Groups</a></li>

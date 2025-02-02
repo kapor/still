@@ -51,18 +51,6 @@ select {
   padding: inherit;
   font-style: normal;
 }
-.forms div label {
-  width: auto;
-  font-family: Helvetica neue, sans-serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  display: inline-block;
-  text-align: left;
-  color: red;
-  padding: 0px 0px 16px 0px;
-  font-size: 20px;
-  border: none;
-}
 .forms .btn_save {
   height: 80px;
   width: 100%;
@@ -153,6 +141,63 @@ select {
   display: none;
 }
 
+textarea.form-control {
+  height: 56px;
+  width: -webkit-fill-available;
+  background-color: #F2F2F2;
+  font-size: 24px;
+  resize: none;
+  font-family: Courier new, Roboto;
+  overflow: scroll;
+  height: 200px;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 8px #8F00FF solid;
+}
+
+input.form-control {
+  border: none;
+  width: -webkit-fill-available;
+  background-color: #F2F2F2;
+  font-size: 24px;
+  resize: none;
+  font-family: Courier new, Roboto;
+  overflow: scroll;
+  padding: 8px;
+  margin-bottom: 20px;
+}
+
+.form_container {
+  margin-bottom: 40px;
+}
+
+div label {
+  width: auto;
+  font-family: Helvetica neue, sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: left;
+  color: red;
+  padding: 0px 0px 16px 0px;
+  font-size: 20px;
+  border: none;
+}
+
+.form-select {
+  height: 180px;
+  font-family: Courier new, Roboto;
+  font-size: 24px;
+  background-color: #EEEEEE;
+  border: none;
+  width: -webkit-fill-available;
+  font-size: 24px;
+  resize: none;
+  overflow: scroll;
+  padding: 8px;
+}
+
 /*COLOR CHANGER*/
 /*Credit and Source: http://codepen.io/thapliyalshivam/pen/dvgXVO*/
 .loader {
@@ -188,6 +233,76 @@ select {
   100% {
     filter: hue-rotate(360deg);
   }
+}
+
+.button_small {
+  font-family: Courier new, Roboto;
+  font-style: normal;
+  color: #8F00FF;
+  font-weight: 200;
+  list-style-type: none;
+  letter-spacing: 0px;
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: none;
+  margin: 0px;
+  padding: 0px;
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.button_container,
+.button_container form {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.button_container .button,
+.button_container input.button,
+.button_container .button_secondary,
+.button_container .button_action,
+.button_container form .button,
+.button_container form input.button,
+.button_container form .button_secondary,
+.button_container form .button_action {
+  padding: 12px 20px;
+  background-color: #8F00FF;
+  color: white;
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  font-family: Helvetica neue, sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.button_container .button a,
+.button_container input.button a,
+.button_container .button_secondary a,
+.button_container .button_action a,
+.button_container form .button a,
+.button_container form input.button a,
+.button_container form .button_secondary a,
+.button_container form .button_action a {
+  color: white;
+}
+.button_container .button_secondary,
+.button_container form .button_secondary {
+  background-color: #CCCCCC;
+}
+.button_container .button_action,
+.button_container form .button_action {
+  background-color: #00FF7F;
+  color: #333;
+}
+.button_container .button_action a,
+.button_container form .button_action a {
+  color: #333;
 }
 
 /* reset margins */
@@ -463,110 +578,6 @@ a {
   margin: 0px;
   padding: 0px;
   line-height: 26px;
-}
-
-.button_small {
-  font-family: Courier new, Roboto;
-  font-style: normal;
-  color: #8F00FF;
-  font-weight: 200;
-  list-style-type: none;
-  letter-spacing: 0px;
-  font-size: 18px;
-  text-decoration: none;
-  text-transform: none;
-  margin: 0px;
-  padding: 0px;
-  line-height: 26px;
-  cursor: pointer;
-}
-
-.button_group {
-  margin-top: 40px;
-  text-transform: uppercase;
-  width: auto;
-  font-family: Helvetica neue, sans-serif;
-  color: #333;
-}
-.button_group .button {
-  padding: 12px 20px;
-  font-weight: 400;
-  line-height: 20px;
-  background-color: #8F00FF;
-  color: white;
-  display: inline-block;
-  text-transform: uppercase;
-  margin-right: 8px;
-  font-size: 12px;
-  letter-spacing: 3px;
-  border-radius: 4px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-}
-.button_group .button input.button {
-  padding: 12px 20px;
-  text-align: center;
-  font-weight: 400;
-  line-height: 20px;
-  text-transform: uppercase;
-  background-color: #8F00FF;
-  color: white;
-  display: inline-block;
-  margin-right: 0px;
-  font-size: 12px;
-  letter-spacing: 3px;
-  border-radius: 4px;
-  border: none;
-  padding-block: 0px;
-  padding-inline: 0px;
-}
-.button_group a {
-  color: white;
-}
-
-.button_container {
-  margin-bottom: 20px;
-}
-.button_container .button {
-  font-family: Helvetica neue, sans-serif;
-  padding: 12px 20px;
-  font-weight: 400;
-  line-height: 20px;
-  background-color: #8F00FF;
-  color: white;
-  display: inline-block;
-  text-transform: uppercase;
-  margin-right: 0px;
-  font-size: 12px;
-  letter-spacing: 3px;
-  border-radius: 4px;
-  text-align: center;
-  cursor: pointer;
-}
-.button_container .button a {
-  color: white;
-}
-
-.button_secondary {
-  font-family: Helvetica neue, sans-serif;
-  padding: 12px 20px;
-  font-weight: 400;
-  line-height: 20px;
-  color: white;
-  display: inline-block;
-  text-transform: uppercase;
-  margin-right: 8px;
-  font-size: 12px;
-  letter-spacing: 3px;
-  border-radius: 4px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  background-color: #CCCCCC;
-}
-.button_secondary a {
-  color: white;
 }
 
 hr {

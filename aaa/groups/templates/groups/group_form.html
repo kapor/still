@@ -1,12 +1,24 @@
-<!-- aaa/templates/groups/group_form.html -->
+<!-- aaa/groups/templates/groups/group_form.html -->
 {% extends "groups/group_base.html" %}
 {% load bootstrap5 %}
 
 {% block group_content %}
-  <h1>Add Group</h1>
-	<form method="POST" action="{% url 'groups:create' %}" id="groupForm">
-		{% csrf_token %}
-		{% bootstrap_form form %}
-	<input type="submit" value="Create" class="btn btn-primary btn-large">
-  	</form>
+
+<h1>Add Group</h1>
+
+<form method="POST" action="{% url 'groups:create' %}" id="groupForm">
+
+	<div class="form_container">
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	</div>
+
+	<div class="button_container">
+		<div class="button_secondary">
+			<a href="{% url 'groups:all' %}">Back to Groups</a>
+		</div>
+		<input type="submit" value="Create" class="button">
+	</div>
+
+</form>
 {% endblock %}
