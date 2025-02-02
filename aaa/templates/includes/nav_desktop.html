@@ -1,12 +1,13 @@
-<!-- aaa/templates/nav_desktop.html -->
+<!-- aaa/templates/includes/nav_desktop.html -->
 {% if user.is_authenticated %}
 <ul class="nav_bar">
 	<div class="navbar_left">
 		<li><a class="nav_link" href="{% url 'home' %}">AAA</a></li>
 	</div>
 	<div class="navbar_right">
-		<li><a class="nav_link" href="{% url 'groups:all' %}"">Groups</a></li>
+		<li><a class="nav_link" href="{% url 'posts:all' %}">Posts</a></li>
 		<li><a class="nav_link" href="{% url 'posts:create' %}">Add_Post</a></li>
+		<li><a class="nav_link" href="{% url 'groups:all' %}"">Groups</a></li>
 		<li><a class="nav_link" href="{% url 'groups:create' %}">Add_Group</a></li>
 		<li><a class="nav_link" href="{% url 'admin:index' %}" target="_blank">Admin</a></li>
 		<li><a class="nav_link" href="{% url 'accounts:logout' %}">Logout</a></li>
@@ -16,10 +17,9 @@
 <ul class="nav_bar">
 	<div class="navbar_left">
 		<li><a class="nav_link" href="{% url 'home' %}">AAA</a></li>
-		<li><a id="open-btn" class="overlay-event" type="button">Click</a></li>
 	</div>
 	<div class="navbar_right">
-		<li><a class="nav_link" href="{% url 'groups:all' %}"">Groups</a></li>
+		<li><a class="nav_link" href="{% url 'groups:all' %}">Groups</a></li>
 		<li><a class="nav_link" href="{% url 'accounts:login' %}">Login</a></li>
 		<li><a class="nav_link" href="{% url 'accounts:signup' %}">Sign_Up</a></li>	</div>
 </ul>

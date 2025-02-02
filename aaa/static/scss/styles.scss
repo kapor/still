@@ -10,7 +10,7 @@ $accent2: #00FF7F;
 
 @use 'forms';
 @use 'loader';
-
+@use 'buttons';
 
 
 /* reset margins */
@@ -323,100 +323,6 @@ a {
 }
 
 
-.button_small {
-  font-family: $font-stack2;
-  font-style: normal;
-  color: $accent1;
-  font-weight: 200;
-  list-style-type: none;
-  letter-spacing: 0px;
-  font-size: 18px;
-  text-decoration: none;
-  text-transform: none;
-  margin: 0px;
-  padding: 0px;
-  line-height: 26px;
-}
-
-
-
-
-.button_group {
-  margin-top: 40px;
-  text-transform: uppercase;
-  width: auto;
-  font-family: $font-stack1;
-  color: $primary;
-
-  .button {
-    padding: 12px 20px;
-    font-weight: 400;
-    line-height: 20px;
-    background-color: $accent1;
-    color: white;
-    display: inline-block;
-    text-transform: uppercase;
-    margin-right: 8px;
-    font-size: 12px;
-    letter-spacing: 3px;
-    border-radius: 4px;
-    text-align: center;
-
-    input.button {
-      padding: 12px 20px;
-      text-align: center;
-      font-weight: 400;
-      line-height: 20px;
-      text-transform: uppercase;
-      background-color: $accent1;
-      color: white;
-      display: inline-block;
-      margin-right: 0px;
-      font-size: 12px;
-      letter-spacing: 3px;
-      border-radius: 4px;
-      border: none;
-      padding-block: 0px;
-      padding-inline: 0px;
-    }
-
-  }
-
-  a {
-    color: white;
-  }
-
-
-}
-
-
-.button_container {
-  margin-bottom: 20px;
-
-
-  .button {
-    font-family: $font-stack1;
-    padding: 12px 20px;
-    font-weight: 400;
-    line-height: 20px;
-    background-color: $accent1;
-    color: white;
-    display: inline-block;
-    text-transform: uppercase;
-    margin-right: 0px;
-    font-size: 12px;
-    letter-spacing: 3px;
-    border-radius: 4px;
-    text-align: center;
-
-    a {
-      color: white;
-    }
-  }
-
-}
-
-
 
 
 hr {
@@ -580,6 +486,23 @@ h1 {
   margin-inline-end: 20px;
 }
 
+h3,
+h3 p {
+  font-family: $font-stack1;
+  color: $accent1;
+  text-transform: none;
+  list-style-type: none;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 32px;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 4px;
+  line-height: 44px;
+  margin-inline-end: 20px;
+  max-width: 1000px;
+}
 
 
 

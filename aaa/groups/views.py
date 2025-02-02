@@ -1,4 +1,4 @@
-# aaa/groups/views.html 
+# aaa/groups/forms.html 
 from . import models
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -6,6 +6,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView, RedirectView
 from django.contrib import messages
 from groups.models import Group, GroupMember
+from groups.forms import GroupForm
 
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
@@ -79,21 +80,6 @@ class GroupView(ListView):
             return "groups/group_list.html"
         else:
             return self.template_name
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
