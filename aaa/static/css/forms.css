@@ -1,0 +1,155 @@
+select {
+  appearance: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
+
+#image-clear_id {
+  display: none;
+}
+
+.forms {
+  font-family: Courier new, Roboto;
+  padding-top: 10px;
+  color: #333;
+  font-weight: 400;
+  height: 56px;
+}
+.forms input,
+.forms textarea,
+.forms .editable {
+  height: 56px;
+  width: -webkit-fill-available;
+  background-color: #F2F2F2;
+  border: none;
+  width: -webkit-fill-available;
+  font-size: 24px;
+  resize: none;
+  font-family: Courier new, Roboto;
+  padding: 8px;
+  overflow: scroll;
+}
+.forms input[type=file i] {
+  height: auto;
+  font-family: Courier new, Roboto;
+  padding: 8px;
+}
+.forms .editable {
+  height: 200px;
+  padding: 8px;
+}
+.forms .medium-editor-placeholder-relative:after, .forms .medium-editor-placeholder:after {
+  content: attr(data-placeholder) !important;
+  white-space: pre;
+  padding: inherit;
+  font-style: normal;
+}
+.forms div label {
+  width: auto;
+  font-family: Helvetica neue, sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: left;
+  color: red;
+  padding: 0px 0px 16px 0px;
+  font-size: 20px;
+  border: none;
+}
+.forms .btn_save {
+  height: 80px;
+  width: 100%;
+  color: white;
+  background-color: red;
+  font-size: 24px;
+  border: none;
+  margin-top: 80px;
+}
+.forms div {
+  margin-bottom: 40px;
+}
+.forms input.btn {
+  height: 80px;
+  background-color: #8F00FF;
+  cursor: pointer;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  border-radius: 4px;
+  display: flex;
+  margin: 40px 0px 20px 0px;
+}
+.forms .cancel {
+  height: 80px;
+  width: 100%;
+  margin-bottom: 40px;
+  display: flex;
+  background-color: #F2F2F2;
+  cursor: pointer;
+  font-size: 24px;
+  color: #222;
+  text-align: center;
+  border-radius: 4px;
+  display: inline-block;
+  font-family: courier new, monospace;
+  line-height: 80px;
+  border: none;
+}
+.forms .cancel a {
+  display: block;
+  width: 100%;
+}
+.forms select:-internal-list-box {
+  appearance: auto;
+  align-items: flex-start;
+  vertical-align: text-bottom;
+  white-space: nowrap;
+  border-radius: 2px;
+}
+.forms select {
+  height: 56px;
+  text-rendering: auto;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  box-sizing: border-box;
+  align-items: center;
+  -webkit-rtl-ordering: logical;
+  background-color: #F2F2F2;
+  cursor: default;
+  white-space: pre;
+  border: none;
+  font-size: 24px;
+  padding: 8px;
+}
+.forms select[multiple] {
+  padding-right: 0;
+  height: 12rem;
+  margin: 0em;
+}
+.forms select[multiple] option {
+  font-size: 24px;
+  font-weight: normal;
+  display: block;
+  padding-block-start: 0px;
+  padding-block-end: 1px;
+  min-block-size: 1.2em;
+  padding-inline: 2px;
+  white-space: nowrap;
+}
+.forms label {
+  padding-top: 20px;
+}
+.forms .file_input {
+  display: none;
+}
+
+/*# sourceMappingURL=forms.css.map */
