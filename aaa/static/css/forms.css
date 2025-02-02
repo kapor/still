@@ -50,7 +50,6 @@ select {
   padding: inherit;
   font-style: normal;
 }
-
 .forms .btn_save {
   height: 80px;
   width: 100%;
@@ -139,6 +138,63 @@ select {
 }
 .forms .file_input {
   display: none;
+}
+
+textarea.form-control {
+  height: 56px;
+  width: -webkit-fill-available;
+  background-color: #F2F2F2;
+  font-size: 24px;
+  resize: none;
+  font-family: Courier new, Roboto;
+  overflow: scroll;
+  height: 200px;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 8px #8F00FF solid;
+}
+
+input.form-control {
+  border: none;
+  width: -webkit-fill-available;
+  background-color: #F2F2F2;
+  font-size: 24px;
+  resize: none;
+  font-family: Courier new, Roboto;
+  overflow: scroll;
+  padding: 8px;
+  margin-bottom: 20px;
+}
+
+.form_container {
+  margin-bottom: 40px;
+}
+
+div label {
+  width: auto;
+  font-family: Helvetica neue, sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: left;
+  color: red;
+  padding: 0px 0px 16px 0px;
+  font-size: 20px;
+  border: none;
+}
+
+.form-select {
+  height: 180px;
+  font-family: Courier new, Roboto;
+  font-size: 24px;
+  background-color: #EEEEEE;
+  border: none;
+  width: -webkit-fill-available;
+  font-size: 24px;
+  resize: none;
+  overflow: scroll;
+  padding: 8px;
 }
 
 /*# sourceMappingURL=forms.css.map */
