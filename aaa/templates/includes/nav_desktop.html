@@ -3,6 +3,9 @@
 <ul class="nav_bar">
 	<div class="navbar_left">
 		<li><a class="nav_link" href="{% url 'home' %}">AAA</a></li>
+		<button hx-get="{% url 'posts:add_post' %}" hx-target="#dialog">
+		  Add a movie
+		</button>
 	</div>
 	<div class="navbar_right">
 		<li><a class="nav_link" href="{% url 'posts:all' %}">Posts</a></li>
@@ -24,3 +27,7 @@
 		<li><a class="nav_link" href="{% url 'accounts:signup' %}">Sign_Up</a></li>	</div>
 </ul>
 {% endif %}
+
+<div id="modal" class="modal fade">
+  <div id="dialog" class="modal-dialog" hx-target="this"></div>
+</div>

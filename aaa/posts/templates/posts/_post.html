@@ -1,11 +1,11 @@
 <!-- aaa/posts/templates/posts/posts/_post.html -->
 
-<div class="post media">
+<div class="post">
 	<h3>
 		{{ post.message_html | safe }}
 	</h3>
 
-	<div class="media-body">
+	<div>
 
 		<span class="username">
 			<strong>
@@ -19,7 +19,7 @@
 				</a>
 			</time>
 			{% if post.group %}
-			<span class="group-name">
+			<span>
 				in <a href="#" class="group_title">
 					{{ group.name }}
 				</a>
@@ -28,12 +28,12 @@
 		</span>
 
 
-		<div class="media-footer">
+		<div>
 			{% if user.is_authenticated and post.user == user and not hide_delete %}
-				<a href="{% url 'posts:delete' pk=post.pk %}" title="delete" class="btn btn-simple">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true">
+				<a href="{% url 'posts:delete' pk=post.pk %}" title="delete" class="">
+					<span class="" aria-hidden="true">
 					</span>
-					<span class="text-danger icon-label">
+					<span class="">
 						Delete
 					</span>
 				</a>

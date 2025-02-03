@@ -25,5 +25,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('groups/', include('groups.urls', namespace='groups')),
     path("", views.IndexView.as_view(template_name='index.html'), name="home"),
+
+
+
 ]
 

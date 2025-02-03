@@ -2,6 +2,7 @@ from django.db import models
 from taggit.managers import TaggableManager
 from django.urls import reverse
 from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 import misaka
 
@@ -73,6 +74,4 @@ class Birdies(models.Model):
 
     def __str__(self):
         return self.name
-
-
 

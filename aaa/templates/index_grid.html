@@ -12,6 +12,8 @@
 
 
 
+
+
     {% else %}
       <div class="group_card">
     {% endif %}
@@ -54,31 +56,3 @@
 
 
 
-
-
-
-<!-- aaa/templates/product_list.html -->
-<!-- <div class="grid_container">
-{% for post in products %}
-  {% if forloop.last %}
-    
-    <div 
-      class="grid_after"
-      hx-trigger="revealed"
-      hx-get="{% url 'home' %}?page={{ page_obj.number|add:1 }}"
-      hx-swap="afterend">
-
-
-
-  {% else %}
-    <div class="grid_info">
-  {% endif %}
-      <h2>{{ post.name }}</h2>
-      <p>{{ post.description }}</p>
-      <p>{{ post.price }}</p>
-    </div>
-
-{% endfor %}
-
-
-</div> -->

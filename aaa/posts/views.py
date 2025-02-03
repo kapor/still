@@ -6,7 +6,10 @@ from groups.models import Group
 from django.http import Http404
 from django.views import generic
 
+from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView, RedirectView
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, render
+from django.views.decorators.http import require_POST
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import PrefetchRelatedMixin
 from django.http import HttpResponse, HttpResponseRedirect
@@ -24,6 +27,9 @@ User = get_user_model()
 class PostList(PrefetchRelatedMixin, generic.ListView):
 	model = models.Post
 	prefetch_related = ('user', 'group')
+	template_name = 'posts/post_list.html'
+
+
 
 
 
@@ -63,6 +69,7 @@ class PostDetail(PrefetchRelatedMixin, generic.DetailView):
 class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 	fields = ('message', 'group')
 	model = models.Post
+	success_url = reverse_lazy('posts:all')
 
 	# Used to connect the post to the user 
 	def form_valid(self, form):
@@ -90,6 +97,29 @@ class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 
 class SingleGroup(generic.DetailView):
 	model = Group
+
+
+
+
+def AddPost(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            return HttpResponse(
+                status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "showMessage": f"{movie.title} added."
+                    })
+                })
+    else:
+        form = PostForm()
+    return render(request, 'post_add.html', {
+        'form': form,
+    })
+
+
 
 
 

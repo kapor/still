@@ -3,40 +3,40 @@
 
 {% block pre_post %}
 
-<div class="top_part">
-  <div class="header">
-    {% if user.is_authenticated %}
-    <h1>Hey
-      <!-- link to all the user's posts -->
-      <a href="{% url 'posts:for_user' username=user.username %}">
-      {{user.username}}</a>.
-    </h1>
-    
-    {% endif %}
-    <h1>
-      These are posts
-    </h1>
+  <div class="top_part">
+    <div class="header">
+      {% if user.is_authenticated %}
+      <h1>Hey
+        <!-- link to all the user's posts -->
+        <a href="{% url 'posts:for_user' username=user.username %}">
+        {{user.username}}</a>.
+      </h1>
+      
+      {% endif %}
+      <h1>
+        These are posts
+      </h1>
 
-    {% if user.is_authenticated %}
-    <h1>
-      <a href="{% url 'posts:create' %}" class="h1_link">
-      Create one
-      </a>
-    </h1>
-    {% endif %}
+      {% if user.is_authenticated %}
+      <h1>
+        <a href="{% url 'posts:create' %}" class="h1_link">
+        Create one
+        </a>
+      </h1>
+      {% endif %}
+    </div>
+
   </div>
 
-</div>
 
-
-<div class="col-md-4">
+<div>
 
   {% if request.user.is_authenticated %}
 
 
   <div class="content">
     <h1 class="title">Your Groups Activity</h1>
-    <ul class="list_unstyled">
+    <ul>
       <!-- for groups that you are a member of, list them -->
       {% for member_group in get_user_groups %}
         <li>
@@ -51,10 +51,10 @@
 
   <div class="content">
     <h1 class="title">All Group Activity</h1>
-    <ul class="list_unstyled">
+    <ul>
       <!-- for groups that you are a member of, list them -->
       {% for other_group in get_other_groups %}
-        <li class="group li-with-bullet">
+        <li>
           <a href="{% url 'groups:single' slug=other_group.group.slug %}"></a>
         </li>
       {% endfor %}
@@ -63,7 +63,7 @@
 
 
   {% block post_content %}
-  <div class="col-md-8">
+  <div>
     {% for post in post_list %}
 
       {% include "posts/_post.html" %}
