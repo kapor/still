@@ -11,6 +11,7 @@ $accent2: #00FF7F;
 @use 'forms';
 @use 'loader';
 @use 'buttons';
+@use 'modal';
 
 
 /* reset margins */
@@ -63,11 +64,12 @@ a {
   box-sizing: border-box;
 }
 
-
+li a.nav_link,
 .nav_link,
 .overlay-event {
   line-height: 24px;
   color: $accent1;
+  cursor: pointer;
 }
 
 .nav_link,

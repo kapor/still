@@ -1,0 +1,29 @@
+<!-- aaa/templates/modal.html -->
+{% extends "posts/post_base.html" %}
+{% load bootstrap5 %}
+
+{% block post_content %}
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+    <div class="modal-underlay" _="on click trigger closeModal"></div>
+    <div class="modal-content">
+        <h1>Add Post</h1>
+
+            <form method="POST" action="{% url 'posts:create' %}" id="postForm">
+
+        <div class="form_container">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+        </div>
+
+
+
+        <div class="button_container">
+            <button class="button_secondary" _="on click trigger closeModal">Close</button>
+            <input type="submit" value="Post" class="button">
+        </div>
+  </form>
+
+    </div>
+</div>
+
+{% endblock %}

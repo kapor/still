@@ -11,4 +11,6 @@ urlpatterns = [
     path('by/<username>/<pk>', views.PostDetail.as_view(), name='single'),
     path('delete/<pk>', views.DeletePost.as_view(), name='delete'),
     path('posts/in/<slug>', views.SingleGroup.as_view(), name='group'),
+
+    path('add/', views.AddPost.as_view(), name='add'),
 ]

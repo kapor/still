@@ -93,3 +93,15 @@ class SingleGroup(generic.DetailView):
 
 
 
+class AddPost(LoginRequiredMixin,generic.CreateView):
+    template_name = 'posts/post_modal.html'
+    model = models.Post
+    context_object_name = 'addpost'
+    fields = ('message', 'group')
+
+
+
+
+
+
+
