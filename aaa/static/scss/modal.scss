@@ -1,23 +1,20 @@
 /***** MODAL DIALOG ****/
 #modal {
-	/* Underlay covers entire screen. */
 	position: fixed;
-	top:0px;
+	top: 0px;
 	bottom: 0px;
-	left:0px;
-	right:0px;
-	background-color:rgba(0,0,0,0.5);
-	z-index:1000;
-
-	/* Flexbox centers the .modal-content vertically and horizontally */
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-
-	/* Animate when opening */
-	animation-name: fadeIn;
-	animation-duration:150ms;
-	animation-timing-function: ease;
+	left: 0px;
+	right: 0px;
+	background-color: rgb(76 127 111 / 80%);
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+/* 	animation-name: fadeIn;
+	animation-duration: 150ms;
+	animation-timing-function: ease; */
+ 	/* backdrop-filter: blur(2px); */
+	/* backdrop-filter: invert(100%); */
 }
 
 #modal > .modal-underlay {
@@ -37,12 +34,12 @@
 	max-width: 800px;
 	border: 20px #FFFFFF solid;
 	border-radius: 0px;
-	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.01);
 	background-color: white;
 	padding: 20px;
-	animation-name: zoomIn;
+/* 	animation-name: zoomIn;
 	animation-duration: 150ms;
-	animation-timing-function: ease;
+	animation-timing-function: ease; */
 }
 
 #modal.closing {

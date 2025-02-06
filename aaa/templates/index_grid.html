@@ -25,10 +25,11 @@
           Member
           <!-- [<a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>] -->
         {% else %}
-          [<a href="{% url 'groups:join' slug=group.slug %}">Join Group</a>]
+
+          <!-- [<a href="{% url 'groups:join' slug=group.slug %}">Join Group</a>] -->
         {% endif %}
       </div>
-
+      
       <div class="group_description">
       {{ group.description_html | safe }}
       </div>

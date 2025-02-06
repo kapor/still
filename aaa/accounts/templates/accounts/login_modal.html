@@ -1,0 +1,21 @@
+<!-- aaa/accounts/templates/accounts/login_modal.html -->
+{% extends "base_modal.html" %}
+
+
+
+{% block modal_title %}
+Log In
+{% endblock %}
+
+
+{% block modal_form %}
+
+
+<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	<input type="submit" class="btn" value="Login">
+</form>
+
+{% endblock %}
+

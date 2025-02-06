@@ -7,7 +7,7 @@
       <div 
         class="group_card"
         hx-trigger="revealed"
-        hx-get="{% url 'home' %}?page={{ page_obj.number|add:1 }}"
+        hx-get="{% url 'groups:grouplist' %}?page={{ page_obj.number|add:1 }}"
         hx-swap="afterend">
 
 
@@ -25,27 +25,32 @@
           Member
           <!-- [<a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>] -->
         {% else %}
-          [<a href="{% url 'groups:join' slug=group.slug %}">Join Group</a>]
+
+          <!-- [<a href="{% url 'groups:join' slug=group.slug %}">Join Group</a>] -->
         {% endif %}
       </div>
 
-      <div class="group_description">
-      {{ group.description_html | safe }}
+
+      <div class="group_card_bottom">
+
+        <div class="group_description">
+        {{ group.description_html | safe }}
+        </div>
+
+        <div class="group_count">
+          <div class="group_count_row">
+            Member{{ group.members.count | pluralize }}:
+            <span class="badge">{{ group.members.count }}</span>
+          </div>
+          <div class="group_count_row">
+              Post{{ group.posts.count | pluralize }}:
+            <span class="badge">{{ group.posts.count }}</span>
+          </div>
+        </div>
+
       </div>
 
 
-      <div class="group_count">
-        <div class="group_count_row">
-          <span class="badge">{{ group.members.count }}</span>
-          Member{{ group.members.count | pluralize }}
-        </div>
-        <div class="group_count_row">
-          <span class="badge">{{ group.posts.count }}</span>
-          Post{{ group.posts.count | pluralize }}
-        </div>
-      </div>
-
-        <p>{{ group.price }}</p>
       </div>
 
   {% endfor %}

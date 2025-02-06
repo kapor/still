@@ -7,6 +7,9 @@ from django.views.generic import View, TemplateView, ListView, DetailView, FormV
 from django.contrib import messages
 from groups.models import Group, GroupMember
 from groups.forms import GroupForm
+from django.http import Http404
+from django.views import generic
+from django.db import IntegrityError
 
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
@@ -26,6 +29,8 @@ class ListGroups(ListView):
 	model = Group
 	context_object_name = "groups"
 
+
+
 class JoinGroup(LoginRequiredMixin, RedirectView):
 	
 	def get_redirect_url(self, *args, **kwargs):
@@ -42,6 +47,8 @@ class JoinGroup(LoginRequiredMixin, RedirectView):
 			messages.success(self.request, ("You're now a member."))
 
 		return super().get(request, *args, **kwargs)
+
+
 
 class LeaveGroup(LoginRequiredMixin, RedirectView):
 	
@@ -70,7 +77,8 @@ class LeaveGroup(LoginRequiredMixin, RedirectView):
 
 class GroupView(ListView):
     model = Group
-    template_name = "groups/groups.html"
+    fields = ('name', 'description', 'members')
+    template_name = "groups/_groups.html"
     context_object_name = "grouplist"
     paginate_by = 20
     ordering = "pk"
@@ -80,6 +88,26 @@ class GroupView(ListView):
             return "groups/group_list.html"
         else:
             return self.template_name
+
+
+
+# Modal View
+class AddGroup(LoginRequiredMixin,generic.CreateView):
+    template_name = 'groups/group_modal.html'
+    model = models.Group
+    context_object_name = 'addgroup'
+    fields = ('name', 'description')
+
+
+
+
+
+
+
+
+
+
+
 
 
 

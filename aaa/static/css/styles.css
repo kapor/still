@@ -151,7 +151,7 @@ textarea.form-control {
   overflow: scroll;
   height: 200px;
   padding: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   border: none;
   border-bottom: 8px #8F00FF solid;
 }
@@ -165,7 +165,7 @@ input.form-control {
   font-family: Courier new, Roboto;
   overflow: scroll;
   padding: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .form_container {
@@ -196,6 +196,16 @@ div label {
   resize: none;
   overflow: scroll;
   padding: 8px;
+}
+
+.form-text,
+.form-text ul,
+.form-text ul li {
+  display: block;
+  list-style-type: none;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  padding-inline-start: 0px;
 }
 
 /*COLOR CHANGER*/
@@ -266,7 +276,7 @@ div label {
 .button_container form input.button,
 .button_container form .button_secondary,
 .button_container form .button_action {
-  padding: 12px 20px;
+  padding: 0px 20px;
   background-color: #8F00FF;
   color: white;
   display: inline-block;
@@ -279,7 +289,7 @@ div label {
   font-size: 12px;
   letter-spacing: 3px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 56px;
 }
 .button_container .button a,
 .button_container input.button a,
@@ -290,6 +300,8 @@ div label {
 .button_container form .button_secondary a,
 .button_container form .button_action a {
   color: white;
+  display: inline-block;
+  width: 100%;
 }
 .button_container .button_secondary,
 .button_container form .button_secondary {
@@ -303,26 +315,27 @@ div label {
 .button_container .button_action a,
 .button_container form .button_action a {
   color: #333;
+  display: inline-block;
+  width: 100%;
 }
 
 /***** MODAL DIALOG ****/
 #modal {
-  /* Underlay covers entire screen. */
   position: fixed;
   top: 0px;
   bottom: 0px;
   left: 0px;
   right: 0px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(76, 127, 111, 0.8);
   z-index: 1000;
-  /* Flexbox centers the .modal-content vertically and horizontally */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Animate when opening */
-  animation-name: fadeIn;
-  animation-duration: 150ms;
-  animation-timing-function: ease;
+  /* 	animation-name: fadeIn;
+  	animation-duration: 150ms;
+  	animation-timing-function: ease; */
+  /* backdrop-filter: blur(2px); */
+  /* backdrop-filter: invert(100%); */
 }
 
 #modal > .modal-underlay {
@@ -342,12 +355,12 @@ div label {
   max-width: 800px;
   border: 20px #FFFFFF solid;
   border-radius: 0px;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.01);
   background-color: white;
   padding: 20px;
-  animation-name: zoomIn;
-  animation-duration: 150ms;
-  animation-timing-function: ease;
+  /* 	animation-name: zoomIn;
+  	animation-duration: 150ms;
+  	animation-timing-function: ease; */
 }
 
 #modal.closing {
@@ -419,6 +432,7 @@ body {
 a {
   text-decoration: none;
   color: #8F00FF;
+  cursor: pointer;
 }
 
 .body_block {
@@ -818,6 +832,21 @@ h1 {
   margin-inline-end: 20px;
 }
 
+h2 {
+  font-family: Helvetica neue, sans-serif;
+  color: #8F00FF;
+  text-transform: none;
+  list-style-type: none;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 48px;
+  text-decoration: none;
+  margin: 0px;
+  padding: 20px 0px;
+  line-height: 56px;
+  margin-inline-end: 20px;
+}
+
 h3,
 h3 p {
   font-family: Helvetica neue, sans-serif;
@@ -842,6 +871,7 @@ h3 p {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .group_list {
@@ -850,6 +880,7 @@ h3 p {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  width: 100%;
 }
 .group_list .group_title {
   font-family: Helvetica neue, sans-serif;
@@ -891,15 +922,23 @@ h3 p {
 .group_list .leave_join,
 .group_list .leave_join a {
   font-family: Helvetica neue, sans-serif;
-  font-size: 16px;
+  font-size: 12px;
+  line-height: 18px;
   text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: 300;
   color: #333;
   width: fit-content;
-  text-transform: none;
-  padding-bottom: 8px;
+  text-transform: uppercase;
+  padding: 0px 4px;
+  background-color: #FFF;
+  margin-bottom: 4px;
 }
 
 .group_card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   -ms-flex: 25%; /* IE10 */
   flex: 25%;
   max-width: 25%;
@@ -937,6 +976,11 @@ h3 p {
 
 section {
   padding-top: 100px;
+}
+
+.acct_content {
+  max-width: 600px;
+  margin: auto;
 }
 
 /*# sourceMappingURL=styles.css.map */
