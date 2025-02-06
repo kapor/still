@@ -9,61 +9,60 @@
     <h1>Hey
       <!-- link to all the user's posts -->
       <a href="{% url 'posts:for_user' username=user.username %}">
-      {{user.username}}</a>.
-    </h1>
-    
-    {% endif %}
-    <h1>
-      These are posts
-    </h1>
-
-    {% if user.is_authenticated %}
-    <h1>
+      {{user.username}}</a>.<br>
+      These are posts.<br>
       <a class="h1_link" hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">
       Create one
       </a>
     </h1>
+
+    {% else %}
+    <h1>Hey you.
+      These are posts
+    </h1>
+    
     {% endif %}
+
+
   </div>
 
 </div>
 
 
-<div class="col-md-4">
+  <div>
 
-  {% if request.user.is_authenticated %}
+    {% if request.user.is_authenticated %}
+
+<!--     <div class="content">
+      <h1 class="title">Your Groups Activity</h1>
+      <ul class="list_unstyled"> -->
+        <!-- for groups that you are a member of, list them -->
+<!--         {% for member_group in get_user_groups %}
+          <li>
+            <a href="{% url 'groups:single' slug=member_group.group.slug %}"></a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div> -->
 
 
-  <div class="content">
-    <h1 class="title">Your Groups Activity</h1>
-    <ul class="list_unstyled">
-      <!-- for groups that you are a member of, list them -->
-      {% for member_group in get_user_groups %}
-        <li>
-          <a href="{% url 'groups:single' slug=member_group.group.slug %}"></a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+    {% endif %}
 
-
-  {% endif %}
-
-  <div class="content">
-    <h1 class="title">All Group Activity</h1>
-    <ul class="list_unstyled">
-      <!-- for groups that you are a member of, list them -->
-      {% for other_group in get_other_groups %}
-        <li class="group li-with-bullet">
-          <a href="{% url 'groups:single' slug=other_group.group.slug %}"></a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+    <div class="content">
+      <h1 class="title">All Group Activity</h1>
+      <ul class="list_unstyled">
+        <!-- for groups that you are a member of, list them -->
+        {% for other_group in get_other_groups %}
+          <li class="group li-with-bullet">
+            <a href="{% url 'groups:single' slug=other_group.group.slug %}"></a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
 
 
   {% block post_content %}
-  <div class="col-md-8">
+  <div>
     {% for post in post_list %}
 
       {% include "posts/_post.html" %}

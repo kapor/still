@@ -983,4 +983,8 @@ section {
   margin: auto;
 }
 
+.not-visible {
+  display: none;
+}
+
 /*# sourceMappingURL=styles.css.map */

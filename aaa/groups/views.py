@@ -13,7 +13,7 @@ from django.db import IntegrityError
 
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 # Create your views here.
 
@@ -97,10 +97,6 @@ class AddGroup(LoginRequiredMixin,generic.CreateView):
     model = models.Group
     context_object_name = 'addgroup'
     fields = ('name', 'description')
-
-
-
-
 
 
 

@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from . import views
+from .views import IndexLoad, load_more
 
 
 
@@ -27,6 +28,10 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('groups/', include('groups.urls', namespace='groups')),
     path("", views.IndexView.as_view(template_name='index.html'), name="home"),
+
+    path('index_load/', IndexLoad, name='index_load'),
+    path('load/', load_more, name='load'),
+
 
 ]
 

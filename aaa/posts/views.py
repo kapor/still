@@ -12,7 +12,7 @@ from django.views.generic import View, TemplateView, ListView, DetailView, FormV
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import PrefetchRelatedMixin
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse, reverse_lazy
 
 from braces.views import SelectRelatedMixin
@@ -26,7 +26,10 @@ User = get_user_model()
 # Shows lists of posts for user and/or group
 class PostList(PrefetchRelatedMixin, generic.ListView):
 	model = models.Post
+	template_name = 'posts/post_list.html'
 	prefetch_related = ('user', 'group')
+
+
 
 
 
@@ -110,6 +113,13 @@ class AddPost(LoginRequiredMixin,generic.CreateView):
 class EditPost(LoginRequiredMixin, UpdateView):
 	model = models.Post
 	login_url = "login"
+
+
+
+
+
+
+
 
 
 

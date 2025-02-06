@@ -14,5 +14,6 @@ urlpatterns = [
     path('leave/<slug>', views.LeaveGroup.as_view(), name='leave'),
     path('add/', views.AddGroup.as_view(), name='add'),
 
+
 ]
 
