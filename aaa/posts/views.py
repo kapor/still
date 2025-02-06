@@ -5,6 +5,9 @@ from groups.models import Group
 
 from django.http import Http404
 from django.views import generic
+from django.contrib import messages
+
+from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView, RedirectView
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -63,6 +66,7 @@ class PostDetail(PrefetchRelatedMixin, generic.DetailView):
 class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 	fields = ('message', 'group')
 	model = models.Post
+	success_url = reverse_lazy('posts:all')
 
 	# Used to connect the post to the user 
 	def form_valid(self, form):
@@ -90,6 +94,22 @@ class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 
 class SingleGroup(generic.DetailView):
 	model = Group
+	context_object_name = 'group'
+
+
+# Modal View
+class AddPost(LoginRequiredMixin,generic.CreateView):
+    template_name = 'posts/post_modal.html'
+    model = models.Post
+    context_object_name = 'addpost'
+    fields = ('message', 'group')
+    success_url = reverse_lazy('posts:all')
+
+
+
+class EditPost(LoginRequiredMixin, UpdateView):
+	model = models.Post
+	login_url = "login"
 
 
 

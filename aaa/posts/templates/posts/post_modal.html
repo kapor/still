@@ -1,0 +1,18 @@
+<!-- aaa/posts/templates/posts/post_modal.html -->
+{% extends "base_modal.html" %}
+
+
+
+{% block modal_title %}
+Add Post
+{% endblock %}
+
+
+{% block modal_form %}
+<form method="POST" action="{% url 'posts:create' %}" id="postForm">
+
+
+{% endblock %}
+
+
+

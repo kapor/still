@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse, reverse_lazy
 
-# Create your models here.
 import misaka
 
 from django.contrib.auth import get_user_model

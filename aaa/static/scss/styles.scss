@@ -11,6 +11,7 @@ $accent2: #00FF7F;
 @use 'forms';
 @use 'loader';
 @use 'buttons';
+@use 'modal';
 
 
 /* reset margins */
@@ -38,6 +39,7 @@ body {
 a {
   text-decoration: none;
   color: $accent1;
+  cursor: pointer;
 }
 
 .body_block {
@@ -63,11 +65,12 @@ a {
   box-sizing: border-box;
 }
 
-
+li a.nav_link,
 .nav_link,
 .overlay-event {
   line-height: 24px;
   color: $accent1;
+  cursor: pointer;
 }
 
 .nav_link,
@@ -486,6 +489,21 @@ h1 {
   margin-inline-end: 20px;
 }
 
+h2 {
+  font-family: $font-stack1;
+  color: $accent1;
+  text-transform: none;
+  list-style-type: none;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 48px;
+  text-decoration: none;
+  margin: 0px;
+  padding: 20px 0px;
+  line-height: 56px;
+  margin-inline-end: 20px;
+}
+
 h3,
 h3 p {
   font-family: $font-stack1;
@@ -512,6 +530,7 @@ h3 p {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+width: 100%;
 }
 
 .group_list {
@@ -520,6 +539,7 @@ h3 p {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  width: 100%;
 
 
 
@@ -568,18 +588,26 @@ h3 p {
   .leave_join,
   .leave_join a {
     font-family: $font-stack1;
-    font-size: 16px;
+    font-size: 12px;
+    line-height: 18px;
     text-decoration: none;
-    color: #333;
+    letter-spacing: 2px;
+    font-weight: 300;
+    color: $primary;
     width: fit-content;
-    text-transform: none    ;
-    padding-bottom: 8px;
+    text-transform: uppercase;
+    padding: 0px 4px;
+    background-color: #FFF;
+    margin-bottom: 4px;
   }
 
 
 }
 
 .group_card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   -ms-flex: 25%; /* IE10 */
   flex: 25%;
   max-width: 25%;
@@ -616,4 +644,9 @@ section {
   padding-top: 100px;
 }
 
+
+.acct_content {
+  max-width: 600px;
+  margin: auto;
+}
 

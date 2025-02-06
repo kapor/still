@@ -10,7 +10,11 @@ _site/
 .DS_Store
 
 django-htmx/
+
 __pycache__/
+.urls.cpython-313.pyc
+.DS_Store
+
 
 # Additional Ruby/bundler ignore for when you run: bundle install
 /vendor

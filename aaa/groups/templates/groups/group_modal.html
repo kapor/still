@@ -1,0 +1,14 @@
+<!-- aaa/groups/templates/groups/modal.html -->
+{% extends "base_modal.html" %}
+
+
+
+{% block modal_title %}
+Add Group
+{% endblock %}
+
+
+{% block modal_form %}
+<form method="POST" action="{% url 'groups:create' %}" id="groupForm">
+{% endblock %}
+

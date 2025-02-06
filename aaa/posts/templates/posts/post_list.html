@@ -19,7 +19,7 @@
 
     {% if user.is_authenticated %}
     <h1>
-      <a href="{% url 'posts:create' %}" class="h1_link">
+      <a class="h1_link" hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">
       Create one
       </a>
     </h1>
