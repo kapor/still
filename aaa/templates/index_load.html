@@ -1,97 +1,98 @@
-<html lang="en">
+<!-- aaa/templates/posts/post_list.html -->
+{% extends 'posts/post_base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinite Scroll</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+{% block pre_post %}
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-</head>
-<style>
-    .not-visible {
-        display: none;
-    }
-</style>
+<div class="top_part">
+  <div class="header">
+    {% if user.is_authenticated %}
+    <h1>Hey
+      <!-- link to all the user's posts -->
+      <a href="{% url 'posts:for_user' username=user.username %}">
+      {{user.username}}</a>.<br>
+      These are posts.<br>
+      <a class="h1_link" hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">
+      Create one
+      </a>
+    </h1>
 
-<body>
+    {% else %}
+    <h1>Hey you.
+      These are posts
+    </h1>
+    
+    {% endif %}
+
+
+  </div>
+
+</div>
+
+  <div>
+
+    {% if request.user.is_authenticated %}
+
+<!--     <div class="content">
+      <h1 class="title">Your Groups Activity</h1>
+      <ul class="list_unstyled"> -->
+        <!-- for groups that you are a member of, list them -->
+<!--         {% for member_group in get_user_groups %}
+          <li>
+            <a href="{% url 'groups:single' slug=member_group.group.slug %}"></a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div> -->
+
+
+    {% endif %}
+
+    <div class="content">
+      <h1 class="title">All Group Activity</h1>
+      <ul class="list_unstyled">
+        <!-- for groups that you are a member of, list them -->
+        {% for other_group in get_other_groups %}
+          <li class="group li-with-bullet">
+            <a href="{% url 'groups:single' slug=other_group.group.slug %}"></a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+
+{% endblock %}
+{% block post_content %}
+
+
     <div class="container">
-        <h1>Groups</h1>
         <div class="content" id="content">
             {% for group in groups %}
-            <div class="single_content border border-success mt-2 pl-2">
+            <div class="single_content">
                 <h3>{{group.name}}</h3>
-                <p>{{group.description}}</p>
+                {% if group.description %}
+                <h4>{{group.description}}</h4>
+                {% else %}
+                <h4>No description yet.</h4>
+                {% endif %}
             </div>
             {% endfor %}
         </div>
-        <div class="spinner-border text-primary mt-2 not-visible" role="status" id="spinner">
-            <span class="sr-only">Loading...</span>
+        <div class="button_container">
+            <div class="spinner not_visible" id="spinner">
+                <div class="loadBtn">
+                    <span class="loading">Loading...</span>
+                </div>
+            </div>
+            <div class="load-more__btn mt-3" id="loadBtn">
+                <button type="button" class="loadBtn">Load More</button>
+            </div>
+            <div class="alert not_visible" id='alert' onclick="topFunction()">
+                Back to top
+            </div>
         </div>
-        <div class="load-more__btn mt-3" id="btn">
-            <button type="button" class="btn btn-success">Load More</button>
-        </div>
-        <div class="alert alert-danger mt-2 not-visible" role="alert" id='alert'>
-            No more post to load
         </div>
     </div>
 
     {{total_obj|json_script:"json-total"}}
-    <script>
-        // var _current_item = $('.single_content').length
-        // console.log(_current_item);
-        const loadBtn = document.getElementById('btn');
-        const spinner = document.getElementById('spinner');
-        const total = JSON.parse(document.getElementById('json-total').textContent);
-        const alert = document.getElementById('alert');
 
-        function loadmorePost() {
-            var _current_item = $('.single_content').length
-            const content_container = document.getElementById("content");
-            $.ajax({
-                url: '{% url "load" %}',
-                type: 'GET',
-                data: {
-                    'offset': _current_item
-                },
-                beforeSend: function () {
-                    loadBtn.classList.add('not-visible');
-                    spinner.classList.remove('not-visible');
-                },
-                success: function (response) {
-                    const data = response.groups
-                    spinner.classList.add('not-visible')
-                    data.map(group => {
-                        console.log(group.title);
-                        content_container.innerHTML += `<div class="single_content border border-success mt-2 pl-2">
-                                                            <h3>${group.name}</h3>
-                                                            <p>${group.description}</p>
-                                                        </div>`
-                    })
-                    if (_current_item == total) {
-                        alert.classList.remove('not-visible');
-                    } else {
-                        loadBtn.classList.remove('not-visible');
-                    }
-                },
-                error: function (err) {
-                    console.log(err);
-                },
-            });
-        }
-        loadBtn.addEventListener('click', () => {
-            loadmorePost()
-        });
-    </script>
-</body>
-
-</html>
+{% endblock %}

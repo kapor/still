@@ -9,7 +9,14 @@
 	<div class="forms">
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
-			{% bootstrap_form form %}
+			<div>
+				<label for="username">Username:</label>
+				<input type="text" name="username" placeholder="">
+			</div>
+			<div>
+				<label for="password">Password:</label>
+				<input type="password" name="password" placeholder="">
+			</div>
 			<input type="submit" class="btn" value="Login">
 		</form>
 	</div>

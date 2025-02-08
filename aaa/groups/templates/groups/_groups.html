@@ -11,16 +11,10 @@
 		<h1>Hey
 			<!-- link to all the user's posts -->
 			<a href="{% url 'posts:for_user' username=user.username %}">
-			{{user.username}}</a>.
-		</h1>
-		
+			{{user.username}}</a>.<br>
 		{% endif %}
-		<h1>
-			These are groups
-		</h1>
-
+			These are groups.<br>
 		{% if user.is_authenticated %}
-		<h1>
 			<a hx-get="{% url 'groups:add' %}" hx-target="body" hx-swap="beforeend">
 			Create one
 			</a>

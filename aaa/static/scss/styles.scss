@@ -523,6 +523,26 @@ h3 p {
 }
 
 
+h4,
+h4 p {
+  font-family: $font-stack1;
+  color: $primary;
+  text-transform: none;
+  list-style-type: none;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 24px;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 4px;
+  line-height: 32px;
+  margin-inline-end: 20px;
+  max-width: 1000px;
+}
+
+
+
 
 .group_container {
   font-family: $font-stack1;
@@ -651,6 +671,6 @@ section {
 }
 
 
-.not-visible {
+.not_visible {
     display: none;
 }

@@ -135,7 +135,7 @@ select {
   white-space: nowrap;
 }
 .forms label {
-  padding-top: 20px;
+  /* padding-top: 20px; */
 }
 .forms .file_input {
   display: none;
@@ -306,6 +306,7 @@ div label {
 .button_container .button_secondary,
 .button_container form .button_secondary {
   background-color: #CCCCCC;
+  color: #333;
 }
 .button_container .button_action,
 .button_container form .button_action {
@@ -317,6 +318,49 @@ div label {
   color: #333;
   display: inline-block;
   width: 100%;
+}
+
+button.loadBtn,
+.loadBtn .loading {
+  padding: 0px 20px;
+  margin: 20px 0px;
+  background-color: #CCCCCC;
+  color: #333;
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  font-family: Helvetica neue, sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 56px;
+}
+
+button.loadBtn:hover,
+.loadBtn .loading:hover {
+  background-color: #444444;
+  color: white;
+}
+
+.alert {
+  padding: 0px 20px;
+  margin: 20px 0px;
+  background-color: #f5c6cb;
+  color: #721c24;
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  font-family: Helvetica neue, sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 56px;
 }
 
 /***** MODAL DIALOG ****/
@@ -865,6 +909,24 @@ h3 p {
   max-width: 1000px;
 }
 
+h4,
+h4 p {
+  font-family: Helvetica neue, sans-serif;
+  color: #333;
+  text-transform: none;
+  list-style-type: none;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 24px;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 4px;
+  line-height: 32px;
+  margin-inline-end: 20px;
+  max-width: 1000px;
+}
+
 .group_container {
   font-family: Helvetica neue, sans-serif;
   display: -ms-flexbox;
@@ -983,7 +1045,7 @@ section {
   margin: auto;
 }
 
-.not-visible {
+.not_visible {
   display: none;
 }
 

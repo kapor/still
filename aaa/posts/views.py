@@ -75,7 +75,7 @@ class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 	def form_valid(self, form):
 		self.object = form.save(commit=False)
 		self.object.user = self.request.user
-		self.object.save()
+		self.object.save(using='posgres')
 		return super().form_valid(form)
 
 

@@ -59,19 +59,16 @@ def IndexLoad(request):
     return render(request, 'index_load.html', context={'groups': group_obj, 'total_obj': total_obj})
 
 
-
-
 def load_more(request):
     offset = request.GET.get('offset')
     offset_int = int(offset)
-    limit = 16
-    # post_obj = Post.objects.all()[offset_int:offset_int+limit]
+    limit = 20
+    # group_obj = group.objects.all()[offset_int:offset_int+limit]
     group_obj = list(Group.objects.values()[offset_int:offset_int+limit])
     data = {
         'groups': group_obj
     }
     return JsonResponse(data=data)
-
 
 
 
