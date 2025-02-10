@@ -44,6 +44,8 @@ a {
 
 .body_block {
     padding: 120px 20px 120px 20px;
+    max-width: 1600px;
+    margin: auto;
 
     .big_p {
       font-weight: 400;
@@ -68,9 +70,9 @@ a {
 li a.nav_link,
 .nav_link,
 .overlay-event {
-  line-height: 24px;
   color: $accent1;
   cursor: pointer;
+  line-height: 24px;
 }
 
 .nav_link,
@@ -86,23 +88,27 @@ li a.nav_link,
   }
 }
 
-.nav_bar {
+#nav_bar {
   box-sizing: border-box;
   position: fixed;
   z-index: 1;
   top: 0;
   display: table;
-  width: 100%;
   list-style: none;
   background-color: $secondary;
   font-family: $font-stack2;
   text-decoration: none;
   text-underline-offset: 8px;
   text-transform: uppercase;
-  width: 100%;
+  width: -webkit-fill-available;
   justify-content: flex-start;
-  padding: 20px 24px 20px 24px;
-  margin: 0;
+  padding: 20px 32px;
+  max-height: 64px;
+  height: 80px;
+  margin: 0px 0px;
+  transition: 0.2s;
+  box-shadow: 0px 0px 0px #CCC;
+
 
   .overlay-event {
     text-decoration: none;
@@ -111,25 +117,30 @@ li a.nav_link,
     width: 100%;
     cursor: pointer;
     text-decoration: underline;
-
   }
+
+  #navbar_right {
+    float: right;
+    display: inline-flex;
+    line-height: 48px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    transition: 0.2s;
+  }
+
+  #navbar_left {
+    float: left;
+    display: inline-flex;
+    line-height: 48px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    transition: 0.2s;
+  }
+
 }
 
-.navbar_right {
-  float: right;
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.navbar_left {
-  float: left;
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 20px;
-}
 
 
 .top_part {
@@ -550,7 +561,7 @@ h4 p {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-width: 100%;
+  width: 100%;
 }
 
 .group_list {
@@ -563,11 +574,11 @@ width: 100%;
 
 
 
-  .group_title {
+  .name {
     font-family: $font-stack1;
     font-size: 14px;
     text-decoration: none;
-    color: #333;
+    color: $accent1;
     width: fit-content;
     display: block;
     overflow: hidden;
@@ -575,15 +586,12 @@ width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-  }
-
-  .group_name {
     font-size: 24px;
     padding-bottom: 4px;
   }
 
 
-  .group_description {
+  .description {
     font-family: $font-stack2;
     text-transform: none;
     overflow: hidden;
@@ -624,7 +632,7 @@ width: 100%;
 
 }
 
-.group_card {
+.card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -640,7 +648,7 @@ width: 100%;
   line-height: 28px;
 }
 
-.group_card {
+.card {
   @media screen and (min-width: 1500px) {
     -ms-flex: 20%;
     flex: 20%;
@@ -672,5 +680,69 @@ section {
 
 
 .not_visible {
-    display: none;
+  display: none;
 }
+
+
+.paginate {
+  position: sticky;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  font-family: $font-stack1;
+  text-decoration: none;
+  text-underline: none;
+  text-transform: uppercase;
+  padding-bottom: 80px;
+  padding-top: 80px;
+  font-size: 16px;
+  list-style: none;
+  padding-inline-start: 0px;
+}
+
+.paginate li a {
+  background-color: none;
+  color: #222;
+  font-weight: 100;
+}
+
+.paginate a {
+  background-color: none;
+  color: #222;
+  font-weight: 100;
+}
+
+.paginate .active a {
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 10px 16px;
+  font-weight: 400;
+}
+
+.paginate .disabled a {
+  background-color: none;
+  color: #ccc;
+  text-align: center;
+  font-weight: 100;
+  display: none;
+}
+
+.crop_detail {
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.crop {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.photo_detail {
+/*     max-width: 200px; */
+  width: 100%;
+}
+
+
+

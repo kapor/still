@@ -4,7 +4,7 @@
   {% for group in grouplist %}
     {% if forloop.last %}
       <div 
-        class="group_card"
+        class="card"
         hx-trigger="revealed"
         hx-get="{% url 'groups:grouplist' %}?page={{ page_obj.number|add:1 }}"
         hx-swap="afterend">
@@ -12,11 +12,12 @@
 
 
     {% else %}
-      <div class="group_card">
+    <div class="card">
     {% endif %}
 
-      <a href="{% url 'groups:single' slug=group.slug %}" class="group_title">
-        <h3 class='group_name'>{{ group.name | title }}</h3>
+
+      <a href="{% url 'groups:single' slug=group.slug %}">
+        <h3 class='name'>{{ group.name | title }}</h3>
       </a>
 
       <div class="leave_join">
@@ -30,12 +31,10 @@
       </div>
 
 
-      <div class="group_card_bottom">
-
-        <div class="group_description">
+      <div class="card_lower">
+        <div class="description">
         {{ group.description_html | safe }}
         </div>
-
         <div class="group_count">
           <div class="group_count_row">
             Member{{ group.members.count | pluralize }}:
@@ -46,11 +45,10 @@
             <span class="badge">{{ group.posts.count }}</span>
           </div>
         </div>
-
       </div>
 
+    </div>
 
-      </div>
 
   {% endfor %}
   </div>

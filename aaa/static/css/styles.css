@@ -481,6 +481,8 @@ a {
 
 .body_block {
   padding: 120px 20px 120px 20px;
+  max-width: 1600px;
+  margin: auto;
 }
 .body_block .big_p {
   font-weight: 400;
@@ -504,9 +506,9 @@ a {
 li a.nav_link,
 .nav_link,
 .overlay-event {
-  line-height: 24px;
   color: #8F00FF;
   cursor: pointer;
+  line-height: 24px;
 }
 
 .nav_link li a,
@@ -521,25 +523,28 @@ li a.nav_link,
   display: block;
 }
 
-.nav_bar {
+#nav_bar {
   box-sizing: border-box;
   position: fixed;
   z-index: 1;
   top: 0;
   display: table;
-  width: 100%;
   list-style: none;
   background-color: #F2F2F2;
   font-family: Courier new, Roboto;
   text-decoration: none;
   text-underline-offset: 8px;
   text-transform: uppercase;
-  width: 100%;
+  width: -webkit-fill-available;
   justify-content: flex-start;
-  padding: 20px 24px 20px 24px;
-  margin: 0;
+  padding: 20px 32px;
+  max-height: 64px;
+  height: 80px;
+  margin: 0px 0px;
+  transition: 0.2s;
+  box-shadow: 0px 0px 0px #CCC;
 }
-.nav_bar .overlay-event {
+#nav_bar .overlay-event {
   text-decoration: none;
   text-underline-offset: 8px;
   text-transform: uppercase;
@@ -547,21 +552,23 @@ li a.nav_link,
   cursor: pointer;
   text-decoration: underline;
 }
-
-.navbar_right {
+#nav_bar #navbar_right {
   float: right;
   display: inline-flex;
+  line-height: 48px;
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
+  transition: 0.2s;
 }
-
-.navbar_left {
+#nav_bar #navbar_left {
   float: left;
   display: inline-flex;
+  line-height: 48px;
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
+  transition: 0.2s;
 }
 
 .top_part {
@@ -944,11 +951,11 @@ h4 p {
   flex-wrap: wrap;
   width: 100%;
 }
-.group_list .group_title {
+.group_list .name {
   font-family: Helvetica neue, sans-serif;
   font-size: 14px;
   text-decoration: none;
-  color: #333;
+  color: #8F00FF;
   width: fit-content;
   display: block;
   overflow: hidden;
@@ -956,12 +963,10 @@ h4 p {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-}
-.group_list .group_name {
   font-size: 24px;
   padding-bottom: 4px;
 }
-.group_list .group_description {
+.group_list .description {
   font-family: Courier new, Roboto;
   text-transform: none;
   overflow: hidden;
@@ -997,7 +1002,7 @@ h4 p {
   margin-bottom: 4px;
 }
 
-.group_card {
+.card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1014,7 +1019,7 @@ h4 p {
 }
 
 @media screen and (min-width: 1500px) {
-  .group_card {
+  .card {
     -ms-flex: 20%;
     flex: 20%;
     max-width: 20%;
@@ -1022,14 +1027,14 @@ h4 p {
   }
 }
 @media screen and (max-width: 1000px) {
-  .group_card {
+  .card {
     -ms-flex: 50%;
     flex: 50%;
     max-width: 50%;
   }
 }
 @media screen and (max-width: 600px) {
-  .group_card {
+  .card {
     -ms-flex: 100%;
     flex: 100%;
     max-width: 100%;
@@ -1047,6 +1052,66 @@ section {
 
 .not_visible {
   display: none;
+}
+
+.paginate {
+  position: sticky;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  font-family: Helvetica neue, sans-serif;
+  text-decoration: none;
+  text-underline: none;
+  text-transform: uppercase;
+  padding-bottom: 80px;
+  padding-top: 80px;
+  font-size: 16px;
+  list-style: none;
+  padding-inline-start: 0px;
+}
+
+.paginate li a {
+  background-color: none;
+  color: #222;
+  font-weight: 100;
+}
+
+.paginate a {
+  background-color: none;
+  color: #222;
+  font-weight: 100;
+}
+
+.paginate .active a {
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 10px 16px;
+  font-weight: 400;
+}
+
+.paginate .disabled a {
+  background-color: none;
+  color: #ccc;
+  text-align: center;
+  font-weight: 100;
+  display: none;
+}
+
+.crop_detail {
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.crop {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.photo_detail {
+  /*     max-width: 200px; */
+  width: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */

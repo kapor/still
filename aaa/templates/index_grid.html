@@ -5,7 +5,7 @@
     {% if forloop.last %}
       
       <div 
-        class="group_card"
+        class="card"
         hx-trigger="revealed"
         hx-get="{% url 'home' %}?page={{ page_obj.number|add:1 }}"
         hx-swap="afterend">
@@ -13,38 +13,38 @@
 
 
     {% else %}
-      <div class="group_card">
+      <div class="card">
     {% endif %}
 
-      <a href="{% url 'groups:single' slug=group.slug %}" class="group_title">
-        <h3 class='group_name'>{{ group.name | title }}</h3>
-      </a>
+        <a href="{% url 'groups:single' slug=group.slug %}">
+          <h3 class='name'>{{ group.name | title }}</h3>
+        </a>
 
-      <div class="leave_join">
-        {% if user in group.members.all %}
-          Member
-          <!-- [<a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>] -->
-        {% else %}
+        <div class="leave_join">
+          {% if user in group.members.all %}
+            Member
+            <!-- [<a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>] -->
+          {% else %}
 
-          <!-- [<a href="{% url 'groups:join' slug=group.slug %}">Join Group</a>] -->
-        {% endif %}
-      </div>
-      
-      <div class="group_description">
-      {{ group.description_html | safe }}
-      </div>
-
-
-      <div class="group_count">
-        <div class="group_count_row">
-          <span class="badge">{{ group.members.count }}</span>
-          Member{{ group.members.count | pluralize }}
+            <!-- [<a href="{% url 'groups:join' slug=group.slug %}">Join Group</a>] -->
+          {% endif %}
         </div>
-        <div class="group_count_row">
-          <span class="badge">{{ group.posts.count }}</span>
-          Post{{ group.posts.count | pluralize }}
+        
+        <div class="description">
+        {{ group.description_html | safe }}
         </div>
-      </div>
+
+
+        <div class="group_count">
+          <div class="group_count_row">
+            <span class="badge">{{ group.members.count }}</span>
+            Member{{ group.members.count | pluralize }}
+          </div>
+          <div class="group_count_row">
+            <span class="badge">{{ group.posts.count }}</span>
+            Post{{ group.posts.count | pluralize }}
+          </div>
+        </div>
 
         <p>{{ group.price }}</p>
       </div>
@@ -58,28 +58,3 @@
 
 
 
-<!-- aaa/templates/product_list.html -->
-<!-- <div class="grid_container">
-{% for post in products %}
-  {% if forloop.last %}
-    
-    <div 
-      class="grid_after"
-      hx-trigger="revealed"
-      hx-get="{% url 'home' %}?page={{ page_obj.number|add:1 }}"
-      hx-swap="afterend">
-
-
-
-  {% else %}
-    <div class="grid_info">
-  {% endif %}
-      <h2>{{ post.name }}</h2>
-      <p>{{ post.description }}</p>
-      <p>{{ post.price }}</p>
-    </div>
-
-{% endfor %}
-
-
-</div> -->

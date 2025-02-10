@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls.static import static, settings
 from django.urls import include, path
 from . import views
 from .views import IndexLoad, load_more
@@ -24,6 +25,7 @@ from .views import IndexLoad, load_more
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls', namespace="posts")),
+    path('updates/', include(('blog.urls', 'blog'), namespace='updates')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('groups/', include('groups.urls', namespace='groups')),
@@ -32,7 +34,10 @@ urlpatterns = [
     path('index_load/', IndexLoad, name='index_load'),
     path('load/', load_more, name='load'),
 
+    path('', include('blog.urls')),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

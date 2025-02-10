@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="top_part">
+  <h1>Post_Drafts</h1>
+  <p class="big_p">
+    Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</div>
+
+
+{% for blog in blog_list %}
+{% if not post.published_date %}
+<div class="postlist">
+
+  <div class="post">
+    <a href="{% url 'blog_detail' pk=blog.pk %}">
+    <h3>{{ blog.title }}</h3>
+    </a>
+    <time class="time">
+    <p>{{ blog.published_date | date:'d M Y' }}</p>
+    </time>
+    <div class="description">
+    {{ blog.text | safe }}
+    </div>
+  </div>
+
+  <div class="crop">
+    {% if blog.image %}
+      <a href="{% url 'blog_detail' pk=blog.pk %}">
+      <img src="/media/{{ blog.image }}">
+      </a>
+    {% else %}
+      <a href="{% url 'blog_detail' pk=blog.pk %}">
+      <img src="/media/blank.jpg">
+      </a>
+    {% endif %}
+  </div>
+
+{% else %}
+  Draft folder is empty
+{% endif %}
+</div>
+
+{% endfor %}
+
+
+
+{% endblock %}

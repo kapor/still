@@ -66,20 +66,6 @@ class PostDetail(PrefetchRelatedMixin, generic.DetailView):
 
 
 
-class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
-	fields = ('message', 'group')
-	model = models.Post
-	success_url = reverse_lazy('posts:all')
-
-	# Used to connect the post to the user 
-	def form_valid(self, form):
-		self.object = form.save(commit=False)
-		self.object.user = self.request.user
-		self.object.save
-		return super().form_valid(form)
-
-
-
 
 class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 	model = models.Post
@@ -98,6 +84,20 @@ class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 class SingleGroup(generic.DetailView):
 	model = Group
 	context_object_name = 'group'
+
+
+
+class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
+	fields = ('message', 'group')
+	model = models.Post
+	success_url = reverse_lazy('posts:all')
+
+	# Used to connect the post to the user 
+	def form_valid(self, form):
+		self.object = form.save(commit=False)
+		self.object.user = self.request.user
+		self.object.save
+		return super().form_valid(form)
 
 
 # Modal View

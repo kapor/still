@@ -1,0 +1,33 @@
+<!-- aaa/templates/base_modal.html -->
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+<div class="modal-underlay" _="on click trigger closeModal"></div>
+<div class="modal-content">
+
+    <h1>Post Something</h1>
+
+
+	<form method="POST" action="{% url 'blog:new' %}" id="blogForm">
+
+	        <div class="form_container">
+	                {% csrf_token %}
+	                {% bootstrap_form form %}
+	        </div>
+
+	        <div class="button_container">
+	            <button class="button_secondary" _="on click trigger closeModal" style="width:50%">Close</button>
+	            <input type="submit" value="Add" class="button" style="width:50%">
+	        </div>
+
+	</form>
+
+</div>
+</div>
+
+
+{% endblock %}
+
+
