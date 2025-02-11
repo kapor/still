@@ -6,9 +6,9 @@
 
 {% block post_content %}
 
-  <h1>Are you sure?</h1>
+  <h2>Seriously, delete this?</h2>
 
-    <div class="posts">
+	<div class="posts_confirm">
 		{% include "posts/_post.html" with post=object hide_delete=True %}
 	</div>
 
@@ -16,10 +16,11 @@
 	<div class="button_container">
 		<form method="POST">
 			{% csrf_token %}
-			<input type="submit" value="Confirm" class="button" style="background-color:red">
-				<div class="button" onClick="javascript:history.go(-1);">
+			<input type="submit" value="Confirm" class="button_danger">
+
+				<a href="{% url 'posts:all' %}"><div class="button_secondary">
 					Cancel
-				</div>
+				</div></a>
 		</form>
 	</div>
 

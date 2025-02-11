@@ -1,20 +1,19 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
 
-<form action="" method="post">
-  {% csrf_token %}
-    <p>
-      Are you sure you want to delete "{{ object }}"?
-    </p>
+  <h2>Are you sure you want to delete "{{ object }}"?</h2>
 
-  <div class="button_group">
-    <div class="button">
-      <input class='button' type="submit" value="Yes, I'm Sure" />
-    </div>
-    <div class="button">
-      <input class='button' type=button value="Not Sure" onClick="javascript:history.go(-1);">
-    </div>
-</form>
+
+
+  <div class="button_container">
+    <form method="POST">
+      {% csrf_token %}
+      <input class="button_danger" type="submit" value="Confirm">
+        <div class="button_secondary" onClick="javascript:history.go(-1);">
+          Cancel
+        </div>
+    </form>
+  </div>
 
 {% endblock %}

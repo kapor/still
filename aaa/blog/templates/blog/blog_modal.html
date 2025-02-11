@@ -1,33 +1,53 @@
-<!-- aaa/templates/base_modal.html -->
+<!-- aaa/blog/templates/blog/blog_modal.html -->
 {% extends "base.html" %}
 {% load bootstrap5 %}
 
+
+
+
 {% block content %}
 <div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
-<div class="modal-underlay" _="on click trigger closeModal"></div>
-<div class="modal-content">
+    <div class="modal-underlay" _="on click trigger closeModal"></div>
+    <div class="modal-content">
 
-    <h1>Post Something</h1>
+	<h1>
+	{% block modal_title %}
+	{% if post.title %}
+	Edit This Post
+	{% else %}
+	Add Something
+	{% endif %}
+	{% endblock %}
+	</h1>
+ 
+	<form class="forms" method="POST" id="blogForm">
+	{{ form }}
+	{{ form.your_multi_select_field }}
+	{% csrf_token %}
 
 
-	<form method="POST" action="{% url 'blog:new' %}" id="blogForm">
+	<input class="file_input" type="file" name="image" id="{{ widget.FileInput }}">
 
-	        <div class="form_container">
-	                {% csrf_token %}
-	                {% bootstrap_form form %}
-	        </div>
 
-	        <div class="button_container">
-	            <button class="button_secondary" _="on click trigger closeModal" style="width:50%">Close</button>
-	            <input type="submit" value="Add" class="button" style="width:50%">
-	        </div>
+	  <div class="image_cover_container">
+	    {% if post.image %}
+	      <img src="{{ post.image.url }}" alt="image" class="image_cover">
+	    {% else %}
+	    {% endif %}
+	  </div>
 
+
+	<div class="button_container">
+	    <button class="button_secondary" _="on click trigger closeModal" style="width:50%">Close</button>
+	    <input type="submit" value="Add" class="button_accent" style="width:50%">
+	</div>
 	</form>
-
-</div>
 </div>
 
+<script>var editor = new MediumEditor('.editable');</script>
 
+
+
+<form method="POST" action="{% url 'groups:create' %}" id="groupForm">
 {% endblock %}
-
 

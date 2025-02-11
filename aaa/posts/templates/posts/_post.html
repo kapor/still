@@ -21,9 +21,9 @@
 
 		<div class="post_footer">
 			{% if user.is_authenticated and post.user == user and not hide_delete %}
-				<a href="{% url 'posts:delete' pk=post.pk %}">
+				<a href="{% url 'posts:delete' pk=post.pk %}"><div class="button_small">
 					Delete
-				</a>
+				</div></a>
 			{% endif %}
 		</div>
 

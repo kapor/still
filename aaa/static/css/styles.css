@@ -51,49 +51,6 @@ select {
   padding: inherit;
   font-style: normal;
 }
-.forms .btn_save {
-  height: 80px;
-  width: 100%;
-  color: white;
-  background-color: red;
-  font-size: 24px;
-  border: none;
-  margin-top: 80px;
-}
-.forms div {
-  margin-bottom: 40px;
-}
-.forms input.btn {
-  height: 80px;
-  background-color: #8F00FF;
-  cursor: pointer;
-  color: white;
-  font-size: 24px;
-  text-align: center;
-  border-radius: 4px;
-  display: flex;
-  margin: 40px 0px 20px 0px;
-}
-.forms .cancel {
-  height: 80px;
-  width: 100%;
-  margin-bottom: 40px;
-  display: flex;
-  background-color: #F2F2F2;
-  cursor: pointer;
-  font-size: 24px;
-  color: #222;
-  text-align: center;
-  border-radius: 4px;
-  display: inline-block;
-  font-family: courier new, monospace;
-  line-height: 80px;
-  border: none;
-}
-.forms .cancel a {
-  display: block;
-  width: 100%;
-}
 .forms select:-internal-list-box {
   appearance: auto;
   align-items: flex-start;
@@ -108,7 +65,7 @@ select {
   text-shadow: none;
   display: inline-block;
   text-align: start;
-  appearance: auto;
+  appearance: none;
   box-sizing: border-box;
   align-items: center;
   -webkit-rtl-ordering: logical;
@@ -180,7 +137,7 @@ div label {
   display: inline-block;
   text-align: left;
   color: #8F00FF;
-  padding: 0px 0px 16px 0px;
+  padding: 24px 0px 16px 0px;
   font-size: 20px;
   border: none;
 }
@@ -206,6 +163,11 @@ div label {
   margin-block-start: 0px;
   margin-block-end: 0px;
   padding-inline-start: 0px;
+}
+
+.form_page {
+  max-width: 800px;
+  margin: auto;
 }
 
 /*COLOR CHANGER*/
@@ -245,6 +207,19 @@ div label {
   }
 }
 
+.button_container,
+.button_container form {
+  margin: 40px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.button a {
+  color: #222;
+  width: 100%;
+}
+
 .button_small {
   font-family: Courier new, Roboto;
   font-style: normal;
@@ -260,26 +235,73 @@ div label {
   line-height: 26px;
   cursor: pointer;
 }
-
-.button_container,
-.button_container form {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
+.button_small a {
+  color: #222;
 }
-.button_container .button,
-.button_container input.button,
-.button_container .button_secondary,
-.button_container .button_action,
-.button_container form .button,
-.button_container form input.button,
-.button_container form .button_secondary,
-.button_container form .button_action {
+
+.button_base {
+  padding: 0px 20px;
+  background-color: #e0e0e0;
+  color: #222;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  font-family: Helvetica neue, sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 56px;
+}
+.button_base a {
+  color: #222;
+}
+
+.button_secondary {
+  padding: 0px 20px;
+  background-color: #e0e0e0;
+  color: #222;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  font-family: Helvetica neue, sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 56px;
+}
+
+.button_danger {
+  padding: 0px 20px;
+  background-color: red;
+  color: white;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  font-family: Helvetica neue, sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 56px;
+}
+.button_danger a {
+  color: #222;
+}
+
+input.button_accent,
+.button_accent {
   padding: 0px 20px;
   background-color: #8F00FF;
   color: white;
-  display: inline-block;
+  display: block;
   border-radius: 4px;
   border: none;
   text-align: center;
@@ -291,42 +313,39 @@ div label {
   font-weight: 400;
   line-height: 56px;
 }
-.button_container .button a,
-.button_container input.button a,
-.button_container .button_secondary a,
-.button_container .button_action a,
-.button_container form .button a,
-.button_container form input.button a,
-.button_container form .button_secondary a,
-.button_container form .button_action a {
+input.button_accent a,
+.button_accent a {
+  color: #222;
+}
+
+input.button_accent_large,
+.button_accent_large {
+  padding: 0px 20px;
+  background-color: #8F00FF;
   color: white;
-  display: inline-block;
-  width: 100%;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  height: 64px;
+  font-family: Helvetica neue, sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 64px;
 }
-.button_container .button_secondary,
-.button_container form .button_secondary {
-  background-color: #CCCCCC;
-  color: #333;
+input.button_accent_large a,
+.button_accent_large a {
+  color: #222;
 }
-.button_container .button_action,
-.button_container form .button_action {
+
+.button_action {
+  padding: 0px 20px;
   background-color: #00FF7F;
-  color: #333;
-}
-.button_container .button_action a,
-.button_container form .button_action a {
-  color: #333;
-  display: inline-block;
-  width: 100%;
-}
-
-button.loadBtn,
-.loadBtn .loading {
-  padding: 0px 20px;
-  margin: 20px 0px;
-  background-color: #CCCCCC;
-  color: #333;
-  display: inline-block;
+  color: #222;
+  display: block;
   border-radius: 4px;
   border: none;
   text-align: center;
@@ -338,19 +357,15 @@ button.loadBtn,
   font-weight: 400;
   line-height: 56px;
 }
-
-button.loadBtn:hover,
-.loadBtn .loading:hover {
-  background-color: #444444;
-  color: white;
+.button_action a {
+  color: #222;
 }
 
-.alert {
+.button_alert {
   padding: 0px 20px;
-  margin: 20px 0px;
   background-color: #f5c6cb;
   color: #721c24;
-  display: inline-block;
+  display: block;
   border-radius: 4px;
   border: none;
   text-align: center;
@@ -361,6 +376,9 @@ button.loadBtn:hover,
   letter-spacing: 3px;
   font-weight: 400;
   line-height: 56px;
+}
+.button_alert a {
+  color: #222;
 }
 
 /***** MODAL DIALOG ****/
@@ -572,7 +590,7 @@ li a.nav_link,
 }
 
 .top_part {
-  padding: 0px 0px 18px 0px;
+  padding: 40px 0px 18px 0px;
 }
 .top_part .header {
   margin-bottom: 20px;
@@ -600,7 +618,7 @@ li a.nav_link,
   text-decoration: none;
   margin: 0px;
   padding: 0px;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
   line-height: 100px;
   margin-inline-end: 20px;
 }
@@ -901,17 +919,17 @@ h2 {
 h3,
 h3 p {
   font-family: Helvetica neue, sans-serif;
-  color: #8F00FF;
+  color: #333;
   text-transform: none;
   list-style-type: none;
   font-weight: 400;
   letter-spacing: 1px;
-  font-size: 32px;
+  font-size: 24px;
+  line-height: 32px;
   text-decoration: none;
   margin: 0px;
   padding: 0px;
   padding-bottom: 4px;
-  line-height: 44px;
   margin-inline-end: 20px;
   max-width: 1000px;
 }
@@ -982,7 +1000,7 @@ h4 p {
 .group_list .group_count {
   display: flex;
   gap: 12px;
-  padding: 4px 6px 2px;
+  padding: 2px 12px 2px;
   font-family: Courier new, Roboto;
   background-color: #00e874;
 }
@@ -999,7 +1017,7 @@ h4 p {
   text-transform: uppercase;
   padding: 0px 4px;
   background-color: #FFF;
-  margin-bottom: 4px;
+  margin: 4px 0px;
 }
 
 .card {
@@ -1112,6 +1130,60 @@ section {
 .photo_detail {
   /*     max-width: 200px; */
   width: 100%;
+}
+
+.draft_post,
+.publish_post {
+  padding-top: 40px;
+}
+.draft_post .postindex,
+.publish_post .postindex {
+  padding: 20px 0px;
+  font-family: Courier new, Roboto;
+  font-style: normal;
+  font-weight: 200;
+  list-style-type: none;
+  letter-spacing: 0x;
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: none;
+  line-height: 26px;
+  margin: auto;
+}
+.draft_post .postindex .title,
+.publish_post .postindex .title {
+  font-family: Helvetica neue, sans-serif;
+  color: #00FF7F;
+  text-align: left;
+  text-transform: uppercase;
+  list-style-type: none;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 48px;
+  text-decoration: none;
+  margin: 0px 0px 10px 0px;
+  padding: 0px;
+  line-height: 54px;
+}
+.draft_post .postindex .title .publish,
+.publish_post .postindex .title .publish {
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 24px;
+  line-height: 24px;
+  padding: 8px 1px;
+}
+
+.posts_confirm {
+  background-color: #F0F0F0;
+  border-radius: 4px;
+  padding: 12px 20px;
+  width: auto;
+}
+
+/* GROUP DETAIL */
+.group_description {
+  margin: 20px auto;
 }
 
 /*# sourceMappingURL=styles.css.map */

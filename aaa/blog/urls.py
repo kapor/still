@@ -10,8 +10,11 @@ urlpatterns = [
     path('blog/new/', views.BlogCreateView.as_view(), name='new'),
 
     path('blog/<int:pk>/edit/', views.BlogUpdateView.as_view(), name='blog_edit'),
-    path('blog/<int:pk>/remove/', views.BlogDeleteView.as_view(), name='blog_remove'),
+    path('blog/<int:pk>/delete/', views.BlogDelete.as_view(), name='blog_delete'),
+    
     path('drafts/', views.BlogDraftListView.as_view(), name='draft_list'),
+    path('blog/<int:pk>/delete/', views.BlogDeleteDraft.as_view(), name='blog_delete_draft'),
+    
     path('blog/<int:pk>/approve/', views.comment_approve, name='comment_approve'), 
     path('blog/<int:pk>/delete/', views.comment_remove, name='comment_remove'), 
     path('blog/<int:pk>/publish/', views.blog_publish, name='blog_publish'), 

@@ -34,23 +34,35 @@ class BlogDetailView(DetailView):
 class BlogCreateView(LoginRequiredMixin, CreateView):
 	model = Blog
 	login_url = "/login/"
-	template_name = 'blog/form.html'
+	template_name = 'blog/blog_form.html'
 	form_class = BlogForm
-	success_url = reverse_lazy('blog:blog_list')
+	success_url = reverse_lazy('blog:draft_list')
 
 
 class BlogUpdateView(LoginRequiredMixin, UpdateView):
 	model = Blog
 	login_url = "login"
-	template_name = 'blog/form.html'
+	template_name = 'blog/blog_form.html'
 	redirect_field_name = 'blog/blog_detail.html'
 	form_class = BlogForm
 
 
-class BlogDeleteView(LoginRequiredMixin, DeleteView):
+class BlogDelete(LoginRequiredMixin, DeleteView):
+	model = Blog
+	template_name = 'blog/blog_confirm_delete.html'
+	redirect_field_name = 'blog/blog_detail.html'
+	success_url = reverse_lazy('blog:blog_list')
+
+
+class BlogDeleteDraft(LoginRequiredMixin, DeleteView):
 	model = Blog
 	template_name = 'blog/blog_confirm_delete.html'
 	success_url = reverse_lazy('blog:blog_list')
+	
+
+
+
+
 
 
 class BlogDraftListView(LoginRequiredMixin, ListView):
@@ -60,7 +72,7 @@ class BlogDraftListView(LoginRequiredMixin, ListView):
 	redirect_field_name = "blog/list.html"
 	# returning all posts that are null (isnull=true)
 	def get_queryset(self):
-		return Blog.objects.filter(published_date__isnull=True).order_by('create_date')
+		return Blog.objects.filter(published_date__isnull=True).order_by('-create_date')
 
 
 

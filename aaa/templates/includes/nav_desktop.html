@@ -6,7 +6,7 @@
 
 	</div>
 	<div id="navbar_right">
-		<li><a class="nav_link" href="{% url 'blog:blog_list' %}"">Blog</a></li>
+		<li><a class="nav_link" href="{% url 'blog:blog_list' %}"">Updates</a></li>
 		<li><a class="nav_link" href="{% url 'blog:draft_list' %}">Drafts</a></li>
 		<li><a class="nav_link" href="{% url 'posts:all' %}">Posts</a></li>
 		<li><a class="nav_link" hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">Post:Add</a></li>
@@ -26,6 +26,7 @@
 		<li><a class="nav_link" href="{% url 'blog:blog_list' %}"">Updates</a></li>
 		<li><a class="nav_link" href="{% url 'groups:all' %}">Groups</a></li>
 		<li><a class="nav_link" href="{% url 'accounts:login' %}">Login</a></li>
-		<li><a class="nav_link" href="{% url 'accounts:signup' %}">Sign_Up</a></li>	</div>
+		<li><a class="nav_link" href="{% url 'accounts:signup' %}">Sign_Up</a></li>	
+	</div>
 </ul>
 {% endif %}

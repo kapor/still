@@ -14,8 +14,8 @@ User = get_user_model()
 class GroupForm(forms.ModelForm):
 	name = models.CharField(max_length=255, unique=True)
 	slug = models.SlugField(allow_unicode=True, unique=True, blank=True)
-	description = models.TextField(blank=True, default='')
-	description_html = models.TextField(editable=False, default='', blank=True)
+	description = models.TextField(blank=True, default='No description yet.')
+	description_html = models.TextField(editable=False, default='No description yet.', blank=True)
 	members = models.ManyToManyField(User, through='GroupMember')
 	class Meta():
 		model = Group

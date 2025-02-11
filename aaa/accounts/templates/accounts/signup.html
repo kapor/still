@@ -6,7 +6,15 @@
 
 
 <div class="acct_content">
-	<h1>Sign Up</h1>
+
+<div class="top_part">
+	<div class="header">
+		<h1>Sign Up</h1>
+	</div>
+</div>
+
+
+
 	<div class="forms">
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
@@ -50,7 +58,9 @@
 
 
 			<!-- SUBMIT BUTTON -->
-			<input type="submit" class="btn" value="Sign Up">
+			<div class="button_container">
+				<input type="submit" class="button_accent_large" value="Sign Up">
+			</div>
 		</form>
 	</div>
 </div>

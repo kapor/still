@@ -24,41 +24,31 @@
 
 <!-- EDIT / ROMOVE  -->
 {% if user.is_authenticated %}
-  {% if blogdetail.published_date %}
-  <div class="button_group">
-    <div class="button">
-      <a href="{% url 'blog_edit' pk=blogdetail.pk %}">
-        Edit
-      </a>
-    </div>
-    <div class="button">
-      <a href="{% url 'blog_remove' pk=blogdetail.pk %}">
-        Remove
-      </a>
-    </div>
-  </div>
-  {% else %}
-  <div class="button_group">
-    <div class="button">
-      <a href="{% url 'blog_edit' pk=blogdetail.pk %}">
-        Edit
-      </a>
-    </div>
-    <div class="button">
-      <a href="{% url 'blog_remove' pk=blogdetail.pk %}">
-        Remove
-      </a>
-    </div>
-    <div class="button" style="background-color:springgreen;">
-      <a href="{% url 'blog_publish' pk=blogdetail.pk %}" style="color:#333333;" >
-        Publish
-      </a>
-    </div>
-  </div>
-  {% endif %}  
+{% if blogdetail.published_date %}
+<div class="button_container">
+  <a href="{% url 'blog_edit' pk=blogdetail.pk %}"><div class="button_secondary">
+    Edit
+  </div></a>
+ <a href="{% url 'blog_delete' pk=blogdetail.pk %}"><div class="button_secondary">
+    Remove
+  </div></a>
+</div>
+    {% else %}
+<div class="button_container"> 
+  <a href="{% url 'blog_edit' pk=blogdetail.pk %}"><div class="button_secondary">
+    Edit
+  </div></a>
+ <a href="{% url 'blog_delete' pk=blogdetail.pk %}"><div class="button_secondary">
+    Remove
+  </div></a>
+  <a href="{% url 'blog_publish' pk=blogdetail.pk %}">
+  <div class="button_action" href="{% url 'blog_publish' pk=blogdetail.pk %}" >
+    Publish
+  </div></a>
+</div>
+{% endif %}
 {% endif %}
 
 {% endblock %}
-
 
 

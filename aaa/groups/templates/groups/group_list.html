@@ -33,7 +33,11 @@
 
       <div class="card_lower">
         <div class="description">
+        {% if group.description %}
         {{ group.description_html | safe }}
+        {% else %}
+        No description yet.
+        {% endif %}
         </div>
         <div class="group_count">
           <div class="group_count_row">

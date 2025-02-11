@@ -144,7 +144,7 @@ li a.nav_link,
 
 
 .top_part {
-  padding: 0px 0px 18px 0px;
+  padding: 40px 0px 18px 0px;
 
   .header {
     margin-bottom: 20px;
@@ -176,7 +176,7 @@ li a.nav_link,
     text-decoration: none;
     margin: 0px;
     padding: 0px;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
     line-height: 100px;
     margin-inline-end: 20px;
   }
@@ -518,17 +518,17 @@ h2 {
 h3,
 h3 p {
   font-family: $font-stack1;
-  color: $accent1;
+  color: $primary;
   text-transform: none;
   list-style-type: none;
   font-weight: 400;
   letter-spacing: 1px;
-  font-size: 32px;
+  font-size: 24px;
+  line-height: 32px;
   text-decoration: none;
   margin: 0px;
   padding: 0px;
   padding-bottom: 4px;
-  line-height: 44px;
   margin-inline-end: 20px;
   max-width: 1000px;
 }
@@ -608,7 +608,7 @@ h4 p {
   .group_count {
     display: flex;
     gap: 12px;
-    padding: 4px 6px 2px;
+    padding: 2px 12px 2px;
     font-family: $font-stack2;
     background-color: #00e874;
   }
@@ -626,8 +626,11 @@ h4 p {
     text-transform: uppercase;
     padding: 0px 4px;
     background-color: #FFF;
-    margin-bottom: 4px;
+    margin: 4px 0px;
   }
+
+
+
 
 
 }
@@ -743,6 +746,76 @@ section {
 /*     max-width: 200px; */
   width: 100%;
 }
+
+
+
+.draft_post,
+.publish_post {
+
+  padding-top: 40px;
+
+  .postindex {
+    padding: 20px 0px;
+    font-family: $font-stack2;
+    font-style: normal;
+    font-weight: 200;
+    list-style-type: none;
+    letter-spacing: 0x;
+    font-size: 18px;
+    text-decoration: none;
+    text-transform: none;
+    line-height: 26px;
+    margin: auto;
+
+    .title {
+      font-family: $font-stack1;
+      color: $accent2;
+      text-align: left;
+      text-transform: uppercase;
+      list-style-type: none;
+      font-weight: 800;
+      letter-spacing: 2px;
+      font-size: 48px;
+      text-decoration: none;
+      margin: 0px 0px 10px 0px;
+      padding: 0px;
+      line-height: 54px;
+
+      .publish {
+        font-weight: 800;
+        letter-spacing: 1px;
+        font-size: 24px;
+        line-height: 24px;
+        padding: 8px 1px;
+      }
+    }
+
+  }
+
+}
+
+
+.posts {
+
+}
+
+.posts_confirm {
+  background-color: #F0F0F0;
+  border-radius: 4px;
+  padding: 12px 20px;
+  width: auto;
+}
+
+
+/* GROUP DETAIL */
+
+.group_description {
+  margin: 20px auto;
+}
+
+
+
+
 
 
 

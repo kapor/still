@@ -2,19 +2,35 @@
 
 
 {% block blog_content %}
-<div>
-  <div class="top_part">
-    <h1>Writings<a class="nav_link" href="{% url 'blog:new' %}">:Add</a></h1>
+<div class="top_part">
+  <div class="header">
+  {% if user.is_authenticated %}
+  <h1>Updates:<a class="nav_link" href="{% url 'blog:new' %}">Add</a></h1>
+  {% else %}
+  <h1>Updates</h1>
+  {% endif %}
   </div>
   <div class="big_center">
     <p class="big_p">
-    Cupcake ipsum dolor sit amet marzipan chocolate cake icing donut. Sugar plum wafer jelly-o oat cake tootsie roll. Powder cake croissant soufflé icing chocolate shortbread I love. Caramels marshmallow candy canes dessert powder croissant chocolate. Gummi bears cotton candy sweet roll croissant sweet roll croissant I love. Brownie danish jujubes I love sugar plum powder liquorice. Tiramisu tart biscuit pastry topping pudding. Candy pastry pastry I love I love cotton candy liquorice bonbon bear claw. I love cheesecake powder chupa chups danish I love gummi bears tootsie roll marshmallow. Halvah sweet roll ice cream gingerbread croissant candy canes I love marzipan sweet. Cheesecake macaroon cheesecake gummi bears cake. I love sesame snaps chocolate bar tiramisu candy canes chupa chups gummies pastry liquorice. Candy I love bonbon fruitcake brownie icing biscuit.
+    Cupcake ipsum dolor sit amet marzipan chocolate cake icing donut. Sugar plum wafer jelly-o oat cake tootsie roll. Powder cake croissant soufflé icing chocolate shortbread I love. Caramels marshmallow candy canes dessert powder croissant chocolate. Gummi bears cotton candy sweet roll croissant sweet roll croissant I love. Brownie danish jujubes I love sugar plum powder liquorice. Tiramisu tart biscuit pastry topping pudding. Candy pastry pastry I love I love cotton candy liquorice bonbon bear claw.
     </p>
   </div>
 </div>
 
 {% for blog in blog_list %}
-<div class="postlist">
+<div class="publish_post">
+
+  <div class="crop">
+    {% if blog.image %}
+      <a href="{% url 'blog_detail' pk=blog.pk %}">
+      <img src="/media/{{ blog.image }}">
+      </a>
+    {% else %}
+      <a href="{% url 'blog_detail' pk=blog.pk %}">
+      <img src="/media/blank.jpg">
+      </a>
+    {% endif %}
+  </div>
 
   <div class="post">
     <a href="{% url 'blog_detail' pk=blog.pk %}">
@@ -28,17 +44,7 @@
     </div>
   </div>
 
-  <div class="crop">
-    {% if blog.image %}
-      <a href="{% url 'blog_detail' pk=blog.pk %}">
-      <img src="/media/{{ blog.image }}">
-      </a>
-    {% else %}
-      <a href="{% url 'blog_detail' pk=blog.pk %}">
-      <img src="/media/blank.jpg">
-      </a>
-    {% endif %}
-  </div>
+
 
 </div>
 {% endfor %}
