@@ -4,11 +4,13 @@ from .models import Post
 
 class PostForm(forms.Form):
 	message = forms.CharField()
-	group = forms.ChoiceField(choices=[])
+	group = forms.ChoiceField(choices=[], required=True)
+
 
 	class Meta:
 		model = Post
 		fields = ('message', 'group')
+
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)

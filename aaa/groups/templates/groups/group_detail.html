@@ -5,6 +5,7 @@
 <div class="top_part">
 	<div class="header">
 		<h1>{{group.name}}</h1>
+
 		<div class="group_description">
 			{% if group.description %}
 			<h3>{{group.description}}</h3>
@@ -28,23 +29,44 @@
 </div>
 
 
-<div class="button_container">
-	{% if user in group.members.all %}
+{% if user.is_authenticated %}
 
-	<a href="{% url 'groups:leave' slug=group.slug %}" ><div class="button_secondary">
-		Leave
-	</div></a>
-
+	<div class="button_container">
+		{% if user in group.members.all %}
+		<a href="{% url 'groups:leave' slug=group.slug %}" ><div class="button_secondary">
+			Leave
+		</div></a>
+			{% else %}
+		<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action" href="{% url 'groups:join' slug=group.slug %}">
+			Join
+		</div></a>
+		{% endif %}
+		<a href="{% url 'groups:all' %}"><div class="button_accent">
+			Back to Groups
+		</div></a>
+		{% if user.is_superuser %}
+		<a href="{% url 'groups:delete' slug=group.slug %}"><div class="button_secondary">
+			Remove Group
+		</div></a>
 		{% else %}
-	<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action" href="{% url 'groups:join' slug=group.slug %}">
-		Join
-	</div></a>
-	{% endif %}
-	<a href="{% url 'groups:all' %}"><div class="button_accent">
-		Back to Groups
-	</div></a>
-</div>
-
+		{% endif %}
+	</div>
+{% else %}
+	<div class="button_container">
+		{% if user in group.members.all %}
+		<a href="{% url 'groups:leave' slug=group.slug %}" ><div class="button_secondary">
+			Leave
+		</div></a>
+			{% else %}
+		<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action" href="{% url 'groups:join' slug=group.slug %}">
+			Join
+		</div></a>
+		{% endif %}
+		<a href="{% url 'groups:all' %}"><div class="button_accent">
+			Back to Groups
+		</div></a>
+	</div>
+{% endif %}
 
 
 {% endblock %}

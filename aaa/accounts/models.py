@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib import admin, auth
 from django.db import models
 from django.views.generic import ListView, DetailView
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.core.validators import URLValidator
 from pathlib import Path
 import os
@@ -16,8 +16,17 @@ def get_upload_path(instance, filename):
 # Create your models here.
 class UserInfo(auth.models.User, auth.models.PermissionsMixin):
 	user = models.OneToOneField('auth.User', related_name='acct_user', on_delete=models.CASCADE)
-	website = models.URLField(blank=True)
 	picture = models.ImageField(upload_to=get_upload_path, default="profile_pics/blank.jpg", blank=True)
+	
 	def __str__(self):
-		return "@{}".format(self.username)
+   		return self.user.username
+
+	class Meta:
+		# managed = False
+		# ordering = ('id',)
+		verbose_name_plural = "User_Info"
+
+
+
+
 

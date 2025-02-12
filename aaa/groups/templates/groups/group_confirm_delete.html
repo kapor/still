@@ -1,16 +1,12 @@
 <!-- aaa/posts/templates/posts/posts/post_confirm_delete.html -->
-{% extends "posts/post_base.html" %}
+{% extends "groups/group_base.html" %}
 
 
 
 
-{% block post_content %}
+{% block group_content %}
 
-  <h2>Seriously, delete this?</h2>
-
-	<div class="posts_confirm">
-		{% include "posts/_post.html" with post=object hide_delete=True %}
-	</div>
+  <h2>Seriously, delete "{{ object }}"?</h2>
 
 
 	<div class="button_container">

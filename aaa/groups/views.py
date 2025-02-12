@@ -101,6 +101,16 @@ class AddGroup(LoginRequiredMixin,generic.CreateView):
 
 
 
+class DeleteGroup(LoginRequiredMixin, generic.DeleteView):
+	model = models.Group
+	context_object_name = 'deletegroup'
+	success_url = reverse_lazy('groups:all')
+
+	def delete(self, *args, **kwargs):
+		messages.success(self.request, 'Group Deleted')
+		return super().delete(*args, **kwargs)
+
+
 
 
 

@@ -20,39 +20,39 @@
 			{% csrf_token %}
 
 			<!-- USERNAME -->
-			<div class="mb-3">
+			<div>
 				<label class="form-label" for="id_username">Username</label>
-				<input type="text" name="username" maxlength="150" autofocus="" class="form-control" placeholder="Username" title="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only." required="" id="id_username">
+				<input type="text" name="username" maxlength="150" autofocus="" class="form-control" placeholder=""  required="" id="id_username">
 			    <small class="form-text text-muted">
 			    	Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
 				</small>
 			</div>
 
 			<!-- EMAIL -->
-			<div class="mb-3">
+			<div>
 				<label class="form-label" for="id_email">Email</label>
-				<input type="email" name="email" maxlength="254" class="form-control" placeholder="Email" title="" id="id_email">
+				<input type="email" name="email" maxlength="254" class="form-control" placeholder="" title="" id="id_email">
 			</div>
 
 
 			<!-- PASSWORD 1 -->
-			<div class="mb-3">
+			<div>
 				<label class="form-label" for="id_password1">Password</label>
-				<input type="password" name="password1" autocomplete="new-password" class="form-control" placeholder="Password" title="Your password can’t be too similar to your other personal information.Your password must contain at least 8 characters.Your password can’t be a commonly used password.Your password can’t be entirely numeric." required="" id="id_password1">
+				<input type="password" name="password1" autocomplete="new-password" class="form-control" placeholder="" required="" id="id_password1">
 			    <small class="form-text text-muted">
 			    	<ul>
-			    		<li>Your password can’t be too similar to your other personal information.</li>
-			    		<li>Your password must contain at least 8 characters.</li>
-			    		<li>Your password can’t be a commonly used password.</li>
-			    		<li>Your password can’t be entirely numeric.</li>
+			    		<!-- <li>Your password can’t be too similar to your other personal information.</li> -->
+			    		<li>Password must be at least 8 characters and alphanumeric.</li>
+			    		<!-- <li>Your password can’t be a commonly used password.</li> -->
+			    		<!-- <li>Your password can’t be entirely numeric.</li> -->
 			    	</ul>
 			    </small>
 			</div>
 
 			<!-- PASSWORD 2 -->
-			<div class="mb-3">
-				<label class="form-label" for="id_password2">Password confirmation</label>
-				<input type="password" name="password2" autocomplete="new-password" class="form-control" placeholder="Password confirmation" title="Enter the same password as before, for verification." required="" id="id_password2">
+			<div>
+				<label class="form-label" for="id_password2">Password Again</label>
+				<input type="password" name="password2" autocomplete="new-password" class="form-control" placeholder="" required="" id="id_password2">
 			    <small class="form-text text-muted">Enter the same password as before, for verification.</small>
 			</div>
 

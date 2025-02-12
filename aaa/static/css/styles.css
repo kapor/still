@@ -143,7 +143,7 @@ div label {
 }
 
 .form-select {
-  height: 180px;
+  height: auto;
   font-family: Courier new, Roboto;
   font-size: 24px;
   background-color: #EEEEEE;
@@ -209,7 +209,7 @@ div label {
 
 .button_container,
 .button_container form {
-  margin: 40px 0px;
+  margin: 40px 0px 0px 0px;
   display: flex;
   flex-direction: row;
   gap: 12px;
@@ -221,19 +221,23 @@ div label {
 }
 
 .button_small {
-  font-family: Courier new, Roboto;
+  font-family: Helvetica neue, sans-serif;
+  text-transform: uppercase;
   font-style: normal;
-  color: #8F00FF;
-  font-weight: 200;
+  color: white;
+  font-weight: 400;
+  letter-spacing: 2px;
   list-style-type: none;
-  letter-spacing: 0px;
-  font-size: 18px;
+  font-size: 12px;
   text-decoration: none;
-  text-transform: none;
   margin: 0px;
-  padding: 0px;
+  padding: 4px 12px;
+  border-radius: 3px;
   line-height: 26px;
   cursor: pointer;
+  margin-top: 40px;
+  background-color: lightpink;
+  width: fit-content;
 }
 .button_small a {
   color: #222;
@@ -400,7 +404,7 @@ input.button_accent_large a,
   /* backdrop-filter: invert(100%); */
 }
 
-#modal > .modal-underlay {
+#modal > .modal_underlay {
   /* underlay takes up the entire viewport. This is only
   required if you want to click to dismiss the popup */
   position: absolute;
@@ -411,7 +415,7 @@ input.button_accent_large a,
   right: 0px;
 }
 
-#modal > .modal-content {
+#modal > .modal_content {
   margin-top: 10vh;
   width: 80%;
   max-width: 800px;
@@ -432,7 +436,7 @@ input.button_accent_large a,
   animation-timing-function: ease;
 }
 
-#modal.closing > .modal-content {
+#modal.closing > .modal_content {
   /* Animate when closing */
   animation-name: zoomOut;
   animation-duration: 150ms;
@@ -495,6 +499,8 @@ a {
   text-decoration: none;
   color: #8F00FF;
   cursor: pointer;
+  display: contents;
+  width: fit-content;
 }
 
 .body_block {
@@ -590,14 +596,15 @@ li a.nav_link,
 }
 
 .top_part {
-  padding: 40px 0px 18px 0px;
+  padding: 40px 0px 0px 0px;
 }
 .top_part .header {
-  margin-bottom: 20px;
+  margin-bottom: 56px;
 }
 .top_part .header a {
   text-decoration: underline;
   text-underline-offset: 16px;
+  display: inline;
 }
 .top_part .header .group_count {
   display: flex;
@@ -896,14 +903,13 @@ h1 {
   text-decoration: none;
   margin: 0px;
   padding: 0px;
-  padding-bottom: 60px;
   line-height: 100px;
   margin-inline-end: 20px;
 }
 
 h2 {
   font-family: Helvetica neue, sans-serif;
-  color: #8F00FF;
+  color: #333;
   text-transform: none;
   list-style-type: none;
   font-weight: 400;
@@ -1134,7 +1140,7 @@ section {
 
 .draft_post,
 .publish_post {
-  padding-top: 40px;
+  padding-bottom: 40px;
 }
 .draft_post .postindex,
 .publish_post .postindex {

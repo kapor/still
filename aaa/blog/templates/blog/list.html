@@ -4,13 +4,11 @@
 {% block blog_content %}
 <div class="top_part">
   <div class="header">
-  {% if user.is_authenticated %}
+  {% if user.is_superuser %}
   <h1>Updates:<a class="nav_link" href="{% url 'blog:new' %}">Add</a></h1>
   {% else %}
   <h1>Updates</h1>
   {% endif %}
-  </div>
-  <div class="big_center">
     <p class="big_p">
     Cupcake ipsum dolor sit amet marzipan chocolate cake icing donut. Sugar plum wafer jelly-o oat cake tootsie roll. Powder cake croissant soufflé icing chocolate shortbread I love. Caramels marshmallow candy canes dessert powder croissant chocolate. Gummi bears cotton candy sweet roll croissant sweet roll croissant I love. Brownie danish jujubes I love sugar plum powder liquorice. Tiramisu tart biscuit pastry topping pudding. Candy pastry pastry I love I love cotton candy liquorice bonbon bear claw.
     </p>

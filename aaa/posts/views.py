@@ -24,7 +24,7 @@ User = get_user_model()
 
 
 # Shows lists of posts for user and/or group
-class PostList(PrefetchRelatedMixin, generic.ListView):
+class PostList(LoginRequiredMixin, PrefetchRelatedMixin, generic.ListView):
 	model = models.Post
 	template_name = 'posts/post_list.html'
 	prefetch_related = ('user', 'group')
@@ -34,17 +34,17 @@ class PostList(PrefetchRelatedMixin, generic.ListView):
 
 
 # Shows list view of specific user's posts
-class UserPosts(generic.ListView):
+class UserPosts(generic.ListView, LoginRequiredMixin):
 	model = models.Post
 	template_name = 'posts/user_post_list.html'
 
 	# upon calling 'UserPosts' it sets the current user's view to only see posts from the username of whoever is currently logged in
 	def get_queryset(self):
 		try:
-			self.post_user = User.objects.prefetch_related('posts').get(username__iexact = self.kwargs.get('username'))
+			self.post_user = User.objects.prefetch_related("posts").get(username__iexact=self.kwargs.get("username"))
 		except User.DoesNotExist:
 			raise Http404
-		else: 
+		else:
 			return self.post_user.posts.all()
 
 	def get_context_data(self, **kwargs):
@@ -55,7 +55,7 @@ class UserPosts(generic.ListView):
 
 
 # Basic post detail view
-class PostDetail(PrefetchRelatedMixin, generic.DetailView):
+class PostDetail(PrefetchRelatedMixin, generic.DetailView, LoginRequiredMixin):
 	model = models.Post
 	prefetch_related = ('user', 'group')
 
@@ -63,6 +63,20 @@ class PostDetail(PrefetchRelatedMixin, generic.DetailView):
 		queryset = super().get_queryset()
 		return queryset.filter(user__username__iexact = self.kwargs.get('username'))
 
+
+
+
+class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
+	fields = ('message', 'group')
+	model = models.Post
+	success_url = reverse_lazy('posts:all')
+
+	# Used to connect the post to the user 
+	def form_valid(self, form):
+		self.object = form.save(commit=False)
+		self.object.user = self.request.user
+		self.object.save
+		return super().form_valid(form)
 
 
 
@@ -84,20 +98,6 @@ class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 class SingleGroup(generic.DetailView):
 	model = Group
 	context_object_name = 'group'
-
-
-
-class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
-	fields = ('message', 'group')
-	model = models.Post
-	success_url = reverse_lazy('posts:all')
-
-	# Used to connect the post to the user 
-	def form_valid(self, form):
-		self.object = form.save(commit=False)
-		self.object.user = self.request.user
-		self.object.save
-		return super().form_valid(form)
 
 
 # Modal View

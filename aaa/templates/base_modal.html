@@ -4,10 +4,11 @@
 
 {% block content %}
 <div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
-    <div class="modal-underlay" _="on click trigger closeModal"></div>
-    <div class="modal-content">
+    <div class="modal_underlay" _="on click trigger closeModal"></div>
+    <div class="modal_content">
     
-        <h1>{% block modal_title %} {% endblock %}</h1>
+
+        <h2>{% block modal_title %} {% endblock %}</h2>
 
 
         {% block modal_form %}

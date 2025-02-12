@@ -5,6 +5,7 @@
 
 <div class="top_part">
   <div class="header">
+    
     {% if user.is_authenticated %}
     <h1>Hey
       <!-- link to all the user's posts -->
@@ -18,16 +19,15 @@
 
     {% else %}
     <h1>
-      Hey you.
+      Hey you.<br>
       These are posts
     </h1>
     
     {% endif %}
 
-
   </div>
-
 </div>
+
 {% endblock %}
 
 {% block post_content %}
@@ -67,26 +67,24 @@
 <div>
 {% for post in post_list %}
 
-<div class="post media">
+<div class="post">
+
+
   <h3>
     <a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">
     {{ post.message_html | safe }}
     </a>
   </h3>
 
-  <div class="media-body">
+  <span class="username">
+    <a href="{% url 'posts:for_user' username=post.user.username %}">
+    @{{ post.user.username }}</a>
+    <time class="time">{{ post.created_at }}</time>
+    {% if post.group %}
+    <span class="group-name">in <a href="#">{{post.group.name}}</a></span>
+    {% endif %}
+  </span>
 
-    <span class="username">
-      <a href="{% url 'posts:for_user' username=post.user.username %}">
-      @{{ post.user.username }}</a>
-      <time class="time">{{ post.created_at }}</time>
-      {% if post.group %}
-      <span class="group-name">in <a href="#">{{post.group.name}}</a></span>
-      {% endif %}
-    </span>
-
-
-  </div>
 
 </div>
 
