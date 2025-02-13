@@ -22,6 +22,17 @@ select {
   line-height: inherit;
 }
 
+
+select {
+  padding: 8px;
+  height: 56px;
+  background-color: $secondary;
+  resize: none;
+
+  font-family: $font-stack2;
+  font-size: 24px;
+}
+
 #image-clear_id {
   display: none;
 }

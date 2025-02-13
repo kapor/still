@@ -1,11 +1,14 @@
 # posts/views.py
 from . import models
 from . import forms
+from posts.forms import PostForm
 from groups.models import Group
+from django.db import transaction
 
 from django.http import Http404
 from django.views import generic
 from django.contrib import messages
+from django.shortcuts import render, redirect
 
 from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView, RedirectView
 
@@ -23,14 +26,69 @@ User = get_user_model()
 
 
 
+
+
+# Modal View
+
+@login_required
+def AddPost(request):
+    """display a dropdown of all workouts for a user"""
+    if request.method != 'POST':
+        form = PostForm(user=request.user)	
+    else:
+        form = PostForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.instance.user = request.user
+        with transaction.atomic():
+            post = form.save()
+            return redirect('posts:all')
+    context = {'form':form}
+    return render(request, 'posts/post_modal.html', context)
+
+
+# class AddPost2(LoginRequiredMixin,generic.CreateView):
+#     template_name = 'posts/post_form.html'
+#     model = models.Post
+#     context_object_name = 'addpost'
+#     fields = ('message', 'group')
+#     success_url = reverse_lazy('posts:all')
+
+
+
+
+class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
+	fields = ('message', 'group')
+	model = models.Post
+	template_name = 'posts/post_modal.html'
+	success_url = reverse_lazy('posts:all')
+
+	# Used to connect the post to the user 
+	def form_valid(self, form):
+		self.object = form.save(commit=False)
+		self.object.user = self.request.user
+		self.object.save
+		return super().form_valid(form)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Shows lists of posts for user and/or group
 class PostList(LoginRequiredMixin, PrefetchRelatedMixin, generic.ListView):
 	model = models.Post
 	template_name = 'posts/post_list.html'
 	prefetch_related = ('user', 'group')
-
-
-
 
 
 # Shows list view of specific user's posts
@@ -64,20 +122,9 @@ class PostDetail(PrefetchRelatedMixin, generic.DetailView, LoginRequiredMixin):
 		return queryset.filter(user__username__iexact = self.kwargs.get('username'))
 
 
-
-
-class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
-	fields = ('message', 'group')
+class EditPost(LoginRequiredMixin, UpdateView):
 	model = models.Post
-	success_url = reverse_lazy('posts:all')
-
-	# Used to connect the post to the user 
-	def form_valid(self, form):
-		self.object = form.save(commit=False)
-		self.object.user = self.request.user
-		self.object.save
-		return super().form_valid(form)
-
+	login_url = "login"
 
 
 
@@ -98,27 +145,6 @@ class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 class SingleGroup(generic.DetailView):
 	model = Group
 	context_object_name = 'group'
-
-
-# Modal View
-class AddPost(LoginRequiredMixin,generic.CreateView):
-    template_name = 'posts/post_modal.html'
-    model = models.Post
-    context_object_name = 'addpost'
-    fields = ('message', 'group')
-    success_url = reverse_lazy('posts:all')
-
-
-
-class EditPost(LoginRequiredMixin, UpdateView):
-	model = models.Post
-	login_url = "login"
-
-
-
-
-
-
 
 
 

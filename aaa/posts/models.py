@@ -3,6 +3,7 @@ from taggit.managers import TaggableManager
 from django.urls import reverse
 from django.conf import settings
 
+
 import misaka
 
 from groups.models import Group
@@ -31,7 +32,10 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        unique_together = ('user', 'message')
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'message', 'group'], name='unique_user_message_group')
+        ]
+
 
 
 

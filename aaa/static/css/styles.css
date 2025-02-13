@@ -11,6 +11,15 @@ select {
   line-height: inherit;
 }
 
+select {
+  padding: 8px;
+  height: 56px;
+  background-color: #F2F2F2;
+  resize: none;
+  font-family: Courier new, Roboto;
+  font-size: 24px;
+}
+
 #image-clear_id {
   display: none;
 }
@@ -1190,6 +1199,10 @@ section {
 /* GROUP DETAIL */
 .group_description {
   margin: 20px auto;
+}
+
+.group_post_list {
+  padding-top: 60px;
 }
 
 /*# sourceMappingURL=styles.css.map */

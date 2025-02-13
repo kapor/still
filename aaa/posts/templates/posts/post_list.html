@@ -12,9 +12,9 @@
       <a href="{% url 'posts:for_user' username=user.username %}">
       {{user.username}}</a>.<br>
       These are posts.<br>
-      <a class="h1_link" hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">
-      Create one
-      </a>
+          <a class="h1_link" hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">
+          Create one
+          </a>
     </h1>
 
     {% else %}
