@@ -81,7 +81,8 @@ class GroupView(ListView):
     template_name = "groups/_groups.html"
     context_object_name = "grouplist"
     paginate_by = 20
-    ordering = "pk"
+    # ordering = 'pk'
+    ordering = ['name']
     # new method added ⬇️
     def get_template_names(self, *args, **kwargs):
         if self.request.htmx:

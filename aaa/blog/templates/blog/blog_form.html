@@ -7,7 +7,7 @@
   <div class="top_part">
     <div class="header">
       <h1>  
-        {% if post.title %}
+        {% if blog.title %}
           Edit This Post
         {% else %}
           Add Something
@@ -30,8 +30,8 @@
   
 
     <div class="image_cover_container">
-      {% if post.image %}
-        <img src="{{ post.image.url }}" alt="image" class="image_cover">
+      {% if blog.image %}
+        <img src="{{ blog.image.url }}" alt="image" class="image_cover">
       {% else %}
         Currently No Image
       {% endif %}

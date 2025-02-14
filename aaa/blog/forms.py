@@ -1,6 +1,6 @@
 from django import forms
 from django.db import models
-from .models import Blog, get_upload_path
+from .models import Blog, Tags, get_upload_path
 from django.forms import ModelForm, FileInput, ImageField
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
@@ -32,3 +32,19 @@ class BlogForm(forms.ModelForm):
 		}
 
 
+
+
+
+class BlogUpdate(forms.ModelForm):
+	title = forms.CharField(max_length=200)
+	image = forms.ImageField(label="Image", required=False)
+	update = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
+	class Meta():
+		model = Blog
+		fields = ('title', 'author', 'text', 'tags', 'image')
+		widgets = {
+			'title':forms.TextInput(attrs={'class':'textinputclass'}),
+			'text':forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'}),
+            'image': CustomClearableFileInput,
+		}

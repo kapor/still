@@ -233,7 +233,7 @@ div label {
   font-family: Helvetica neue, sans-serif;
   text-transform: uppercase;
   font-style: normal;
-  color: white;
+  color: #222;
   font-weight: 400;
   letter-spacing: 2px;
   list-style-type: none;
@@ -1140,6 +1140,10 @@ section {
 .crop {
   max-height: 200px;
   overflow: hidden;
+}
+
+.crop img {
+  width: -webkit-fill-available;
 }
 
 .photo_detail {

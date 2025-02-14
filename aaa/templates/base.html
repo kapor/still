@@ -83,10 +83,11 @@
 	            spinner.classList.add('not_visible')
 	            data.map(group => {
 	                console.log(group.name);
-	                content_container.innerHTML += `<div class="single_content border border-success mt-2 pl-2">
-									                <h3>${group.name}</h3>
-									                <h4>${group.description}</h4>
-										        	</div>`
+	                content_container.innerHTML += 
+	                `<div class="single_content">
+		                <h3>${group.name}</h3>
+		                <h4>${group.description}</h4>
+			        		</div>`
 	            })
 	            if (_current_item == total) {
 	                alert.classList.remove('not_visible');

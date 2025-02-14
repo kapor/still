@@ -744,6 +744,10 @@ section {
   overflow: hidden;
 }
 
+.crop img {
+  width: -webkit-fill-available;
+}
+
 .photo_detail {
 /*     max-width: 200px; */
   width: 100%;

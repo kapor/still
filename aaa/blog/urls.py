@@ -15,8 +15,10 @@ urlpatterns = [
     path('drafts/', views.BlogDraftListView.as_view(), name='draft_list'),
     path('blog/<int:pk>/delete/', views.BlogDeleteDraft.as_view(), name='blog_delete_draft'),
     
+    path('post/<int:pk>/comment/', views.add_comment_to_blog, name='add_comment_to_blog'),
     path('blog/<int:pk>/approve/', views.comment_approve, name='comment_approve'), 
     path('blog/<int:pk>/delete/', views.comment_remove, name='comment_remove'), 
+
     path('blog/<int:pk>/publish/', views.blog_publish, name='blog_publish'), 
 
 ]

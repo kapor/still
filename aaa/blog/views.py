@@ -4,8 +4,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
-from .models import Blog
-from .forms import BlogForm
+from .models import Blog, Tags
+from .forms import BlogForm, BlogUpdate
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
@@ -83,18 +83,27 @@ def blog_publish(request, pk):
 	return redirect('blog_detail', pk=pk)
 
 
+
+#################################################
+# COMMENTS
+#################################################
+
+
+
+
+
 @login_required(login_url='login')
 def add_comment_to_blog(request, pk):
 	blog = get_object_or_404(Blog, pk=pk)
 	if request.method == 'POST':
-		form = CommentForm(request.POST)
+		form = BlogCommentForm(request.POST)
 		if form.is_valid():
 			comment = form.save(commit=False)
 			comment.blog = blog
 			comment.save()
 			return redirect('blog_detail', pk=blog.pk)
 	else:
-		form = CommentForm()
+		form = BlogCommentForm()
 	return render(request, 'blog/comment_form.html',{'form':form})
 
 

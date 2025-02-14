@@ -28,24 +28,6 @@
 
 </div>
 
-  <div>
-
-    {% if request.user.is_authenticated %}
-
-
-    {% endif %}
-
-    <div class="content">
-      <h1 class="title">All Group Activity</h1>
-      <ul class="list_unstyled">
-        <!-- for groups that you are a member of, list them -->
-        {% for other_group in get_other_groups %}
-          <li class="group li-with-bullet">
-            <a href="{% url 'groups:single' slug=other_group.group.slug %}"></a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
 
 
 {% endblock %}
@@ -54,14 +36,9 @@
 
     <div class="container">
         <div class="content" id="content">
-            {% for group in groups %}
+            {% for post in post_list %}
             <div class="single_content">
-                <h3>{{group.name}}</h3>
-                {% if group.description %}
-                <h4>{{group.description}}</h4>
-                {% else %}
-                <h4>No description yet.</h4>
-                {% endif %}
+              <h3>{{ post.message }}</h3>
             </div>
             {% endfor %}
         </div>

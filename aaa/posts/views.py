@@ -91,6 +91,11 @@ class PostList(LoginRequiredMixin, PrefetchRelatedMixin, generic.ListView):
 	prefetch_related = ('user', 'group')
 
 
+
+
+
+
+
 # Shows list view of specific user's posts
 class UserPosts(generic.ListView, LoginRequiredMixin):
 	model = models.Post
@@ -145,6 +150,43 @@ class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 class SingleGroup(generic.DetailView):
 	model = Group
 	context_object_name = 'group'
+
+
+
+
+
+
+
+
+
+
+
+
+
+def PostLoad(request):
+    post_obj = models.Post.objects.all()[0:10]
+    total_posts_obj = models.Post.objects.count()
+    print(total_posts_obj)
+    return render(request, 'posts/post_load.html', context={'posts': post_obj, 'total_posts_obj': total_posts_obj})
+
+
+
+
+
+
+def PostMore(request):
+    offset = request.GET.get('offset')
+    offset_int = int(offset)
+    limit = 20
+    post_obj = list(models.Post.objects.values()[offset_int:offset_int+limit])
+    data = {
+        'posts': post_obj
+    }
+    return JsonResponse(data=data)
+
+
+
+
 
 
 

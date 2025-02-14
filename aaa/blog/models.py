@@ -12,6 +12,7 @@ from django.urls import reverse
 def get_upload_path(instance, filename):
     return 'images/{0}/{1}'.format(instance.author, filename)
 
+
     
 
 class Blog(models.Model):
@@ -39,6 +40,9 @@ class Blog(models.Model):
 
 	class Meta:
 		verbose_name_plural = "Blog"
+
+
+
 
 
 
