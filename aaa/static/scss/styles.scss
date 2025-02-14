@@ -190,7 +190,7 @@ li a.nav_link,
     letter-spacing: 1px;
     font-size: 24px;
     line-height: 28px;
-    padding: 20px 0px 0px 0px;
+    padding: 40px 0px 0px 0px;
     margin-inline-end: 20px;
     margin-block-end: .25em;
   }
@@ -255,7 +255,7 @@ li a.nav_link,
   text-decoration: none;
   text-transform: none;
   margin: 0px;
-  padding: 12px 0px;
+  padding: 20px 0px;
   line-height: 26px;
   /*   max-width: 1000px; */
   margin: auto;
@@ -758,7 +758,7 @@ section {
 .draft_post,
 .publish_post {
 
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 
   .postindex {
     padding: 20px 0px;
@@ -824,6 +824,25 @@ section {
 }
 
 
+.description p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: $font-stack2;
+  font-style: normal;
+  font-weight: 200;
+  letter-spacing: 0x;
+  font-size: 18px;
+  margin: 0px;
+  line-height: 26px;
+  margin: 8px 0px;
+
+
+  text-decoration: none;
+  text-transform: none;
+  list-style-type: none;
+}
 
 
 
