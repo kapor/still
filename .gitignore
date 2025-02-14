@@ -16,6 +16,8 @@ __pycache__/
 .DS_Store
 
 
+*.pyc
+
 # Additional Ruby/bundler ignore for when you run: bundle install
 /vendor
 

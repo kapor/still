@@ -3,6 +3,7 @@ from taggit.managers import TaggableManager
 from django.urls import reverse
 from django.conf import settings
 
+
 import misaka
 
 from groups.models import Group
@@ -14,9 +15,10 @@ User = get_user_model()
 class Post(models.Model):
     user = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
-    message = models.TextField()
+    message = models.TextField(unique=True)
     message_html = models.TextField(editable=False)
-    group = models.ManyToManyField(Group, related_name='posts', blank=True)
+    group = models.ForeignKey(Group, related_name="posts",null=True, blank=True, on_delete=models.PROTECT)
+
 
     def __str__(self):
         return self.message
@@ -30,7 +32,12 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        unique_together = ('user', 'message')
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'message', 'group'], name='unique_user_message_group')
+        ]
+
+
+
 
 
 

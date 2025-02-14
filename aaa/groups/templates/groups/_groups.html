@@ -6,27 +6,32 @@
 
 
 <div class="top_part">
+
 	<div class="header">
 		{% if user.is_authenticated %}
 		<h1>Hey
 			<!-- link to all the user's posts -->
 			<a href="{% url 'posts:for_user' username=user.username %}">
-			{{user.username}}</a>.
-		</h1>
-		
-		{% endif %}
-		<h1>
-			These are groups
-		</h1>
-
-		{% if user.is_authenticated %}
-		<h1>
+			{{user.username}}</a>.<br>
+				These are groups.<br>
 			<a hx-get="{% url 'groups:add' %}" hx-target="body" hx-swap="beforeend">
+			{% if user.is_superuser %}
 			Create one
+			{% else %}
+			{% endif %}
 			</a>
 		</h1>
-		{% endif %}
 	</div>
+
+{% else %}
+
+	<div class="header">
+		<h1>Hey.<br>
+				These are groups.<br>
+		</h1>
+	</div>
+	
+{% endif %}
 
 </div>
 

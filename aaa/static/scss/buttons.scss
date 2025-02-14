@@ -1,80 +1,215 @@
 // buttons.scss
 $font-stack1: Helvetica neue, sans-serif;
 $font-stack2: Courier new, Roboto;
-$primary: #333;
-$secondary: #F2F2F2;
+$primary: #222;
+$secondary: #e0e0e0;
 $accent1: #8F00FF;
 $accent2: #00FF7F;
 
-
-.button_small {
-  font-family: $font-stack2;
-  font-style: normal;
-  color: $accent1;
-  font-weight: 200;
-  list-style-type: none;
-  letter-spacing: 0px;
-  font-size: 18px;
-  text-decoration: none;
-  text-transform: none;
-  margin: 0px;
-  padding: 0px;
-  line-height: 26px;
-  cursor: pointer;
-}
 
 
 
 .button_container,
 .button_container form {
-  margin-bottom: 20px;
+  margin: 40px 0px 0px 0px; 
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 12px;
+}
 
+.button a {
+  color: $primary;
+  width: 100%;
+}
 
-  .button,
-  input.button,
-  .button_secondary,
-  .button_action {
-    padding: 0px 20px;
-    background-color: $accent1;
-    color: white;
-    display: inline-block;
-    border-radius: 4px;
-    border: none;
-    text-align: center;
-    cursor: pointer;
+.button_small {
+  font-family: $font-stack1;
+  text-transform: uppercase;
+  font-style: normal;
+  color: $primary;
+  font-weight: 400;
+  letter-spacing: 2px;
+  list-style-type: none;
+  font-size: 12px;
+  text-decoration: none;
+  margin: 0px;
+  padding: 4px 12px;
+  border-radius: 3px;
+  line-height: 26px;
+  cursor: pointer;
+  margin-top: 40px;
+  background-color: lightpink;
+  width: fit-content;
 
-    font-family: $font-stack1;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 3px;
-    font-weight: 400;
-    line-height: 56px;
-
-    a {
-      color: white;
-      display: inline-block;
-      width: 100%;
-    }
-
-  }
-
-  .button_secondary {
-    background-color: #CCCCCC;
-  }
-
-  .button_action {
-    background-color: $accent2;
+  a {
     color: $primary;
+  }
+}
 
-    a {
-      color: $primary;
-      display: inline-block;
-      width: 100%;
-    }
+
+.button_base {
+  padding: 0px 20px;
+  background-color: $secondary;
+  color: $primary;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+
+  font-family: $font-stack1;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 56px;
+
+  a {
+    color: $primary;
+  }
+}
+
+.button_secondary {
+  padding: 0px 20px;
+  background-color: $secondary;
+  color: $primary;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+
+  font-family: $font-stack1;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 56px;
+
+}
+
+
+.button_danger {
+  padding: 0px 20px;
+  background-color: red;
+  color: white;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+
+  font-family: $font-stack1;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 56px;
+
+  a {
+    color: $primary;
+  }
+}
+
+input.button_accent,
+.button_accent {
+  padding: 0px 20px;
+  background-color: $accent1;
+  color: white;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+
+  font-family: $font-stack1;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 56px;
+
+  a {
+    color: $primary;
   }
 
 }
+
+input.button_accent_large,
+.button_accent_large {
+  padding: 0px 20px;
+  background-color: $accent1;
+  color: white;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  height: 64px;
+
+  font-family: $font-stack1;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 64px;
+
+  a {
+    color: $primary;
+  }
+
+}
+
+
+
+
+.button_action {
+  padding: 0px 20px;
+  background-color: $accent2;
+  color: $primary;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+
+  font-family: $font-stack1;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 56px;
+
+  a {
+    color: $primary;
+  }
+}
+
+
+
+.button_alert {
+  padding: 0px 20px;
+  background-color: #f5c6cb;
+  color: #721c24;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+
+  font-family: $font-stack1;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 56px;
+
+  a {
+    color: $primary;
+  }
+}
+
+
+
+
 

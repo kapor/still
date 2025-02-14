@@ -3,18 +3,39 @@
 
 {% block pre_post %}
 
-<div class="col-md-4">
-    <h1>@{{ post_user.username }}</h1>
+<div class="top_part">
+  <div class="header">
+    <h1>@{{ post_user.username }}'s activity</h1>
+  </div>
 </div>
 
 {% endblock %}
 
 {% block post_content %}
-<div class="col-md-8">
+
   {% for post in post_list %}
 
-    {% include "posts/_post.html" %}
+<div class="post">
+
+
+  <h3>
+    <a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">
+    {{ post.message_html | safe }}
+    </a>
+  </h3>
+
+  <span class="username">
+    <a href="{% url 'posts:for_user' username=post.user.username %}">
+    @{{ post.user.username }}</a>
+    <time class="time">{{ post.created_at }}</time>
+    {% if post.group %}
+    <span class="group-name">in <a href="#">{{post.group.name}}</a></span>
+    {% endif %}
+  </span>
+
+
+</div>
 
   {% endfor %}
-</div>
+
 {% endblock %}

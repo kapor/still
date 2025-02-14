@@ -1,0 +1,23 @@
+<!-- aaa/posts/templates/posts/posts/post_confirm_delete.html -->
+{% extends "groups/group_base.html" %}
+
+
+
+
+{% block group_content %}
+
+  <h2>Seriously, delete "{{ object }}"?</h2>
+
+
+	<div class="button_container">
+		<form method="POST">
+			{% csrf_token %}
+			<input type="submit" value="Confirm" class="button_danger">
+
+				<a onclick="javascript:history.go(-1);"><div class="button_secondary">
+					Cancel
+				</div></a>
+		</form>
+	</div>
+
+{% endblock %}

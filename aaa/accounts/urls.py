@@ -10,5 +10,9 @@ urlpatterns = [
 	path("logout/", auth_views.LogoutView.as_view(), name="logout"),
 	path("signup/", views.SignUp.as_view(template_name='accounts/signup.html'), name="signup"),
 	path("login/", views.Login.as_view(template_name='accounts/login_modal.html'), name="log"),
-
+	
+    # path('signup/', views.reg.reg_join, name='signup'),
+    # path('login/', views.reg.reg_login, name='login'),
+    # path('logout/', views.reg.reg_logout, name='logout'),
+    # path('loggedin/', views.reg.reg_loggedin, name='loggedin'),
 ]

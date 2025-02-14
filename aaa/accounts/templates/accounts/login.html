@@ -4,13 +4,30 @@
 
 {% block content %}
 
+
+
 <div class="acct_content">
-	<h1>Log In</h1>
+
+<div class="top_part">
+	<div class="header">
+		<h1>Log In</h1>
+	</div>
+</div>
+
 	<div class="forms">
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
-			{% bootstrap_form form %}
-			<input type="submit" class="btn" value="Login">
+			<div>
+				<label for="username">Username:</label>
+				<input type="text" name="username" placeholder="">
+			</div>
+			<div>
+				<label for="password">Password:</label>
+				<input type="password" name="password" placeholder="">
+			</div>
+			<div class="button_container">
+			<input type="submit" class="button_accent_large" value="Login">
+			</div>
 		</form>
 	</div>
 </div>

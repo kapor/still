@@ -5,6 +5,15 @@
 <div class="top_part">
 	<div class="header">
 		<h1>{{group.name}}</h1>
+
+		<div class="group_description">
+			{% if group.description %}
+			<h3>{{group.description}}</h3>
+			{% else %}
+			<h3>No description yet.</h3>
+			{% endif %}
+		</div>
+
       <div class="group_count">
         <div class="group_count_row">
           <span class="badge">{{ group.members.count }}</span>
@@ -15,25 +24,49 @@
           Post{{ group.posts.count | pluralize }}
         </div>
       </div>
+
 	</div>
 </div>
 
 
-<div class="button_container">
-	{% if user in group.members.all %}
-	<div class="button_secondary">
-		<a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>
-	</div>
+{% if user.is_authenticated %}
+
+	<div class="button_container">
+		{% if user in group.members.all %}
+		<a href="{% url 'groups:leave' slug=group.slug %}" ><div class="button_secondary">
+			Leave
+		</div></a>
+			{% else %}
+		<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action" href="{% url 'groups:join' slug=group.slug %}">
+			Join
+		</div></a>
+		{% endif %}
+		<a href="{% url 'groups:all' %}"><div class="button_accent">
+			Back to Groups
+		</div></a>
+		{% if user.is_superuser %}
+		<a href="{% url 'groups:delete' slug=group.slug %}"><div class="button_secondary">
+			Remove Group
+		</div></a>
 		{% else %}
-	<div class="button_action" href="{% url 'groups:join' slug=group.slug %}">
-		<a href="{% url 'groups:join' slug=group.slug %}">Join</a>
+		{% endif %}
 	</div>
-	{% endif %}
-	<div class="button">
-		<a href="{% url 'groups:all' %}">Back to Groups</a>
+{% else %}
+	<div class="button_container">
+		{% if user in group.members.all %}
+		<a href="{% url 'groups:leave' slug=group.slug %}" ><div class="button_secondary">
+			Leave
+		</div></a>
+			{% else %}
+		<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action" href="{% url 'groups:join' slug=group.slug %}">
+			Join
+		</div></a>
+		{% endif %}
+		<a href="{% url 'groups:all' %}"><div class="button_accent">
+			Back to Groups
+		</div></a>
 	</div>
-</div>
-
+{% endif %}
 
 
 {% endblock %}
@@ -41,13 +74,13 @@
 
 {% block group_content %}
 
-<div class="col-md-8">
+<div class="group_post_list">
 	
 	{% if group.posts.count == 0 %}
 	<h2>No posts in this group yet!</h2>
 
 	{% else %}
-
+		<h2>Group Activity</h2>
 		{% for post in group.posts.all %}
 			{% include "posts/_post_group.html" %}
 		{% endfor %}

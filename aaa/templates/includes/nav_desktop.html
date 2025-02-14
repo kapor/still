@@ -1,28 +1,42 @@
 <!-- aaa/templates/includes/nav_desktop.html -->
 {% if user.is_authenticated %}
-<ul class="nav_bar">
-	<div class="navbar_left">
+<ul id="nav_bar">
+	<div id="navbar_left">
 		<li><a class="nav_link" href="{% url 'home' %}">AAA</a></li>
-
 	</div>
-	<div class="navbar_right">
+
+	{% if user.is_superuser %}
+	<div id="navbar_right">
+		<li><a class="nav_link" href="{% url 'blog:blog_list' %}"">Blog</a></li>
+		<li><a class="nav_link" href="{% url 'blog:draft_list' %}">Drafts</a></li>
 		<li><a class="nav_link" href="{% url 'posts:all' %}">Posts</a></li>
-		<li><a class="nav_link" hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">Add_Post</a></li>
+		<li><a class="nav_link" hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">Post:Add</a></li>
 		<li><a class="nav_link" href="{% url 'groups:all' %}"">Groups</a></li>
-		<li><a class="nav_link" hx-get="{% url 'groups:add' %}" hx-target="body" hx-swap="beforeend">Add_Group</a></li>
+		<li><a class="nav_link" hx-get="{% url 'groups:add' %}" hx-target="body" hx-swap="beforeend">Group:Add</a></li>
 
 		<li><a class="nav_link" href="{% url 'admin:index' %}" target="_blank">Admin</a></li>
 		<li><a class="nav_link" href="{% url 'accounts:logout' %}">Logout</a></li>
 	</div>
+	{% else %}
+	<div id="navbar_right">
+		<li><a class="nav_link" href="{% url 'blog:blog_list' %}"">Blog</a></li>
+		<li><a class="nav_link" href="{% url 'posts:all' %}">Posts</a></li>
+		<li><a class="nav_link" hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">Post:Add</a></li>
+		<li><a class="nav_link" href="{% url 'groups:all' %}"">Groups</a></li>
+		<li><a class="nav_link" href="{% url 'accounts:logout' %}">Logout</a></li>
+	</div>
+	{% endif %}
 </ul>
 {% else %}
-<ul class="nav_bar">
-	<div class="navbar_left">
+<ul id="nav_bar">
+	<div id="navbar_left">
 		<li><a class="nav_link" href="{% url 'home' %}">AAA</a></li>
 	</div>
-	<div class="navbar_right">
+	<div id="navbar_right">
+		<li><a class="nav_link" href="{% url 'blog:blog_list' %}"">Blog</a></li>
 		<li><a class="nav_link" href="{% url 'groups:all' %}">Groups</a></li>
 		<li><a class="nav_link" href="{% url 'accounts:login' %}">Login</a></li>
-		<li><a class="nav_link" href="{% url 'accounts:signup' %}">Sign_Up</a></li>	</div>
+		<li><a class="nav_link" href="{% url 'accounts:signup' %}">Sign_Up</a></li>	
+	</div>
 </ul>
 {% endif %}

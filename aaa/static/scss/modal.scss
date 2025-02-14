@@ -17,7 +17,7 @@
 	/* backdrop-filter: invert(100%); */
 }
 
-#modal > .modal-underlay {
+#modal > .modal_underlay {
 	/* underlay takes up the entire viewport. This is only
 	required if you want to click to dismiss the popup */
 	position: absolute;
@@ -28,7 +28,7 @@
 	right: 0px;
 }
 
-#modal > .modal-content {
+#modal > .modal_content {
 	margin-top: 10vh;
 	width: 80%;
 	max-width: 800px;
@@ -49,7 +49,7 @@
 	animation-timing-function: ease;
 }
 
-#modal.closing > .modal-content {
+#modal.closing > .modal_content {
 	/* Animate when closing */
 	animation-name: zoomOut;
 	animation-duration:150ms;
@@ -75,3 +75,11 @@
 	0% {transform: scale(1);}
 	100% {transform: scale(0.9);}
 }
+
+
+
+
+
+
+
+

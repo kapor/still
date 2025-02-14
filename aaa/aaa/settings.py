@@ -25,6 +25,7 @@ PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -51,9 +52,11 @@ INSTALLED_APPS = [
     'bootstrap5',
     'taggit',
     'widget_tweaks',
+    'django_select2',
     'posts',
     'groups',
     'accounts',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -95,7 +98,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'default': {
+        "NAME": "still",
+        "ENGINE": "django.db.backends.postgresql",
+        "USER": "aaronkapor",
+        "PASSWORD": "jene4545",
+        "HOST": 'localhost',
+        "PORT": 5432,
+    },
 }
 
 
