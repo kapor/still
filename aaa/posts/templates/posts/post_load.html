@@ -1,0 +1,63 @@
+<!-- aaa/templates/posts/post_list.html -->
+{% extends 'posts/post_base.html' %}
+
+{% block pre_post %}
+
+<div class="top_part">
+  <div class="header">
+    {% if user.is_authenticated %}
+    <h1>Hey
+      <!-- link to all the user's posts -->
+      <a href="{% url 'posts:for_user' username=user.username %}">
+      {{user.username}}</a>.<br>
+      These are posts.<br>
+      <a class="h1_link" hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">
+      Create one
+      </a>
+    </h1>
+
+    {% else %}
+    <h1>Hey you.
+      These are posts
+    </h1>
+    
+    {% endif %}
+
+
+  </div>
+
+</div>
+
+
+
+{% endblock %}
+{% block post_content %}
+
+
+    <div class="container">
+        <div class="content" id="content">
+            {% for post in post_list %}
+            <div class="single_content">
+              <h3>{{ post.message }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="button_container">
+            <div class="spinner not_visible" id="spinner">
+                <div class="button_secondary ">
+                    Loading...
+                </div>
+            </div>
+            <div id="loadBtn">
+                <button type="button" class="button_secondary ">Load More</button>
+            </div>
+            <div class="button_alert not_visible" id='alert' onclick="topFunction()">
+                Back to top
+            </div>
+        </div>
+        </div>
+    </div>
+
+    {{total_obj|json_script:"json-total"}}
+
+{% endblock %}

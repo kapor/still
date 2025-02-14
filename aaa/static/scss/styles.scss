@@ -40,10 +40,14 @@ a {
   text-decoration: none;
   color: $accent1;
   cursor: pointer;
+  display: contents;
+  width: fit-content;
 }
 
 .body_block {
     padding: 120px 20px 120px 20px;
+    max-width: 1600px;
+    margin: auto;
 
     .big_p {
       font-weight: 400;
@@ -68,9 +72,9 @@ a {
 li a.nav_link,
 .nav_link,
 .overlay-event {
-  line-height: 24px;
   color: $accent1;
   cursor: pointer;
+  line-height: 24px;
 }
 
 .nav_link,
@@ -86,23 +90,27 @@ li a.nav_link,
   }
 }
 
-.nav_bar {
+#nav_bar {
   box-sizing: border-box;
   position: fixed;
   z-index: 1;
   top: 0;
   display: table;
-  width: 100%;
   list-style: none;
   background-color: $secondary;
   font-family: $font-stack2;
   text-decoration: none;
   text-underline-offset: 8px;
   text-transform: uppercase;
-  width: 100%;
+  width: -webkit-fill-available;
   justify-content: flex-start;
-  padding: 20px 24px 20px 24px;
-  margin: 0;
+  padding: 20px 32px;
+  max-height: 64px;
+  height: 80px;
+  margin: 0px 0px;
+  transition: 0.2s;
+  box-shadow: 0px 0px 0px #CCC;
+
 
   .overlay-event {
     text-decoration: none;
@@ -111,36 +119,42 @@ li a.nav_link,
     width: 100%;
     cursor: pointer;
     text-decoration: underline;
-
   }
+
+  #navbar_right {
+    float: right;
+    display: inline-flex;
+    line-height: 48px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    transition: 0.2s;
+  }
+
+  #navbar_left {
+    float: left;
+    display: inline-flex;
+    line-height: 48px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    transition: 0.2s;
+  }
+
 }
 
-.navbar_right {
-  float: right;
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.navbar_left {
-  float: left;
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 20px;
-}
 
 
 .top_part {
-  padding: 0px 0px 18px 0px;
+  padding: 40px 0px 0px 0px;
 
   .header {
-    margin-bottom: 20px;
+    margin-bottom: 56px;
 
     a {
       text-decoration: underline;
       text-underline-offset: 16px;
+      display: inline;
     }
 
     .group_count {
@@ -165,7 +179,7 @@ li a.nav_link,
     text-decoration: none;
     margin: 0px;
     padding: 0px;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
     line-height: 100px;
     margin-inline-end: 20px;
   }
@@ -484,14 +498,13 @@ h1 {
   text-decoration: none;
   margin: 0px;
   padding: 0px;
-  padding-bottom: 60px;
   line-height: 100px;
   margin-inline-end: 20px;
 }
 
 h2 {
   font-family: $font-stack1;
-  color: $accent1;
+  color: $primary;
   text-transform: none;
   list-style-type: none;
   font-weight: 400;
@@ -507,20 +520,40 @@ h2 {
 h3,
 h3 p {
   font-family: $font-stack1;
-  color: $accent1;
+  color: $primary;
   text-transform: none;
   list-style-type: none;
   font-weight: 400;
   letter-spacing: 1px;
-  font-size: 32px;
+  font-size: 24px;
+  line-height: 32px;
   text-decoration: none;
   margin: 0px;
   padding: 0px;
   padding-bottom: 4px;
-  line-height: 44px;
   margin-inline-end: 20px;
   max-width: 1000px;
 }
+
+
+h4,
+h4 p {
+  font-family: $font-stack1;
+  color: $primary;
+  text-transform: none;
+  list-style-type: none;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 24px;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 4px;
+  line-height: 32px;
+  margin-inline-end: 20px;
+  max-width: 1000px;
+}
+
 
 
 
@@ -530,7 +563,7 @@ h3 p {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-width: 100%;
+  width: 100%;
 }
 
 .group_list {
@@ -543,11 +576,11 @@ width: 100%;
 
 
 
-  .group_title {
+  .name {
     font-family: $font-stack1;
     font-size: 14px;
     text-decoration: none;
-    color: #333;
+    color: $accent1;
     width: fit-content;
     display: block;
     overflow: hidden;
@@ -555,15 +588,12 @@ width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-  }
-
-  .group_name {
     font-size: 24px;
     padding-bottom: 4px;
   }
 
 
-  .group_description {
+  .description {
     font-family: $font-stack2;
     text-transform: none;
     overflow: hidden;
@@ -580,7 +610,7 @@ width: 100%;
   .group_count {
     display: flex;
     gap: 12px;
-    padding: 4px 6px 2px;
+    padding: 2px 12px 2px;
     font-family: $font-stack2;
     background-color: #00e874;
   }
@@ -598,13 +628,16 @@ width: 100%;
     text-transform: uppercase;
     padding: 0px 4px;
     background-color: #FFF;
-    margin-bottom: 4px;
+    margin: 4px 0px;
   }
+
+
+
 
 
 }
 
-.group_card {
+.card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -620,7 +653,7 @@ width: 100%;
   line-height: 28px;
 }
 
-.group_card {
+.card {
   @media screen and (min-width: 1500px) {
     -ms-flex: 20%;
     flex: 20%;
@@ -649,4 +682,150 @@ section {
   max-width: 600px;
   margin: auto;
 }
+
+
+.not_visible {
+  display: none;
+}
+
+
+.paginate {
+  position: sticky;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  font-family: $font-stack1;
+  text-decoration: none;
+  text-underline: none;
+  text-transform: uppercase;
+  padding-bottom: 80px;
+  padding-top: 80px;
+  font-size: 16px;
+  list-style: none;
+  padding-inline-start: 0px;
+}
+
+.paginate li a {
+  background-color: none;
+  color: #222;
+  font-weight: 100;
+}
+
+.paginate a {
+  background-color: none;
+  color: #222;
+  font-weight: 100;
+}
+
+.paginate .active a {
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 10px 16px;
+  font-weight: 400;
+}
+
+.paginate .disabled a {
+  background-color: none;
+  color: #ccc;
+  text-align: center;
+  font-weight: 100;
+  display: none;
+}
+
+.crop_detail {
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.crop {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.crop img {
+  width: -webkit-fill-available;
+}
+
+.photo_detail {
+/*     max-width: 200px; */
+  width: 100%;
+}
+
+
+
+.draft_post,
+.publish_post {
+
+  padding-bottom: 40px;
+
+  .postindex {
+    padding: 20px 0px;
+    font-family: $font-stack2;
+    font-style: normal;
+    font-weight: 200;
+    list-style-type: none;
+    letter-spacing: 0x;
+    font-size: 18px;
+    text-decoration: none;
+    text-transform: none;
+    line-height: 26px;
+    margin: auto;
+
+    .title {
+      font-family: $font-stack1;
+      color: $accent2;
+      text-align: left;
+      text-transform: uppercase;
+      list-style-type: none;
+      font-weight: 800;
+      letter-spacing: 2px;
+      font-size: 48px;
+      text-decoration: none;
+      margin: 0px 0px 10px 0px;
+      padding: 0px;
+      line-height: 54px;
+
+      .publish {
+        font-weight: 800;
+        letter-spacing: 1px;
+        font-size: 24px;
+        line-height: 24px;
+        padding: 8px 1px;
+      }
+    }
+
+  }
+
+}
+
+
+.posts {
+
+}
+
+.posts_confirm {
+  background-color: #F0F0F0;
+  border-radius: 4px;
+  padding: 12px 20px;
+  width: auto;
+}
+
+
+/* GROUP DETAIL */
+
+.group_description {
+  margin: 20px auto;
+}
+
+.group_post_list {
+  padding-top: 60px;
+}
+
+
+
+
+
+
 

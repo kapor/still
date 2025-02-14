@@ -1,5 +1,5 @@
 
-
+// OVERLAY
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -21,3 +21,28 @@ document.addEventListener('DOMContentLoaded', function(){
   overlayInner.addEventListener('click', stopEvent, false);
   
 }, false);
+
+
+
+
+// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+window.onscroll = function() {scrollNav()};
+function scrollNav() {
+  if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+    document.getElementById("nav_bar").style.margin = "0px 0px";
+    document.getElementById("nav_bar").style.boxShadow = "0px 2px .10px #CCC";
+    document.getElementById("nav_bar").style.padding="20px 24px";
+    document.getElementById("navbar_right").style.lineHeight = "24px";
+    document.getElementById("navbar_left").style.lineHeight = "24px";
+  } else {
+    document.getElementById("nav_bar").style.margin = "0px 0px";
+    document.getElementById("nav_bar").style.boxShadow = "0px 0px 0px #CCC";
+    document.getElementById("nav_bar").style.padding="20px 32px";
+    document.getElementById("navbar_right").style.lineHeight = "48px";
+    document.getElementById("navbar_left").style.lineHeight = "48px";
+  }
+}
+
+
+
+});

@@ -22,6 +22,17 @@ select {
   line-height: inherit;
 }
 
+
+select {
+  padding: 8px;
+  height: 56px;
+  background-color: $secondary;
+  resize: none;
+
+  font-family: $font-stack2;
+  font-size: 24px;
+}
+
 #image-clear_id {
   display: none;
 }
@@ -69,55 +80,6 @@ select {
     font-style: normal;
   }
 
-  .btn_save {
-    height: 80px;
-    width: 100%;
-    color: white;
-    background-color: red;
-    font-size: 24px;
-    border: none;
-    margin-top: 80px;
-  }
-
-  div {
-    margin-bottom: 40px;
-  }
-
-  input.btn {
-    height: 80px;
-    background-color: $accent1;
-    cursor: pointer;
-    color: white;
-    font-size: 24px;
-    text-align: center;
-    border-radius: 4px;
-    display: flex;
-    margin: 40px 0px 20px 0px;
-
-  }
-
-  .cancel {
-    height: 80px;
-    width: 100%;
-    margin-bottom: 40px;
-    display: flex;
-    background-color: $secondary;
-    cursor: pointer;
-    font-size: 24px;
-    color: #222;
-    text-align: center;
-    border-radius: 4px;
-    display: inline-block;
-    font-family: courier new, monospace;
-    line-height: 80px;
-    border: none;
-
-    a {
-      display: block;
-      width: 100%;
-    }
-
-  }
 
 
 
@@ -136,7 +98,7 @@ select {
       text-shadow: none;
       display: inline-block;
       text-align: start;
-      appearance: auto;
+      appearance: none;
       box-sizing: border-box;
       align-items: center;
       -webkit-rtl-ordering: logical;
@@ -167,7 +129,7 @@ select {
   } 
 
   label {
-    padding-top: 20px;
+    /* padding-top: 20px; */
   }
 
   .file_input {
@@ -214,6 +176,7 @@ input.form-control {
 
 
 
+
 div label {
   width: auto;
   font-family: $font-stack1;
@@ -222,13 +185,13 @@ div label {
   display: inline-block;
   text-align: left;
   color: $accent1;
-  padding: 0px 0px 16px 0px;
+  padding: 24px 0px 16px 0px;
   font-size: 20px;
   border: none;
 }
 
 .form-select {
-  height: 180px;
+  height: auto;
   font-family: $font-stack2;
   font-size: 24px;
   background-color: $background_color;
@@ -254,8 +217,10 @@ div label {
   padding-inline-start: 0px;
 }
 
-
-
+.form_page {
+  max-width: 800px;
+  margin: auto;
+}
 
 
 

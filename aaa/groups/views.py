@@ -13,7 +13,7 @@ from django.db import IntegrityError
 
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 # Create your views here.
 
@@ -81,7 +81,8 @@ class GroupView(ListView):
     template_name = "groups/_groups.html"
     context_object_name = "grouplist"
     paginate_by = 20
-    ordering = "pk"
+    # ordering = 'pk'
+    ordering = ['name']
     # new method added ⬇️
     def get_template_names(self, *args, **kwargs):
         if self.request.htmx:
@@ -101,8 +102,14 @@ class AddGroup(LoginRequiredMixin,generic.CreateView):
 
 
 
+class DeleteGroup(LoginRequiredMixin, generic.DeleteView):
+	model = models.Group
+	context_object_name = 'deletegroup'
+	success_url = reverse_lazy('groups:all')
 
-
+	def delete(self, *args, **kwargs):
+		messages.success(self.request, 'Group Deleted')
+		return super().delete(*args, **kwargs)
 
 
 

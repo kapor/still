@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="form_page">
+
+
+  <div class="top_part">
+    <div class="header">
+      <h1>  
+        {% if blog.title %}
+          Edit This Post
+        {% else %}
+          Add Something
+        {% endif %}
+      </h1>
+    </div>
+  </div>
+
+
+
+    <form class="forms" method="POST" enctype="multipart/form-data">
+      {{ form }}
+      {{ form.your_multi_select_field }}
+      {% csrf_token %}
+
+ 
+
+
+    <input class="file_input" type="file" name="image" id="{{ widget.FileInput }}">
+  
+
+    <div class="image_cover_container">
+      {% if blog.image %}
+        <img src="{{ blog.image.url }}" alt="image" class="image_cover">
+      {% else %}
+        Currently No Image
+      {% endif %}
+    </div>
+
+    <div class="button_container">
+      <a onClick="javascript:history.go(-1);"><div class="button_secondary" style="width:50%">
+        Cancel</div></a>
+      <input type="submit" class="button_accent" value="Add" style="width:50%">
+    </div>
+
+    </form>
+
+
+  <script>var editor = new MediumEditor('.editable');</script>
+
+  
+</div>
+{% endblock %}
+
+
