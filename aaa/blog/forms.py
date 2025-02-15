@@ -16,10 +16,20 @@ class CustomClearableFileInput(forms.ClearableFileInput):
 
 
 class BlogForm(forms.ModelForm):
-	image = forms.ImageField(label="Image", required=False)
 	title = forms.CharField(max_length=200)
 	image = forms.ImageField(label="Image", required=False)
 	update = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
+
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['title'].widget.attrs.update({'class': 'blog_title', 'placeholder': 'Enter text'})
+		self.fields['text'].widget.attrs.update({'class': 'blog_text', 'placeholder': 'Enter text'})
+		self.fields['author'].widget.attrs.update({'class': 'blog_author', 'placeholder': 'Select Author'})
+		self.fields['image'].widget.attrs.update({'class': 'blog_image', 'placeholder': 'Upload or replace image'})
+
+
 
 	class Meta():
 		model = Blog
@@ -28,7 +38,7 @@ class BlogForm(forms.ModelForm):
 		widgets = {
 			'title':forms.TextInput(attrs={'class':'textinputclass'}),
 			'text':forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'}),
-            'image': CustomClearableFileInput,
+            # 'image': CustomClearableFileInput,
 		}
 
 

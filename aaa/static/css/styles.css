@@ -32,8 +32,7 @@ select {
   height: 56px;
 }
 .forms input,
-.forms textarea,
-.forms .editable {
+.forms textarea {
   height: 56px;
   width: -webkit-fill-available;
   background-color: #F2F2F2;
@@ -44,21 +43,6 @@ select {
   font-family: Courier new, Roboto;
   padding: 8px;
   overflow: scroll;
-}
-.forms input[type=file i] {
-  height: auto;
-  font-family: Courier new, Roboto;
-  padding: 8px;
-}
-.forms .editable {
-  height: 200px;
-  padding: 8px;
-}
-.forms .medium-editor-placeholder-relative:after, .forms .medium-editor-placeholder:after {
-  content: attr(data-placeholder) !important;
-  white-space: pre;
-  padding: inherit;
-  font-style: normal;
 }
 .forms select:-internal-list-box {
   appearance: auto;
@@ -177,6 +161,55 @@ div label {
 .form_page {
   max-width: 800px;
   margin: auto;
+}
+
+/* BLOG SECTION */
+.blog_image {
+  height: auto;
+  font-family: Courier new, Roboto;
+  padding: 8px;
+  background-color: #EEEEEE;
+  border: none;
+  width: -webkit-fill-available;
+  font-size: 24px;
+  resize: none;
+  overflow-clip-margin: 0px !important;
+  overflow: clip !important;
+  cursor: default;
+  align-items: baseline;
+  color: inherit;
+  text-overflow: ellipsis;
+  text-align: start !important;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+}
+
+.forms .blog_text {
+  width: -webkit-fill-available;
+  background-color: #F2F2F2;
+  border: none;
+  width: -webkit-fill-available;
+  font-size: 24px;
+  resize: none;
+  font-family: Courier new, Roboto;
+  overflow: scroll;
+  height: 200px;
+  padding: 8px;
+  content: attr(data-placeholder) !important;
+  white-space: pre;
+  font-style: normal;
+}
+
+.medium-editor-placeholder-relative:after, .medium-editor-placeholder:after {
+  content: attr(data-placeholder) !important;
+  white-space: pre;
+  padding: inherit;
+  font-style: normal;
 }
 
 /*COLOR CHANGER*/

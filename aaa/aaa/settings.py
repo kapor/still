@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'posts',
     'groups',
     'accounts',
+    'shelf',
     'blog',
 ]
 

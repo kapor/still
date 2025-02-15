@@ -35,6 +35,7 @@ urlpatterns = [
     path('load/', load_more, name='load'),
 
     path('', include('blog.urls')),
+    path('', include('shelf.urls')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
