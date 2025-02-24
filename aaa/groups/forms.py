@@ -17,6 +17,13 @@ class GroupForm(forms.ModelForm):
 	description = models.TextField(blank=True, default='No description yet.')
 	description_html = models.TextField(editable=False, default='No description yet.', blank=True)
 	members = models.ManyToManyField(User, through='GroupMember')
+	
+
 	class Meta():
 		model = Group
-		fields = ('name', 'slug', 'description')
+		fields = ('name', 'description')
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['name'].widget.attrs.update({'class': 'field_char', 'placeholder': 'Name of the group'})
+		self.fields['description'].widget.attrs.update({'class': 'field_description', 'placeholder': 'What is the group about?'})

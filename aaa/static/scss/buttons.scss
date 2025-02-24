@@ -15,6 +15,16 @@ $accent2: #00FF7F;
   display: flex;
   flex-direction: row;
   gap: 12px;
+  width: fit-content;
+}
+
+.button_container_modal,
+.button_container_modal form {
+  margin: 40px 0px 0px 0px; 
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
 }
 
 .button a {
@@ -146,6 +156,7 @@ input.button_accent_large,
   text-align: center;
   cursor: pointer;
   height: 64px;
+  width: 100%;
 
   font-family: $font-stack1;
   text-transform: uppercase;

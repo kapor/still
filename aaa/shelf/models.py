@@ -9,21 +9,11 @@ import os
 # Create your models here.
 
 
-class ShelfList(models.Model):
-	title = models.CharField(max_length=1000, blank=True, null=True)
-	author = models.CharField(max_length=1000, blank=True, null=True)
-	year = models.IntegerField(blank=True, null=True)
-
-	class Meta:
-		ordering = ('id',)
-
-	def __str__(self):
-		return self.title
-
 
 
 def get_upload_path(instance, filename):
-	return 'covers/{0}/{1}'.format(instance.user.username, filename)
+	return 'shelves/{0}/{1}'.format(instance.user.username, filename)
+	
 
 
 
@@ -45,7 +35,7 @@ class Shelves(models.Model):
 	pages = models.IntegerField(blank=True, null=True)
 	isbn = models.CharField(max_length=500, blank=True, null=True)
 	description = models.TextField(blank=True, null=True)
-	image = models.ImageField(upload_to=get_upload_path, default="covers/blank.jpg", blank=True)
+	image = models.ImageField(upload_to=get_upload_path, default="shelves/blank.jpg", blank=True)
 	notes = models.TextField(blank=True, null=True)
 
 	class Meta:
@@ -57,5 +47,5 @@ class Shelves(models.Model):
 	def get_queryset(self):
 		return super().get_queryset().filter(user=self.request.user)
 
-	# def get_absolute_url(self):
-	# 	return reverse("shelf:detail", kwargs={'pk':self.pk})
+	def get_absolute_url(self):
+		return reverse("shelf:detail", kwargs={'pk':self.pk})

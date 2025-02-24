@@ -8,7 +8,7 @@
 	<title>STILL</title>
 
 	<!-- add htmx to the page -->
-	<script src="{% static 'js/scripts.js' %}"></script>
+	<script src="{% static 'js/scripts.js' %}" defer></script>
 	<script src="{% static 'js/htmx.js' %}" defer></script>
 	<script src="{% static 'js/scale.fix.js' %}" defer></script>
 	<script src="{% static 'js/event-header.js' %}" defer></script>
@@ -54,7 +54,7 @@
 {# SCRIPTS #}
 
 
-<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}" defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     
@@ -111,6 +111,7 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }	
 </script>
+
 
 
 

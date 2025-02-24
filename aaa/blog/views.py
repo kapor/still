@@ -18,33 +18,56 @@ from django.views.generic import View, TemplateView, ListView, DetailView, FormV
 
 
 
+
 class BlogListView(ListView):
 	model = Blog
-	template_name = 'blog/list.html'
+	template_name = 'blog/blog_list.html'
 	def get_queryset(self):
 		return Blog.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 
 
 class BlogDetailView(DetailView):
 	model = Blog
-	context_object_name = 'blogdetail'
+	context_object_name = 'blog_detail'
 	template_name = 'blog/blog_detail.html'
 
 
-class BlogCreateView(LoginRequiredMixin, CreateView):
+
+
+class AddBlog(LoginRequiredMixin, CreateView):
 	model = Blog
 	login_url = "/login/"
-	template_name = 'blog/blog_form.html'
+	template_name = 'blog/blog_modal.html'
 	form_class = BlogForm
+	required = False
 	success_url = reverse_lazy('blog:draft_list')
+
+
+
+
+# @login_required
+# def AddBlog(request):
+#     form = BlogForm(request.POST, request.FILES)
+#     if request.method == 'POST':
+#         images = request.FILES.getlist('image')  
+#         for image in images:
+#             image_ins = Image(image = image)
+#             image_ins.save()
+#         return redirect('blog_form2')
+#     else:
+#         form = forms.BlogForm()
+#     return render(request, 'blog/blog_modal.html',{'form':form})
+
+
+
 
 
 class BlogUpdateView(LoginRequiredMixin, UpdateView):
 	model = Blog
 	login_url = "login"
 	template_name = 'blog/blog_form.html'
-	redirect_field_name = 'blog/blog_detail.html'
-	form_class = BlogForm
+	form_class = BlogUpdate
+	required = False
 
 
 class BlogDelete(LoginRequiredMixin, DeleteView):
@@ -69,10 +92,10 @@ class BlogDraftListView(LoginRequiredMixin, ListView):
 	model = Blog
 	login_url = "/login/"
 	template_name = 'blog/draft_list.html'
-	redirect_field_name = "blog/list.html"
+	redirect_field_name = "blog/blog_list.html"
 	# returning all posts that are null (isnull=true)
 	def get_queryset(self):
-		return Blog.objects.filter(published_date__isnull=True).order_by('-create_date')
+		return Blog.objects.filter(published_date__isnull=True).order_by('create_date')
 
 
 
@@ -81,6 +104,10 @@ def blog_publish(request, pk):
 	blog = get_object_or_404(Blog, pk=pk)
 	blog.publish()
 	return redirect('blog_detail', pk=pk)
+
+
+
+
 
 
 

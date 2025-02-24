@@ -10,7 +10,7 @@ from groups.forms import GroupForm
 from django.http import Http404
 from django.views import generic
 from django.db import IntegrityError
-
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from django.http import HttpRequest, HttpResponse, JsonResponse
@@ -18,9 +18,6 @@ from django.shortcuts import render
 # Create your views here.
 
 
-class CreateGroup(LoginRequiredMixin, CreateView):
-	fields = ('name', 'description')
-	model = Group
 
 class SingleGroup(DetailView):
 	model = Group
@@ -38,14 +35,12 @@ class JoinGroup(LoginRequiredMixin, RedirectView):
 
 	def get(self, request, *args, **kwargs):
 		group = get_object_or_404(Group, slug=self.kwargs.get('slug'))
-
 		try:
 			GroupMember.objects.create(user = self.request.user, group=group)
 		except IntegrityError:
 			messages.warning(self.request, ('Already a member.'))
 		else:
 			messages.success(self.request, ("You're now a member."))
-
 		return super().get(request, *args, **kwargs)
 
 
@@ -56,20 +51,16 @@ class LeaveGroup(LoginRequiredMixin, RedirectView):
 		return reverse('groups:single', kwargs={'slug':self.kwargs.get('slug')})
 
 	def get(self, request, *args, **kwargs):
-
 		try:
 			membership = models.GroupMember.objects.filter(
 				user=self.request.user,
 				group__slug=self.kwargs.get('slug')
 			).get()
-
 		except models.GroupMember.DoesNotExist:
 			messages.warning(self.request, "You are not in this group")
-
 		else: 
 			membership.delete()
 			messages.success(self.request, 'You have left the group')
-
 		return super().get(request, *args, **kwargs)
 
 
@@ -92,12 +83,40 @@ class GroupView(ListView):
 
 
 
+@login_required
+def GroupPost(request, group_id):
+	group = get_object_or_404(Group, pk=group_id)
+	if request.method == 'POST':
+		form = PostForm(request.POST)
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.author = request.user
+			post.group = group
+			post.save()
+			return redirect('groups/group_detail.html', group_id=group_id)
+	else:
+		form = PostForm()
+	posts = Post.objects.filter(group=group).order_by('-created_at')
+	context = {'group': group, 'form': form, 'posts': posts}
+	return render(request, 'groups/group_detail.html', context)
+
+
+
+
+class CreateGroup(LoginRequiredMixin, CreateView):
+	model = Group
+	form_class = GroupForm
+  
+
+
+
 # Modal View
-class AddGroup(LoginRequiredMixin,generic.CreateView):
-    template_name = 'groups/group_modal.html'
-    model = models.Group
-    context_object_name = 'addgroup'
-    fields = ('name', 'description')
+class AddGroup(LoginRequiredMixin,generic.CreateView,):
+	template_name = 'groups/group_modal.html'
+	model = models.Group
+	context_object_name = 'addgroup'
+	form_class = GroupForm
+
 
 
 

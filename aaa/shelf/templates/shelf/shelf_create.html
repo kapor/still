@@ -1,0 +1,32 @@
+{% extends "base_modal.html" %}
+
+{% block shelf_content %}
+
+{% if user.is_authenticated %}
+
+<div class="form_page">
+	{% if object.title %}
+	<h1>Edit item</h1>
+	{% else %}
+	<h1>Add item</h1>
+	{% endif %}
+	<div class="forms">
+	<form method="POST" enctype="multipart/form-data">
+		{{form}}
+		{% csrf_token %}
+	    <div class="button_container">
+	      <a onClick="javascript:history.go(-1);"><div class="button_secondary" style="width:50%">
+	        Cancel</div></a>
+	      {% if object.title %}
+	      <input type="submit" class="button_accent" value="Save" style="width:50%">
+	      {% else %}
+	      <input type="submit" class="button_accent" value="Add" style="width:50%">
+	      {% endif %}
+	    </div>
+	</form>
+	</div>
+	{% else %}
+	<h1>No Access</h1>
+	{% endif %}
+	{% endblock %}
+</div>

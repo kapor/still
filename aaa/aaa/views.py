@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from django.views.generic import ListView, TemplateView
-from posts.models import Product, Post
+from posts.models import Post
 from groups.models import Group
 
 from django_htmx.middleware import HtmxDetails

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="form_page">
+
+
+  <div class="top_part">
+    <div class="header2">
+      <h2>  
+        {% if object.title %}
+        Edit item
+        {% else %}
+        Add item
+        {% endif %}
+      </h2>
+    </div>
+  </div>
+
+
+
+    <form class="forms" method="POST" enctype="multipart/form-data">
+      {{ form }}
+      {{ form.your_multi_select_field }}
+      {% csrf_token %}
+
+
+
+<!--     <div class="image_cover_container">
+      {% if object.image %}
+        Currently:<br>
+        <img src="{{ object.image.url }}" alt="image" class="image_cover">
+      {% else %}
+        Currently:<br>
+        <img src="/media/images/blank.jpg" alt="image" class="image_cover">
+      {% endif %}
+    </div> -->
+
+    <div class="button_container_modal">
+      <a onClick="javascript:history.go(-1);"><div class="button_secondary" style="width:50%">
+        Cancel</div></a>
+        {% if object.title %}
+      <input type="submit" class="button_accent" value="Update" style="width:50%">
+        {% else %}
+      <input type="submit" class="button_accent" value="Add" style="width:50%">
+        {% endif %}
+    </div>
+
+    </form>
+
+
+  
+</div>
+{% endblock %}
+

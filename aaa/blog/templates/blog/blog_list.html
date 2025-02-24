@@ -5,7 +5,7 @@
 <div class="top_part">
   <div class="header">
   {% if user.is_superuser %}
-  <h1>Blog:<a class="nav_link" href="{% url 'blog:new' %}">Add</a></h1>
+  <h1 id="modal_add">Published:<a hx-get="{% url 'blog:add' %}" hx-target="body" hx-swap="beforeend">Add</a></h1>
   {% else %}
   <h1>Blog</h1>
   {% endif %}
@@ -25,7 +25,7 @@
       </a>
     {% else %}
       <a href="{% url 'blog_detail' pk=blog.pk %}">
-      <img src="/media/blank.jpg">
+      <img src="/media/images/blank.jpg">
       </a>
     {% endif %}
   </div>

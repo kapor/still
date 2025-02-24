@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+<!-- <body class='loader'> -->
+{% load static %}
+{% include 'nav_desktop.html' %} 
+{% block content %}
+
+<div>
+	<div>
+		{% block pre_shelf %}{% endblock %}
+		{% block shelf_content %}{% endblock %}
+		{% block post_shelf %}{% endblock %}
+	</div>
+</div>
+
+{% endblock %}

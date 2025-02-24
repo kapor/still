@@ -19,13 +19,13 @@
 			{% csrf_token %}
 			<div>
 				<label for="username">Username:</label>
-				<input type="text" name="username" placeholder="">
+				<input type="text" name="username" placeholder="" class="field_char">
 			</div>
 			<div>
 				<label for="password">Password:</label>
-				<input type="password" name="password" placeholder="">
+				<input type="password" name="password" placeholder="" class="field_char">
 			</div>
-			<div class="button_container">
+			<div class="button_container" style="width:100%">
 			<input type="submit" class="button_accent_large" value="Login">
 			</div>
 		</form>

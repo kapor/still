@@ -6,12 +6,12 @@ $secondary: #F2F2F2;
 $accent1: #8F00FF;
 $accent2: #00FF7F;
 
-/* styles.css */
 
 @use 'forms';
 @use 'loader';
 @use 'buttons';
 @use 'modal';
+@use 'grid';
 
 
 /* reset margins */
@@ -24,6 +24,10 @@ blockquote, pre, form, label, legend, table, caption, tbody, tfoot, thead, tr, t
   vertical-align: baseline;
   text-overflow: ellipsis;
   text-align: left;
+  font-weight: 400;
+  font-family: $font-stack2;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .image_cover_container img {
@@ -97,7 +101,7 @@ li a.nav_link,
   top: 0;
   display: table;
   list-style: none;
-  background-color: $secondary;
+  background-color: white;
   font-family: $font-stack2;
   text-decoration: none;
   text-underline-offset: 8px;
@@ -157,6 +161,13 @@ li a.nav_link,
       display: inline;
     }
 
+    h2 a,
+    h3 a {
+      text-decoration: underline;
+      text-underline-offset: 8px;
+      display: inline;
+    }
+
     .group_count {
       display: flex;
       gap: 12px;
@@ -194,6 +205,7 @@ li a.nav_link,
     margin-inline-end: 20px;
     margin-block-end: .25em;
   }
+
 
 }
 
@@ -278,10 +290,6 @@ li a.nav_link,
     color: $primary;
   }
 
-  .crop_detail {
-    max-height: 200px;
-    overflow: hidden;
-  }
 
   .photo_detail {
 /*     max-width: 200px; */
@@ -377,6 +385,9 @@ hr {
 }
 
 
+.top_part .header2 {
+  margin-bottom: 16px;
+}
 
 * {
   box-sizing: border-box;
@@ -509,7 +520,7 @@ h2 {
   list-style-type: none;
   font-weight: 400;
   letter-spacing: 1px;
-  font-size: 48px;
+  font-size: 56px;
   text-decoration: none;
   margin: 0px;
   padding: 20px 0px;
@@ -528,9 +539,9 @@ h3 p {
   font-size: 24px;
   line-height: 32px;
   text-decoration: none;
-  margin: 0px;
+  margin: 0px;  
   padding: 0px;
-  padding-bottom: 4px;
+  padding-bottom: 4px;  
   margin-inline-end: 20px;
   max-width: 1000px;
 }
@@ -734,24 +745,6 @@ section {
   display: none;
 }
 
-.crop_detail {
-  max-height: 600px;
-  overflow: hidden;
-}
-
-.crop {
-  max-height: 200px;
-  overflow: hidden;
-}
-
-.crop img {
-  width: -webkit-fill-available;
-}
-
-.photo_detail {
-/*     max-width: 200px; */
-  width: 100%;
-}
 
 
 
@@ -843,6 +836,168 @@ section {
   text-transform: none;
   list-style-type: none;
 }
+
+
+
+/*|||||||||||||||||||*/
+
+.paginate {
+  position: sticky;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  font-family: $font-stack2;
+  text-decoration: none;
+  text-underline: none;
+  text-transform: uppercase;
+  padding-bottom: 80px;
+  padding-top: 80px;
+  font-size: 24px;
+  align-items: center;
+}
+
+.paginate li a {
+  background-color: none;
+  color: #222;
+  font-weight: 100;
+}
+
+.paginate a {
+  background-color: none;
+  color: #222;
+  font-weight: 100;
+}
+
+ul.paginate li {
+  background-color: white;
+  color: $primary;
+  text-align: center;
+  padding: 6px 10px;
+  font-weight: 400;
+}
+
+
+ul.paginate li.active {
+  background-color: $accent1;
+  color: white;
+  text-align: center;
+  padding: 6px 10px;
+  font-weight: 400;
+}
+
+
+.paginate .disabled a {
+  background-color: none;
+  color: #ccc;
+  text-align: center;
+  font-weight: 100;
+  display: none;
+}
+
+
+
+
+
+/*|||||||||||||||||||*/
+
+
+
+.crop {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.crop img {
+  width: -webkit-fill-available;
+}
+
+.crop_detail {
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.crop_detail img {
+  width: 100%;
+}
+
+
+
+.cover_crop {
+  display: inline-block;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: black;
+}
+
+.crop_avatar {
+  display: inline-block;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+
+
+.photo_detail {
+  height: 400px;
+  width: auto;
+}
+
+
+.cover_photo, .photo_blank {
+  width: 40px;
+/*margin: -10px 0 0 0;*/
+  object-fit: cover;
+  height: 40px;
+  object-position: 20% 0;
+}
+
+
+.crop_detail {
+  line-height: 0px;
+}
+
+
+/*|||||||||||||||||||*/
+
+
+.label_info p {
+  font-size: 24px;
+}
+
+
+.shelf_top_detail {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: auto;
+  padding: 80px 0px 0px 0px;
+  gap: 40px;
+  width: 100%;
+  border-radius: 4px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  background-size: contain;
+  background-position: center;
+  background-position-y: center;
+
+}
+
+.shelf_top_detail img {
+  backdrop-filter: blur(10px);
+}
+
+.shelf_info {
+  margin-top: 80px;
+}
+
+
+
 
 
 

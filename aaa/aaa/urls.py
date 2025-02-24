@@ -31,11 +31,14 @@ urlpatterns = [
     path('groups/', include('groups.urls', namespace='groups')),
     path("", views.IndexView.as_view(template_name='index.html'), name="home"),
 
+    path('contact/', include('contact.urls', namespace="contact")),
+
+
     path('index_load/', IndexLoad, name='index_load'),
     path('load/', load_more, name='load'),
 
     path('', include('blog.urls')),
-    path('', include('shelf.urls')),
+    path('', include(('shelf.urls', 'shelf'), namespace='shelf'))
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

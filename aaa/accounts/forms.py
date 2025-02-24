@@ -26,8 +26,10 @@ class UserCreateForm(UserCreationForm):
 	#another way to add labels to the fields
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		self.fields['username'].label = 'Username'
-		self.fields['email'].label = 'Email'
+		self.fields['username'].widget.attrs.update({'class': 'field_char', 'placeholder': 'Username'})
+		self.fields['email'].widget.attrs.update({'class': 'field_char', 'placeholder': 'Email'})
+		self.fields['password1'].widget.attrs.update({'class': 'field_char', 'placeholder': 'Password'})
+		self.fields['password2'].widget.attrs.update({'class': 'field_char', 'placeholder': 'Password again'})
 
 
 

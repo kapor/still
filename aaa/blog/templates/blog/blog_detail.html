@@ -4,45 +4,57 @@
 
 <div class="postlist">
     <div class="post">
-      <h3>{{ blogdetail.title }}</h3>
+      <h3>{{ blog_detail.title }}</h3>
       <div class="time">
-      <p>{{ blogdetail.published_date | date:'d M Y' }}</p>
+      <p>{{ blog_detail.published_date | date:'d M Y' }}</p>
       </div>
       <div class="description">
-      {{ blogdetail.text | safe }}
+      {{ blog_detail.text | safe }}
       </div>
     </div>
+
+
+
     <div class="crop_detail">
-      {% if blogdetail.image %}
-      <img src="/media/{{ blogdetail.image }}">
+      {% if blog_detail.image %}
+      <img src="{{ blog_detail.image.url }}">
       {% else %}
-      <img src="/media/blank.jpg">
+      <img src="/media/images/blank.jpg">
       {% endif %}
     </div>
+
+
+
 </div>
 
 {% if user.is_superuser %}
 <!-- EDIT / ROMOVE  -->
     {% if user.is_authenticated %}
-      {% if blogdetail.published_date %}
+      {% if blog_detail.published_date %}
       <div class="button_container">
-        <a href="{% url 'blog_edit' pk=blogdetail.pk %}"><div class="button_secondary">
+        <a href="{% url 'blog:blog_list' %}"><div class="button_accent">
+          Back
+        </div></a>
+        <a href="{% url 'blog_edit' pk=blog_detail.pk %}"><div class="button_secondary">
           Edit
         </div></a>
-        <a href="{% url 'blog_delete' pk=blogdetail.pk %}"><div class="button_secondary">
-          Remove
+        <a href="{% url 'blog_delete' pk=blog_detail.pk %}"><div class="button_secondary">
+          Delete
         </div></a>
-        </div>
-          {% else %}
+      </div>
+      {% else %}
       <div class="button_container"> 
-        <a href="{% url 'blog_edit' pk=blogdetail.pk %}"><div class="button_secondary">
+        <a href="{% url 'blog:blog_list' %}"><div class="button_accent">
+          Back
+        </div></a>
+        <a href="{% url 'blog_edit' pk=blog_detail.pk %}"><div class="button_secondary">
           Edit
         </div></a>
-       <a href="{% url 'blog_delete' pk=blogdetail.pk %}"><div class="button_secondary">
-          Remove
+       <a href="{% url 'blog_delete' pk=blog_detail.pk %}"><div class="button_secondary">
+          Delete
         </div></a>
-        <a href="{% url 'blog_publish' pk=blogdetail.pk %}">
-        <div class="button_action" href="{% url 'blog_publish' pk=blogdetail.pk %}" >
+        <a href="{% url 'blog_publish' pk=blog_detail.pk %}">
+        <div class="button_action" href="{% url 'blog_publish' pk=blog_detail.pk %}" >
           Publish
         </div></a>
       </div>

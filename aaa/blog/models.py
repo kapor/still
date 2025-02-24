@@ -23,7 +23,7 @@ class Blog(models.Model):
 	published_date = models.DateTimeField(blank=True, null=True)
 	tags = TaggableManager(blank=True)
 	# tags = models.ManyToManyField(to='blog.Tags', related_name='blog_tags', blank=True)
-	image = models.ImageField(upload_to=get_upload_path, default="images/blank.jpg", blank=True)
+	image = models.ImageField(upload_to=get_upload_path, default="/images/blank.jpg", verbose_name='Image', null=True, blank=True)
 
 	def publish(self):
 		self.published_date = timezone.now()

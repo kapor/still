@@ -1,6 +1,6 @@
 <!-- aaa/templates/base_modal.html -->
 {% extends "base.html" %}
-{% load bootstrap5 %}
+
 
 {% block content %}
 <div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
@@ -19,10 +19,10 @@
 
         <div class="form_container">
                 {% csrf_token %}
-                {% bootstrap_form form %}
+                {{ form }}
         </div>
 
-        <div class="button_container">
+        <div class="button_container_modal">
             <button class="button_secondary" _="on click trigger closeModal" style="width:50%">Close</button>
             <input type="submit" value="Add" class="button_accent" style="width:50%">
         </div>
