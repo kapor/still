@@ -230,6 +230,49 @@ input[type=file]::file-selector-button {
   gap: 8px;
 }
 
+.search_bar form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.field_small {
+  font-family: Helvetica neue, sans-serif;
+  font-style: normal;
+  color: #333;
+  font-weight: 400;
+  letter-spacing: 1px;
+  list-style-type: none;
+  font-size: 12px;
+  text-decoration: none;
+  margin: 0px;
+  padding: 4px 12px;
+  border-radius: 3px;
+  line-height: 26px;
+  background-color: #EEEEEE;
+  width: fit-content;
+  border: none;
+}
+
+.search_bar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 20px;
+  margin: 20px auto;
+}
+
+.search_bar .field_small {
+  float: left;
+  width: 100%;
+}
+
+.search_bar .button_small {
+  float: right;
+}
+
 /* #image-clear_id {
   display: none;
 }
@@ -313,9 +356,9 @@ label .text {
   border-radius: 3px;
   line-height: 26px;
   cursor: pointer;
-  margin-top: 40px;
   background-color: lightpink;
   width: fit-content;
+  border: none;
 }
 .button_small a {
   color: #222;

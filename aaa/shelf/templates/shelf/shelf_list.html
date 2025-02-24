@@ -20,9 +20,14 @@
 {% endblock %}
 
 {% block shelf_content %}
+
+
+
+
 {% if user.is_authenticated %}
 
-<div>
+
+	{% include 'includes/search_shelf.html' %} 
 
 
 
@@ -37,16 +42,7 @@
 		</thead>
 
 
-    <form method="GET">
-      <label for="sort_by">Sort by:</label>
-      <select name="sort_by" id="sort_by" onchange="this.form.submit()">
-        <option value="title">Title</option>
-        <option value="-title">Title (Descending)</option>
-        <option value="author">Author</option>
-        <option value="-author">Author (Descending)</option>
-      </select>
-      <noscript><input type="submit" value="Submit"></noscript>
-    </form>
+
 		{% for shelf in object_list %}
 
 		<tr>
@@ -97,10 +93,22 @@
 
 
 
+
+
+
+
+	{% include 'includes/paginate.html' %} 
+
+
+
+
+
+
+
+
 </div>
 
 
-{% include 'includes/paginate.html' %} 
 
 
 

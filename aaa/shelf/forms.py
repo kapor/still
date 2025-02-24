@@ -1,11 +1,15 @@
 from django import forms
 from .models import Shelves, get_upload_path
-from django.forms import ModelForm, FileInput, ImageField
+from django.forms import ModelForm, FileInput, ImageField, ModelChoiceField
 from taggit.forms import TagField
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from django.core import validators
 
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(label='Search', max_length=100)
 
 
 

@@ -6,8 +6,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import authenticate, login, logout
 from shelf.models import Shelves
+from django.db.models import Q
 from . import models, forms
-from shelf.forms import ShelfEntryForm, ShelfEntryEdit
+from shelf.forms import ShelfEntryForm, ShelfEntryEdit, SearchForm
 from shelf import views, urls
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
@@ -15,7 +16,70 @@ import os
 
 
 
-# Create your views here.
+
+
+
+
+def SearchView(request):
+    query = request.GET.get("q")
+    form = SearchForm(request.GET)
+
+
+    results = []
+    if query:
+        results = Shelves.objects.filter(
+                Q(year__icontains=query) | 
+                Q(title__icontains=query) | 
+                Q(author__icontains=query) | 
+                Q(publisher__icontains=query) | 
+                Q(quality__icontains=query) | 
+                Q(type__icontains=query) | 
+                Q(location__icontains=query) | 
+                Q(description__icontains=query) | 
+                Q(notes__icontains=query)
+            ).order_by("-id")
+
+        page = request.GET.get('page')
+        paginator = Paginator(results, 100) # Show 10 results per page
+
+        try:
+            results = paginator.page(page)
+        except PageNotAnInteger:
+            results = paginator.page(1)
+        except EmptyPage:
+            results = paginator.page(paginator.num_pages)
+
+
+    context = {'results': results, 'query': query}
+    return render(request, "shelf/shelf_search_results.html", context)
+
+
+
+# class SearchView(ListView):
+#     model = Shelves
+#     template_name = 'shelf/shelf_search_results.html'
+#     context_object_name = 'results'
+#     queryset = Shelves.objects.order_by('-id')
+#     paginate_by = 100
+
+#     def SearchView(request):
+#         query = request.GET.get("q")
+#         form = SearchForm(request.GET)
+
+#         results = []
+#         if query:
+#             results = Shelves.objects.filter(
+#                     Q(year__icontains=query) | 
+#                     Q(title__icontains=query) | 
+#                     Q(author__icontains=query) | 
+#                     Q(publisher__icontains=query) | 
+#                     Q(description__icontains=query) | 
+#                     Q(notes__icontains=query)
+#                 ).order_by("-id")
+
+#         context = {'results': results, 'query': query}
+ 
+
 
 
 class ShelfListView(ListView):
@@ -23,8 +87,8 @@ class ShelfListView(ListView):
 	template_name = 'shelf/shelf_list.html'
 	queryset = Shelves.objects.order_by('-id')
 	paginate_by = 100
-	# def get_queryset(self):
-	# 	return super().get_queryset().filter(user=self.request.user)
+
+
 
 
 class ShelfDetailView(DetailView):

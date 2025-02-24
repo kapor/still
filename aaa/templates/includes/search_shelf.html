@@ -1,0 +1,8 @@
+
+<div class="search_bar">
+<form action="{% url 'shelf:search' %}" method="get">
+    <input type="text" name="q" placeholder="ENTER SOMETHING" value="{{ query }}" class="field_small">
+
+    <input type="submit" class="button_small" value="search">
+</form>
+</div>

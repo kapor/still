@@ -18,6 +18,7 @@ urlpatterns = [
     path('shelf/<int:pk>/edit/', views.Edit_Item.as_view(), name='edit'),
     path('shelf/<int:pk>/delete', views.Delete_Item.as_view(), name='delete'),
 
+    path('shelf/', views.SearchView, name='search'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

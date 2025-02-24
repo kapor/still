@@ -49,3 +49,6 @@ class Shelves(models.Model):
 
 	def get_absolute_url(self):
 		return reverse("shelf:detail", kwargs={'pk':self.pk})
+
+
+
