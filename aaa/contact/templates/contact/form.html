@@ -1,0 +1,35 @@
+<!-- aaa/posts/templates/posts/post_form.html -->
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+
+
+<form method="post" novalidate>
+  {% csrf_token %}
+
+  <label for="id_title">Title:</label>
+  {{ form.title.errors }}
+  {% render_field form.title %}
+
+  <label for="id_author">Author:</label>
+  {{ form.title.errors }}
+  {% render_field form.author %}
+
+  <label for="id_text">Text:</label>
+  {{ form.title.errors }}
+  {% render_field form.text %}
+
+  <label for="id_image">Image:</label>
+  {% render_field form.image.initial_text %}
+  {% render_field form.image %}
+
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}
+
+

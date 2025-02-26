@@ -1,31 +1,6 @@
 
-// OVERLAY
 
-document.addEventListener('DOMContentLoaded', function(){
-
-  const overlay = document.getElementById('overlay');
-  function overlayToggle() {
-    overlay.classList.toggle('overlay-on');
-  }
-
-  const clickArea = document.getElementsByClassName('overlay-event');
-  for(let i = 0; i < clickArea.length; i++) {
-    clickArea[i].addEventListener('click', overlayToggle, false);
-  }
-	
-
-  function stopEvent(event) {
-    event.stopPropagation();
-  }
-  const overlayInner = document.getElementById('overlay-inner');
-  overlayInner.addEventListener('click', stopEvent, false);
-  
-}, false);
-
-
-
-
-// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+// When the user scrolls down 80px from the top of the document, resize the navbar
 window.onscroll = function() {scrollNav()};
 function scrollNav() {
   if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
@@ -41,8 +16,42 @@ function scrollNav() {
     document.getElementById("navbar_right").style.lineHeight = "48px";
     document.getElementById("navbar_left").style.lineHeight = "48px";
   }
-}
+};
 
 
 
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+  document.getElementById('underlay').style.display = "none";
+  document.getElementById('modal2').style.display = "none";
+  document.body.style.overflow = "auto";
+  document.body.style.height = "auto";
+  }
 });
+
+document.getElementById('btn_modal').addEventListener('click', function() {
+  document.getElementById('underlay').classList.add('is_visible');
+  document.getElementById('modal2').classList.add('is_visible');
+  document.getElementById('underlay').style.display = "block";
+  document.getElementById('modal2').style.display = "flex";
+  document.body.style.overflow = "hidden"; 
+  document.body.style.height = "100%"; 
+});
+
+document.getElementById('close_btn').addEventListener('click', function() {
+  document.getElementById('underlay').classList.remove('is_visible');
+  document.getElementById('modal2').classList.remove('is_visible');
+  document.getElementById('underlay').style.display = "none";
+  document.getElementById('modal2').style.display = "none";
+  document.body.style.overflow = "auto";
+  document.body.style.height = "auto";
+});
+document.getElementById('underlay').addEventListener('click', function() {
+  document.getElementById('underlay').classList.remove('is_visible');
+  document.getElementById('modal2').classList.remove('is_visible');
+  document.getElementById('underlay').style.display = "none";
+  document.getElementById('modal2').style.display = "none";
+  document.body.style.overflow = "auto";
+  document.body.style.height = "auto";
+});
+

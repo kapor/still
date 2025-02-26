@@ -10,10 +10,10 @@
 
 	<div class="form_container">
 	{% csrf_token %}
-	{% bootstrap_form form %}
+	{{ bootstrap_form form }}
 	</div>
 
-	<div class="button_container">
+	<div class="button_container_modal">
 		<div class="button_secondary">
 			<a href="{% url 'groups:all' %}">Back to Groups</a>
 		</div>

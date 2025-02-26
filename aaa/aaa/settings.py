@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms',
     'django_htmx',
     'bootstrap5',
     'taggit',
@@ -56,7 +57,10 @@ INSTALLED_APPS = [
     'posts',
     'groups',
     'accounts',
+    'shelf',
     'blog',
+    'contact',
+
 ]
 
 MIDDLEWARE = [

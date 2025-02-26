@@ -2,6 +2,8 @@
 {% extends "groups/group_base.html" %}
 {% block pre_group %}
 
+
+
 <div class="top_part">
 	<div class="header">
 		<h1>{{group.name}}</h1>
@@ -32,6 +34,9 @@
 {% if user.is_authenticated %}
 
 	<div class="button_container">
+		<a href="{% url 'groups:all' %}"><div class="button_accent">
+			Back
+		</div></a>
 		{% if user in group.members.all %}
 		<a href="{% url 'groups:leave' slug=group.slug %}" ><div class="button_secondary">
 			Leave
@@ -41,9 +46,6 @@
 			Join
 		</div></a>
 		{% endif %}
-		<a href="{% url 'groups:all' %}"><div class="button_accent">
-			Back to Groups
-		</div></a>
 		{% if user.is_superuser %}
 		<a href="{% url 'groups:delete' slug=group.slug %}"><div class="button_secondary">
 			Remove Group
@@ -86,5 +88,29 @@
 		{% endfor %}
 
 	{% endif %}
+
+
+<div class="button_container" id="btn_modal">
+		<div class="button_secondary">
+			Add post
+		</div>
 </div>
+
+
+<div class="underlay" id="underlay">
+	
+</div>
+<div class="modal_form" id="modal2">
+  <button class="modal_close_btn" id="close_btn">Close</button>
+ {% include "groups/group_modal.html" %}
+</div>
+
+
+
+
+
+
+
+
+
 {% endblock %}
