@@ -23,7 +23,7 @@ function scrollNav() {
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
   document.getElementById('underlay').style.display = "none";
-  document.getElementById('modal2').style.display = "none";
+  document.getElementById('dialog_modal').style.display = "none";
   document.body.style.overflow = "auto";
   document.body.style.height = "auto";
   }
@@ -31,27 +31,79 @@ document.addEventListener('keydown', function(event) {
 
 document.getElementById('btn_modal').addEventListener('click', function() {
   document.getElementById('underlay').classList.add('is_visible');
-  document.getElementById('modal2').classList.add('is_visible');
+  document.getElementById('dialog_modal').classList.add('is_visible');
   document.getElementById('underlay').style.display = "block";
-  document.getElementById('modal2').style.display = "flex";
+  document.getElementById('dialog_modal').style.display = "flex";
   document.body.style.overflow = "hidden"; 
   document.body.style.height = "100%"; 
 });
 
 document.getElementById('close_btn').addEventListener('click', function() {
   document.getElementById('underlay').classList.remove('is_visible');
-  document.getElementById('modal2').classList.remove('is_visible');
+  document.getElementById('dialog_modal').classList.remove('is_visible');
   document.getElementById('underlay').style.display = "none";
-  document.getElementById('modal2').style.display = "none";
-  document.body.style.overflow = "auto";
-  document.body.style.height = "auto";
-});
-document.getElementById('underlay').addEventListener('click', function() {
-  document.getElementById('underlay').classList.remove('is_visible');
-  document.getElementById('modal2').classList.remove('is_visible');
-  document.getElementById('underlay').style.display = "none";
-  document.getElementById('modal2').style.display = "none";
+  document.getElementById('dialog_modal').style.display = "none";
   document.body.style.overflow = "auto";
   document.body.style.height = "auto";
 });
 
+document.getElementById('confirm_btn').addEventListener('click', function() {
+  document.getElementById('underlay').classList.remove('is_visible');
+  document.getElementById('dialog_modal').classList.remove('is_visible');
+  document.getElementById('underlay').style.display = "none";
+  document.getElementById('dialog_modal').style.display = "none";
+  document.body.style.overflow = "auto";
+  document.body.style.height = "auto";
+});
+
+document.getElementById('underlay').addEventListener('click', function() {
+  document.getElementById('underlay').classList.remove('is_visible');
+  document.getElementById('dialog_modal').classList.remove('is_visible');
+  document.getElementById('underlay').style.display = "none";
+  document.getElementById('dialog_modal').style.display = "none";
+  document.body.style.overflow = "auto";
+  document.body.style.height = "auto";
+});
+
+
+
+
+
+
+
+/* ++++++++++ DISABLE SCROLLBAR ++++++++++ */
+
+
+$('#col_3').click(function(){
+  $('.lotsofstuff').css("overflow", "hidden");
+  $('body').css("overflow", "hidden");
+});
+
+
+$('.info_overlay_left').click(function(){
+  $('body').css("overflow", "visible");
+});
+
+$('.info_close').click(function(){
+  $('body').css("overflow", "visible");
+});
+
+$(document).keyup(function(e) {
+ if (e.key === "Escape") { 
+    $('body').css("overflow", "visible");
+  }
+});
+
+$('#col_2_mobile').click(function(){
+  $('#big_2').css("overflow", "hidden");
+  $('body').css("overflow", "hidden");
+  $('.menu_grid_mobile').css("overflow", "scroll");
+});
+
+$('.mygrid_data_column_1').click(function(){
+  $('body').css("overflow", "visible");
+});
+
+$('#closebutton').click(function(){
+  $('body').css("overflow", "visible");
+});

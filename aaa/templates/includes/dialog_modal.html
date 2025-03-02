@@ -1,0 +1,26 @@
+<!-- aaa/templates/dialog_model.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div id="dialog_modal">
+    <div class="underlay"></div>
+    <div class="dialog_modal_content">
+
+  		<h2>Seriously, delete this?</h2>
+
+		<div class="posts_confirm">
+			{% include "posts/_post.html" with post=object hide_delete=True %}
+		</div>
+	<!-- <form method="post" hx-post="{% url 'posts:delete' pk=post.pk %}"> -->
+	<form action="{% url 'posts:delete' pk=post.pk %}" method="post" >
+	        <div class="button_container_modal">
+						{% csrf_token %}
+				<div class="button_secondary" id="close_btn">Cancel</div></a>
+				<input type="submit" value="Confirm" class="button_danger id="confirm_btn">
+	        </div>
+	  	</form>
+
+    </div>
+</div>
+
+{% endblock %}
