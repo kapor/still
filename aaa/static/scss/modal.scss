@@ -21,6 +21,9 @@ $accent2: #00FF7F;
 	align-items: center;
 	overflow: auto !important;
 	padding-bottom: 20px;
+	animation-name: fadeIn;
+	animation-duration: 100ms;
+	animation-timing-function: ease;
 }
 
 #modal > .modal_underlay {
@@ -32,6 +35,9 @@ $accent2: #00FF7F;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
+	animation-name: fadeIn;
+	animation-duration: 40ms;
+	animation-timing-function: ease;
 }
 
 
@@ -44,9 +50,9 @@ $accent2: #00FF7F;
 	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.01);
 	background-color: white;
 	padding: 20px;
-/* 	animation-name: zoomIn;
-	animation-duration: 150ms;
-	animation-timing-function: ease; */
+	animation-name: fadeInDown;
+	animation-duration: 100ms;
+	animation-timing-function: ease;
 }
 
 #modal.closing {
@@ -58,29 +64,29 @@ $accent2: #00FF7F;
 
 #modal.closing > .modal_content {
 	/* Animate when closing */
-	animation-name: zoomOut;
+	animation-name: fadeOutUp;
 	animation-duration:150ms;
 	animation-timing-function: ease;
 }
 
 @keyframes fadeIn {
 	0% {opacity: 0;}
-	100% {opacity: 1;}
+	100% {opacity: 100;}
 }
 
 @keyframes fadeOut {
-	0% {opacity: 1;}
+	0% {opacity: 100;}
 	100% {opacity: 0;}
 }
 
-@keyframes zoomIn {
-	0% {transform: scale(0.9);}
-	100% {transform: scale(1);}
+@keyframes fadeInDown {
+	0% { transform: translateY(-100px);}
+	100% {transform: translateY(0);}
 }
 
 @keyframes zoomOut {
-	0% {transform: scale(1);}
-	100% {transform: scale(0.9);}
+	0% {transform: translateY(0);}
+	100% { transform: translateY(-200px);}
 }
 
 
@@ -162,9 +168,6 @@ $accent2: #00FF7F;
   opacity: 1;
   pointer-events: auto;
 }
-
-
-
 
 
 

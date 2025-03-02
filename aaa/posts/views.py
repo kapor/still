@@ -5,14 +5,16 @@ from posts.forms import PostForm, PostFormGroup
 from groups.models import Group
 from django.db import transaction
 
+from django.utils import timezone
 from django.http import Http404
 from django.views import generic
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView, RedirectView
 
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import PrefetchRelatedMixin
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
@@ -146,31 +148,38 @@ class EditPost(LoginRequiredMixin, UpdateView):
 
 
 
-
-
-
-
-
+# def DeletePost(request, pk):
+# 	post = get_object_or_404(models.Post, pk=pk)
+# 	if request.method == 'POST':
+# 		post.delete()
+# 		return redirect(request.META.get('HTTP_REFERER', reverse('home')))
+# 	context = {'post': post}
+# 	return render(request, 'posts/post_confirm_delete.html', context)
 
 class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 	model = models.Post
 	prefetch_related = ('user', 'group')
 	template_name = 'posts/post_confirm_delete.html'
-	success_url = 'get_success_url'
+	success_url = '/'
 
-	def get_success_url(self, *args, **kwargs):
-		return reverse('groups:single', kwargs={'slug':self.kwargs.get('slug')})
+
+	# def get_success_url(self, *args, **kwargs):
+	# 	return reverse('groups:single', kwargs={'slug':self.kwargs.get('slug')})
+
 
 	# def get_success_url(self, request):
 	# 	return redirect(request.META['HTTP_REFERER'])
 
 
+
 	# def get_success_url(self, request, *args, **kwargs):
 	# 	referer = request.META.get('HTTP_REFERER')
 	# 	if referer:
-	# 		return HttpResponse(f"Referer: {referer}")
+	# 		response = HttpResponse(status=204)
+	# 		response['HX-Redirect'] = reverse(f"Referer: {referer}")
+	# 		return response
 	# 	else:
-	# 		return HttpResponse("No referer")
+	# 		return reverse_lazy("No referer")
 
 
 	# def get_success_url(self):
@@ -178,14 +187,13 @@ class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 		# return redirect(request.META['HTTP_REFERER'])
 
 
+# def DeletePost (request, pk):
+# 	post = get_object_or_404(Transaction, pk=pk, Iuser=request.user)
 
 
 
 
-def DeletePostConfirm(request, pk):
-    post = models.Post.objects.filter(pk=pk)
-    post.delete()
-    return render(request, 'posts/post_confirm_delete.html', {'form': form})
+
 
 
 

@@ -10,7 +10,7 @@ urlpatterns = [
     path('by/<username>', views.UserPosts.as_view(), name='for_user'),
     path('by/<username>/<pk>', views.PostDetail.as_view(), name='single'),
     path('delete/<pk>', views.DeletePost.as_view(), name='delete'),
-    path('delete/<pk>/confirm', views.DeletePostConfirm, name='confirm'),
+
     path('edit/<pk>', views.EditPost.as_view(), name='edit'),
     path('posts/in/<slug>', views.SingleGroup.as_view(), name='group'),
 

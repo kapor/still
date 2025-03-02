@@ -4,7 +4,7 @@
 
 
 {% block content %}
-<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me" HX-Refresh="True">
     <div class="modal_underlay" _="on click trigger closeModal"></div>
     <div class="modal_content">
 
@@ -17,8 +17,10 @@
 	<form action="{% url 'posts:delete' pk=post.pk %}" method="post" _="on click trigger closeModal">
 	        <div class="button_container_modal">
 						{% csrf_token %}
+
 				<a _="on click trigger closeModal"><div class="button_secondary">Cancel</div></a>
-				<input type="submit" value="Confirm" class="button_danger" onclick="redirectToStoredURL()">
+				<input type="hidden" name="redirect_url" value="{{ request.META.HTTP_REFERER }}">
+				<input type="submit" value="Confirm" class="button_danger">
 	        </div>
 	  	</form>
 

@@ -554,6 +554,9 @@ input.button_accent_large a,
   align-items: center;
   overflow: auto !important;
   padding-bottom: 20px;
+  animation-name: fadeIn;
+  animation-duration: 100ms;
+  animation-timing-function: ease;
 }
 
 #modal > .modal_underlay {
@@ -565,6 +568,9 @@ input.button_accent_large a,
   bottom: 0px;
   left: 0px;
   right: 0px;
+  animation-name: fadeIn;
+  animation-duration: 40ms;
+  animation-timing-function: ease;
 }
 
 #modal > .modal_content {
@@ -575,9 +581,9 @@ input.button_accent_large a,
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.01);
   background-color: white;
   padding: 20px;
-  /* 	animation-name: zoomIn;
-  	animation-duration: 150ms;
-  	animation-timing-function: ease; */
+  animation-name: fadeInDown;
+  animation-duration: 100ms;
+  animation-timing-function: ease;
 }
 
 #modal.closing {
@@ -589,7 +595,7 @@ input.button_accent_large a,
 
 #modal.closing > .modal_content {
   /* Animate when closing */
-  animation-name: zoomOut;
+  animation-name: fadeOutUp;
   animation-duration: 150ms;
   animation-timing-function: ease;
 }
@@ -599,31 +605,31 @@ input.button_accent_large a,
     opacity: 0;
   }
   100% {
-    opacity: 1;
+    opacity: 100;
   }
 }
 @keyframes fadeOut {
   0% {
-    opacity: 1;
+    opacity: 100;
   }
   100% {
     opacity: 0;
   }
 }
-@keyframes zoomIn {
+@keyframes fadeInDown {
   0% {
-    transform: scale(0.9);
+    transform: translateY(-100px);
   }
   100% {
-    transform: scale(1);
+    transform: translateY(0);
   }
 }
 @keyframes zoomOut {
   0% {
-    transform: scale(1);
+    transform: translateY(0);
   }
   100% {
-    transform: scale(0.9);
+    transform: translateY(-200px);
   }
 }
 /* |||||||||||||||||||||||| */
