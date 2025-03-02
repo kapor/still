@@ -30,6 +30,7 @@
 </head>
 
 
+{% include 'includes/nav_desktop.html' %} 
 
 
 
@@ -40,20 +41,16 @@
 
 <div class="body_block">
 
+
 {% block content %}
 
 
 
 
 
-
+{% include 'includes/delete_modal.html' %}
 {% endblock %}
-{% include 'includes/nav_desktop.html' %} 
-
 </div>
-
-
-
 {# SCRIPTS #}
 
 
@@ -114,7 +111,6 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }	
 </script>
-
 
 
 
