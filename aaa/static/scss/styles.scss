@@ -542,7 +542,7 @@ h3 p {
   margin: 0px;  
   padding: 0px;
   padding-bottom: 4px;  
-  margin-inline-end: 20px;
+  margin-inline-end: 8px;
   max-width: 1000px;
 }
 
@@ -812,8 +812,15 @@ section {
   margin: 20px auto;
 }
 
-.group_post_list {
-  padding-top: 60px;
+.group_detail_lists {
+  padding-top: 40px;
+}
+
+.group_detail_lists .h3 {
+  padding-top: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px dotted black;
+  margin-bottom: 20px;
 }
 
 
@@ -996,9 +1003,16 @@ ul.paginate li.active {
   margin-top: 80px;
 }
 
+.docked_container {
+  padding-bottom: 8px;
+  background-color: white;
+  position: sticky;
+  bottom: 0px;
+}
 
-
-
+.post_message {
+  max-width: 1000px;
+}
 
 
 

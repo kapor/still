@@ -11,6 +11,9 @@ from django.core import validators
 class SearchForm(forms.Form):
     query = forms.CharField(label='Search', max_length=100)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['query'].widget.attrs.update({'class': 'field_small', 'placeholder': ''})
 
 
 

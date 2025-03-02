@@ -1,7 +1,7 @@
 # posts/views.py
 from . import models
 from . import forms
-from posts.forms import PostForm
+from posts.forms import PostForm, PostFormGroup
 from groups.models import Group
 from django.db import transaction
 
@@ -26,13 +26,10 @@ User = get_user_model()
 
 
 
-
-
 # Modal View
 
 @login_required
 def AddPost(request):
-    """display a dropdown of all workouts for a user"""
     if request.method != 'POST':
         form = PostForm(user=request.user)	
     else:
@@ -45,13 +42,6 @@ def AddPost(request):
     context = {'form':form}
     return render(request, 'posts/post_modal.html', context)
 
-
-# class AddPost2(LoginRequiredMixin,generic.CreateView):
-#     template_name = 'posts/post_form.html'
-#     model = models.Post
-#     context_object_name = 'addpost'
-#     fields = ('message', 'group')
-#     success_url = reverse_lazy('posts:all')
 
 
 
@@ -68,6 +58,29 @@ class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 		self.object.user = self.request.user
 		self.object.save
 		return super().form_valid(form)
+
+
+
+
+
+	
+@login_required
+def PostGroup(request):
+    if request.method != 'POST':
+        form = PostForm(user=request.user)	
+    else:
+        form = PostForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.instance.user = request.user
+        with transaction.atomic():
+            post = form.save()
+            return redirect('groups:single', group_id=group_id)
+            # return redirect('posts:group')
+    return render(request, 'posts/post_form.html', {'form': form})
+
+
+
+
 
 
 
@@ -133,29 +146,82 @@ class EditPost(LoginRequiredMixin, UpdateView):
 
 
 
+
+
+
+
+
+
 class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 	model = models.Post
 	prefetch_related = ('user', 'group')
-	success_url = reverse_lazy('posts:all')
+	template_name = 'posts/post_confirm_delete.html'
+	success_url = 'get_success_url'
 
-	def get_queryset(self):
-		queryset = super().get_queryset()
-		return queryset.filter(user_id = self.request.user.id)
+	def get_success_url(self, *args, **kwargs):
+		return reverse('groups:single', kwargs={'slug':self.kwargs.get('slug')})
 
-	def delete(self, *args, **kwargs):
-		messages.success(self.request, 'Post Deleted')
-		return super().delete(*args, **kwargs)
+	# def get_success_url(self, request):
+	# 	return redirect(request.META['HTTP_REFERER'])
+
+
+	# def get_success_url(self, request, *args, **kwargs):
+	# 	referer = request.META.get('HTTP_REFERER')
+	# 	if referer:
+	# 		return HttpResponse(f"Referer: {referer}")
+	# 	else:
+	# 		return HttpResponse("No referer")
+
+
+	# def get_success_url(self):
+	# 	return HttpResponse('')
+		# return redirect(request.META['HTTP_REFERER'])
+
+
+
+
+
+
+def DeletePostConfirm(request, pk):
+    post = models.Post.objects.filter(pk=pk)
+    post.delete()
+    return render(request, 'posts/post_confirm_delete.html', {'form': form})
+
+
+
+
+
+
+# def ConfirmDelete(request):
+#     previous_url = request.META.get('HTTP_REFERER')
+#     request.session['previous_url'] = previous_url
+#     return render(request, 'post_confirm_delete.html', {'previous_url': previous_url})
+
+
+# class DeletePostGroup(DeleteView, LoginRequiredMixin, PrefetchRelatedMixin):
+# 	model = models.Post
+# 	prefetch_related = ('user', 'group')
+# 	template_name = 'posts/post_confirm_delete.html'
+
+# 	def post(self, request, group_slug, post_id):
+# 		group = get_object_or_404(Group, slug=group_slug)
+# 		post = get_object_or_404(Post, id=post_id, group=group)
+# 		post.delete()
+# 		return redirect('groups:single', slug=group_slug)
+
+
+
+
+
+
+
+
+
 
 
 class SingleGroup(generic.DetailView):
 	model = Group
 	context_object_name = 'group'
-
-
-
-
-
-
 
 
 

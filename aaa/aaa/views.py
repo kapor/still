@@ -40,7 +40,7 @@ class IndexView(ListView):
     template_name = "index.html"
     context_object_name = "index_grid"
     paginate_by = 20
-    ordering = "pk"
+    ordering = "name"
     # new method added ⬇️
     def get_template_names(self, *args, **kwargs):
         if self.request.htmx:

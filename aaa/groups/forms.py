@@ -2,13 +2,15 @@ from django import forms
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse, reverse_lazy
-from .models import Group
+from .models import Group, Comment
 from django.forms import ModelForm, FileInput, ImageField
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from django.core import validators
 from django.contrib.auth import get_user_model
 User = get_user_model()
+
+
 
 
 class GroupForm(forms.ModelForm):
@@ -27,3 +29,17 @@ class GroupForm(forms.ModelForm):
 		super().__init__(*args, **kwargs)
 		self.fields['name'].widget.attrs.update({'class': 'field_char', 'placeholder': 'Name of the group'})
 		self.fields['description'].widget.attrs.update({'class': 'field_description', 'placeholder': 'What is the group about?'})
+
+
+
+
+class CommentForm(forms.ModelForm):
+	text = forms.CharField(label='')
+
+	class Meta:
+		model = Comment
+		fields = ['text']
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['text'].widget.attrs.update({'class': 'field_small', 'placeholder': 'Make a comment'})
