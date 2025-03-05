@@ -1,6 +1,5 @@
 <!-- aaa/groups/templates/groups/groups_detail.html -->
 {% extends "groups/group_base.html" %}
-
 {% block pre_group %}
 
 
@@ -31,18 +30,18 @@
 </div>
 
 
-{% if user.is_superuser %}
+{% if user.is_authenticated %}
 
 	<div class="button_container">
 		<a href="{% url 'groups:all' %}"><div class="button_accent">
-			All Groups
+			Back
 		</div></a>
 		{% if user in group.members.all %}
 		<a href="{% url 'groups:leave' slug=group.slug %}" ><div class="button_secondary">
 			Leave
 		</div></a>
 			{% else %}
-		<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action">
+		<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action" href="{% url 'groups:join' slug=group.slug %}">
 			Join
 		</div></a>
 		{% endif %}
@@ -60,7 +59,7 @@
 			Leave
 		</div></a>
 			{% else %}
-		<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action">
+		<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action" href="{% url 'groups:join' slug=group.slug %}">
 			Join
 		</div></a>
 		{% endif %}
@@ -71,79 +70,49 @@
 {% endif %}
 
 
-
 {% endblock %}
 
 
 {% block group_content %}
 
-<div class="group_detail_lists">
-		<h3 class="h3">Posts</h3>
+<div class="group_post_list">
+	
+	{% if group.posts.count == 0 %}
+	<h2>No posts in this group yet!</h2>
+
+	{% else %}
+		<h2>Group Activity</h2>
 		{% for post in group.posts.all %}
-
-			{% include "posts/_post.html" with author=True group=False %}
-
-  	{% empty %}
-  		<h3>No activity yet.</h3>
+			{% include "posts/_post_group.html" %}
 		{% endfor %}
-</div>
 
-
-
-<div class="group_detail_lists">
-		<h3 class="h3">Comments</h3>
-		{% for post in comment  %}
-
-			{% include "groups/_group_comments.html" with author=True group=False %}
-
-  	{% empty %}
-		{% endfor %}
-</div>
-
+	{% endif %}
 
 
 {% if user in group.members.all %}
-<div class="docked_container">
-	<div class="search_bar" style="max-width:1000px; margin-top:40px">
-		<form method="post">
-			{% csrf_token %}
-		    {{ form }}
-		    <input type="submit" value="Add" class="button_small">
-		</form>
-	</div>
-</div>
+		<form method="POST" action="{% url 'posts:create' %}" id="postForm">
+
+
+
+			<div class="form_container">
+				{% csrf_token %}
+				{{ form }}
+			</div>
+
+
+      <div class="button_container">
+	      	<a href="{{ groups.get_absolute_url }}">
+						<div class="button_secondary">
+							Cancel
+						</div>
+					</a>
+          <input type="submit" value="Add" class="button_accent">
+      </div>
+	</form>
+
+
 {% else %}
 {% endif %}
-
-{% if user in group.members.all %}
-<!-- 
-<div class="button_container">
-	<a href="{% url 'groups:single' slug=group.slug %}">
-		<div class="button_secondary">
-			Add post
-		</div>
-	</a>
-
-</div> -->
-
-
-
-
-
-
-
-<!-- 	<div id="postform">
-		{% include "groups/group_post_form_button.html" %}
-	</div> -->
-{% else %}
-{% endif %}
-
-
-
 
 
 {% endblock %}
-
-
-
-

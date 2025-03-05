@@ -19,7 +19,7 @@ class Blog(models.Model):
 	author = models.ForeignKey('auth.User', related_name='auth_user', on_delete=models.CASCADE)
 	title = models.CharField(max_length=200)
 	text = models.TextField()
-	create_date = models.DateField(default=timezone.now)
+	create_date = models.DateTimeField(auto_now_add=True)
 	published_date = models.DateTimeField(blank=True, null=True)
 	tags = TaggableManager(blank=True)
 	# tags = models.ManyToManyField(to='blog.Tags', related_name='blog_tags', blank=True)

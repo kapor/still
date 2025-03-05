@@ -235,6 +235,7 @@ input[type=file]::file-selector-button {
   display: flex;
   flex-direction: row;
   gap: 8px;
+  height: 34px;
 }
 
 .field_small {
@@ -253,6 +254,8 @@ input[type=file]::file-selector-button {
   background-color: #EEEEEE;
   width: fit-content;
   border: none;
+  resize: none;
+  height: min-content;
 }
 
 .search_bar {
@@ -261,7 +264,11 @@ input[type=file]::file-selector-button {
   flex-direction: row;
   justify-content: flex-end;
   gap: 20px;
-  margin: 20px auto;
+  margin: 20px 0px;
+  position: sticky;
+  top: 66px;
+  background-color: white;
+  padding: 20px 0px;
 }
 
 .search_bar .field_small {
@@ -281,6 +288,10 @@ label .text {
   display: none;
 }
  */
+#postform {
+  max-width: 600px;
+}
+
 /*COLOR CHANGER*/
 /*Credit and Source: http://codepen.io/thapliyalshivam/pen/dvgXVO*/
 .loader {
@@ -359,9 +370,31 @@ label .text {
   background-color: lightpink;
   width: fit-content;
   border: none;
+  height: min-content;
 }
 .button_small a {
   color: #222;
+}
+
+.modal_button_xsmall {
+  font-family: Helvetica neue, sans-serif;
+  font-style: normal;
+  color: #222;
+  font-weight: 400;
+  letter-spacing: 1px;
+  list-style-type: none;
+  font-size: 12px;
+  text-decoration: none;
+  margin: 0px 0px 2px 0px;
+  padding: 0px 6px;
+  border-radius: 3px;
+  line-height: 24px;
+  background-color: #EEEEEE;
+  width: fit-content;
+  border: none;
+  resize: none;
+  height: min-content;
+  align-self: center;
 }
 
 .button_base {
@@ -521,6 +554,14 @@ input.button_accent_large a,
   align-items: center;
   overflow: auto !important;
   padding-bottom: 20px;
+  animation-name: fadeIn;
+  animation-duration: 100ms;
+  animation-timing-function: ease;
+}
+
+#modal.show {
+  display: flex;
+  opacity: 1;
 }
 
 #modal > .modal_underlay {
@@ -532,6 +573,9 @@ input.button_accent_large a,
   bottom: 0px;
   left: 0px;
   right: 0px;
+  animation-name: fadeIn;
+  animation-duration: 40ms;
+  animation-timing-function: ease;
 }
 
 #modal > .modal_content {
@@ -542,9 +586,9 @@ input.button_accent_large a,
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.01);
   background-color: white;
   padding: 20px;
-  /* 	animation-name: zoomIn;
-  	animation-duration: 150ms;
-  	animation-timing-function: ease; */
+  animation-name: fadeInDown;
+  animation-duration: 100ms;
+  animation-timing-function: ease;
 }
 
 #modal.closing {
@@ -556,7 +600,7 @@ input.button_accent_large a,
 
 #modal.closing > .modal_content {
   /* Animate when closing */
-  animation-name: zoomOut;
+  animation-name: fadeOutUp;
   animation-duration: 150ms;
   animation-timing-function: ease;
 }
@@ -566,31 +610,31 @@ input.button_accent_large a,
     opacity: 0;
   }
   100% {
-    opacity: 1;
+    opacity: 100;
   }
 }
 @keyframes fadeOut {
   0% {
-    opacity: 1;
+    opacity: 100;
   }
   100% {
     opacity: 0;
   }
 }
-@keyframes zoomIn {
+@keyframes fadeInDown {
   0% {
-    transform: scale(0.9);
+    transform: translateY(-100px);
   }
   100% {
-    transform: scale(1);
+    transform: translateY(0);
   }
 }
 @keyframes zoomOut {
   0% {
-    transform: scale(1);
+    transform: translateY(0);
   }
   100% {
-    transform: scale(0.9);
+    transform: translateY(-200px);
   }
 }
 /* |||||||||||||||||||||||| */
@@ -1248,7 +1292,7 @@ h3 p {
   margin: 0px;
   padding: 0px;
   padding-bottom: 4px;
-  margin-inline-end: 20px;
+  margin-inline-end: 8px;
   max-width: 1000px;
 }
 
@@ -1352,6 +1396,7 @@ h4 p {
   font-family: Courier new, Roboto;
   font-weight: 500;
   line-height: 28px;
+  min-height: 222px;
 }
 
 @media screen and (min-width: 1500px) {
@@ -1489,8 +1534,15 @@ section {
   margin: 20px auto;
 }
 
-.group_post_list {
-  padding-top: 60px;
+.group_detail_lists {
+  padding-top: 40px;
+}
+
+.group_detail_lists .h3 {
+  padding-top: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px dotted black;
+  margin-bottom: 20px;
 }
 
 .description p {
@@ -1645,6 +1697,17 @@ ul.paginate li.active {
 
 .shelf_info {
   margin-top: 80px;
+}
+
+.docked_container {
+  padding-bottom: 8px;
+  background-color: white;
+  position: sticky;
+  bottom: 0px;
+}
+
+.post_message {
+  max-width: 1000px;
 }
 
 /*# sourceMappingURL=styles.css.map */

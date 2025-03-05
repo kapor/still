@@ -1,4 +1,5 @@
 <!-- aaa/groups/templates/groups/group_list.html -->
+
 <div class="group_container">
   <div class="group_list">
   {% for group in grouplist %}
@@ -20,15 +21,13 @@
         <h3 class='name'>{{ group.name | title }}</h3>
       </a>
 
-      <div class="leave_join">
         {% if user in group.members.all %}
+          <div class="leave_join">
           Member
-          <!-- [<a href="{% url 'groups:leave' slug=group.slug %}" >Leave</a>] -->
+          </div>
         {% else %}
-
-          <!-- [<a href="{% url 'groups:join' slug=group.slug %}">Join Group</a>] -->
         {% endif %}
-      </div>
+      
 
 
       <div class="card_lower">

@@ -1,11 +1,10 @@
-{% extends 'blog/blog_base.html' %}
+{% extends 'base.html' %}
 
-
-{% block blog_content %}
+{% block content %}
 <div class="top_part">
   <div class="header">
   {% if user.is_superuser %}
-  <h1 id="modal_add">Published:<a hx-get="{% url 'blog:add' %}" hx-target="body" hx-swap="beforeend">Add</a></h1>
+  <h1 id="modal_add">Published:<a hx-get="{% url 'blog:add' %}" hx-target="body" hx-swap="beforeend" id="modal_trigger">Add</a></h1>
   {% else %}
   <h1>Blog</h1>
   {% endif %}

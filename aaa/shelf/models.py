@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchHeadline
+from django.db.models import F
 from taggit.managers import TaggableManager
 from django.views.generic import ListView
 from django.contrib.auth.models import User
@@ -49,6 +51,4 @@ class Shelves(models.Model):
 
 	def get_absolute_url(self):
 		return reverse("shelf:detail", kwargs={'pk':self.pk})
-
-
 

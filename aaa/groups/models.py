@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse, reverse_lazy
+from django.utils import timezone
 
 import misaka
 
@@ -35,7 +36,7 @@ class Group(models.Model):
 
 
 class GroupMember(models.Model):
-	group = models.ForeignKey(Group, related_name='memberships', on_delete=models.CASCADE)
+	group = models.ForeignKey(Group, related_name='group_member', on_delete=models.CASCADE)
 	user = models.ForeignKey(User, related_name='user_groups', on_delete=models.CASCADE)
 
 	def __str__(self):
@@ -46,3 +47,14 @@ class GroupMember(models.Model):
 
 
 
+class Comment(models.Model):
+	group = models.ForeignKey(Group, related_name='comment_group', on_delete=models.CASCADE)
+	user = models.ForeignKey(User, related_name='comment_user', on_delete=models.CASCADE)
+	message = models.TextField()
+	created_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+	def get_absolute_url(self):
+	    return reverse("groups:single", kwargs={'slug':self.slug})
+
+	def __str__(self):
+		return self.message
