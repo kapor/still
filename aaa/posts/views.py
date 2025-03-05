@@ -148,13 +148,6 @@ class EditPost(LoginRequiredMixin, UpdateView):
 
 
 
-# def DeletePost(request, pk):
-# 	post = get_object_or_404(models.Post, pk=pk)
-# 	if request.method == 'POST':
-# 		post.delete()
-# 		return redirect(request.META.get('HTTP_REFERER', reverse('home')))
-# 	context = {'post': post}
-# 	return render(request, 'posts/post_confirm_delete.html', context)
 
 class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 	model = models.Post
@@ -162,60 +155,23 @@ class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 	template_name = 'posts/post_confirm_delete.html'
 	success_url = '/'
 
-
-	# def get_success_url(self, *args, **kwargs):
-	# 	return reverse('groups:single', kwargs={'slug':self.kwargs.get('slug')})
-
-
-	# def get_success_url(self, request):
-	# 	return redirect(request.META['HTTP_REFERER'])
-
-
-
-	# def get_success_url(self, request, *args, **kwargs):
-	# 	referer = request.META.get('HTTP_REFERER')
-	# 	if referer:
-	# 		response = HttpResponse(status=204)
-	# 		response['HX-Redirect'] = reverse(f"Referer: {referer}")
-	# 		return response
-	# 	else:
-	# 		return reverse_lazy("No referer")
-
-
 	# def get_success_url(self):
-	# 	return HttpResponse('')
-		# return redirect(request.META['HTTP_REFERER'])
+	# 	redirect_url = self.request.session.get('redirect_url') or self.request.META.get('HTTP_REFERER')
+
+	# 	if redirect_url:
+	# 		return redirect(redirect_url)
+	# 	else:
+	# 		return redirect('/')
 
 
-# def DeletePost (request, pk):
-# 	post = get_object_or_404(Transaction, pk=pk, Iuser=request.user)
-
-
-
-
-
-
-
-
+	# def get(self, request, *args, **kwargs):
+	# 	request.session['redirect_url'] = request.META.get('HTTP_REFERER')
+	# 	return super().get(request, *args, **kwargs)
 
 
 
-# def ConfirmDelete(request):
-#     previous_url = request.META.get('HTTP_REFERER')
-#     request.session['previous_url'] = previous_url
-#     return render(request, 'post_confirm_delete.html', {'previous_url': previous_url})
 
 
-# class DeletePostGroup(DeleteView, LoginRequiredMixin, PrefetchRelatedMixin):
-# 	model = models.Post
-# 	prefetch_related = ('user', 'group')
-# 	template_name = 'posts/post_confirm_delete.html'
-
-# 	def post(self, request, group_slug, post_id):
-# 		group = get_object_or_404(Group, slug=group_slug)
-# 		post = get_object_or_404(Post, id=post_id, group=group)
-# 		post.delete()
-# 		return redirect('groups:single', slug=group_slug)
 
 
 
@@ -257,6 +213,8 @@ def PostMore(request):
         'posts': post_obj
     }
     return JsonResponse(data=data)
+
+
 
 
 

@@ -1,12 +1,12 @@
-<!-- aaa/groups/templates/groups/_gruoop_comments.html -->
+<!-- aaa/groups/templates/groups/_gruop_comments.html -->
 
 
 <div class="post">
 	<div class="post_message" style="display:inline-flex;">
-	<h3>{{ comment.text | safe }}</h3>
-      {% if user.is_superuser %}
-      <a href="{% url 'groups:commentdelete' pk=comment.pk %}">
-        <div class="button_xsmall">
+	<h3>{{ post.message | safe }}</h3>
+      {% if user.is_superuser or post.user == user and not hide_delete %}
+      <a href="{% url 'groups:commentdelete' pk=post.pk %}">
+        <div class="modal_button_xsmall">
         remove
         </div>
       </a>
@@ -15,14 +15,17 @@
   </div>
   <br>
 	<span class="username">
-		<a href="{% url 'posts:for_user' username=comment.author %}">
-		@{{ comment.author }}
-	</a>
-		<time class="time">{{ comment.created_at }}</time>
+		{% if user %}
+		<a href="{% url 'posts:for_user' username=post.user %}">
+		@{{ post.user }}
+		</a>
+		{% endif %}
+		<time class="time">{{ post.created_at }}</time>
 	</span>
-<!-- 	in 						
+	{% if group.name %}
+	in 						
 	<a href="">
-		{{ comment.group.name }}
-	</a> -->
-
+		{{ post.group.name }}
+	</a>
+	{% endif %}
 </div>

@@ -43,7 +43,7 @@ def SingleGroup(request, slug):
 		if form.is_valid():
 			comment = form.save(commit=False)
 			comment.group = group
-			comment.author = request.user
+			comment.user = request.user
 			comment.save()
 			return redirect('groups:single', slug=slug)
 	else:

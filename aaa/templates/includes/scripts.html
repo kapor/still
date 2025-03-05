@@ -1,4 +1,5 @@
 
+<script type="text/javascript">
 
 // When the user scrolls down 80px from the top of the document, resize the navbar
 
@@ -18,12 +19,15 @@ function scrollNav() {
     document.getElementById("navbar_left").style.lineHeight = "48px";
   }
 };
+</script>
 
 
 
 
+<script type="text/javascript">
 /* ++++++++++ LOAD MORE ++++++++++ */
-  
+
+
 // var _current_item = $('.single_content').length
 // console.log(_current_item);
 const loadBtn = document.getElementById('loadBtn');
@@ -70,19 +74,21 @@ loadBtn.addEventListener('click', () => {
     loadmorePost()
 });
 
+</script>
 
+
+<script type="text/javascript">
 
 /* ++++++++++ SCROL TOP ++++++++++ */
-
 
 function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 } 
 
+</script>
 
-
-
+<script type="text/javascript">
 /* ++++++++++ DISABLE SCROLLBAR ++++++++++ */
 
 $('.modal_underlay').click(function(){
@@ -112,7 +118,11 @@ $('#modal_trigger').click(function(){
   $('body').css("overflow", "hidden");
 });
 
+</script>
 
+
+
+<script>
 document.addEventListener('keydown', function(event) {
   if (event.keyCode === 27) {
     const modal = document.querySelector('#modal'); // Replace '.modal' with the actual selector of your modal
@@ -124,4 +134,4 @@ document.addEventListener('keydown', function(event) {
     }
   }
 });
-
+</script>

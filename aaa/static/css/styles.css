@@ -266,7 +266,7 @@ input[type=file]::file-selector-button {
   gap: 20px;
   margin: 20px 0px;
   position: sticky;
-  top: 64px;
+  top: 66px;
   background-color: white;
   padding: 20px 0px;
 }
@@ -376,7 +376,7 @@ label .text {
   color: #222;
 }
 
-.button_xsmall {
+.modal_button_xsmall {
   font-family: Helvetica neue, sans-serif;
   font-style: normal;
   color: #222;
@@ -557,6 +557,11 @@ input.button_accent_large a,
   animation-name: fadeIn;
   animation-duration: 100ms;
   animation-timing-function: ease;
+}
+
+#modal.show {
+  display: flex;
+  opacity: 1;
 }
 
 #modal > .modal_underlay {
@@ -1391,6 +1396,7 @@ h4 p {
   font-family: Courier new, Roboto;
   font-weight: 500;
   line-height: 28px;
+  min-height: 222px;
 }
 
 @media screen and (min-width: 1500px) {

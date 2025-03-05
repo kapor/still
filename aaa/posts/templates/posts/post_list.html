@@ -1,7 +1,9 @@
 <!-- aaa/templates/posts/post_list.html -->
-{% extends 'posts/post_base.html' %}
+{% extends "base.html" %}
 
-{% block pre_post %}
+
+
+{% block content %}
 
 <div class="top_part">
   <div class="header">
@@ -12,7 +14,7 @@
       <a href="{% url 'posts:for_user' username=user.username %}">
       {{user.username}}</a>.<br>
       These are posts.<br>
-          <a hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">
+          <a hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend" id="modal_trigger">
           Create one
           </a>
     </h1>
@@ -28,9 +30,7 @@
   </div>
 </div>
 
-{% endblock %}
 
-{% block post_content %}
   <div>
 
 {% if request.user.is_authenticated %}
@@ -44,7 +44,7 @@
   <h1>All Activity</h1>
 {% for post in post_list %}
 
-{% include "posts/_post.html" %}
+{% include "posts/_post.html" with author=True group=True %}
 
 
 {% endfor %}

@@ -23,8 +23,21 @@
   </div>
 </div>
 
-  <div>
-        {% include 'index_grid.html' %}
-  </div>
+
+
+
+  {% for post in data %}
+    {% include "posts/_post.html" with user=True group=True %}
+  {% endfor %}
+
+
+
+<div>
+  {% include 'index_grid.html' %}
+</div>
+
+
+
+
 
 {% endblock %}

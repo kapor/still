@@ -26,6 +26,12 @@ $accent2: #00FF7F;
 	animation-timing-function: ease;
 }
 
+#modal.show {
+	display: flex;
+  opacity: 1;
+}
+
+
 #modal > .modal_underlay {
 	/* underlay takes up the entire viewport. This is only
 	required if you want to click to dismiss the popup */

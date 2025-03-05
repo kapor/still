@@ -1,8 +1,9 @@
 <!-- aaa/groups/templates/groups/groups.html -->
-{% extends "groups/group_base.html" %}
+{% extends "base.html" %}
 
 
-{% block pre_group %}
+
+{% block content %}
 
 
 <div class="top_part">
@@ -15,7 +16,7 @@
 			{{user.username}}</a>.<br>
 				These are groups.<br>
 			{% if user.is_superuser %}
-			<a hx-get="{% url 'groups:add' %}" hx-target="body" hx-swap="beforeend">
+			<a hx-get="{% url 'groups:add' %}" hx-target="body" hx-swap="beforeend" id="modal_trigger">
 			Create one
 			</a>
 			{% else %}
@@ -35,20 +36,20 @@
 
 </div>
 
-{% endblock %}
 
 
 
 
 
-{% block group_content %}
+
+
 
   <div>
 		{% include 'groups/group_list.html' %}
   </div>
   
-{% endblock %}
 
 
-{% block post_group %}
+
+
 {% endblock %}

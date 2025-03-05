@@ -15,7 +15,7 @@
 
   {% for post in post_list %}
 
-{% include "posts/_post.html" %}
+{% include "posts/_post.html" with author=False group=True %}
 
   {% endfor %}
 

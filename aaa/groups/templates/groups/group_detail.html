@@ -1,5 +1,6 @@
 <!-- aaa/groups/templates/groups/groups_detail.html -->
 {% extends "groups/group_base.html" %}
+
 {% block pre_group %}
 
 
@@ -30,7 +31,7 @@
 </div>
 
 
-{% if user.is_authenticated %}
+{% if user.is_superuser %}
 
 	<div class="button_container">
 		<a href="{% url 'groups:all' %}"><div class="button_accent">
@@ -79,7 +80,9 @@
 <div class="group_detail_lists">
 		<h3 class="h3">Posts</h3>
 		{% for post in group.posts.all %}
-			{% include "posts/_post_group.html" %}
+
+			{% include "posts/_post.html" with author=True group=False %}
+
   	{% empty %}
   		<h3>No activity yet.</h3>
 		{% endfor %}
@@ -89,8 +92,10 @@
 
 <div class="group_detail_lists">
 		<h3 class="h3">Comments</h3>
-		{% for comment in comment  %}
-			{% include "groups/_group_comments.html" %}
+		{% for post in comment  %}
+
+			{% include "groups/_group_comments.html" with author=True group=False %}
+
   	{% empty %}
 		{% endfor %}
 </div>
