@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+
 <div class="top_part">
   <div class="header">
   {% if user.is_superuser %}
-  <h1 id="modal_add">Published:<a hx-get="{% url 'blog:add' %}" hx-target="body" hx-swap="beforeend" id="modal_trigger">Add</a></h1>
+  <h1 id="modal_add">Published:<a hx-get="{% url 'blog:add' %}" hx-target="body" hx-swap="beforeend" hx-trigger="click" id="modal_trigger">Add</a></h1>
   {% else %}
   <h1>Blog</h1>
   {% endif %}
@@ -13,6 +15,8 @@
     </p>
   </div>
 </div>
+
+
 
 {% for blog in blog_list %}
 <div class="publish_post">
@@ -29,7 +33,7 @@
     {% endif %}
   </div>
 
-  <div class="post">
+  <div class="blog_post">
     <a href="{% url 'blog_detail' pk=blog.pk %}">
     <h3>{{ blog.title }}</h3>
     </a>
@@ -37,7 +41,7 @@
     <p>{{ blog.published_date | date:'d M Y' }}</p>
     </time>
     <div class="description">
-    {{ blog.text | safe }}
+    {{ blog.message | safe }}
     </div>
   </div>
 

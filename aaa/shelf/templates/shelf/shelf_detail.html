@@ -26,8 +26,8 @@
 		{% if user.is_superuser %}
 			<!-- EDIT / ROMOVE  -->
 			<div class="button_container">
-			<a onClick="javascript:history.go(-1);"><div class="button_accent">
-				Back
+			<a href="{% url 'shelf:shelf' %}"><div class="button_accent">
+				Back to list
 			</div></a>
 			<a href="{% url 'shelf:edit' pk=shelfdetail.pk %}"><div class="button_secondary">
 				Edit

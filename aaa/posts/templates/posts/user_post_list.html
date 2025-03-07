@@ -1,11 +1,14 @@
 <!-- aaa/posts/templates/posts/user_post_list.html -->
 {% extends 'posts/post_base.html' %}
 
+{% load my_filters %}
+{% load humanize %}
+
 {% block pre_post %}
 
 <div class="top_part">
   <div class="header">
-    <h1>@{{ post_user.username }}'s activity</h1>
+    <h1>@{{ user.username }}'s activity</h1>
   </div>
 </div>
 
@@ -13,10 +16,43 @@
 
 {% block post_content %}
 
-  {% for post in post_list %}
+  {% for item in page_obj %}
 
-{% include "posts/_post.html" with author=False group=True %}
+  <!-- GROUP -->
 
-  {% endfor %}
+  {% if item|is_app:"groups" %}
+
+    {% include 'includes/_group.html' with delete=True %}
+
+  <!-- POST -->
+
+  {% elif item|is_app:"posts" %}
+
+    {% include 'includes/_post.html' with delete=True %}
+
+  <!-- BLOG -->
+
+  {% elif item|is_app:"blog" %}
+
+    {% include 'includes/_blog.html' with user=False %}
+
+  <!-- SHELF -->
+
+  {% elif item|is_app:"shelf" %}
+
+    {% include 'includes/_shelf.html' %}
+
+{% endif %}
+
+{% endfor %}
+
+{% include 'includes/paginate.html' %}
+</div>
+
+
+
+
+
+
 
 {% endblock %}

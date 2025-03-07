@@ -5,7 +5,7 @@
   <div class="header">
   {% if user.is_superuser %}
   <h1>Shelves: organize stuff.</h1>
-  <h2><a hx-get="{% url 'shelf:add' %}" hx-target="body" hx-swap="beforeend" id="modal_trigger">
+  <h2><a href="{% url 'shelf:add' %}">
   Add an item to your shelf.</a></h2>
 
   {% else %}
@@ -54,7 +54,7 @@
 			<td>{{ shelf.year }}</td>
 			{% endif %}
 
-			<td><a href="shelf/{{ shelf.id }}">{{ shelf.title }}</a></td>
+			<td><a href="{% url 'shelf:detail' pk=shelf.pk %}">{{ shelf.title }}</a></td>
 
 
 			{% if shelf.author == 'N/A' %}

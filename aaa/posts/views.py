@@ -2,7 +2,9 @@
 from . import models
 from . import forms
 from posts.forms import PostForm, PostFormGroup
-from groups.models import Group
+from groups.models import Group, Comment
+from blog.models import Blog
+from shelf.models import Shelves
 from django.db import transaction
 
 from django.utils import timezone
@@ -11,8 +13,13 @@ from django.views import generic
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 
+from itertools import chain
+from datetime import datetime
+from operator import attrgetter
+
 from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView, RedirectView
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -112,23 +119,55 @@ class PostList(LoginRequiredMixin, PrefetchRelatedMixin, generic.ListView):
 
 
 # Shows list view of specific user's posts
-class UserPosts(generic.ListView, LoginRequiredMixin):
-	model = models.Post
-	template_name = 'posts/user_post_list.html'
+# class UserPosts(generic.ListView, LoginRequiredMixin):
+# 	model = models.Post
+# 	template_name = 'posts/user_post_list.html'
 
-	# upon calling 'UserPosts' it sets the current user's view to only see posts from the username of whoever is currently logged in
-	def get_queryset(self):
-		try:
-			self.post_user = User.objects.prefetch_related("posts").get(username__iexact=self.kwargs.get("username"))
-		except User.DoesNotExist:
-			raise Http404
-		else:
-			return self.post_user.posts.all()
+# 	# upon calling 'UserPosts' it sets the current user's view to only see posts from the username of whoever is currently logged in
+# 	def get_queryset(self):
+# 		try:
+# 			self.post_user = User.objects.prefetch_related("posts").get(username__iexact=self.kwargs.get("username"))
+# 		except User.DoesNotExist:
+# 			raise Http404
+# 		else:
+# 			return self.post_user.posts.all()
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		context['post_user'] = self.post_user
-		return context
+
+# 	def get_context_data(self, **kwargs):
+# 		context = super().get_context_data(**kwargs)
+# 		context['post_user'] = self.post_user
+# 		return context
+
+
+def User_Activity(request, username):
+    user = get_object_or_404(User, username=username)
+    activity = models.Post.objects.filter(user=user).order_by('created_at')
+    comment = Comment.objects.filter(user=user).order_by('created_at')
+    shelf = Shelves.objects.filter(user=user).order_by('created_at')
+
+
+    activity_list = list(chain(activity, comment, shelf))
+
+    sorted_objects = sorted(
+        activity_list,
+        key=lambda obj: obj.created_at if hasattr(obj, 'created_at') else datetime(1970, 1, 1),
+        reverse=True
+    )
+
+    # Paginate combined list
+    paginator = Paginator(sorted_objects, 80) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'user': user,
+        'page_obj': page_obj,
+    }
+    return render(request, 'posts/user_post_list.html', context)
+
+
+
+
 
 
 

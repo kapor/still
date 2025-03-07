@@ -23,14 +23,17 @@ from .views import IndexLoad, load_more
 
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls', namespace="posts")),
     path('updates/', include(('blog.urls', 'blog'), namespace='updates')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('groups/', include('groups.urls', namespace='groups')),
-    path("", views.IndexView.as_view(template_name='index.html'), name="home"),
-    path("activity/", views.Activity, name="activity"),
+    # path("", views.IndexView.as_view(template_name='index.html'), name="home"),
+    path("", views.Activity.as_view(), name="home"),
+    path('results', views.Activity.SearchView.as_view(), name='index_search'),
+    # path("activity/", views.Activity, name="activity"),
 
     path('contact/', include('contact.urls', namespace="contact")),
 

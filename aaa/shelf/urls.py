@@ -6,7 +6,7 @@ from shelf import views
 from . import views
 
 
-
+app_name = 'shelf'
 
 urlpatterns = [
 

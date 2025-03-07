@@ -86,7 +86,7 @@ def ShelfAdd(request):
             return redirect('/shelf')
     else:
         form = forms.ShelfEntryForm()
-    return render(request, 'shelf/shelf_modal.html',{'form':form})
+    return render(request, 'shelf/shelf_form.html',{'form':form})
 
 
 

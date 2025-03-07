@@ -3,6 +3,13 @@
 
 {% block pre_group %}
 
+{% if messages %}
+  {% for message in messages %}
+    <div class="message_success" role="alert">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
 
 <div class="top_part">
 	<div class="header">
@@ -79,9 +86,9 @@
 
 <div class="group_detail_lists">
 		<h3 class="h3">Posts</h3>
-		{% for post in group.posts.all %}
+		{% for item in group.posts.all %}
 
-			{% include "posts/_post.html" with author=True group=False %}
+			{% include 'includes/_post.html' with delete=True %}
 
   	{% empty %}
   		<h3>No activity yet.</h3>
@@ -92,9 +99,9 @@
 
 <div class="group_detail_lists">
 		<h3 class="h3">Comments</h3>
-		{% for post in comment  %}
+		{% for item in comment  %}
 
-			{% include "groups/_group_comments.html" with author=True group=False %}
+			{% include 'includes/_group.html' with delete=True %}
 
   	{% empty %}
 		{% endfor %}

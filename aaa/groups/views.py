@@ -156,7 +156,7 @@ class GroupPost(LoginRequiredMixin, RedirectView):
 class CreateGroup(LoginRequiredMixin, CreateView):
 	model = Group
 	form_class = GroupForm
-  
+	# success_url = reverse_lazy('groups:all')
 
 
 

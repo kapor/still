@@ -92,10 +92,10 @@ class BlogDraftListView(LoginRequiredMixin, ListView):
 	model = Blog
 	login_url = "/login/"
 	template_name = 'blog/draft_list.html'
-	redirect_field_name = "blog/blog_list.html"
+	redirect_field_name = "blog/draft_list.html'"
 	# returning all posts that are null (isnull=true)
 	def get_queryset(self):
-		return Blog.objects.filter(published_date__isnull=True).order_by('create_date')
+		return Blog.objects.filter(published_date__isnull=True).order_by('-created_at')
 
 
 

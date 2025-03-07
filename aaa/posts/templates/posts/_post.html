@@ -1,35 +1,52 @@
 <!-- aaa/posts/templates/posts/posts/_post.html -->
+{% load my_filters %}
 
-	<div class="post" id="post_list">
 
+<div class="post" id="post_list">
 
-	    <div class="post_message" style="display:inline-flex;">
-	    <!--<a href="{% url 'posts:single' username=post.user.username pk=post.pk %}"> -->
-	        <h3>{{ post.message | safe }}</h3>
-	      {% if user.is_superuser or post.user == user and not hide_delete %}
-	      <a hx-get="{% url 'posts:delete' pk=post.pk %}" hx-target="body" hx-swap="beforeend">
-	        <div class="modal_button_xsmall" id="delete_post">
-	        remove
-	        </div>
-	      </a>
-	      {% else %}
-	      {% endif %}
-	    </div>
-      <br>
-		<span class="username">
-			{% if user %}
-				<a href="{% url 'posts:for_user' username=post.user.username %}">
-				@{{ post.user.username }}
-				</a>
-			{% endif %}
-			<time class="time">{{ post.created_at }}</time>
-			{% if group %}
-		        {% if post.group %}
-			        <span class="group-name">in <a href="{{ post.group.get_absolute_url }}">
-			        {{post.group.name}}</a>
-			        </span>
-		        {% endif %}
+	<div class="post_message_group">
+
+		<div>
+
+		    <div class="post_message"">
+		    <!--<a href="{% url 'posts:single' username=post.user.username pk=post.pk %}"> -->
+			<h3>{{ post.message | safe }}</h3>
+			{% if delete %}
+		      {% if user.is_superuser or post.user == user and not hide_delete %}
+			      {% if item|is_app:"groups" %}
+			      <a href="{% url 'groups:commentdelete' pk=post.pk %}">
+			      {% else %}
+			      <a hx-get="{% url 'posts:delete' pk=post.pk %}" hx-target="body" hx-swap="beforeend">
+			      {% endif %}
+			        <div class="modal_button_xsmall" id="delete_post">
+			        remove
+			        </div>
+			      </a>
+		      {% else %}
+		      {% endif %}
 		    {% endif %}
-		</span>
+		    </div>
+	      <br>
+			<span class="username">
+				{% if author %}
+					<a href="{% url 'posts:for_user' username=post.user.username %}">
+					@{{ post.user.username }}
+					</a>
+				{% endif %}
+				<time class="time">{{ post.created_at }}</time>
+				{% if group %}
+			        {% if post.group %}
+				        <span class="group-name">in 
+				        	<a href="{{ post.group.get_absolute_url }}">
+							{{post.group.name}}
+				    		</a>
+				        </span>
+			        {% endif %}
+			    {% endif %}
+			</span>
 
+		</div>
+			
 	</div>
+
+</div>
