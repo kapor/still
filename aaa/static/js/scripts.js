@@ -80,11 +80,6 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 } 
 
-
-
-
-
-
 /* ++++++++++ CONFIRMATION PROMPT ++++++++++ */
 
 
@@ -93,5 +88,14 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 } 
 
+
+/* ++++++++++ MESSAGE CONFIRMATION TIMEOUT ++++++++++ */
+
+setTimeout(function() {
+let messages = document.querySelectorAll('.message_success');
+messages.forEach(function(message) {
+  message.style.display = 'none';
+});
+}, 3000); // Time in milliseconds (e.g., 3000ms = 3 seconds)
 
 

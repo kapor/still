@@ -43,11 +43,20 @@ def AddPost(request):
         form = PostForm(user=request.user)	
     else:
         form = PostForm(data=request.POST, user=request.user)
+        # if form.is_valid():
+        #     form.instance.user = request.user
         if form.is_valid():
             form.instance.user = request.user
-        with transaction.atomic():
-            post = form.save()
+            post = form.save(commit=False)
+            post.save()
+            photo = form.save()
+            messages.success(request, 'Post added')
             return redirect('posts:all')
+        # with transaction.atomic():
+        #     post = form.save()
+        #     photo = form.save()
+        #     messages.success(request, 'Post added')
+        #     return redirect('posts:all')
     context = {'form':form}
     return render(request, 'posts/post_modal.html', context)
 
@@ -139,31 +148,6 @@ class PostList(LoginRequiredMixin, PrefetchRelatedMixin, generic.ListView):
 # 		return context
 
 
-def User_Activity(request, username):
-    user = get_object_or_404(User, username=username)
-    activity = models.Post.objects.filter(user=user).order_by('created_at')
-    comment = Comment.objects.filter(user=user).order_by('created_at')
-    shelf = Shelves.objects.filter(user=user).order_by('created_at')
-
-
-    activity_list = list(chain(activity, comment, shelf))
-
-    sorted_objects = sorted(
-        activity_list,
-        key=lambda obj: obj.created_at if hasattr(obj, 'created_at') else datetime(1970, 1, 1),
-        reverse=True
-    )
-
-    # Paginate combined list
-    paginator = Paginator(sorted_objects, 80) 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-    context = {
-        'user': user,
-        'page_obj': page_obj,
-    }
-    return render(request, 'posts/user_post_list.html', context)
 
 
 
@@ -189,24 +173,10 @@ class EditPost(LoginRequiredMixin, UpdateView):
 
 
 class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
-	model = models.Post
-	prefetch_related = ('user', 'group')
-	template_name = 'posts/post_confirm_delete.html'
-	success_url = '/'
-
-	# def get_success_url(self):
-	# 	redirect_url = self.request.session.get('redirect_url') or self.request.META.get('HTTP_REFERER')
-
-	# 	if redirect_url:
-	# 		return redirect(redirect_url)
-	# 	else:
-	# 		return redirect('/')
-
-
-	# def get(self, request, *args, **kwargs):
-	# 	request.session['redirect_url'] = request.META.get('HTTP_REFERER')
-	# 	return super().get(request, *args, **kwargs)
-
+    model = models.Post
+    prefetch_related = ('user', 'group')
+    template_name = 'posts/post_confirm_delete.html'
+    success_url = '/'
 
 
 

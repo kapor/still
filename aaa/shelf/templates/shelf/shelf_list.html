@@ -1,6 +1,9 @@
 {% extends "shelf/shelf_base.html" %}
 
 {% block pre_shelf %}
+
+
+
 <div class="top_part">
   <div class="header">
   {% if user.is_superuser %}
@@ -72,7 +75,9 @@
 			<td>––</td>
 			{% endif %}
 
-			<td>{{ shelf.user }}</td>
+		
+			<td><a href="{% url 'for_user' username=shelf.user.username %}">{{ shelf.user }}</a></td>
+
 
 			<td>
 				<div class=cover_crop>

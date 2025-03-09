@@ -32,7 +32,7 @@
         <!-- USER/URL/TIMESTAMP -->        
         <span class="username">
           {% if user %}
-            <a href="{% url 'posts:for_user' username=item.user.username %}">
+            <a href="{% url 'for_user' username=item.user.username %}">
             @{{ item.user.username }}
             </a>
           {% endif %}
@@ -45,11 +45,53 @@
               </a>
             </span>
           {% endif %}
+          {{ item.created_at|naturaltime }}
         </span>
         
 
       </div>
 
     </div>
+
+<!-- <script>
+
+  function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              if (cookie.startsWith(name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+  }
+  
+  const csrfToken = getCookie('csrftoken');
+
+
+$.ajax({
+  const csrftoken = "{{ csrf_token }}";
+  url: "{% url 'posts:delete' pk=item.pk %}",
+  type: 'DELETE',
+  data: $('posts.PostForm').serialize(),
+  headers: {'X-CSRFToken': csrfToken},
+
+  success: function(response) {
+    // Check for a success signal in the response
+    if (response.success) {
+      window.location.reload();
+    } else {
+        // Handle errors or other outcomes
+    }
+  },
+  error: function(error) {
+    // Handle AJAX errors
+  }
+});
+</script> -->
 
   </div>

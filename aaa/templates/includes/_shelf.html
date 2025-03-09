@@ -40,7 +40,7 @@
           <span class="username">
 
           {% if user %}
-            <a href="{% url 'posts:for_user' username=item.user.username %}">
+            <a href="{% url 'for_user' username=item.user.username %}">
             @{{ item.user }}
             </a>
           {% endif %}

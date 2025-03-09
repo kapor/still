@@ -21,7 +21,7 @@
 		  <br>
 			<span class="username">
 				{% if author %}
-					<a href="{% url 'posts:for_user' username=post.user %}">@{{ post.user }}</a>
+					<a href="{% url 'for_user' username=post.user %}">@{{ post.user }}</a>
 				{% endif %}
 				<time class="time">{{ post.created_at }}</time>
 			</span>

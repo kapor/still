@@ -3,13 +3,6 @@
 
 {% block pre_group %}
 
-{% if messages %}
-  {% for message in messages %}
-    <div class="message_success" role="alert">
-      {{ message }}
-    </div>
-  {% endfor %}
-{% endif %}
 
 <div class="top_part">
 	<div class="header">
@@ -101,7 +94,7 @@
 		<h3 class="h3">Comments</h3>
 		{% for item in comment  %}
 
-			{% include 'includes/_group.html' with delete=True %}
+			{% include 'includes/_comment.html' with delete=True %}
 
   	{% empty %}
 		{% endfor %}
@@ -111,7 +104,7 @@
 
 {% if user in group.members.all %}
 <div class="docked_container">
-	<div class="search_bar" style="max-width:1000px; margin-top:40px">
+	<div class="search_bar">
 		<form method="post">
 			{% csrf_token %}
 		    {{ form }}

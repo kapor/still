@@ -21,10 +21,8 @@
           </div>
           <!-- USER/URL/TIMESTAMP -->
           <span class="username">
-              <a href="{% url 'blog_detail' pk=item.pk %}">
-              @{{ item.author }}
-              </a>
-              Published this
+              Published
+              {{ item.created_at|naturaltime }}
             <br>
           </span>
         </div>

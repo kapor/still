@@ -8,7 +8,6 @@ app_name = 'posts'
 urlpatterns = [
     path('', views.PostList.as_view(), name='all'),
     # path('by/<username>', views.UserPosts.as_view(), name='for_user'),
-    path('by/<username>', views.User_Activity, name='for_user'),
 
 
     path('by/<username>/<pk>', views.PostDetail.as_view(), name='single'),

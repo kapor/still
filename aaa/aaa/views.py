@@ -17,16 +17,21 @@ from django.db.models import Q
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.db.models import F
 
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.http import require_GET
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.core import serializers
 
+from django.db import models
+from groups.models import Group
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 
@@ -54,9 +59,10 @@ class Activity(ListView):
     ordering = "created_at"
 
     def get(self, request):
+
         post = Post.objects.all()
         comment = Comment.objects.all()
-        blog = Blog.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+        blog = Blog.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
         shelf = Shelves.objects.all()
 
         combined_list = list(chain(post, comment, blog, shelf))
@@ -147,7 +153,31 @@ def load_more(request):
 
 
 
+def User_Activity(request, username):
+    user = get_object_or_404(User, username=username)
+    activity = Post.objects.filter(user=user).order_by('created_at')
+    comment = Comment.objects.filter(user=user).order_by('created_at')
+    shelf = Shelves.objects.filter(user=user).order_by('created_at')
 
+
+    activity_list = list(chain(activity, comment, shelf))
+
+    sorted_objects = sorted(
+        activity_list,
+        key=lambda obj: obj.created_at if hasattr(obj, 'created_at') else datetime(1970, 1, 1),
+        reverse=True
+    )
+
+    # Paginate combined list
+    paginator = Paginator(sorted_objects, 80) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'user': user,
+        'page_obj': page_obj,
+    }
+    return render(request, 'user_activity.html', context)
 
 
 

@@ -18,36 +18,8 @@
 
 
 
-{% for blog in blog_list %}
-<div class="publish_post">
-
-  <div class="crop">
-    {% if blog.image %}
-      <a href="{% url 'blog_detail' pk=blog.pk %}">
-      <img src="/media/{{ blog.image }}">
-      </a>
-    {% else %}
-      <a href="{% url 'blog_detail' pk=blog.pk %}">
-      <img src="/media/images/blank.jpg">
-      </a>
-    {% endif %}
-  </div>
-
-  <div class="blog_post">
-    <a href="{% url 'blog_detail' pk=blog.pk %}">
-    <h3>{{ blog.title }}</h3>
-    </a>
-    <time class="time">
-    <p>{{ blog.published_date | date:'d M Y' }}</p>
-    </time>
-    <div class="description">
-    {{ blog.message | safe }}
-    </div>
-  </div>
-
-
-
-</div>
+{% for item in blog_list %}
+{% include 'includes/_blog.html' with delete=True %}
 {% endfor %}
 
 

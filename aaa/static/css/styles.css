@@ -264,11 +264,12 @@ input[type=file]::file-selector-button {
   flex-direction: row;
   justify-content: flex-end;
   gap: 20px;
-  margin: 20px 0px;
+  margin: 40px 0px 20px 0px;
   position: sticky;
   top: 66px;
   background-color: white;
   padding: 20px 0px;
+  max-width: 1560px;
 }
 
 .search_bar .field_small {
@@ -1038,7 +1039,6 @@ li a.nav_link,
 .post4,
 .post5,
 .post_modal,
-.blog_post,
 .post_after {
   font-family: Courier new, Roboto;
   font-style: normal;
@@ -1060,7 +1060,6 @@ li a.nav_link,
 .post4 a,
 .post5 a,
 .post_modal a,
-.blog_post a,
 .post_after a {
   color: #8F00FF;
   text-decoration: none;
@@ -1071,7 +1070,6 @@ li a.nav_link,
 .post4 time a,
 .post5 time a,
 .post_modal time a,
-.blog_post time a,
 .post_after time a {
   color: #333;
 }
@@ -1081,7 +1079,6 @@ li a.nav_link,
 .post4 p,
 .post5 p,
 .post_modal p,
-.blog_post p,
 .post_after p {
   color: #333;
 }
@@ -1091,7 +1088,6 @@ li a.nav_link,
 .post4 .photo_detail,
 .post5 .photo_detail,
 .post_modal .photo_detail,
-.blog_post .photo_detail,
 .post_after .photo_detail {
   /*     max-width: 200px; */
   width: 100%;
@@ -1102,7 +1098,6 @@ li a.nav_link,
 .post4 .title,
 .post5 .title,
 .post_modal .title,
-.blog_post .title,
 .post_after .title {
   font-family: Helvetica neue, sans-serif;
   color: #00FF7F;
@@ -1123,7 +1118,6 @@ li a.nav_link,
 .post4 .title .publish,
 .post5 .title .publish,
 .post_modal .title .publish,
-.blog_post .title .publish,
 .post_after .title .publish {
   font-weight: 800;
   letter-spacing: 1px;
@@ -1137,7 +1131,6 @@ li a.nav_link,
 .post4 .comments,
 .post5 .comments,
 .post_modal .comments,
-.blog_post .comments,
 .post_after .comments {
   font-family: Helvetica neue, sans-serif;
   color: #00FF7F;
@@ -1149,7 +1142,6 @@ li a.nav_link,
 .post4 .content,
 .post5 .content,
 .post_modal .content,
-.blog_post .content,
 .post_after .content {
   padding: 16px 0px 20px 0px;
 }
@@ -1159,7 +1151,6 @@ li a.nav_link,
 .post4 .content p,
 .post5 .content p,
 .post_modal .content p,
-.blog_post .content p,
 .post_after .content p {
   font-family: Courier new, Roboto;
   font-style: normal;
@@ -1180,6 +1171,10 @@ li a.nav_link,
 .post4,
 .post5 {
   display: flex;
+}
+
+.post {
+  padding: 20px 20px 20px 20px;
 }
 
 .post2 {
@@ -1228,6 +1223,32 @@ li a.nav_link,
   display: flex;
   flex-direction: row;
   gap: 8px;
+}
+
+.blog_post {
+  font-family: Courier new, Roboto;
+  font-style: normal;
+  font-weight: 200;
+  list-style-type: none;
+  letter-spacing: 0x;
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: none;
+  padding: 20px 0px 20px 0px;
+  line-height: 26px;
+  /*   max-width: 1000px; */
+  margin: auto;
+  margin-bottom: 2px;
+}
+.blog_post .description {
+  padding-top: 8px;
+}
+.blog_post .time {
+  padding-top: 8px;
+}
+.blog_post a {
+  color: #8F00FF;
+  text-decoration: none;
 }
 
 hr {
@@ -1658,6 +1679,7 @@ section {
   padding-bottom: 20px;
   border-bottom: 1px dotted black;
   margin-bottom: 20px;
+  max-width: 1400px;
 }
 
 .description p {
@@ -1823,6 +1845,7 @@ ul.paginate li.active {
 
 .post_message {
   max-width: 1000px;
+  padding-bottom: 8px;
 }
 
 .post_text {
@@ -1844,7 +1867,7 @@ ul.paginate li.active {
   z-index: 2;
   position: fixed;
   font-family: Helvetica neue, sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1854,7 +1877,6 @@ ul.paginate li.active {
   top: 40px;
   border-radius: 4px;
   margin: 0;
-  position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
 }

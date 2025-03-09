@@ -20,7 +20,7 @@ from django.urls import include, path
 from . import views
 from .views import IndexLoad, load_more
 
-
+app_name = 'aaa'
 
 urlpatterns = [
 
@@ -33,7 +33,8 @@ urlpatterns = [
     # path("", views.IndexView.as_view(template_name='index.html'), name="home"),
     path("", views.Activity.as_view(), name="home"),
     path('results', views.Activity.SearchView.as_view(), name='index_search'),
-    # path("activity/", views.Activity, name="activity"),
+    path('user/<username>', views.User_Activity, name='for_user'),
+
 
     path('contact/', include('contact.urls', namespace="contact")),
 
@@ -42,7 +43,7 @@ urlpatterns = [
     path('load/', load_more, name='load'),
 
     path('', include('blog.urls')),
-    path('', include(('shelf.urls', 'shelf'), namespace='shelf'))
+    path('', include(('shelf.urls', 'shelf'), namespace='shelf')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

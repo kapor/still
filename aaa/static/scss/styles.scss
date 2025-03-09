@@ -260,7 +260,6 @@ li a.nav_link,
 .post4,
 .post5,
 .post_modal,
-.blog_post,
 .post_after {
   font-family: $font-stack2;
   font-style: normal;
@@ -360,6 +359,10 @@ li a.nav_link,
   display: flex;
 }
 
+.post {
+  padding: 20px 20px 20px 20px;
+}
+
 .post2 {
   border-left: 8px solid $accent1;
   padding: 40px 0px 40px 40px;
@@ -410,6 +413,37 @@ li a.nav_link,
 
 
 
+.blog_post {
+  font-family: $font-stack2;
+  font-style: normal;
+  font-weight: 200;
+  list-style-type: none;
+  letter-spacing: 0x;
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: none;
+  padding: 20px 0px 20px 0px;
+  line-height: 26px;
+  /*   max-width: 1000px; */
+  margin: auto;
+  margin-bottom: 2px;
+
+
+  .description {
+    padding-top: 8px;
+  }
+
+  .time {
+    padding-top: 8px;
+  }
+
+  a {
+    color: $accent1;
+    text-decoration: none;
+
+  }
+
+}
 
 
 
@@ -858,7 +892,7 @@ section {
 }
 
 
-.posts {
+.post {
 
 }
 
@@ -885,6 +919,7 @@ section {
   padding-bottom: 20px;
   border-bottom: 1px dotted black;
   margin-bottom: 20px;
+  max-width: 1400px;
 }
 
 
@@ -1076,6 +1111,7 @@ ul.paginate li.active {
 
 .post_message {
   max-width: 1000px;
+  padding-bottom: 8px;
 }
 
 .post_text {
@@ -1100,7 +1136,7 @@ ul.paginate li.active {
   z-index: 2;
   position: fixed;
   font-family: $font-stack1;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1110,7 +1146,6 @@ ul.paginate li.active {
   top: 40px;
   border-radius: 4px;
   margin: 0;
-  position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
 }

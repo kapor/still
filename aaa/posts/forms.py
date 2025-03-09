@@ -1,7 +1,7 @@
 from django import forms
 from .models import Post
 from groups.models import Group
-
+from django.forms import ModelForm, FileInput, ImageField, ModelChoiceField, ClearableFileInput
 
 
 
@@ -12,9 +12,19 @@ class post_group(forms.Select):
 
 
 
+class file_input_initial(forms.ClearableFileInput):
+    template_name = 'widgets/file_input_initial.html'
+
+
+class file_input_edit(forms.ClearableFileInput):
+    template_name = 'widgets/file_input_edit.html'
+
+
+    
 
 class PostForm(forms.Form):
 	message = forms.CharField(widget=forms.Textarea)
+	image = forms.ImageField(label="Image", required=False)
 	group = forms.ModelChoiceField(
 		label="Group",
 		required=True,
@@ -32,7 +42,9 @@ class PostForm(forms.Form):
 		self.fields['message'].widget.attrs.update({'class':'field_description'})
 		self.fields['group'].queryset = qs
 		self.fields['group'].widget.attrs.update({'class': 'field_select', 'placeholder': ''})
-
+		self.fields['image'].widget.attrs.update({'class': 'field_image'})
+		for field in self.fields.values():
+			self.fields['image'].required = False
 
 
 

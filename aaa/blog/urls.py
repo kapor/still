@@ -4,6 +4,9 @@ from django.urls import path, include
 from . import views
 from posts import urls
 
+
+
+
 urlpatterns = [
 
     path('', views.BlogListView.as_view(), name='blog_list'),
