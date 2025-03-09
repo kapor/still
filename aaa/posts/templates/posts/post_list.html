@@ -11,7 +11,7 @@
     {% if user.is_authenticated %}
     <h1>Hey
       <!-- link to all the user's posts -->
-      <a href="{% url 'posts:for_user' username=user.username %}">
+      <a href="{% url 'for_user' username=user.username %}">
       {{user.username}}</a>.<br>
       These are posts.<br>
           <a hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend" id="modal_trigger">
@@ -42,10 +42,9 @@
 
 <div class="content">
   <h1>All Activity</h1>
-{% for post in post_list %}
+{% for item in post_list %}
 
-{% include "posts/_post.html" with author=True group=True %}
-
+{% include 'includes/_post.html' with delete=True %}
 
 {% endfor %}
 </div>

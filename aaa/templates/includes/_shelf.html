@@ -1,0 +1,68 @@
+{% load my_filters %}
+{% load humanize %}
+
+
+  <div {% if item|is_app:"shelf" %} class="post5" {% endif %} id="post_list">
+
+      <div class="post_message_group">
+
+        <div>
+          <div class="button_group">
+        <!-- TITLE/MESSAGE -->
+          <div class="post_message">
+            <a href="{% url 'shelf:detail' pk=item.pk %}">
+            <h3>{{ item.title }}</h3>
+            {% if item.author %}
+            <h3>by {{ item.author }}</h3>
+            {% else %}
+            {% endif %}
+            </a>
+          </div>
+        <!-- DELETE BUTTON -->
+          {% if delete %}
+            {% if user.is_superuser or post.user == user and not hide_delete %}
+            <a hx-get="{% url 'shelf:delete' pk=item.pk %}" hx-target="body" hx-swap="beforeend">
+              <div class="modal_button_xsmall">remove</div>
+            </a>
+            {% endif %}
+          {% endif %}
+        </div>
+        <!-- TEXT/MESSAGE -->
+          {% if item.description == None %}
+          {% else %}
+          <div class="post_text">
+            <a href="{% url 'shelf:detail' pk=item.pk %}">
+              <p>{{ item.description | safe }}</p>
+            </a>
+          </div>
+          {% endif %}
+        <!-- USER/URL/TIMESTAMP -->
+          <span class="username">
+
+          {% if user %}
+            <a href="{% url 'for_user' username=item.user.username %}">
+            @{{ item.user }}
+            </a>
+          {% endif %}
+
+            added this to a
+            <a href="{% url 'shelf:shelf' %}">
+            shelf
+            </a>
+          </span>
+        </div>
+      </div>
+
+        <!-- IMAGE -->
+        <div class="crop">
+           <a href="{% url 'shelf:detail' pk=item.pk %}">
+          {% if item.image %}
+          <img src="/media/{{ item.image }}">
+          {% else %}
+          <img src="/media/images/blank.jpg">
+          {% endif %}
+          </a>
+        </div>
+
+
+  </div>

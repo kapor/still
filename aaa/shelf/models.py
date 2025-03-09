@@ -39,6 +39,7 @@ class Shelves(models.Model):
 	description = models.TextField(blank=True, null=True)
 	image = models.ImageField(upload_to=get_upload_path, default="shelves/blank.jpg", blank=True)
 	notes = models.TextField(blank=True, null=True)
+	created_at = models.DateTimeField(auto_now=True)
 
 	class Meta:
 		verbose_name_plural = "Shelves"

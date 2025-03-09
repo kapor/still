@@ -8,6 +8,7 @@ from .models import Blog, Tags
 from .forms import BlogForm, BlogUpdate
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
+from django.contrib import messages
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -22,6 +23,7 @@ from django.views.generic import View, TemplateView, ListView, DetailView, FormV
 class BlogListView(ListView):
 	model = Blog
 	template_name = 'blog/blog_list.html'
+
 	def get_queryset(self):
 		return Blog.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 
@@ -42,6 +44,9 @@ class AddBlog(LoginRequiredMixin, CreateView):
 	required = False
 	success_url = reverse_lazy('blog:draft_list')
 
+	def post(self, request, *args, **kwargs):
+		messages.success(self.request, "Post successfully added")
+		return super().post(request, *args, **kwargs)
 
 
 
@@ -69,12 +74,25 @@ class BlogUpdateView(LoginRequiredMixin, UpdateView):
 	form_class = BlogUpdate
 	required = False
 
+	def post(self, request, *args, **kwargs):
+		messages.success(self.request, "Post successfully updated")
+		return super().post(request, *args, **kwargs)
+
+
+
+
 
 class BlogDelete(LoginRequiredMixin, DeleteView):
 	model = Blog
 	template_name = 'blog/blog_confirm_delete.html'
 	redirect_field_name = 'blog/blog_detail.html'
 	success_url = reverse_lazy('blog:blog_list')
+
+	def post(self, request, *args, **kwargs):
+		messages.success(self.request, "Post successfully deleted")
+		return super().post(request, *args, **kwargs)
+
+
 
 
 class BlogDeleteDraft(LoginRequiredMixin, DeleteView):
@@ -83,7 +101,9 @@ class BlogDeleteDraft(LoginRequiredMixin, DeleteView):
 	success_url = reverse_lazy('blog:blog_list')
 	
 
-
+	def post(self, request, *args, **kwargs):
+		messages.success(self.request, "Post successfully deleted")
+		return super().post(request, *args, **kwargs)
 
 
 
@@ -92,10 +112,10 @@ class BlogDraftListView(LoginRequiredMixin, ListView):
 	model = Blog
 	login_url = "/login/"
 	template_name = 'blog/draft_list.html'
-	redirect_field_name = "blog/blog_list.html"
+	redirect_field_name = "blog/draft_list.html'"
 	# returning all posts that are null (isnull=true)
 	def get_queryset(self):
-		return Blog.objects.filter(published_date__isnull=True).order_by('create_date')
+		return Blog.objects.filter(published_date__isnull=True).order_by('-created_at')
 
 
 
@@ -104,6 +124,10 @@ def blog_publish(request, pk):
 	blog = get_object_or_404(Blog, pk=pk)
 	blog.publish()
 	return redirect('blog_detail', pk=pk)
+
+	def post(self, request, *args, **kwargs):
+		messages.success(self.request, "Post is now published")
+		return super().post(request, *args, **kwargs)
 
 
 

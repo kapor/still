@@ -13,6 +13,8 @@ User = get_user_model()
 
 
 
+def get_upload_path(instance, filename):
+    return 'posts/{0}/{1}'.format(instance.user.username, filename)
 
 
 class Post(models.Model):
@@ -21,6 +23,7 @@ class Post(models.Model):
     message = models.TextField(unique=False)
     message_html = models.TextField(editable=False)
     group = models.ForeignKey(Group, related_name="posts", null=True, blank=True, on_delete=models.PROTECT)
+    image = models.ImageField(upload_to=get_upload_path, default="posts/blank.jpg", blank=True)
 
 
     def __str__(self):

@@ -12,7 +12,7 @@
 		{% if user.is_authenticated %}
 		<h1>Hey
 			<!-- link to all the user's posts -->
-			<a href="{% url 'posts:for_user' username=user.username %}">
+			<a href="{% url 'for_user' username=user.username %}">
 			{{user.username}}</a>.<br>
 				These are groups.<br>
 			{% if user.is_superuser %}
@@ -35,11 +35,6 @@
 {% endif %}
 
 </div>
-
-
-
-
-
 
 
 

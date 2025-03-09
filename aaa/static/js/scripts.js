@@ -80,48 +80,22 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 } 
 
+/* ++++++++++ CONFIRMATION PROMPT ++++++++++ */
 
 
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+} 
 
-/* ++++++++++ DISABLE SCROLLBAR ++++++++++ */
 
-$('.modal_underlay').click(function(){
-  $('.body_block').css("overflow", "visible");
-  $('body').css("overflow", "visible");
+/* ++++++++++ MESSAGE CONFIRMATION TIMEOUT ++++++++++ */
+
+setTimeout(function() {
+let messages = document.querySelectorAll('.message_success');
+messages.forEach(function(message) {
+  message.style.display = 'none';
 });
+}, 3000); // Time in milliseconds (e.g., 3000ms = 3 seconds)
 
-$('#modal_close').click(function(){
-  $('.body_block').css("overflow", "visible");
-  $('body').css("overflow", "visible");
-});
-
-$(document).keyup(function(e) {
- if (e.key === "Escape") { 
-    $('.body_block').css("overflow", "visible");
-    $('body').css("overflow", "visible");
-  }
-});
-
-$('.modal_button_xsmall').click(function(){
-  $('.body_block').css("overflow", "hidden");
-  $('body').css("overflow", "hidden");
-});
-
-$('#modal_trigger').click(function(){
-  $('.body_block').css("overflow", "hidden");
-  $('body').css("overflow", "hidden");
-});
-
-
-document.addEventListener('keydown', function(event) {
-  if (event.keyCode === 27) {
-    const modal = document.querySelector('#modal'); // Replace '.modal' with the actual selector of your modal
-    if (modal && modal.style.display !== 'none') {
-      const closeButton = modal.querySelector('#modal_close'); // Replace '.close-button' with the actual selector of your close button
-      if (closeButton) {
-        closeButton.click();
-      }
-    }
-  }
-});
 

@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+
 <div class="top_part">
   <div class="header">
   {% if user.is_superuser %}
-  <h1 id="modal_add">Published:<a hx-get="{% url 'blog:add' %}" hx-target="body" hx-swap="beforeend" id="modal_trigger">Add</a></h1>
+  <h1 id="modal_add">Published:<a hx-get="{% url 'blog:add' %}" hx-target="body" hx-swap="beforeend" hx-trigger="click" id="modal_trigger">Add</a></h1>
   {% else %}
   <h1>Blog</h1>
   {% endif %}
@@ -14,36 +16,10 @@
   </div>
 </div>
 
-{% for blog in blog_list %}
-<div class="publish_post">
-
-  <div class="crop">
-    {% if blog.image %}
-      <a href="{% url 'blog_detail' pk=blog.pk %}">
-      <img src="/media/{{ blog.image }}">
-      </a>
-    {% else %}
-      <a href="{% url 'blog_detail' pk=blog.pk %}">
-      <img src="/media/images/blank.jpg">
-      </a>
-    {% endif %}
-  </div>
-
-  <div class="post">
-    <a href="{% url 'blog_detail' pk=blog.pk %}">
-    <h3>{{ blog.title }}</h3>
-    </a>
-    <time class="time">
-    <p>{{ blog.published_date | date:'d M Y' }}</p>
-    </time>
-    <div class="description">
-    {{ blog.text | safe }}
-    </div>
-  </div>
 
 
-
-</div>
+{% for item in blog_list %}
+{% include 'includes/_blog.html' with delete=True %}
 {% endfor %}
 
 

@@ -1,35 +1,36 @@
 <!-- aaa/posts/templates/posts/posts/_post.html -->
+{% load my_filters %}
 
-	<div class="post" id="post_list">
 
+<div class="post" id="post_list">
 
-	    <div class="post_message" style="display:inline-flex;">
-	    <!--<a href="{% url 'posts:single' username=post.user.username pk=post.pk %}"> -->
-	        <h3>{{ post.message | safe }}</h3>
-	      {% if user.is_superuser or post.user == user and not hide_delete %}
-	      <a hx-get="{% url 'posts:delete' pk=post.pk %}" hx-target="body" hx-swap="beforeend">
-	        <div class="modal_button_xsmall" id="delete_post">
-	        remove
-	        </div>
-	      </a>
-	      {% else %}
-	      {% endif %}
+	<div>
+
+	    <div class="post_message">
+		<h3>{{ post.message | safe }}</h3>
 	    </div>
-      <br>
+
 		<span class="username">
+
 			{% if user %}
-				<a href="{% url 'posts:for_user' username=post.user.username %}">
+				<a href="{% url 'for_user' username=post.user.username %}">
 				@{{ post.user.username }}
 				</a>
 			{% endif %}
+
 			<time class="time">{{ post.created_at }}</time>
 			{% if group %}
 		        {% if post.group %}
-			        <span class="group-name">in <a href="{{ post.group.get_absolute_url }}">
-			        {{post.group.name}}</a>
+			        <span class="group-name">in 
+			        	<a href="{{ post.group.get_absolute_url }}">
+						{{post.group.name}}
+			    		</a>
 			        </span>
 		        {% endif %}
 		    {% endif %}
-		</span>
 
+		</span>
+			
 	</div>
+
+</div>

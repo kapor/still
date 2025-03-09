@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse, reverse_lazy
+from groups.models import Group, Comment
+from blog.models import Blog
+from shelf.models import Shelves
+from posts.models import Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView
@@ -80,8 +84,31 @@ class reg():
 
 
 
+def User_Activity(request, username):
+    user = get_object_or_404(User, username=username)
+    activity = models.Post.objects.filter(user=user).order_by('created_at')
+    comment = Comment.objects.filter(user=user).order_by('created_at')
+    shelf = Shelves.objects.filter(user=user).order_by('created_at')
 
 
+    activity_list = list(chain(activity, comment, shelf))
+
+    sorted_objects = sorted(
+        activity_list,
+        key=lambda obj: obj.created_at if hasattr(obj, 'created_at') else datetime(1970, 1, 1),
+        reverse=True
+    )
+
+    # Paginate combined list
+    paginator = Paginator(sorted_objects, 80) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'user': user,
+        'page_obj': page_obj,
+    }
+    return render(request, 'posts/user_post_list.html', context)
 
 
 

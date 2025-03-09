@@ -1,6 +1,7 @@
 <!-- aaa/templates/index.html -->
 {% extends 'base.html' %}
 
+{% load my_filters %}
 
 
 {% block content %}
@@ -11,7 +12,7 @@
     {% if user.is_authenticated %}
     <h1>Hey
       <!-- link to all the user's posts -->
-      <a href="{% url 'posts:for_user' username=user.username %}">
+      <a href="{% url 'for_user' username=user.username %}">
       {{user.username}}</a>.
     </h1>
     {% else %}
@@ -23,18 +24,49 @@
   </div>
 </div>
 
+<!-- {% include 'includes/search_home.html' %}  -->
+
+<div>
+{% for item in page_obj %}
+
+<!-- GROUP -->
+
+{% if item|is_app:"groups" %}
+
+{% include 'includes/_comment.html' with delete=True %}
+
+<!-- POST -->
+
+{% elif item|is_app:"posts" %}
+
+{% include 'includes/_post.html' with delete=True %}
+
+<!-- BLOG -->
+
+{% elif item|is_app:"blog" %}
+
+{% include 'includes/_blog.html' %}
+
+<!-- SHELF -->
+
+{% elif item|is_app:"shelf" %}
+
+{% include 'includes/_shelf.html' %}
 
 
+{% endif %}
 
-  {% for post in data %}
-    {% include "posts/_post.html" with user=True group=True %}
-  {% endfor %}
+{% endfor %}
 
 
+{% include 'includes/paginate.html' %}
+</div>
 
 <div>
   {% include 'index_grid.html' %}
 </div>
+
+
 
 
 

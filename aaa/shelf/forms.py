@@ -1,6 +1,6 @@
 from django import forms
 from .models import Shelves, get_upload_path
-from django.forms import ModelForm, FileInput, ImageField, ModelChoiceField
+from django.forms import ModelForm, FileInput, ImageField, ModelChoiceField, ClearableFileInput
 from taggit.forms import TagField
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator

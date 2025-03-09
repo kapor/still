@@ -3,13 +3,15 @@
 
 
 <div class="postlist">
-    <div class="post">
+
+
+    <div class="blog_post">
       <h3>{{ blog_detail.title }}</h3>
       <div class="time">
       <p>{{ blog_detail.published_date | date:'d M Y' }}</p>
       </div>
       <div class="description">
-      {{ blog_detail.text | safe }}
+      {{ blog_detail.message | safe }}
       </div>
     </div>
 
@@ -33,7 +35,7 @@
       {% if blog_detail.published_date %}
       <div class="button_container">
         <a href="{% url 'blog:blog_list' %}"><div class="button_accent">
-          Back
+          All Posts
         </div></a>
         <a href="{% url 'blog_edit' pk=blog_detail.pk %}"><div class="button_secondary">
           Edit
@@ -45,7 +47,7 @@
       {% else %}
       <div class="button_container"> 
         <a href="{% url 'blog:blog_list' %}"><div class="button_accent">
-          Back
+          All Posts
         </div></a>
         <a href="{% url 'blog_edit' pk=blog_detail.pk %}"><div class="button_secondary">
           Edit

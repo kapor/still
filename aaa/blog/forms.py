@@ -38,7 +38,7 @@ class BlogForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.fields['title'].widget.attrs.update({'class': 'field_char', 'placeholder': 'Enter text'})
-		self.fields['text'].widget.attrs.update({'class': 'field_description', 'placeholder': 'Enter text'})
+		self.fields['message'].widget.attrs.update({'class': 'field_description', 'placeholder': 'Enter text'})
 		self.fields['author'].widget.attrs.update({'class': 'field_select', 'placeholder': 'Select Author'})
 		self.fields['tags'].widget.attrs.update({'class': 'field_char', 'placeholder': 'A comma-separated list of tags.'})
 		self.fields['image'].widget.attrs.update({'class': 'field_image'})
@@ -47,10 +47,10 @@ class BlogForm(forms.ModelForm):
 
 	class Meta():
 		model = Blog
-		fields = ('title', 'author', 'text', 'tags', 'image')
+		fields = ('title', 'author', 'message', 'tags', 'image')
 
 		widgets = {
-			'text':forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'}),
+			'message':forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'}),
 			# 'image':file_input_initial(attrs={'class': 'field_image'})
 		}
 
@@ -67,7 +67,7 @@ class BlogUpdate(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.fields['title'].widget.attrs.update({'class': 'field_char', 'placeholder': 'Enter text'})
-		self.fields['text'].widget.attrs.update({'class': 'field_description', 'placeholder': 'Enter text'})
+		self.fields['message'].widget.attrs.update({'class': 'field_description', 'placeholder': 'Enter text'})
 		self.fields['author'].widget.attrs.update({'class': 'field_select', 'placeholder': 'Select Author'})
 		self.fields['tags'].widget.attrs.update({'class': 'field_char', 'placeholder': 'A comma-separated list of tags.'})
 		self.fields['image'].widget.attrs.update({'class': 'field_image'})
@@ -76,9 +76,9 @@ class BlogUpdate(forms.ModelForm):
 
 	class Meta():
 		model = Blog
-		fields = ('title', 'author', 'text', 'tags', 'image')
+		fields = ('title', 'author', 'message', 'tags', 'image')
 
 		widgets = {
-			'text':forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'}),
+			'message':forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'}),
 			# 'image':file_input_initial(attrs={'class': 'field_image'})
 		}
