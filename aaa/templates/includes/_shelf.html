@@ -28,13 +28,13 @@
           {% endif %}
         </div>
         <!-- TEXT/MESSAGE -->
-          {% if item.description == None %}
-          {% else %}
+          {% if item.description %}
           <div class="post_text">
             <a href="{% url 'shelf:detail' pk=item.pk %}">
               <p>{{ item.description | safe }}</p>
             </a>
           </div>
+          {% else %}
           {% endif %}
         <!-- USER/URL/TIMESTAMP -->
           <span class="username">
