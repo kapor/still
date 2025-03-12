@@ -75,7 +75,7 @@ class ShelfDetailView(DetailView):
 
 class ShelfAdd(CreateView, LoginRequiredMixin):
     form_class = ShelfEntryForm
-    template_name = 'shelf/shelf_form.html'
+    template_name = 'shelf/shelf_modal.html'
 
     def post(self, request):
         form = forms.ShelfEntryForm()
@@ -92,7 +92,7 @@ class ShelfAdd(CreateView, LoginRequiredMixin):
         else:
             messages.error(request, 'Error adding the item')
             form = forms.ShelfEntryForm()
-        return render(request, 'shelf/shelf_form.html',{'form':form})
+        return render(request, 'shelf/shelf_modal.html',{'form':form})
 
 
 
