@@ -9,9 +9,7 @@
   {% if user.is_superuser %}
   <h1>Shelves: organize stuff.</h1>
 
-  <h2><a href="#"> 
-  	<!-- <a href="{% url 'shelf:add' %}" id="open_modal" > -->
-  Add an item to your shelf.</a></h2>
+  <h2><a hx-get="{% url 'shelf:add' %}" hx-target="body" hx-swap="beforeend">Add an item to your shelf.</a></h2>
 
   {% else %}
   <h1>Shelves</h1>

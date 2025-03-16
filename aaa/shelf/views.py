@@ -73,27 +73,48 @@ class ShelfDetailView(DetailView):
 
 
 
-class ShelfAdd(CreateView, LoginRequiredMixin):
-    form_class = ShelfEntryForm
-    template_name = 'shelf/shelf_modal.html'
+# class ShelfAdd(CreateView, LoginRequiredMixin):
+#     form_class = ShelfEntryForm
+#     template_name = 'shelf/shelf_modal.html'
 
-    def post(self, request):
+#     def post(self, request):
+#         form = forms.ShelfEntryForm()
+#         if request.method == 'POST':
+#             form = forms.ShelfEntryForm(request.POST, request.FILES)  
+#             if form.is_valid():
+#                 profile = form.save(commit=False)
+#                 profile.user = request.user
+#                 profile.save()
+#                 photo = form.save()
+#                 form.save_m2m()
+#                 messages.success(request, 'Item added')
+#                 return redirect('/shelf')
+#         else:
+#             messages.error(request, 'Error adding the item')
+#             form = forms.ShelfEntryForm()
+#         return render(request, 'shelf/shelf_modal.html',{'form':form})
+
+
+
+
+
+
+# Modal View
+@login_required
+def ShelfAdd(request):
+    form = forms.ShelfEntryForm()
+    if request.method == 'POST':
+        form = forms.ShelfEntryForm(request.POST, request.FILES)  
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            photo = form.save()
+            form.save_m2m()
+            return redirect('/shelf')
+    else:
         form = forms.ShelfEntryForm()
-        if request.method == 'POST':
-            form = forms.ShelfEntryForm(request.POST, request.FILES)  
-            if form.is_valid():
-                profile = form.save(commit=False)
-                profile.user = request.user
-                profile.save()
-                photo = form.save()
-                form.save_m2m()
-                messages.success(request, 'Item added')
-                return redirect('/shelf')
-        else:
-            messages.error(request, 'Error adding the item')
-            form = forms.ShelfEntryForm()
-        return render(request, 'shelf/shelf_modal.html',{'form':form})
-
+    return render(request, 'shelf/shelf_modal.html',{'form':form})
 
 
 
