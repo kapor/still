@@ -43,11 +43,6 @@ function topFunction() {
 
 /* ++++++++++ MESSAGE CONFIRMATION TIMEOUT ++++++++++ */
 
-/*setTimeout(function() {
-    document.getElementById('msg').style.display = 'none';
-}, 3000); // Hide after 3 seconds
-*/
-
 
 $(document).ready(function() {
     setTimeout(function() {

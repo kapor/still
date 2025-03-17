@@ -16,7 +16,7 @@ posts
       <a href="{% url 'for_user' username=user.username %}">
       {{user.username}}</a>.<br>
       These are posts.<br>
-          <a href="#" id="open_modal">
+          <a hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">
           Create one
           </a>
     </h1>
