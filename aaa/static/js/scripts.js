@@ -22,54 +22,6 @@ function scrollNav() {
 
 
 
-/* ++++++++++ LOAD MORE ++++++++++ */
-  
-// var _current_item = $('.single_content').length
-// console.log(_current_item);
-const loadBtn = document.getElementById('loadBtn');
-const spinner = document.getElementById('spinner');
-const total = JSON.parse(document.getElementById('json-total').textContent);
-const alert = document.getElementById('alert');
-
-function loadmorePost() {
-    var _current_item = $('.single_content').length
-    const content_container = document.getElementById("content");
-    $.ajax({
-        url: '{% url "load" %}',
-        type: 'GET',
-        data: {
-            'offset': _current_item
-        },
-        beforeSend: function () {
-            loadBtn.classList.add('not_visible');
-            spinner.classList.remove('not_visible');
-        },
-        success: function (response) {
-            const data = response.groups
-            spinner.classList.add('not_visible')
-            data.map(group => {
-                console.log(group.name);
-                content_container.innerHTML += 
-                `<div class="single_content">
-                  <h3>${group.name}</h3>
-                  <h4>${group.description}</h4>
-                </div>`
-            })
-            if (_current_item == total) {
-                alert.classList.remove('not_visible');
-            } else {
-                loadBtn.classList.remove('not_visible');
-            }
-        },
-        error: function (err) {
-            console.log(err);
-        },
-    });
-}
-loadBtn.addEventListener('click', () => {
-    loadmorePost()
-});
-
 
 
 /* ++++++++++ SCROL TOP ++++++++++ */
@@ -91,11 +43,57 @@ function topFunction() {
 
 /* ++++++++++ MESSAGE CONFIRMATION TIMEOUT ++++++++++ */
 
-setTimeout(function() {
-let messages = document.querySelectorAll('.message_success');
-messages.forEach(function(message) {
-  message.style.display = 'none';
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('.message_success').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
 });
-}, 3000); // Time in milliseconds (e.g., 3000ms = 3 seconds)
 
 
+
+/* ++++++++++ ESCAPE KEY TO CLOSE MODAL ++++++++++ */
+
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode === 27) {
+        const modal = document.querySelector('#modal'); // Replace '.modal' with the actual selector of your modal
+        if (modal && modal.style.display !== 'none') {
+            const closeButton = modal.querySelector('#modal_close'); // Replace '.close-button' with the actual selector of your close button
+            if (closeButton) {
+                closeButton.click();
+            }
+        }
+    }
+});
+
+
+/* ++++++++++ DISABLE SCROLLBAR ++++++++++ */
+
+$('.modal_underlay').click(function(){
+    $('.body_block').css("overflow", "visible");
+    $('body').css("overflow", "visible");
+});
+
+$('#modal_close').click(function(){
+    $('.body_block').css("overflow", "visible");
+    $('body').css("overflow", "visible");
+});
+
+$(document).keyup(function(e) {
+    if (e.key === "Escape") { 
+        $('.body_block').css("overflow", "visible");
+        $('body').css("overflow", "visible");
+}
+});
+
+$('.modal_button_xsmall').click(function(){
+    $('.body_block').css("overflow", "hidden");
+    $('body').css("overflow", "hidden");
+});
+
+$('#modal_trigger').click(function(){
+    $('.body_block').css("overflow", "hidden");
+    $('body').css("overflow", "hidden");
+});

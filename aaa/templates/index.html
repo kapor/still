@@ -3,10 +3,14 @@
 
 {% load my_filters %}
 
+{% block title %}
+home
+{% endblock title %}
 
 {% block content %}
 
-
+<h2><a href="#" id="open_modal" >Open</a><h2>
+  
 <div class="top_part">
   <div class="header">
     {% if user.is_authenticated %}

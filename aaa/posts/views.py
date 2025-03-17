@@ -178,7 +178,9 @@ class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
     template_name = 'posts/post_confirm_delete.html'
     success_url = '/'
 
-
+    def post(self, request, *args, **kwargs):
+        messages.success(self.request, "Post removed")
+        return super().post(request, *args, **kwargs)
 
 
 

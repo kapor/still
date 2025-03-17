@@ -1,7 +1,9 @@
 <!-- aaa/templates/posts/post_list.html -->
 {% extends "base.html" %}
 
-
+{% block title %}
+posts
+{% endblock title %}
 
 {% block content %}
 
@@ -14,7 +16,7 @@
       <a href="{% url 'for_user' username=user.username %}">
       {{user.username}}</a>.<br>
       These are posts.<br>
-          <a hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend" id="modal_trigger">
+          <a hx-get="{% url 'posts:add' %}" hx-target="body" hx-swap="beforeend">
           Create one
           </a>
     </h1>
@@ -48,4 +50,18 @@
 
 {% endfor %}
 </div>
+
+
+
+
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
