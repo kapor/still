@@ -1754,6 +1754,10 @@ section {
   align-items: center;
 }
 
+.paginate h2 {
+  line-height: 20px;
+}
+
 .paginate li a {
   background-color: none;
   color: #222;
@@ -1780,6 +1784,7 @@ ul.paginate li.active {
   text-align: center;
   padding: 6px 10px;
   font-weight: 400;
+  line-height: 40px;
 }
 
 .paginate .disabled a {
@@ -1788,6 +1793,7 @@ ul.paginate li.active {
   text-align: center;
   font-weight: 100;
   display: none;
+  line-height: 40px;
 }
 
 /*|||||||||||||||||||*/
@@ -1901,7 +1907,7 @@ ul.paginate li.active {
 
 .message_success {
   display: block;
-  z-index: 2;
+  z-index: 100;
   position: fixed;
   font-family: Helvetica neue, sans-serif;
   font-weight: 400;
