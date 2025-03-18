@@ -1,0 +1,20 @@
+<!-- includes/header.html -->
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="{% static 'js/bootstrap.js' %}" defer></script>
+	<script src="{% static 'js/scripts.js' %}" defer></script>
+	<script src="{% static 'js/htmx.js' %}" defer></script>
+	<script src="{% static 'js/scale.fix.js' %}" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://unpkg.com/hyperscript.org@0.9.14"></script>
+	<script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+	<link rel='stylesheet' href="{% static 'css/bootstrap.css' %}"/>
+	<link rel='stylesheet' href="{% static 'css/styles.css' %}"/>
