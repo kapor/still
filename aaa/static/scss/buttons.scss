@@ -15,6 +15,16 @@ $accent2: #00FF7F;
   display: flex;
   flex-direction: row;
   gap: 12px;
+  width: fit-content;
+}
+
+.button_container_modal,
+.button_container_modal form {
+  margin: 40px 0px 0px 0px; 
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
 }
 
 .button a {
@@ -37,15 +47,35 @@ $accent2: #00FF7F;
   border-radius: 3px;
   line-height: 26px;
   cursor: pointer;
-  margin-top: 40px;
   background-color: lightpink;
   width: fit-content;
-
+  border: none;
+  height: min-content;
   a {
     color: $primary;
   }
 }
 
+.modal_button_xsmall {
+  font-family: $font-stack1;
+  font-style: normal;
+  color: $primary;
+  font-weight: 400;
+  letter-spacing: 1px;
+  list-style-type: none;
+  font-size: 12px;
+  text-decoration: none;
+  margin: 0px 0px 2px 0px;
+  padding: 0px 6px;
+  border-radius: 3px;
+  line-height: 24px;
+  background-color: #EEEEEE;
+  width: fit-content;
+  border: none;
+  resize: none;
+  height: min-content;
+  align-self: center;
+}
 
 .button_base {
   padding: 0px 20px;
@@ -146,6 +176,7 @@ input.button_accent_large,
   text-align: center;
   cursor: pointer;
   height: 64px;
+  width: 100%;
 
   font-family: $font-stack1;
   text-transform: uppercase;

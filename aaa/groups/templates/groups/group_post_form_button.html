@@ -1,0 +1,12 @@
+
+<div class="button_container">
+	<div class="button_secondary">
+		<a href="{{ groups.get_absolute_url  }}">Cancel</a>
+	</div>
+	<a hx-get="{% url 'posts:postgroup' %}" hx-target="#postform" hx-swap="innerHTML">
+		<div class="button_secondary">
+			Add post
+		</div>
+	</a>
+
+</div>

@@ -1,10 +1,7 @@
 <!-- aaa/templates/base_modal.html -->
-{% extends "base.html" %}
-{% load bootstrap5 %}
 
-{% block content %}
-<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
-    <div class="modal_underlay" _="on click trigger closeModal"></div>
+<div id="modal" class="modal" _="on close add .closing then wait for animationend then remove me">
+    <div class="_underlay" _="on click trigger close"></div>
     <div class="modal_content">
     
 
@@ -19,17 +16,15 @@
 
         <div class="form_container">
                 {% csrf_token %}
-                {% bootstrap_form form %}
+                {{ form }}
         </div>
 
-        <div class="button_container">
-            <button class="button_secondary" _="on click trigger closeModal" style="width:50%">Close</button>
-            <input type="submit" value="Add" class="button_accent" style="width:50%">
+        <div class="button_container_modal">
+            <button id="modal_close" class="button_secondary" _="on click trigger close">Close</button>
+            <input type="submit" value="Add" class="button_accent">
         </div>
 
   </form>
 
     </div>
 </div>
-
-{% endblock %}

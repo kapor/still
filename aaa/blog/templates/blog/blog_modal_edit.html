@@ -1,0 +1,48 @@
+<!-- aaa/groups/templates/groups/blog_modal_edit.html -->
+{% extends "base.html" %}
+
+
+{% block content %}
+  <div class="top_part">
+    <div class="header">
+      <h2>  
+        {% if blog.title %}
+          Edit This Post
+        {% else %}
+          Add Something
+        {% endif %}
+      </h2>
+    </div>
+  </div>
+
+
+
+    <form class="forms" method="POST" enctype="multipart/form-data">
+      {{ form }}
+      {{ form.your_multi_select_field }}
+      {% csrf_token %}
+
+ 
+  
+
+    <div class="image_cover_container">
+      {% if blog.image %}
+        <img src="{{ blog.image.url }}" alt="image" class="image_cover">
+      {% else %}
+        Currently No Image
+      {% endif %}
+    </div>
+
+    <div class="button_container_modal">
+      <a onClick="javascript:history.go(-1);"><div class="button_secondary" style="width:50%">
+        Cancel</div></a>
+        {% if blog.title %}
+      <input type="submit" class="button_accent" value="Update" style="width:50%">
+        {% else %}
+      <input type="submit" class="button_accent" value="Add" style="width:50%">
+        {% endif %}
+    </div>
+
+    </form>
+
+{% endblock %}

@@ -1,26 +1,21 @@
-<!-- aaa/posts/templates/posts/post_form.html -->
-{% extends "posts/post_base.html" %}
-{% load bootstrap5 %}
 
-{% block post_content %}
-  <div class="header">
-  <h1>Add Post</h1>
-	</div>
-	<form method="POST" action="{% url 'posts:create' %}" id="postForm">
+		<form method="POST" action="{% url 'posts:create' %}" id="postForm">
 
-		<div class="form_container">
+
+
+			<div class="form_container">
 				{% csrf_token %}
-				{{form}}
-				<!-- {% bootstrap_form form %} -->
-		</div>
-
-
-		<div class="button_container">
-			<butt class="button_secondary">
-				<a href="{% url 'posts:all' %}">Back to Posts</a>
+				{{ form }}
 			</div>
-			<input type="submit" value="Post" class="button">
-		</div>
-  </form>
 
-{% endblock %}
+
+      <div class="button_container">
+	      	<a href="{{ groups.get_absolute_url }}">
+						<div class="button_secondary">
+							Cancel
+						</div>
+					</a>
+          <input type="submit" value="Add" class="button_accent">
+      </div>
+	</form>
+

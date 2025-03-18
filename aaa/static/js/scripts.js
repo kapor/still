@@ -1,31 +1,7 @@
 
-// OVERLAY
 
-document.addEventListener('DOMContentLoaded', function(){
+// When the user scrolls down 80px from the top of the document, resize the navbar
 
-  const overlay = document.getElementById('overlay');
-  function overlayToggle() {
-    overlay.classList.toggle('overlay-on');
-  }
-
-  const clickArea = document.getElementsByClassName('overlay-event');
-  for(let i = 0; i < clickArea.length; i++) {
-    clickArea[i].addEventListener('click', overlayToggle, false);
-  }
-	
-
-  function stopEvent(event) {
-    event.stopPropagation();
-  }
-  const overlayInner = document.getElementById('overlay-inner');
-  overlayInner.addEventListener('click', stopEvent, false);
-  
-}, false);
-
-
-
-
-// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
 window.onscroll = function() {scrollNav()};
 function scrollNav() {
   if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
@@ -41,8 +17,83 @@ function scrollNav() {
     document.getElementById("navbar_right").style.lineHeight = "48px";
     document.getElementById("navbar_left").style.lineHeight = "48px";
   }
+};
+
+
+
+
+
+
+/* ++++++++++ SCROL TOP ++++++++++ */
+
+
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+} 
+
+/* ++++++++++ CONFIRMATION PROMPT ++++++++++ */
+
+
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+} 
+
+
+/* ++++++++++ MESSAGE CONFIRMATION TIMEOUT ++++++++++ */
+
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('.message_success').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
+
+
+
+/* ++++++++++ ESCAPE KEY TO CLOSE MODAL ++++++++++ */
+
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode === 27) {
+        const modal = document.querySelector('#modal'); // Replace '.modal' with the actual selector of your modal
+        if (modal && modal.style.display !== 'none') {
+            const closeButton = modal.querySelector('#modal_close'); // Replace '.close-button' with the actual selector of your close button
+            if (closeButton) {
+                closeButton.click();
+            }
+        }
+    }
+});
+
+
+/* ++++++++++ DISABLE SCROLLBAR ++++++++++ */
+
+$('.modal_underlay').click(function(){
+    $('.body_block').css("overflow", "visible");
+    $('body').css("overflow", "visible");
+});
+
+$('#modal_close').click(function(){
+    $('.body_block').css("overflow", "visible");
+    $('body').css("overflow", "visible");
+});
+
+$(document).keyup(function(e) {
+    if (e.key === "Escape") { 
+        $('.body_block').css("overflow", "visible");
+        $('body').css("overflow", "visible");
 }
+});
 
+$('.modal_button_xsmall').click(function(){
+    $('.body_block').css("overflow", "hidden");
+    $('body').css("overflow", "hidden");
+});
 
-
+$('#modal_trigger').click(function(){
+    $('.body_block').css("overflow", "hidden");
+    $('body').css("overflow", "hidden");
 });

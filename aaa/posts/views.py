@@ -1,18 +1,27 @@
 # posts/views.py
 from . import models
 from . import forms
-from posts.forms import PostForm
-from groups.models import Group
+from posts.forms import PostForm, PostFormGroup
+from groups.models import Group, Comment
+from blog.models import Blog
+from shelf.models import Shelves
 from django.db import transaction
 
+from django.utils import timezone
 from django.http import Http404
 from django.views import generic
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+
+from itertools import chain
+from datetime import datetime
+from operator import attrgetter
 
 from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView, RedirectView
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import PrefetchRelatedMixin
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
@@ -26,32 +35,31 @@ User = get_user_model()
 
 
 
-
-
 # Modal View
 
 @login_required
 def AddPost(request):
-    """display a dropdown of all workouts for a user"""
     if request.method != 'POST':
         form = PostForm(user=request.user)	
     else:
         form = PostForm(data=request.POST, user=request.user)
+        # if form.is_valid():
+        #     form.instance.user = request.user
         if form.is_valid():
             form.instance.user = request.user
-        with transaction.atomic():
-            post = form.save()
+            post = form.save(commit=False)
+            post.save()
+            photo = form.save()
+            messages.success(request, 'Post added')
             return redirect('posts:all')
+        # with transaction.atomic():
+        #     post = form.save()
+        #     photo = form.save()
+        #     messages.success(request, 'Post added')
+        #     return redirect('posts:all')
     context = {'form':form}
     return render(request, 'posts/post_modal.html', context)
 
-
-# class AddPost2(LoginRequiredMixin,generic.CreateView):
-#     template_name = 'posts/post_form.html'
-#     model = models.Post
-#     context_object_name = 'addpost'
-#     fields = ('message', 'group')
-#     success_url = reverse_lazy('posts:all')
 
 
 
@@ -68,6 +76,29 @@ class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 		self.object.user = self.request.user
 		self.object.save
 		return super().form_valid(form)
+
+
+
+
+
+	
+@login_required
+def PostGroup(request):
+    if request.method != 'POST':
+        form = PostForm(user=request.user)	
+    else:
+        form = PostForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.instance.user = request.user
+        with transaction.atomic():
+            post = form.save()
+            return redirect('groups:single', group_id=group_id)
+            # return redirect('posts:group')
+    return render(request, 'posts/post_form.html', {'form': form})
+
+
+
+
 
 
 
@@ -97,23 +128,30 @@ class PostList(LoginRequiredMixin, PrefetchRelatedMixin, generic.ListView):
 
 
 # Shows list view of specific user's posts
-class UserPosts(generic.ListView, LoginRequiredMixin):
-	model = models.Post
-	template_name = 'posts/user_post_list.html'
+# class UserPosts(generic.ListView, LoginRequiredMixin):
+# 	model = models.Post
+# 	template_name = 'posts/user_post_list.html'
 
-	# upon calling 'UserPosts' it sets the current user's view to only see posts from the username of whoever is currently logged in
-	def get_queryset(self):
-		try:
-			self.post_user = User.objects.prefetch_related("posts").get(username__iexact=self.kwargs.get("username"))
-		except User.DoesNotExist:
-			raise Http404
-		else:
-			return self.post_user.posts.all()
+# 	# upon calling 'UserPosts' it sets the current user's view to only see posts from the username of whoever is currently logged in
+# 	def get_queryset(self):
+# 		try:
+# 			self.post_user = User.objects.prefetch_related("posts").get(username__iexact=self.kwargs.get("username"))
+# 		except User.DoesNotExist:
+# 			raise Http404
+# 		else:
+# 			return self.post_user.posts.all()
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		context['post_user'] = self.post_user
-		return context
+
+# 	def get_context_data(self, **kwargs):
+# 		context = super().get_context_data(**kwargs)
+# 		context['post_user'] = self.post_user
+# 		return context
+
+
+
+
+
+
 
 
 
@@ -133,29 +171,32 @@ class EditPost(LoginRequiredMixin, UpdateView):
 
 
 
+
 class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
-	model = models.Post
-	prefetch_related = ('user', 'group')
-	success_url = reverse_lazy('posts:all')
+    model = models.Post
+    prefetch_related = ('user', 'group')
+    template_name = 'posts/post_confirm_delete.html'
+    success_url = '/'
 
-	def get_queryset(self):
-		queryset = super().get_queryset()
-		return queryset.filter(user_id = self.request.user.id)
+    def post(self, request, *args, **kwargs):
+        messages.success(self.request, "Post removed")
+        return super().post(request, *args, **kwargs)
 
-	def delete(self, *args, **kwargs):
-		messages.success(self.request, 'Post Deleted')
-		return super().delete(*args, **kwargs)
+
+
+
+
+
+
+
+
+
+
 
 
 class SingleGroup(generic.DetailView):
 	model = Group
 	context_object_name = 'group'
-
-
-
-
-
-
 
 
 
@@ -183,6 +224,8 @@ def PostMore(request):
         'posts': post_obj
     }
     return JsonResponse(data=data)
+
+
 
 
 

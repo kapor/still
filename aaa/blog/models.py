@@ -18,12 +18,11 @@ def get_upload_path(instance, filename):
 class Blog(models.Model):
 	author = models.ForeignKey('auth.User', related_name='auth_user', on_delete=models.CASCADE)
 	title = models.CharField(max_length=200)
-	text = models.TextField()
-	create_date = models.DateField(default=timezone.now)
+	message = models.TextField()
+	created_at = models.DateTimeField(auto_now=True)
 	published_date = models.DateTimeField(blank=True, null=True)
 	tags = TaggableManager(blank=True)
-	# tags = models.ManyToManyField(to='blog.Tags', related_name='blog_tags', blank=True)
-	image = models.ImageField(upload_to=get_upload_path, default="images/blank.jpg", blank=True)
+	image = models.ImageField(upload_to=get_upload_path, default="/images/blank.jpg", verbose_name='Image', null=True, blank=True)
 
 	def publish(self):
 		self.published_date = timezone.now()

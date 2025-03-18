@@ -1,0 +1,43 @@
+{% load my_filters %}
+{% load humanize %}
+
+
+  <div {% if item|is_app:"blog" %} class="post4" {% endif %} id="post_list">
+
+      <div class="post_message_group">
+
+        <div>
+          <!-- TITLE/MESSAGE -->
+          <div class="post_message">
+            <a href="{% url 'blog_detail' pk=item.pk %}">
+            <h3>{{ item.title }}</h3>
+            </a>
+          </div>
+          <!-- MESSAGE/TEXT -->
+          <div class="post_text">
+            <a href="{% url 'blog_detail' pk=item.pk %}">
+              <p>{{ item.message | safe }}</p>
+            </a>
+          </div>
+          <!-- USER/URL/TIMESTAMP -->
+          <span class="username">
+              Published
+              {{ item.created_at|naturaltime }}
+            <br>
+          </span>
+        </div>
+
+      </div>
+
+      <!-- IMAGE -->
+      <div class="crop">
+        <a href="{% url 'blog_detail' pk=item.pk %}">
+        {% if item.image %}
+        <img src="/media/{{ item.image }}">
+        {% else %}
+        <img src="/media/images/blank.jpg">
+        {% endif %}
+        </a>
+      </div>
+
+  </div>

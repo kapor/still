@@ -1,8 +1,11 @@
 <!-- aaa/groups/templates/groups/groups.html -->
-{% extends "groups/group_base.html" %}
+{% extends "base.html" %}
 
+{% block title %}
+groups
+{% endblock title %}
 
-{% block pre_group %}
+{% block content %}
 
 
 <div class="top_part">
@@ -11,15 +14,15 @@
 		{% if user.is_authenticated %}
 		<h1>Hey
 			<!-- link to all the user's posts -->
-			<a href="{% url 'posts:for_user' username=user.username %}">
+			<a href="{% url 'for_user' username=user.username %}">
 			{{user.username}}</a>.<br>
 				These are groups.<br>
-			<a hx-get="{% url 'groups:add' %}" hx-target="body" hx-swap="beforeend">
 			{% if user.is_superuser %}
+			<a hx-get="{% url 'groups:add' %}" hx-target="body" hx-swap="beforeend" id="modal_trigger">
 			Create one
+			</a>
 			{% else %}
 			{% endif %}
-			</a>
 		</h1>
 	</div>
 
@@ -35,20 +38,15 @@
 
 </div>
 
-{% endblock %}
 
 
-
-
-
-{% block group_content %}
 
   <div>
 		{% include 'groups/group_list.html' %}
   </div>
   
-{% endblock %}
 
 
-{% block post_group %}
+
+
 {% endblock %}

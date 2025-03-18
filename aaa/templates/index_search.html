@@ -1,0 +1,168 @@
+<!-- aaa/templates/index.html -->
+{% extends 'base.html' %}
+
+{% load my_filters %}
+
+
+{% block content %}
+
+
+
+    <div class="top_part">
+      <div class="header">
+        {% if user.is_authenticated %}
+        <h1>Hey
+          <!-- link to all the user's posts -->
+          <a href="{% url 'for_user' username=user.username %}">
+          {{user.username}}</a>.
+        </h1>
+        {% else %}
+        <h1>Hey you.</h1>
+        {% endif %}
+        <p class="big_p">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+    </div>
+
+    {% include 'includes/search_home.html' %} 
+
+  {% if results %}
+
+    <div>
+    {% for item in results %}
+      {% if item|is_app:"groups" or item|is_app:"posts" %}
+
+      <div {% if item|is_app:"groups" %} class="post2" {% else %} class="post3" {% endif %} id="post_list">
+
+        <div class="post_message_group">
+          <div class="post_message" style="display:inline-flex;">
+              <a href="{{ item.group.get_absolute_url }}">
+                <h3>{{ item.message | safe }}</h3>
+              </a>
+          </div>
+          <br>
+          <span class="username">
+            {% if user %}
+              <a href="{% url 'for_user' username=item.user.username %}">
+              @{{ item.user.username }}
+              </a>
+              {% if item|is_app:"groups" %}
+              commented in
+              {% else %}
+              posted in
+              {% endif %}
+            {% endif %}
+           <!--  <time class="time">{{ item.created_at }}</time> -->
+              {% if item.group %}
+                <span class="group-name">
+                <a href="{{ item.group.get_absolute_url }}">
+                {{item.group.name}}
+                </a>
+                </span>
+              {% endif %}
+            <br>
+      <!--       <span>{{ item | model_name | upper }}</span> -->
+          </span>
+        </div>
+
+      </div>
+
+      {% elif item|is_app:"blog" %}
+
+      <div {% if item|is_app:"blog" %} class="post4" {% endif %} id="post_list">
+
+          <div class="post_message_group">
+            <div class="post_message" style="display:inline-flex;">
+              <a href="{% url 'blog_detail' pk=item.pk %}">
+              <h3>{{ item.title }}</h3>
+              </a>
+            </div>
+            <div class="post_text">
+              <a href="{% url 'blog_detail' pk=item.pk %}">
+                <p>{{ item.message | safe }}</p>
+              </a>
+            </div>
+            <span class="username">
+                <a href="{% url 'blog_detail' pk=item.pk %}">
+                @{{ item.author }}
+                </a>
+                Published this
+              <br>
+            </span>
+          </div>
+          <div class="crop">
+            <a href="{% url 'blog_detail' pk=item.pk %}">
+            {% if item.image %}
+            <img src="/media/{{ item.image }}">
+            {% else %}
+            <img src="/media/images/blank.jpg">
+            {% endif %}
+            </a>
+          </div>
+      </div>
+
+      {% elif item|is_app:"shelf" %}
+
+      <div {% if item|is_app:"shelf" %} class="post5" {% endif %} id="post_list">
+
+          <div class="post_message_group">
+            <div class="post_message">
+              <a href="shelf/{{ shelf.id }}">
+              <h3>{{ item.title }}</h3>
+              <h3>{{ item.author }}</h3>
+              </a>
+            </div>
+            <div class="post_text">
+              <a href="shelf/{{ shelf.id }}">
+                <p>{{ item.description | safe }}</p>
+              </a>
+            </div>
+            <span class="username">
+                <a href="shelf/{{ shelf.id }}">
+                @{{ item.user }}
+                </a>
+                added this
+              <br>
+            </span>
+          </div>
+          <div class="crop">
+            <a href="shelf/{{ shelf.id }}">
+            {% if item.image %}
+            <img src="/media/{{ item.image }}">
+            {% else %}
+            <img src="/media/images/blank.jpg">
+            {% endif %}
+            </a>
+          </div>
+
+
+      </div>
+
+
+
+      {% endif %}
+
+      
+    {% endfor %}
+
+
+    {% include 'includes/paginate.html' %}
+    </div>
+
+  {% else %}
+      <p>No results found.</p>
+  {% endif %}
+
+
+<div>
+  {% include 'index_grid.html' %}
+</div>
+
+
+
+
+
+
+
+{% endblock %}

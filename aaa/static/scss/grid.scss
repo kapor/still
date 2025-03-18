@@ -1,0 +1,153 @@
+// grid.scss
+/*|||||||||||||||||||*/
+$font-stack1: Helvetica neue, sans-serif;
+$font-stack2: Courier new, Roboto;
+$primary: #333;
+$secondary: #F2F2F2;
+$accent1: #8F00FF;
+$accent2: #00FF7F;
+
+
+/* reset margins */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, header, hgroup, menu, nav, output, section, summary, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-weight: 400;
+  font-family: $font-stack2;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+
+.col_header {
+  font-family: $font-stack1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: left;
+  padding-bottom: 10px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
+.taggy {
+    background-color: #f6ebff;
+    padding: 3px 6px;
+    color: #8F00FF;
+    border-radius: 3px;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: $font-stack1;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.form-check-input {
+    
+}
+
+
+
+table.shelf_grid {
+    width: 100%;
+}
+
+
+.shelf_grid th:first-child, 
+.shelf_grid td:first-child {
+    text-align: left;
+    padding-right: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-content: center;
+}
+
+
+.shelf_grid th:last-child, 
+.shelf_grid td:last-child {
+    text-align: left;
+    padding-right: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-content: center;
+}
+
+.shelf_grid tr td:nth-child(2),
+.shelf_grid th:nth-child(2) {
+    max-width: 500px;
+    min-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-content: center;
+}
+
+
+.shelf_grid tr td:nth-child(3),
+.shelf_grid th:nth-child(3) {
+    max-width: 300px;
+    min-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 20px;
+    align-content: center;
+}
+
+
+.shelf_grid tr td:nth-child(4),
+.shelf_grid th:nth-child(4) {
+    max-width: 500px;
+    min-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 20px;
+    align-content: center;
+}
+
+.shelf_grid tr td:nth-child(5),
+.shelf_grid th:nth-child(5) {
+    min-width: 80px;
+    text-align: right;
+    align-content: center;
+}
+
+.shelf_grid tr td:nth-child(6),
+.shelf_grid th:nth-child(6) {
+    max-width: 80px;
+    text-align: right;
+    padding-left: 20px;
+    align-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -14,16 +14,13 @@
 
 
 			<div class="form_container">
-					{% csrf_token %}
-				<label for="id_message">Message:</label>
-				<input type="text" name="message" required="" id="id_message" autofocus="" class="form-control">
+				{% csrf_token %}
 				{{ form }}
-					<!-- {% bootstrap_form form %} -->
 			</div>
 
 
-	        <div class="button_container">
-	            <button class="button_secondary" _="on click trigger closeModal" style="width:50%">Close</button>
+	        <div class="button_container_modal">
+	            <button id="modal_close" class="button_secondary" _="on click trigger closeModal" style="width:50%">Close</button>
 	            <input type="submit" value="Add" class="button_accent" style="width:50%">
 	        </div>
 	  	</form>

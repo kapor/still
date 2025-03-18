@@ -1,49 +1,58 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 {% block content %}
 
 <div class="form_page">
 
 
   <div class="top_part">
-    <div class="header">
-      <h1>  
-        {% if blog.title %}
+    <div class="header2">
+      <h2>  
+        {% if object.title %}
           Edit This Post
         {% else %}
           Add Something
         {% endif %}
-      </h1>
+      </h2>
     </div>
   </div>
 
 
 
-    <form class="forms" method="POST" enctype="multipart/form-data">
-      {{ form }}
-      {{ form.your_multi_select_field }}
-      {% csrf_token %}
-
- 
+    <form class="forms" method="POST" enctype="multipart/form-data" id="blogForm">
+    {{ form }}
+    {{ form.your_multi_select_field }}
+    {% csrf_token %}
 
 
-    <input class="file_input" type="file" name="image" id="{{ widget.FileInput }}">
-  
+<!-- 
+      <div class="image_cover_container">
+        {% if object.image %}
+          Currently:<br>
+          <a href="{{ object.image.url }}" target="_blank">
+          <img src="{{ object.image.url }}" alt="image" class="image_cover">
+          </a>
+        {% else %}
+          Currently:<br>
+          <a href="/media/images/blank.jpg" target="_blank">
+          <img src="/media/images/blank.jpg" alt="image" class="image_cover">
+          </a>
+        {% endif %}
+      </div>
+ -->
 
-    <div class="image_cover_container">
-      {% if blog.image %}
-        <img src="{{ blog.image.url }}" alt="image" class="image_cover">
-      {% else %}
-        Currently No Image
-      {% endif %}
-    </div>
-
-    <div class="button_container">
-      <a onClick="javascript:history.go(-1);"><div class="button_secondary" style="width:50%">
-        Cancel</div></a>
-      <input type="submit" class="button_accent" value="Add" style="width:50%">
-    </div>
+      <div class="button_container_modal">
+        <a onClick="javascript:history.go(-1);"><div class="button_secondary" style="width:50%">
+          Cancel</div></a>
+          {% if object.title %}
+        <input type="submit" class="button_accent" value="Update" style="width:50%">
+          {% else %}
+        <input type="submit" class="button_accent" value="Add" style="width:50%">
+          {% endif %}
+      </div>
 
     </form>
+  
 
 
   <script>var editor = new MediumEditor('.editable');</script>
@@ -53,3 +62,4 @@
 {% endblock %}
 
 
+ 
