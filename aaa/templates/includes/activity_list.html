@@ -1,9 +1,6 @@
-
-
-
-
-    <ul>
-      {% for post in data %}
-        {% include "posts/_post.html" with author=True group=False %}
-      {% endfor %}
-    </ul>
+<!-- includes/activity_list.html -->
+<ul>
+  {% for post in data %}
+    {% include "posts/_post.html" with author=True group=False %}
+  {% endfor %}
+</ul>

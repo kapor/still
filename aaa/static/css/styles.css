@@ -1,3 +1,117 @@
+.not_visible {
+  display: none;
+}
+
+/* spinner */
+.spinner {
+  animation: spin 4s linear infinite; /* 2 seconds, linear speed, repeat forever */
+  width: 80px;
+  height: 80px;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg); /* Rotate 360 degrees */
+  }
+}
+
+.spinner svg {
+  text-align: center;
+  max-resolution: auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner2 .spin {
+  transform-origin: center;
+  animation: spin 1.3s linear infinite;
+}
+
+.post_above {
+  height: 100px;
+}
+
+.post_below {
+  padding-top: 40px;
+  height: auto;
+}
+
+#post_box #loader_container {
+  position: fixed; /* SET TO FIXED */
+  top: 0;
+  left: 0;
+  width: 100vw; /* USE VIEWPORT UNITS */
+  height: 100vh; /* USE VIEWPORT UNITS */
+  z-index: 1001; /* MOVE Z-INDEX HERE! */
+}
+#post_box #loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8vmax;
+  height: 8vmax;
+  margin: -4vmax; /* ADD THIS (half the W/H) */
+  border-radius: 50%;
+  border: 10px solid transparent;
+  border-top-color: #8F00FF;
+  animation: spin 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#nomore {
+  cursor: default;
+}
+
+.post_message h3 {
+  padding-bottom: 8px;
+}
+
+#alert_box .alert_success {
+  display: block;
+  z-index: 2;
+  position: fixed;
+  font-family: Helvetica neue, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: #00FF7F;
+  color: #333;
+  padding: 8px 14px;
+  top: 40px;
+  border-radius: 4px;
+  margin: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#alert_box .alert_error {
+  display: block;
+  z-index: 2;
+  position: fixed;
+  font-family: Helvetica neue, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: red;
+  color: white;
+  padding: 8px 14px;
+  top: 40px;
+  border-radius: 4px;
+  margin: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 select {
   appearance: none;
   border: none;
@@ -568,6 +682,10 @@ input.button_accent_large a,
   opacity: 1;
 }
 
+.modal_content {
+  background-color: white;
+}
+
 #modal > .modal_underlay {
   /* underlay takes up the entire viewport. This is only
   required if you want to click to dismiss the popup */
@@ -582,8 +700,14 @@ input.button_accent_large a,
   animation-timing-function: ease;
 }
 
-#modal > .modal_content {
+.modal {
+  margin: auto;
+  width: auto;
+}
+
+.modal > .modal_content {
   width: 80%;
+  margin: auto;
   max-width: 800px;
   border: 20px #FFFFFF solid;
   border-radius: 0px;
@@ -749,6 +873,34 @@ input.button_accent_large a,
     transform: translateY(-200px);
   }
 }
+.button_container_modal {
+  /* 	padding: 20px; */
+}
+
+.button_container_modal .button_secondary,
+.button_container_modal .button_accent {
+  width: 50%;
+}
+
+.modal_header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.modal_content .form_container {
+  /* 	padding: 20px; */
+}
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+}
+
 /*|||||||||||||||||||*/
 /* reset margins */
 html, body, div, span, h1, h2, h3, h4, h5, h6, p,
@@ -887,7 +1039,8 @@ body {
   background-color: white;
 }
 
-a {
+a,
+a:hover {
   text-decoration: none;
   color: #8F00FF;
   cursor: pointer;
@@ -993,16 +1146,20 @@ li a.nav_link,
 .top_part .header {
   margin-bottom: 56px;
 }
-.top_part .header a {
+.top_part .header a,
+.top_part .header a:hover {
   text-decoration: underline;
   text-underline-offset: 16px;
   display: inline;
 }
 .top_part .header h2 a,
-.top_part .header h3 a {
+.top_part .header h3 a,
+.top_part .header h3 a:hover,
+.top_part .header h2 a:hover {
   text-decoration: underline;
   text-underline-offset: 8px;
   display: inline;
+  color: #8F00FF;
 }
 .top_part .header .group_count {
   display: flex;
@@ -1012,7 +1169,8 @@ li a.nav_link,
   background-color: #F2F2F2;
   width: fit-content;
 }
-.top_part h1 {
+.top_part h1,
+.top_part h1:hover {
   font-family: Helvetica neue, sans-serif;
   color: #8F00FF;
   text-transform: none;

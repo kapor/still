@@ -1,11 +1,30 @@
 <!-- aaa/groups/templates/groups/groups.html -->
 {% extends "base.html" %}
+{% load static %}
 
+
+<!-- APP SCRIPTS -->
+{% block scripts %}
+<script src="{% static 'js/groups.js' %}" defer></script>
+{% endblock %}
+
+<!-- APP TITLE -->
 {% block title %}
 groups
 {% endblock title %}
 
+
+
+<!-- APP CONTENT -->
 {% block content %}
+
+
+{% include 'groups/modal.html' %}
+
+
+<div class="post_above">
+  <h1><a id="click_header" ></a></h1>
+</div>
 
 
 <div class="top_part">
@@ -18,7 +37,7 @@ groups
 			{{user.username}}</a>.<br>
 				These are groups.<br>
 			{% if user.is_superuser %}
-			<a hx-get="{% url 'groups:add' %}" hx-target="body" hx-swap="beforeend" id="modal_trigger">
+			<a data-toggle="modal" data-target="#add_post_modal">
 			Create one
 			</a>
 			{% else %}
@@ -41,9 +60,9 @@ groups
 
 
 
-  <div>
-		{% include 'groups/group_list.html' %}
-  </div>
+<div id="group_box">
+	{% include 'groups/group_list.html' %}
+</div>
   
 
 

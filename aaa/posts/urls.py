@@ -20,8 +20,6 @@ urlpatterns = [
     # path('add/', views.AddPost.as_view(), name='add'),
     path('add/', views.AddPost, name='add'),
 
-    path('postload/', views.PostLoad, name='postload'),
-    path('postmore/', views.PostMore, name='load'),
 
     path('postadd/', views.PostGroup, name='postgroup'),
 

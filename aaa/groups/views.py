@@ -18,17 +18,30 @@ from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
-from django.forms.models import inlineformset_factory
-from django.forms import modelformset_factory
 
 
 
 
-GroupFormset = modelformset_factory(Post, fields=('message',),)
 
 
 # class SingleGroup(LoginRequiredMixin, DetailView):
 # 	model = Group
+
+
+
+
+def Create(request):
+    form = GroupForm(request.POST or None)
+
+    if request.accepts('application/json'):
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+    return render(request, 'groups/modal.html', {'form': form})
+
+
+
 
 
 
@@ -157,21 +170,6 @@ class GroupPost(LoginRequiredMixin, RedirectView):
 
 
 
-class CreateGroup(LoginRequiredMixin, CreateView):
-	model = Group
-	form_class = GroupForm
-
-	# success_url = reverse_lazy('groups:all')
-
-
-
-# Modal View
-class AddGroup(LoginRequiredMixin, generic.CreateView):
-	template_name = 'groups/group_modal.html'
-	model = models.Group
-	context_object_name = 'addgroup'
-	form_class = GroupForm
-
 
 
 
@@ -191,6 +189,24 @@ class DeleteGroup(LoginRequiredMixin, generic.DeleteView):
 class GroupPostFormButton(DetailView):
 	template_name = "groups/group_post_form_button.html"
 
+
+
+
+
+# class CreateGroup(LoginRequiredMixin, CreateView):
+# 	model = Group
+# 	form_class = GroupForm
+
+# 	# success_url = reverse_lazy('groups:all')
+
+
+
+# # Modal View
+# class AddGroup(LoginRequiredMixin, generic.CreateView):
+# 	template_name = 'groups/group_modal.html'
+# 	model = models.Group
+# 	context_object_name = 'addgroup'
+# 	form_class = GroupForm
 
 
 

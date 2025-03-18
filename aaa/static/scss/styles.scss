@@ -6,7 +6,7 @@ $secondary: #F2F2F2;
 $accent1: #8F00FF;
 $accent2: #00FF7F;
 
-
+@use 'ajax';
 @use 'forms';
 @use 'loader';
 @use 'buttons';
@@ -40,7 +40,8 @@ body {
   background-color: white;
 }
 
-a {
+a,
+a:hover {
   text-decoration: none;
   color: $accent1;
   cursor: pointer;
@@ -149,23 +150,29 @@ li a.nav_link,
 
 
 
+
+
 .top_part {
   padding: 40px 0px 0px 0px;
 
   .header {
     margin-bottom: 56px;
 
-    a {
+    a,
+    a:hover {
       text-decoration: underline;
       text-underline-offset: 16px;
       display: inline;
     }
 
     h2 a,
-    h3 a {
+    h3 a,
+    h3 a:hover,
+    h2 a:hover {
       text-decoration: underline;
       text-underline-offset: 8px;
       display: inline;
+      color: $accent1;
     }
 
     .group_count {
@@ -179,7 +186,8 @@ li a.nav_link,
 
   }
 
-  h1 {
+  h1,
+  h1:hover {
     font-family: $font-stack1;
     color: $accent1;
     text-transform: none;
@@ -208,6 +216,7 @@ li a.nav_link,
 
 
 }
+
 
 
 .postlist {

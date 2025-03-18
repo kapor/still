@@ -1,0 +1,35 @@
+<!-- posts/modal.html -->
+
+<div class="modal" id="post_modal">
+
+
+
+    <div class="modal_content">
+
+      <div class="modal_header">
+        <h3>Add a Post</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="false">&times;</span>
+        </button>
+      </div>
+
+    <form method="POST" action="#" id="postForm">
+
+
+        <div class="form_container">
+            {% csrf_token %}
+            {{ form }}
+        </div>
+
+
+      <div class="button_container_modal">
+        <button type="button" class="button_secondary" data-dismiss="modal">Close</button>
+        <input type="submit" value="Add" class="button_accent">
+      </div>
+
+    </form>
+  
+  </div>
+
+
+</div>
