@@ -2,7 +2,7 @@ from django.db import models
 from taggit.managers import TaggableManager
 from django.urls import reverse
 from django.conf import settings
-
+from django.contrib.auth.models import User
 
 import misaka
 
@@ -24,7 +24,7 @@ class Post(models.Model):
     message_html = models.TextField(editable=False)
     group = models.ForeignKey(Group, related_name="posts", null=True, blank=True, on_delete=models.PROTECT)
     image = models.ImageField(upload_to=get_upload_path, default="posts/blank.jpg", blank=True)
-
+    liked = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
         return self.message
@@ -43,7 +43,10 @@ class Post(models.Model):
         # ]
 
 
-
+    # like button
+    @property
+    def like_count(self):
+        return self.liked.all().count()
 
 
 

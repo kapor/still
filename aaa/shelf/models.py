@@ -40,6 +40,7 @@ class Shelves(models.Model):
 	image = models.ImageField(upload_to=get_upload_path, default="shelves/blank.jpg", blank=True)
 	notes = models.TextField(blank=True, null=True)
 	created_at = models.DateTimeField(auto_now=True)
+	liked = models.ManyToManyField(User, blank=True)
 
 	class Meta:
 		verbose_name_plural = "Shelves"
@@ -53,3 +54,7 @@ class Shelves(models.Model):
 	def get_absolute_url(self):
 		return reverse("shelf:detail", kwargs={'pk':self.pk})
 
+	# like button
+	@property
+	def like_count(self):
+		return self.liked.all().count()

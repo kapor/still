@@ -5,6 +5,7 @@ from django.utils import timezone
 
 import misaka
 
+from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -52,9 +53,15 @@ class Comment(models.Model):
 	user = models.ForeignKey(User, related_name='comment_user', on_delete=models.CASCADE)
 	message = models.TextField()
 	created_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+	liked = models.ManyToManyField(User, blank=True)
 
 	def get_absolute_url(self):
 	    return reverse("groups:single", kwargs={'slug':self.slug})
 
 	def __str__(self):
 		return self.message
+
+	# like button
+	@property
+	def like_count(self):
+		return self.liked.all().count()

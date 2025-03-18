@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from taggit.managers import TaggableManager
 from django.urls import reverse
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -23,6 +23,7 @@ class Blog(models.Model):
 	published_date = models.DateTimeField(blank=True, null=True)
 	tags = TaggableManager(blank=True)
 	image = models.ImageField(upload_to=get_upload_path, default="/images/blank.jpg", verbose_name='Image', null=True, blank=True)
+	liked = models.ManyToManyField(User, blank=True)
 
 	def publish(self):
 		self.published_date = timezone.now()
@@ -40,6 +41,10 @@ class Blog(models.Model):
 	class Meta:
 		verbose_name_plural = "Blog"
 
+	# like button
+	@property
+	def like_count(self):
+		return self.liked.all().count()
 
 
 
