@@ -1,26 +1,21 @@
-<!-- groups/groups.html -->
+<!-- aaa/groups/templates/groups/groups.html -->
 {% extends "groups/group_base.html" %}
 
-{% block title %}
-groups
-{% endblock title %}
 
-{% block content %}
-
+{% block pre_group %}
 
 
 <div class="top_part">
-
 
 	<div class="header">
 		{% if user.is_authenticated %}
 		<h1>Hey
 			<!-- link to all the user's posts -->
-			<a href="{% url 'for_user' username=user.username %}">
+			<a href="{% url 'posts:for_user' username=user.username %}">
 			{{user.username}}</a>.<br>
 				These are groups.<br>
 			{% if user.is_superuser %}
-			<a hx-get="{% url 'groups:add' %}" hx-target="body" hx-swap="beforeend" id="modal_trigger">
+			<a hx-get="{% url 'groups:add' %}" hx-target="body" hx-swap="beforeend">
 			Create one
 			</a>
 			{% else %}
@@ -40,15 +35,20 @@ groups
 
 </div>
 
+{% endblock %}
 
 
+
+
+
+{% block group_content %}
 
   <div>
 		{% include 'groups/group_list.html' %}
   </div>
   
+{% endblock %}
 
 
-
-
+{% block post_group %}
 {% endblock %}
