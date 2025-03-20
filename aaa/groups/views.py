@@ -118,7 +118,7 @@ class LeaveGroup(LoginRequiredMixin, RedirectView):
 
 class GroupView(ListView):
     model = Group
-    fields = ('name', 'description', 'members')
+    fields = ('name', 'description')
     template_name = "groups/groups.html"
     context_object_name = "grouplist"
     paginate_by = 20
@@ -167,7 +167,6 @@ class CreateGroup(LoginRequiredMixin, CreateView):
 class AddGroup(LoginRequiredMixin, generic.CreateView):
 	template_name = 'groups/group_modal.html'
 	model = models.Group
-	context_object_name = 'addgroup'
 	form_class = GroupForm
 
 

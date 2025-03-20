@@ -1,28 +1,17 @@
-<!-- aaa/groups/templates/groups/modal.html -->
-
-<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
-    <div class="modal_underlay" _="on click trigger closeModal"></div>
-    <div class="modal_content">
-    
-
-        <h2>Add Group</h2>
+<!-- aaa/groups/templates/shelf/group_modal.html -->
+{% extends "base_modal.html" %}
 
 
 
-		<form method="POST" action="{% url 'groups:create' %}" id="groupForm">
+{% block modal_title %}
+{% if shelf.title %}
+  Edit This Item
+{% else %}
+  Add an Item
+{% endif %}
+{% endblock %}
 
 
-        <div class="form_container">
-                {% csrf_token %}
-                {{ form }}
-        </div>
-
-        <div class="button_container_modal">
-            <button id="modal_close" class="button_secondary" _="on click trigger closeModal" style="width:50%">Close</button>
-            <input type="submit" value="Add" class="button_accent" style="width:50%">
-        </div>
-
-  </form>
-
-    </div>
-</div>
+{% block modal_form %}
+<form method="POST" action="{% url 'groups:add' %}" id="groupForm">
+{% endblock %}

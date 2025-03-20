@@ -1,5 +1,5 @@
-<!-- aaa/groups/templates/groups/groups.html -->
-{% extends "base.html" %}
+<!-- groups/groups.html -->
+{% extends "groups/group_base.html" %}
 
 {% block title %}
 groups
@@ -8,7 +8,9 @@ groups
 {% block content %}
 
 
+
 <div class="top_part">
+
 
 	<div class="header">
 		{% if user.is_authenticated %}
