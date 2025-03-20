@@ -1,14 +1,17 @@
-<!-- aaa/groups/templates/groups/modal.html -->
+<!-- aaa/groups/templates/shelf/group_modal.html -->
 {% extends "base_modal.html" %}
 
 
 
 {% block modal_title %}
-Add Group
+{% if shelf.title %}
+  Edit This Item
+{% else %}
+  Add an Item
+{% endif %}
 {% endblock %}
 
 
 {% block modal_form %}
-<form method="POST" action="{% url 'groups:create' %}" id="groupForm">
+<form method="POST" action="{% url 'groups:add' %}" id="groupForm">
 {% endblock %}
-
