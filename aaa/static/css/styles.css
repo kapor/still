@@ -994,7 +994,8 @@ li a.nav_link,
 .top_part .header {
   margin-bottom: 56px;
 }
-.top_part .header a {
+.top_part .header a,
+.top_part .header a:hover {
   text-decoration: underline;
   text-underline-offset: 16px;
   display: inline;

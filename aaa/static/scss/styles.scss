@@ -156,7 +156,8 @@ li a.nav_link,
   .header {
     margin-bottom: 56px;
 
-    a {
+    a,
+    a:hover {
       text-decoration: underline;
       text-underline-offset: 16px;
       display: inline;
