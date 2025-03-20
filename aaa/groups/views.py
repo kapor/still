@@ -3,7 +3,7 @@ from . import models
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse, reverse_lazy
-from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView, RedirectView
+from django.views.generic import ListView, RedirectView, DeleteView, DetailView, CreateView
 from django.contrib import messages
 from groups.models import Group, GroupMember, Comment
 from groups.forms import GroupForm, CommentForm
@@ -12,7 +12,6 @@ from posts.models import Post
 from django.http import Http404
 from django.views import generic
 from django.db import IntegrityError
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
@@ -44,13 +43,11 @@ def SingleGroup(request, slug):
 		if form.is_valid():
 			comment = form.save(commit=False)
 			comment.group = group
-			comment.user = request.user
+			comment.author = request.user
 			comment.save()
-			messages.success(request, 'Comment added')
 			return redirect('groups:single', slug=slug)
 	else:
 		form = CommentForm()
-
 		context = {'comment': comment, 'group': group, 'form': form}
 	return render(request, 'groups/group_detail.html', context)
 
@@ -59,13 +56,14 @@ def SingleGroup(request, slug):
 
 
 
-@login_required
+
+
+
 def CommentDelete(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     group_slug = comment.group.slug  # Retrieve the post's slug
     comment.delete()
-    messages.success(request, 'Comment deleted')
-    return redirect(request.META['HTTP_REFERER'])
+    return redirect(reverse('groups:single', kwargs={'slug': group_slug}))
 
 
 
@@ -88,9 +86,9 @@ class JoinGroup(LoginRequiredMixin, RedirectView):
 		try:
 			GroupMember.objects.create(user = self.request.user, group=group)
 		except IntegrityError:
-			messages.warning(self.request, ('Already a member'))
+			messages.warning(self.request, ('Already a member.'))
 		else:
-			messages.success(self.request, ("You're now a member"))
+			messages.success(self.request, ("You're now a member."))
 		return super().get(request, *args, **kwargs)
 
 
@@ -158,13 +156,12 @@ class GroupPost(LoginRequiredMixin, RedirectView):
 class CreateGroup(LoginRequiredMixin, CreateView):
 	model = Group
 	form_class = GroupForm
-
-	# success_url = reverse_lazy('groups:all')
+  
 
 
 
 # Modal View
-class AddGroup(LoginRequiredMixin, generic.CreateView):
+class AddGroup(LoginRequiredMixin,generic.CreateView,):
 	template_name = 'groups/group_modal.html'
 	model = models.Group
 	context_object_name = 'addgroup'
