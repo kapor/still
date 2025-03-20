@@ -1,11 +1,13 @@
 from django.contrib import admin
 from django.urls import include, path
 from . import views
+from .views import LoadGroup
 
 app_name = 'groups'
 
 urlpatterns = [
     path('', views.GroupView.as_view(), name='all'),
+    path('<int:num_posts>/', LoadGroup, name='load'),
 
     path('grouplist', views.GroupView.as_view(), name='grouplist'),
     path('new/', views.CreateGroup.as_view(), name='create'),
@@ -18,7 +20,7 @@ urlpatterns = [
     # path('<slug>/comment', views.add_comment_to_group, name='comment'),
     path('comment/<int:pk>/delete/', views.CommentDelete, name='commentdelete'), 
 
-    path('<slug>/new', views.GroupPost.as_view(), name='groupost'),
+    # path('<slug>/new', views.GroupPost.as_view(), name='groupost'),
 
     path('formbutton', views.GroupPostFormButton.as_view(), name='formbutton'),
 

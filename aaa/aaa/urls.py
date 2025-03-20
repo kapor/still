@@ -18,8 +18,6 @@ from django.contrib import admin
 from django.conf.urls.static import static, settings
 from django.urls import include, path
 from . import views
-from .views import IndexLoad, load_more
-
 app_name = 'aaa'
 
 urlpatterns = [
@@ -30,17 +28,13 @@ urlpatterns = [
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('groups/', include('groups.urls', namespace='groups')),
-    # path("", views.IndexView.as_view(template_name='index.html'), name="home"),
+
     path("", views.Activity.as_view(), name="home"),
     path('results', views.Activity.SearchView.as_view(), name='index_search'),
     path('user/<username>', views.User_Activity, name='for_user'),
 
 
     path('contact/', include('contact.urls', namespace="contact")),
-
-
-    path('index_load/', IndexLoad, name='index_load'),
-    path('load/', load_more, name='load'),
 
     path('', include('blog.urls')),
     path('', include(('shelf.urls', 'shelf'), namespace='shelf')),

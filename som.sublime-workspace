@@ -1,0 +1,708 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get",
+				"getElementsByClassName"
+			],
+			[
+				"getele",
+				"getElementsByClassName"
+			],
+			[
+				"add",
+				"addEventListener"
+			],
+			[
+				"create",
+				"createAndOpen"
+			],
+			[
+				"createE",
+				"createElement"
+			],
+			[
+				"confir",
+				"confirmText"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"getEle",
+				"getElementsByClassName"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"z",
+				"zoomIn"
+			],
+			[
+				"l",
+				"LoginRequiredMixin"
+			],
+			[
+				"inline",
+				"inline-flex"
+			],
+			[
+				"margin-",
+				"margin-bottom"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"pad",
+				"padding-top"
+			],
+			[
+				"butt",
+				"button_accent"
+			],
+			[
+				"borde",
+				"border-radius"
+			],
+			[
+				"button",
+				"button_secondary"
+			],
+			[
+				"des",
+				"description"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"Comm",
+				"CommentForm"
+			],
+			[
+				"login",
+				"login_required"
+			],
+			[
+				"Post",
+				"PostDetailView"
+			],
+			[
+				"app",
+				"approve_comments"
+			],
+			[
+				"revers",
+				"reverse_lazy"
+			],
+			[
+				"BookLi",
+				"BookListView"
+			],
+			[
+				"templa",
+				"template_name"
+			],
+			[
+				"tem",
+				"TemplateView"
+			],
+			[
+				"templ",
+				"template_name"
+			],
+			[
+				"prof",
+				"prof_form"
+			],
+			[
+				"bot",
+				"botcatch"
+			],
+			[
+				"blu",
+				"lightblue"
+			],
+			[
+				"light",
+				"lightcoral"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"static",
+				"STATIC_DIR"
+			],
+			[
+				"TEMPL",
+				"TEMPLATE_DIR"
+			],
+			[
+				"TEMP",
+				"TEMPLATES"
+			],
+			[
+				"de",
+				"deposit"
+			],
+			[
+				"wi",
+				"widthdraw"
+			],
+			[
+				"descr",
+				"description\tcommands.description"
+			],
+			[
+				"up",
+				"update_btn"
+			],
+			[
+				"del",
+				"delete_btn"
+			],
+			[
+				"__",
+				"__name__"
+			],
+			[
+				"class1",
+				"class1_method2"
+			],
+			[
+				"c",
+				"class1_method1"
+			],
+			[
+				"padding-",
+				"padding-bottom"
+			],
+			[
+				"backgr",
+				"background-position"
+			],
+			[
+				"background-",
+				"background-size"
+			],
+			[
+				"di",
+				"flex-direction"
+			],
+			[
+				"yell",
+				"yellowgreen"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"bord",
+				"border-radius"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"tile",
+				"tile_bg_pink"
+			],
+			[
+				"tile_bg",
+				"tile_bg_blue"
+			],
+			[
+				"tile_bg_b",
+				"tile_bg_light_blue"
+			],
+			[
+				"tile_b",
+				"tile_bg_pink"
+			],
+			[
+				"padding",
+				"padding-bottom"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"flex",
+				"flex-direction"
+			],
+			[
+				"fle",
+				"flex-direction"
+			],
+			[
+				"billboard_",
+				"billboard_portait"
+			],
+			[
+				"line",
+				"line-height"
+			],
+			[
+				"fl",
+				"flex-direction"
+			],
+			[
+				"text-",
+				"text-align"
+			],
+			[
+				"colu",
+				"column-reverse"
+			],
+			[
+				"icon",
+				"iconography"
+			],
+			[
+				"flex-",
+				"flex-direction"
+			],
+			[
+				"gap",
+				"column-gap"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"emmet",
+				"Preferences: Emmet Settings"
+			],
+			[
+				"Snippet: ",
+				"Snippet: html"
+			],
+			[
+				"packag",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"package install",
+				"Package Control: Advanced Install Packages"
+			],
+			[
+				"outline",
+				"Browse Mode: Outline (Right)"
+			],
+			[
+				"test",
+				"Test Runner: Run tests with coverage"
+			],
+			[
+				"",
+				"Set Syntax: Git Ignore"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"insta",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"colorthe",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"install",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"scss",
+				"Set Syntax: SCSS"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 172.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/aaronkapor/repos/som",
+		"/Users/aaronkapor/repos/som/som",
+		"/Users/aaronkapor/repos/som/som/aaa",
+		"/Users/aaronkapor/repos/som/som/aaa/__pycache__"
+	],
+	"file_history":
+	[
+		"/Users/aaronkapor/repos/som/som/aaa/settings.py",
+		"/Users/aaronkapor/repos/som/som/aaa/asgi.py",
+		"/Users/aaronkapor/repos/som/som/manage.py",
+		"/Users/aaronkapor/repos/som/som/aaa/urls.py",
+		"/Users/aaronkapor/repos/som/som/aaa/wsgi.py",
+		"/Users/aaronkapor/repos/som/som/blog/models.py",
+		"/Users/aaronkapor/repos/som/som/blog/views.py",
+		"/Users/aaronkapor/repos/som/som/blog/urls.py",
+		"/Users/aaronkapor/repos/still/aaa/static/scss/modal.scss",
+		"/Users/aaronkapor/repos/still/aaa/posts/views.py",
+		"/Users/aaronkapor/repos/still/aaa/posts/urls.py",
+		"/Users/aaronkapor/repos/still/aaa/shelf/templates/shelf/shelf.html",
+		"/Users/aaronkapor/repos/still/aaa/static/scss/styles.scss",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/post_modal2.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/post.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/index.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/post_confirm_delete.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/comment.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/post_modal.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_base.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/base_modal.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_comment.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/_post.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_list.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/views.py",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_detail.html",
+		"/Users/aaronkapor/repos/still/aaa/shelf/views.py",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/_posts.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/models.py",
+		"/Users/aaronkapor/repos/still/aaa/posts/models.py",
+		"/Users/aaronkapor/repos/still/aaa/shelf/models.py",
+		"/Users/aaronkapor/repos/still/aaa/aaa/settings.py",
+		"/Users/aaronkapor/repos/still/aaa/aaa/urls.py",
+		"/Users/aaronkapor/repos/still/aaa/templates/base.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/header.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/urls.py",
+		"/Users/aaronkapor/repos/still/aaa/groups/forms.py",
+		"/Users/aaronkapor/repos/still/aaa/posts/admin.py",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/groups.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/_groups.html",
+		"/Users/aaronkapor/repos/still/aaa/static/scss/ajax.scss",
+		"/Users/aaronkapor/repos/still/aaa/static/js/groups.js",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/modal.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/modal.html",
+		"/Users/aaronkapor/repos/still/aaa/static/js/modal.js",
+		"/Users/aaronkapor/repos/still/aaa/groups/static/js/groups.js",
+		"/Users/aaronkapor/repos/still/aaa/blog/models.py",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/activity_list.html",
+		"/Users/aaronkapor/repos/still/aaa/static/js/page.js",
+		"/Users/aaronkapor/repos/still/aaa/shelf/templates/shelf/shelf_list.html",
+		"/Users/aaronkapor/repos/still/aaa/shelf/forms.py",
+		"/Users/aaronkapor/repos/still/aaa/shelf/templates/shelf/shelf_form.html",
+		"/Users/aaronkapor/repos/still/aaa/shelf/urls.py",
+		"/Users/aaronkapor/repos/still/aaa/static/js/scripts.js",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/_comment.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/post_list.html",
+		"/Users/aaronkapor/repos/still/aaa/static/scss/forms.scss",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/message.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/scripts.html",
+		"/Users/aaronkapor/repos/still/aaa/shelf/templates/shelf/shelf_modal.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/post_form.html",
+		"/Users/aaronkapor/repos/still/aaa/aaa/views.py",
+		"/Users/aaronkapor/repos/still/aaa/shelf/templates/shelf/shelf_base.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/post_base.html",
+		"/Users/aaronkapor/repos/still/aaa/blog/templates/blog/blog_base.html",
+		"/Users/aaronkapor/repos/still/aaa/blog/templates/blog/blog_list.html",
+		"/Users/aaronkapor/repos/still/aaa/static/js/index.js",
+		"/Users/aaronkapor/repos/still/aaa/templates/index_test.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/base_modal2.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/_shelf.html",
+		"/Users/aaronkapor/repos/still/aaa/blog/urls.py",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/_blog.html",
+		"/Users/aaronkapor/repos/still/aaa/blog/views.py",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/_blog_02.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/user_activity.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/nav_desktop.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/forms.py",
+		"/Users/aaronkapor/repos/still/aaa/accounts/views.py",
+		"/Users/aaronkapor/repos/still/aaa/templates/groups/groups.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/index_search.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/index_load.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/post_load.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/_group_comments.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/_post.html",
+		"/Users/aaronkapor/repos/still/aaa/accounts/urls.py",
+		"/Users/aaronkapor/repos/still/aaa/accounts/templates/accounts/user_activity.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/user_post_list.html",
+		"/Users/aaronkapor/repos/still/aaa/shelf/templates/shelf/shelf_detail.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/_group.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/search_home.html",
+		"/Users/aaronkapor/repos/still/aaa/shelf/templates/shelf/shelf_search_results.html",
+		"/Users/aaronkapor/repos/still/aaa/blog/templates/blog/blog_detail.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_form.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_modal.html",
+		"/Users/aaronkapor/repos/still/aaa/static/js/modals.js",
+		"/Users/aaronkapor/repos/still/aaa/shelf/admin.py",
+		"/Users/aaronkapor/repos/still/aaa/blog/forms.py",
+		"/Users/aaronkapor/repos/still/aaa/blog/templates/blog/draft_list.html",
+		"/Users/aaronkapor/repos/still/aaa/aaa/templatetags/my_filters.py",
+		"/Users/aaronkapor/repos/still/aaa/aaa/templatetags/__init__.py",
+		"/Users/aaronkapor/repos/still/aaa/static/scss/buttons.scss",
+		"/Users/aaronkapor/repos/still/aaa/blog/templates/blog/blog_modal.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/_post_group.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/partials/alert.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/dialog_modal.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/widgets/post_group.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/modal.html",
+		"/Users/aaronkapor/repos/still/aaa/aaa/middleware.py",
+		"/Users/aaronkapor/repos/still/aaa/aaa/context_processors.py",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_confirm_delete.html",
+		"/Users/aaronkapor/repos/still/aaa/static/js/htmx.js",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/test.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_post_form_button.html",
+		"/Users/aaronkapor/repos/still/aaa/static/css/forms.css",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_detail_post.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/admin.py",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_detail_edit.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/post_detail.html",
+		"/Users/aaronkapor/repos/still/aaa/posts/templates/posts/post_form_single.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/group_post_form.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templatetags/group_tags.py",
+		"/Users/aaronkapor/repos/still/aaa/groups/tags.py",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/middleware_tester2.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/middleware-tester2.html",
+		"/Users/aaronkapor/repos/still/aaa/groups/templates/groups/middleware_tester.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/paginate.html",
+		"/Users/aaronkapor/repos/still/aaa/templates/includes/search_shelf.html"
+	],
+	"find":
+	{
+		"height": 46.0
+	},
+	"find_in_files":
+	{
+		"height": 190.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"aaa",
+			"som"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 66.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			],
+			[
+				2,
+				0,
+				3,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.33,
+			0.66,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 229.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.test_runner":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "som.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"test runner",
+				"Test Runner/TestRunner.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 295.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -12,7 +12,7 @@
   		<h2>Seriously, delete this?</h2>
 
 		<div class="posts_confirm">
-			{% include "posts/_post.html" with hide_delete=True %}
+			{% include "posts/post_confirm_delete_single.html" with hide_delete=True %}
 		</div>
 
 	<!-- <form method="post" hx-post="{% url 'posts:delete' pk=post.pk %}"> -->

@@ -56,7 +56,7 @@ class SearchView(ListView):
 
 class ShelfListView(ListView):
 	model = Shelves
-	template_name = 'shelf/shelf_list.html'
+	template_name = 'shelf/shelf.html'
 	queryset = Shelves.objects.order_by('-id')
 	paginate_by = 100
 

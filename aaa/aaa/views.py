@@ -38,19 +38,7 @@ User = get_user_model()
 class Home(TemplateView):
     template_name = "index.html"
 
-class IndexView(ListView):
-    model = Group
-    template_name = "index.html"
-    context_object_name = "index_grid"
-    paginate_by = 20
-    ordering = "name"
-    # new method added ⬇️
 
-    def get_template_names(self, *args, **kwargs):
-        if self.request.htmx:
-            return "index_grid.html"
-        else:
-            return self.template_name
 
 
 
@@ -138,17 +126,6 @@ def IndexLoad(request):
 
     return render(request, 'index_load.html', context)
 
-
-def load_more(request):
-    offset = request.GET.get('offset')
-    offset_int = int(offset)
-    limit = 20
-    # group_obj = group.objects.all()[offset_int:offset_int+limit]
-    group_obj = list(Group.objects.values()[offset_int:offset_int+limit])
-    data = {
-        'groups': group_obj
-    }
-    return JsonResponse(data=data)
 
 
 

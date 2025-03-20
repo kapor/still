@@ -156,7 +156,8 @@ li a.nav_link,
   .header {
     margin-bottom: 56px;
 
-    a {
+    a,
+    a:hover {
       text-decoration: underline;
       text-underline-offset: 16px;
       display: inline;
@@ -183,7 +184,9 @@ li a.nav_link,
 
   }
 
-  h1 {
+  h1,
+  h1 a,
+  h1 a:hover {
     font-family: $font-stack1;
     color: $accent1;
     text-transform: none;
@@ -621,7 +624,7 @@ h2 {
   list-style-type: none;
   font-weight: 400;
   letter-spacing: 1px;
-  font-size: 56px;
+  font-size: 48px;
   text-decoration: none;
   margin: 0px;
   padding: 20px 0px;
@@ -669,16 +672,17 @@ h4 p {
 
 
 
-.group_container {
+#group_container {
   font-family: $font-stack1;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
+  margin: 0px auto 20px auto;
 }
 
-.group_list {
+#group_list {
   font-family: $font-stack1;
   display: -ms-flexbox;
   display: flex;
@@ -1160,5 +1164,47 @@ ul.paginate li.active {
   transform: translate(-50%, -50%);
 }
 
+
+
+//////////////////////////////////////
+
+
+
+.not_visible {
+  display: none;
+}
+
+#group_list {
+
+
+  #loader_container {
+    position: fixed;      /* SET TO FIXED */
+    top: 0;
+    left: 0;
+    width: 100vw;         /* USE VIEWPORT UNITS */ 
+    height: 100vh;        /* USE VIEWPORT UNITS */
+    z-index: 1001;        /* MOVE Z-INDEX HERE! */
+  }
+
+  #loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8vmax;
+    height: 8vmax;
+    margin: -4vmax;       /* ADD THIS (half the W/H) */
+    border-radius: 50%;
+    border: 10px solid transparent;
+    border-top-color: $accent1;
+    animation: spin 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+
+  @keyframes spin {
+    0%   {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+  }
+
+
+}
 
 

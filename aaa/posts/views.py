@@ -43,8 +43,6 @@ def AddPost(request):
         form = PostForm(user=request.user)	
     else:
         form = PostForm(data=request.POST, user=request.user)
-        # if form.is_valid():
-        #     form.instance.user = request.user
         if form.is_valid():
             form.instance.user = request.user
             post = form.save(commit=False)
@@ -52,15 +50,8 @@ def AddPost(request):
             photo = form.save()
             messages.success(request, 'Post added')
             return redirect('posts:all')
-        # with transaction.atomic():
-        #     post = form.save()
-        #     photo = form.save()
-        #     messages.success(request, 'Post added')
-        #     return redirect('posts:all')
     context = {'form':form}
     return render(request, 'posts/post_modal.html', context)
-
-
 
 
 
@@ -79,9 +70,6 @@ class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 
 
 
-
-
-	
 @login_required
 def PostGroup(request):
     if request.method != 'POST':
@@ -98,60 +86,11 @@ def PostGroup(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Shows lists of posts for user and/or group
 class PostList(LoginRequiredMixin, PrefetchRelatedMixin, generic.ListView):
 	model = models.Post
-	template_name = 'posts/post_list.html'
+	template_name = 'posts/post.html'
 	prefetch_related = ('user', 'group')
-
-
-
-
-
-
-
-# Shows list view of specific user's posts
-# class UserPosts(generic.ListView, LoginRequiredMixin):
-# 	model = models.Post
-# 	template_name = 'posts/user_post_list.html'
-
-# 	# upon calling 'UserPosts' it sets the current user's view to only see posts from the username of whoever is currently logged in
-# 	def get_queryset(self):
-# 		try:
-# 			self.post_user = User.objects.prefetch_related("posts").get(username__iexact=self.kwargs.get("username"))
-# 		except User.DoesNotExist:
-# 			raise Http404
-# 		else:
-# 			return self.post_user.posts.all()
-
-
-# 	def get_context_data(self, **kwargs):
-# 		context = super().get_context_data(**kwargs)
-# 		context['post_user'] = self.post_user
-# 		return context
-
-
-
-
-
-
 
 
 
@@ -165,10 +104,10 @@ class PostDetail(PrefetchRelatedMixin, generic.DetailView, LoginRequiredMixin):
 		return queryset.filter(user__username__iexact = self.kwargs.get('username'))
 
 
+
 class EditPost(LoginRequiredMixin, UpdateView):
 	model = models.Post
 	login_url = "login"
-
 
 
 
@@ -184,46 +123,11 @@ class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
 
 
 
-
-
-
-
-
-
-
-
-
-
 class SingleGroup(generic.DetailView):
 	model = Group
 	context_object_name = 'group'
 
 
-
-
-
-
-
-def PostLoad(request):
-    post_obj = models.Post.objects.all()[0:10]
-    total_posts_obj = models.Post.objects.count()
-    print(total_posts_obj)
-    return render(request, 'posts/post_load.html', context={'posts': post_obj, 'total_posts_obj': total_posts_obj})
-
-
-
-
-
-
-def PostMore(request):
-    offset = request.GET.get('offset')
-    offset_int = int(offset)
-    limit = 20
-    post_obj = list(models.Post.objects.values()[offset_int:offset_int+limit])
-    data = {
-        'posts': post_obj
-    }
-    return JsonResponse(data=data)
 
 
 
