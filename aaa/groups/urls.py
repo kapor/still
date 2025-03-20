@@ -1,13 +1,12 @@
 from django.contrib import admin
 from django.urls import include, path
 from . import views
-from .views import LoadGroup
 
 app_name = 'groups'
 
 urlpatterns = [
     path('', views.GroupView.as_view(), name='all'),
-    path('<int:num_posts>/', LoadGroup, name='load'),
+    # path('<int:num_posts>/', LoadGroup, name='load'),
 
     path('grouplist', views.GroupView.as_view(), name='grouplist'),
     path('new/', views.CreateGroup.as_view(), name='create'),

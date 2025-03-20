@@ -114,17 +114,17 @@ class LeaveGroup(LoginRequiredMixin, RedirectView):
 class GroupView(ListView):
     model = Group
     fields = ('name', 'description', 'members')
-    template_name = "groups/group.html"
+    template_name = "groups/groups.html"
     context_object_name = "grouplist"
     paginate_by = 20
     # ordering = 'pk'
     ordering = ['name']
     # new method added ⬇️
-    # def get_template_names(self, *args, **kwargs):
-    #     if self.request.htmx:
-    #         return "groups/group_list.html"
-    #     else:
-    #         return self.template_name
+    def get_template_names(self, *args, **kwargs):
+        if self.request.htmx:
+            return "groups/group_list.html"
+        else:
+            return self.template_name
 
 
 
@@ -133,25 +133,25 @@ class GroupView(ListView):
 
 
 ## def load_post(request, num_posts):
-def LoadGroup(request, **kwargs):
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        num_posts = kwargs.get('num_posts')
-        visible = 40
-        upper = num_posts
-        lower = upper - visible
-        size = Group.objects.all().count()
+# def LoadGroup(request, **kwargs):
+#     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+#         num_posts = kwargs.get('num_posts')
+#         visible = 40
+#         upper = num_posts
+#         lower = upper - visible
+#         size = Group.objects.all().count()
 
-        qs = Group.objects.all()
-        # you cannot pass in a JSON response as a query set directly – so creating an empty dictionary and looping through an object and appending it to the dictionary is a solution.
-        data = []
-        for item in qs:
-            item = {
-                'slug': item.slug,
-                'name': item.name,
-                'description': item.description,
-            }
-            data.append(item)
-        return JsonResponse({'data':data[lower:upper], 'size':size })
+#         qs = Group.objects.all()
+#         # you cannot pass in a JSON response as a query set directly – so creating an empty dictionary and looping through an object and appending it to the dictionary is a solution.
+#         data = []
+#         for item in qs:
+#             item = {
+#                 'slug': item.slug,
+#                 'name': item.name,
+#                 'description': item.description,
+#             }
+#             data.append(item)
+#         return JsonResponse({'data':data[lower:upper], 'size':size })
 
 
 
@@ -177,7 +177,6 @@ class AddGroup(LoginRequiredMixin,generic.CreateView,):
 class DeleteGroup(LoginRequiredMixin, generic.DeleteView):
 	model = models.Group
 	context_object_name = 'deletegroup'
-	success_url = reverse_lazy('groups:all')
 
 	def delete(self, *args, **kwargs):
 		messages.success(self.request, 'Group Deleted')
