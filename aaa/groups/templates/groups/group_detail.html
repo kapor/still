@@ -1,6 +1,5 @@
 <!-- aaa/groups/templates/groups/groups_detail.html -->
 {% extends "groups/group_base.html" %}
-
 {% block pre_group %}
 
 
@@ -31,7 +30,7 @@
 </div>
 
 
-{% if user.is_superuser %}
+{% if user.is_authenticated %}
 
 	<div class="button_container">
 		<a href="{% url 'groups:all' %}"><div class="button_accent">
@@ -79,10 +78,8 @@
 
 <div class="group_detail_lists">
 		<h3 class="h3">Posts</h3>
-		{% for item in group.posts.all %}
-
-			{% include 'includes/_post.html' with delete=True %}
-
+		{% for post in group.posts.all %}
+			{% include "posts/_post_group.html" %}
   	{% empty %}
   		<h3>No activity yet.</h3>
 		{% endfor %}
@@ -92,12 +89,9 @@
 
 <div class="group_detail_lists">
 		<h3 class="h3">Comments</h3>
-		{% for item in comment  %}
-
-			{% include 'includes/_comment.html' with delete=True %}
-
+		{% for comment in comment  %}
+			{% include "groups/_group_comments.html" %}
   	{% empty %}
-  		<h3>No activity yet.</h3>
 		{% endfor %}
 </div>
 
@@ -105,7 +99,7 @@
 
 {% if user in group.members.all %}
 <div class="docked_container">
-	<div class="search_bar">
+	<div class="search_bar" style="max-width:1000px; margin-top:40px">
 		<form method="post">
 			{% csrf_token %}
 		    {{ form }}

@@ -34,12 +34,12 @@ class GroupForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-	message = forms.CharField(label='')
+	text = forms.CharField(label='')
 
 	class Meta:
 		model = Comment
-		fields = ['message']
+		fields = ['text']
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		self.fields['message'].widget.attrs.update({'class': 'field_small', 'placeholder': 'Make a comment'})
+		self.fields['text'].widget.attrs.update({'class': 'field_small', 'placeholder': 'Make a comment'})

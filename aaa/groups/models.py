@@ -49,15 +49,12 @@ class GroupMember(models.Model):
 
 class Comment(models.Model):
 	group = models.ForeignKey(Group, related_name='comment_group', on_delete=models.CASCADE)
-	user = models.ForeignKey(User, related_name='comment_user', on_delete=models.CASCADE)
-	message = models.TextField()
-	created_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+	author = models.ForeignKey(User, related_name='comment_author', on_delete=models.CASCADE)
+	text = models.TextField()
+	created_at = models.DateTimeField(default=timezone.now)
 
 	def get_absolute_url(self):
 	    return reverse("groups:single", kwargs={'slug':self.slug})
 
 	def __str__(self):
-		return self.message
-
-	class Meta:
-		ordering = ['-created_at']
+		return self.text
