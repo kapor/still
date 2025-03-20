@@ -1,13 +1,11 @@
+<!-- shelf/shelf_list.html -->
 {% extends "shelf/shelf_base.html" %}
 
 {% block pre_shelf %}
-
-
 <div class="top_part">
   <div class="header">
   {% if user.is_superuser %}
   <h1>Shelves: organize stuff.</h1>
-
   <h2><a hx-get="{% url 'shelf:add' %}" hx-target="body" hx-swap="beforeend">Add an item to your shelf.</a></h2>
 
   {% else %}
@@ -56,7 +54,7 @@
 			<td>{{ shelf.year }}</td>
 			{% endif %}
 
-			<td><a href="{% url 'shelf:detail' pk=shelf.pk %}">{{ shelf.title }}</a></td>
+			<td><a href="shelf/{{ shelf.id }}">{{ shelf.title }}</a></td>
 
 
 			{% if shelf.author == 'N/A' %}
@@ -74,9 +72,7 @@
 			<td>––</td>
 			{% endif %}
 
-		
-			<td><a href="{% url 'for_user' username=shelf.user.username %}">{{ shelf.user }}</a></td>
-
+			<td>{{ shelf.user }}</td>
 
 			<td>
 				<div class=cover_crop>
@@ -94,6 +90,7 @@
 
 
 		</table>
+
 
 
 
