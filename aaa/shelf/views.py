@@ -6,13 +6,12 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import authenticate, login, logout
 from shelf.models import Shelves
-from django.contrib import messages
 from django.db.models import Q
 from . import models, forms
 from shelf.forms import ShelfEntryForm, ShelfEntryEdit, SearchForm
 from shelf import views, urls
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 import os
 
 
@@ -49,6 +48,7 @@ class SearchView(ListView):
 
 
 
+
  
 
 
@@ -71,49 +71,24 @@ class ShelfDetailView(DetailView):
 
 
 
-
-class ShelfAdd(CreateView, LoginRequiredMixin):
-    form_class = ShelfEntryForm
-    template_name = 'shelf/shelf_modal.html'
-
-    def post(self, request):
+# Modal View
+@login_required
+def ShelfAdd(request):
+    form = forms.ShelfEntryForm()
+    if request.method == 'POST':
+        form = forms.ShelfEntryForm(request.POST, request.FILES)  
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            photo = form.save()
+            form.save_m2m()
+            return redirect('/shelf')
+    else:
         form = forms.ShelfEntryForm()
-        if request.method == 'POST':
-            form = forms.ShelfEntryForm(request.POST, request.FILES)  
-            if form.is_valid():
-                profile = form.save(commit=False)
-                profile.user = request.user
-                profile.save()
-                photo = form.save()
-                form.save_m2m()
-                messages.success(request, 'Item added')
-                return redirect('/shelf')
-        else:
-            messages.error(request, 'Error adding the item')
-            form = forms.ShelfEntryForm()
-        return render(request, 'shelf/shelf_modal.html',{'form':form})
+    return render(request, 'shelf/shelf_modal.html',{'form':form})
 
 
-
-
-
-
-# # Modal View
-# @login_required
-# def ShelfAdd(request):
-#     form = forms.ShelfEntryForm()
-#     if request.method == 'POST':
-#         form = forms.ShelfEntryForm(request.POST, request.FILES)  
-#         if form.is_valid():
-#             profile = form.save(commit=False)
-#             profile.user = request.user
-#             profile.save()
-#             photo = form.save()
-#             form.save_m2m()
-#             return redirect('/shelf')
-#     else:
-#         form = forms.ShelfEntryForm()
-#     return render(request, 'shelf/shelf_modal.html',{'form':form})
 
 
 
@@ -128,9 +103,6 @@ class Edit_Item(LoginRequiredMixin, UpdateView):
     form_class = ShelfEntryEdit
     context_object_name = 'edit'
 
-    def post(self, request, *args, **kwargs):
-        messages.success(self.request, "Item updated")
-        return super().post(request, *args, **kwargs)
 
 
 
@@ -139,9 +111,6 @@ class Delete_Item(LoginRequiredMixin, DeleteView):
     template_name = 'shelf/shelf_confirm_delete.html'
     success_url = reverse_lazy("shelf:shelf")
 
-    def post(self, request, *args, **kwargs):
-        messages.success(self.request, "Item deleted")
-        return super().post(request, *args, **kwargs)
 
 
 

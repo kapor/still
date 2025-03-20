@@ -28,77 +28,77 @@
 {% if user.is_authenticated %}
 
 
-    {% include 'includes/search_shelf.html' %} 
+	{% include 'includes/search_shelf.html' %} 
 
 
 
-    <table class="shelf_grid">
-        <thead class="col_header_header">
-            <th class="col_header">Year</th>
-            <th class="col_header">Title</th>
-            <th class="col_header">Author</th>
-            <th class="col_header">Tags</th>
-            <th class="col_header">User</th>
-            <th class="col_header">Image</th>
-        </thead>
+	<table class="shelf_grid">
+		<thead class="col_header_header">
+			<th class="col_header">Year</th>
+			<th class="col_header">Title</th>
+			<th class="col_header">Author</th>
+			<th class="col_header">Tags</th>
+			<th class="col_header">User</th>
+			<th class="col_header">Image</th>
+		</thead>
 
 
 
-        {% for shelf in object_list %}
+		{% for shelf in object_list %}
 
-        <tr>
+		<tr>
 
-            {% if shelf.year == 0 %}
-            <td>––</td>
-            {% else %}
-            <td>{{ shelf.year }}</td>
-            {% endif %}
+			{% if shelf.year == 0 %}
+			<td>––</td>
+			{% else %}
+			<td>{{ shelf.year }}</td>
+			{% endif %}
 
-            <td><a href="shelf/{{ shelf.id }}">{{ shelf.title }}</a></td>
-
-
-            {% if shelf.author == 'N/A' %}
-            <td>––</td>
-            {% else %}
-            <td>{{ shelf.author }}</td>
-            {% endif %}
-
-            {% if shelf.tags.all %}
-                <td>{% for tags in shelf.tags.all %}
-                <tag class="taggy">{{ tags }}</tag>
-                {% endfor %}
-            </td>
-            {% else %}
-            <td>––</td>
-            {% endif %}
-
-            <td>{{ shelf.user }}</td>
-
-            <td>
-                <div class=cover_crop>
-                    {% if shelf.image %}
-                    <img class="cover_photo" src="/media/{{ shelf.image }}">
-                    {% else %}
-                    <img class="photo_blank" src="/media/shelves/blank.jpg">
-                    {% endif %}
-                </div>
-            </td>
-
-            </tr>
-
-        {% endfor %}
+			<td><a href="shelf/{{ shelf.id }}">{{ shelf.title }}</a></td>
 
 
-        </table>
+			{% if shelf.author == 'N/A' %}
+			<td>––</td>
+			{% else %}
+			<td>{{ shelf.author }}</td>
+			{% endif %}
+
+			{% if shelf.tags.all %}
+				<td>{% for tags in shelf.tags.all %}
+				<tag class="taggy">{{ tags }}</tag>
+				{% endfor %}
+			</td>
+			{% else %}
+			<td>––</td>
+			{% endif %}
+
+			<td>{{ shelf.user }}</td>
+
+			<td>
+				<div class=cover_crop>
+					{% if shelf.image %}
+					<img class="cover_photo" src="/media/{{ shelf.image }}">
+					{% else %}
+					<img class="photo_blank" src="/media/shelves/blank.jpg">
+					{% endif %}
+				</div>
+			</td>
+
+			</tr>
+
+		{% endfor %}
 
 
-
-
+		</table>
 
 
 
 
-    {% include 'includes/paginate.html' %} 
+
+
+
+
+	{% include 'includes/paginate.html' %} 
 
 
 

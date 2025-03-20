@@ -43,6 +43,7 @@ class Shelves(models.Model):
 
 	class Meta:
 		verbose_name_plural = "Shelves"
+		ordering = ['-created_at']
 
 	def __str__(self):
 		return self.title
