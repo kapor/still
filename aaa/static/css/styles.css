@@ -551,7 +551,7 @@ input.button_accent_large a,
   bottom: 0px;
   left: 0px;
   right: 0px;
-  background-color: rgba(76, 127, 111, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 1000;
   display: flex;
   flex-direction: column;
