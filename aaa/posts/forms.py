@@ -39,10 +39,10 @@ class PostForm(forms.Form):
 	def __init__(self, *args, user=None, **kwargs):
 		qs = Group.objects.filter(members=user)
 		super().__init__(*args, **kwargs)
-		self.fields['message'].widget.attrs.update({'class':'field_description'})
+		self.fields['message'].widget.attrs.update({'class':'field_description', 'id': 'id_message'})
 		self.fields['group'].queryset = qs
-		self.fields['group'].widget.attrs.update({'class': 'field_select', 'placeholder': ''})
-		self.fields['image'].widget.attrs.update({'class': 'field_image'})
+		self.fields['group'].widget.attrs.update({'class': 'field_select', 'placeholder': '', 'id': 'id_group'})
+		self.fields['image'].widget.attrs.update({'class': 'field_image', 'id': 'id_image'})
 		for field in self.fields.values():
 			self.fields['image'].required = False
 

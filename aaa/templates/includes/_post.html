@@ -5,7 +5,7 @@
 {% if modal %}
 <div class="post_modal" id="post_list">
 {% else %}
-<div {% if item|is_app:"posts" %} class="post3" {% else %} {% endif %} id="post_list">
+<div {% if item|is_app:"posts" %} class="post3" {% endif %} id="post_list">
 {% endif %}
 
     <div>
@@ -53,45 +53,11 @@
 
     </div>
 
-<!-- <script>
 
-  function getCookie(name) {
-      let cookieValue = null;
-      if (document.cookie && document.cookie !== '') {
-          const cookies = document.cookie.split(';');
-          for (let i = 0; i < cookies.length; i++) {
-              const cookie = cookies[i].trim();
-              if (cookie.startsWith(name + '=')) {
-                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                  break;
-              }
-          }
-      }
-      return cookieValue;
-  }
-  
-  const csrfToken = getCookie('csrftoken');
-
-
-$.ajax({
-  const csrftoken = "{{ csrf_token }}";
-  url: "{% url 'posts:delete' pk=item.pk %}",
-  type: 'DELETE',
-  data: $('posts.PostForm').serialize(),
-  headers: {'X-CSRFToken': csrfToken},
-
-  success: function(response) {
-    // Check for a success signal in the response
-    if (response.success) {
-      window.location.reload();
-    } else {
-        // Handle errors or other outcomes
-    }
-  },
-  error: function(error) {
-    // Handle AJAX errors
-  }
-});
-</script> -->
 
   </div>
+
+
+
+
+

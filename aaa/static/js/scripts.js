@@ -105,15 +105,6 @@ $('#modal_trigger').click(function(){
 
 
 
-const handle_alerts = (type, msg) => {
-    alert_box.innerHTML =
-    `
-      <div class="${type}">
-        ${msg}
-      </div>
-    `
-}
-
 
 
 

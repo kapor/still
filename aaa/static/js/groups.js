@@ -18,6 +18,17 @@ const alert_box = document.getElementById('alert_box')
 
 
 
+const handle_alerts = (type, msg) => {
+    alert_box.innerHTML =
+    `
+      <div class="${type}">
+        ${msg}
+      </div>
+    `
+}
+
+
+
 
 
 
@@ -139,12 +150,12 @@ modal_form.addEventListener('submit', e => {
 				`
 			)
 			$('#modal_form').modal('hide')
-/*			handle_alerts('alert_success', 'New post added')*/
+			handle_alerts('message_success', 'New post added')
 			document.getElementById("group_form").reset()
 		},
 		error: function(error) {
 			console.log(error)
-/*			handle_alerts('alert_error', 'Something went wrong...')*/
+			handle_alerts('message_success', 'Something went wrong...')
 		}
 	})
 })

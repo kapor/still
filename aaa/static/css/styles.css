@@ -882,84 +882,6 @@ table.shelf_grid {
   align-content: center;
 }
 
-.not_visible {
-  display: none;
-}
-
-#group_list #loader_container {
-  position: fixed; /* SET TO FIXED */
-  top: 0;
-  left: 0;
-  width: 100vw; /* USE VIEWPORT UNITS */
-  height: 100vh; /* USE VIEWPORT UNITS */
-  z-index: 1001; /* MOVE Z-INDEX HERE! */
-}
-#group_list #loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 8vmax;
-  height: 8vmax;
-  margin: -4vmax; /* ADD THIS (half the W/H) */
-  border-radius: 50%;
-  border: 10px solid transparent;
-  border-top-color: #8F00FF;
-  animation: spin 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-}
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-#nomore {
-  cursor: default;
-}
-
-.post_message h3 {
-  padding-bottom: 8px;
-}
-
-#alert_box .alert_success {
-  display: block;
-  z-index: 2;
-  position: fixed;
-  font-family: Helvetica neue, sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  background-color: #00FF7F;
-  color: #333;
-  padding: 8px 14px;
-  top: 40px;
-  border-radius: 4px;
-  margin: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-#alert_box .alert_error {
-  display: block;
-  z-index: 2;
-  position: fixed;
-  font-family: Helvetica neue, sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  background-color: red;
-  color: white;
-  padding: 8px 14px;
-  top: 40px;
-  border-radius: 4px;
-  margin: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .fade {
   transition: opacity 0.15s linear;
 }
@@ -2093,6 +2015,53 @@ ul.paginate li.active {
   100% {
     transform: rotate(360deg);
   }
+}
+
+#alert_box {
+  animation-name: fadeOut;
+  animation-duration: 20ms;
+  animation-timing-function: ease;
+}
+
+.not_visible {
+  display: none;
+}
+
+#group_list #loader_container {
+  position: fixed; /* SET TO FIXED */
+  top: 0;
+  left: 0;
+  width: 100vw; /* USE VIEWPORT UNITS */
+  height: 100vh; /* USE VIEWPORT UNITS */
+  z-index: 1001; /* MOVE Z-INDEX HERE! */
+}
+#group_list #loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8vmax;
+  height: 8vmax;
+  margin: -4vmax; /* ADD THIS (half the W/H) */
+  border-radius: 50%;
+  border: 10px solid transparent;
+  border-top-color: #8F00FF;
+  animation: spin 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#nomore {
+  cursor: default;
+}
+
+.post_message h3 {
+  padding-bottom: 8px;
 }
 
 /*# sourceMappingURL=styles.css.map */

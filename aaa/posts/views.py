@@ -1,5 +1,6 @@
 # posts/views.py
 from . import models
+from .models import Post
 from . import forms
 from posts.forms import PostForm, PostFormGroup
 from groups.models import Group, Comment
@@ -70,6 +71,43 @@ class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 
 
 
+
+# Shows lists of posts for user and/or group
+class PostList(PrefetchRelatedMixin, generic.ListView):
+    model = models.Post
+    prefetch_related = ('user', 'group')
+    fields = ('message', 'group', 'image')
+    template_name = 'posts/posts.html'
+
+    @login_required
+    def post(request):
+        form = PostForm(request.POST or None)
+        qs = Post.objects.all().order_by('created_at')
+
+        if request.accepts('application/json'):
+            if form.is_valid():
+                form.instance.user = request.user
+                post = form.save(commit=False)
+                post.save()
+                photo = form.save()
+                messages.success(request, 'Post added')
+                return JsonResponse({
+                    'user': instance.user,
+                    'created_at': instance.created_at,
+                    'message': instance.message,
+                    'group': instance.group,
+                    'image': instance.image,
+                })
+
+        return render(request, 'posts/posts.html', {'form': form})
+
+
+
+
+
+
+
+
 @login_required
 def PostGroup(request):
     if request.method != 'POST':
@@ -86,11 +124,7 @@ def PostGroup(request):
 
 
 
-# Shows lists of posts for user and/or group
-class PostList(LoginRequiredMixin, PrefetchRelatedMixin, generic.ListView):
-	model = models.Post
-	template_name = 'posts/post.html'
-	prefetch_related = ('user', 'group')
+
 
 
 

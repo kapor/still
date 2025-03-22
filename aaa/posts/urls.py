@@ -6,6 +6,7 @@ from groups import urls
 app_name = 'posts'
 
 urlpatterns = [
+    # path('', views.ListPostCreate, name='all'),
     path('', views.PostList.as_view(), name='all'),
 
     path('by/<username>/<pk>', views.PostDetail.as_view(), name='single'),
