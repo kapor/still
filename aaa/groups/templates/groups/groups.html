@@ -1,10 +1,9 @@
 <!-- aaa/groups/templates/groups/groups.html -->
 {% extends "base.html" %}
 {% load static %}
-{% load partials %}
 
 {% block scripts %} 
-	<script src="{% static 'js/groups.js' %}" defer></script>
+<script src="{% static 'js/groups.js' %}" defer></script>
 {% endblock %}
 
 {% block title %}
@@ -21,12 +20,12 @@ groups
 		<h1>Hey
 			<!-- link to all the user's posts -->
 			<a href="{% url 'for_user' username=user.username %}">
-			{{user.username}}</a>.<br>
-				These are groups.<br>
+			{{user.username}}</a><br>
+				These are groups<br>
 			{% if user.is_superuser %}
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_">
-				  Launch demo modal
-				</button>
+			<a data-toggle="modal" data-target="#modal_form">
+			Create one
+			</a>
 			{% else %}
 			{% endif %}
 		</h1>
@@ -45,14 +44,35 @@ groups
 </div>
 
 
+<div id="group_container">
+  <div id="group_list">
 
 
-  <div>
-		{% include 'groups/group_list.html' %}
+
+    <div id="loader_container">
+      <div id="loader"></div>
+    </div>
+
   </div>
+</div>
+
+
+  
+<div id="endbox">
+  <div class="button_secondary" id="load_button">
+    Load More
+  </div>
+</div>
+
+<div class='button_secondary' id="nomore">
+</div>
+
   
 
-		{% include 'groups/modal.html' %}
+{% include 'groups/modal.html' %}
+
+
+
 
 
 {% endblock %}

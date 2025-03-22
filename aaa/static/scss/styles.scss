@@ -1,4 +1,5 @@
 // styles.scss
+
 $font-stack1: Helvetica neue, sans-serif;
 $font-stack2: Courier new, Roboto;
 $primary: #333;
@@ -12,7 +13,13 @@ $accent2: #00FF7F;
 @use 'buttons';
 @use 'modal';
 @use 'grid';
+@use 'ajax';
 
+@import "functions";
+@import "variables";
+@import "transitions";
+/* @use 'ajax';
+ */
 
 /* reset margins */
 html, body, div, span, h1, h2, h3, h4, h5, h6, p,
@@ -714,7 +721,7 @@ h4 p {
     text-transform: none;
     overflow: hidden;
     line-height: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     margin-top: 8px;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -734,12 +741,12 @@ h4 p {
   .leave_join,
   .leave_join a {
     font-family: $font-stack1;
-    font-size: 12px;
+    font-size: 10px;
     line-height: 18px;
     text-decoration: none;
-    letter-spacing: 2px;
-    font-weight: 300;
-    color: $primary;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+    color: #333;
     width: fit-content;
     text-transform: uppercase;
     padding: 0px 4px;
@@ -767,8 +774,10 @@ h4 p {
   font-family: $font-stack2;
   font-weight: 500;
   line-height: 28px;
-  min-height: 222px;
+  min-height: 180px;
 }
+
+
 
 .card {
   @media screen and (min-width: 1500px) {

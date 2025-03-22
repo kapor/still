@@ -56,9 +56,9 @@ $(document).ready(function() {
 
 /* ++++++++++ ESCAPE KEY TO CLOSE MODAL ++++++++++ */
 
-document.addEventListener('keydown', function(event) {
+/*document.addEventListener('keydown', function(event) {
     if (event.keyCode === 27) {
-        const modal = document.querySelector('#modal'); // Replace '.modal' with the actual selector of your modal
+        const modal = document.querySelector('.modal'); // Replace '.modal' with the actual selector of your modal
         if (modal && modal.style.display !== 'none') {
             const closeButton = modal.querySelector('#modal_close'); // Replace '.close-button' with the actual selector of your close button
             if (closeButton) {
@@ -66,12 +66,12 @@ document.addEventListener('keydown', function(event) {
             }
         }
     }
-});
+});*/
 
 
 /* ++++++++++ DISABLE SCROLLBAR ++++++++++ */
 
-$('.modal_underlay').click(function(){
+/*$('.modal_underlay').click(function(){
     $('.body_block').css("overflow", "visible");
     $('body').css("overflow", "visible");
 });
@@ -97,3 +97,31 @@ $('#modal_trigger').click(function(){
     $('.body_block').css("overflow", "hidden");
     $('body').css("overflow", "hidden");
 });
+*/
+
+
+////////////////////////////////
+
+
+
+
+const handle_alerts = (type, msg) => {
+    alert_box.innerHTML =
+    `
+      <div class="${type}">
+        ${msg}
+      </div>
+    `
+}
+
+
+
+
+
+
+
+
+
+
+
+

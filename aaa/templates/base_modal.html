@@ -1,33 +1,37 @@
 <!-- aaa/templates/base_modal.html -->
 
-<div id="modal" class="modal" _="on close add .closing then wait for animationend then remove me">
-    <div class="_underlay" _="on click trigger close"></div>
-    <div class="modal_content">
+<div class="modal" id="modal_form" tabindex="-1" role="dialog">
+
+  <div class="modal_dialog" role="document">
+
+
+
+    <div class="modal_header">
+        <h2>{% block modal_title %} {% endblock %}</h2>
+        <div class="close_x" data-dismiss="modal">
+        <img src="/media/images/icons/24x24_close.svg">
+        </div>
+    </div>
     
 
-        <h2>{% block modal_title %} {% endblock %}</h2>
 
 
-        {% block modal_form %}
+        {% block modal_form %} {% endblock %}
 
-
-
-        {% endblock %}
 
         <div class="form_container">
-                {% csrf_token %}
-                {{ form }}
+            {% csrf_token %}
+            {{ form }}
         </div>
+
 
         <div class="button_container_modal">
-            <button id="modal_close" class="button_secondary" _="on click trigger close">Close</button>
+            <button type="button" class="button_secondary" data-dismiss="modal">Cancel</button>
             <input type="submit" value="Add" class="button_accent">
         </div>
+    </form>
 
-  </form>
 
-    </div>
+  </div>
 </div>
-
-
 

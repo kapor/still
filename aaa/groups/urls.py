@@ -6,10 +6,10 @@ from .views import LoadGroup
 app_name = 'groups'
 
 urlpatterns = [
-    path('', views.GroupView.as_view(), name='all'),
+    path('', views.ListGroupCreate, name='all'),
     path('<int:num_posts>/', LoadGroup, name='load'),
 
-    path('grouplist', views.GroupView.as_view(), name='grouplist'),
+    # path('grouplist', views.GroupView.as_view(), name='grouplist'),
     path('new/', views.CreateGroup.as_view(), name='create'),
     path('add/', views.AddGroup.as_view(), name='add'),
     path('<slug>', views.SingleGroup, name='single'),

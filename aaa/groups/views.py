@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView, RedirectView
 from django.contrib import messages
+from django.db.models.functions import Lower
 from groups.models import Group, GroupMember, Comment
 from groups.forms import GroupForm, CommentForm
 from posts.forms import PostFormGroup, PostForm
@@ -113,22 +114,43 @@ class LeaveGroup(LoginRequiredMixin, RedirectView):
 
 
 
-class GroupView(ListView):
-    model = Group
-    fields = ('name', 'description', 'members')
-    template_name = "groups/group.html"
-    context_object_name = "grouplist"
-    paginate_by = 20
-    # ordering = 'pk'
-    ordering = ['name']
-    # new method added ⬇️
-    # def get_template_names(self, *args, **kwargs):
-    #     if self.request.htmx:
-    #         return "groups/group_list.html"
-    #     else:
-    #         return self.template_name
+
+## HTMX infinite scroll view
+
+# class GroupView(ListView):
+#     model = Group
+#     fields = ('name', 'description', 'members')
+#     template_name = "groups/groups.html"
+#     context_object_name = "grouplist"
+#     paginate_by = 20
+#     # ordering = 'pk'
+#     ordering = ['name']
+
+#     def get_template_names(self, *args, **kwargs):
+#         if self.request.htmx:
+#             return "groups/group_list.html"
+#         else:
+#             return self.template_name
 
 
+
+
+@login_required
+def ListGroupCreate(request):
+	form = GroupForm(request.POST or None)
+	qs = Group.objects.all().order_by(Lower('name'))
+
+	if request.accepts('application/json'):
+		if form.is_valid():
+			instance = form.save(commit=False)
+			instance.save()
+			return JsonResponse({
+				'slug': instance.slug,
+				'name': instance.name,
+				'description': instance.description,
+			})
+
+	return render(request, 'groups/groups.html', {'form': form})
 
 
 
@@ -136,24 +158,31 @@ class GroupView(ListView):
 
 ## def load_post(request, num_posts):
 def LoadGroup(request, **kwargs):
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        num_posts = kwargs.get('num_posts')
-        visible = 40
-        upper = num_posts
-        lower = upper - visible
-        size = Group.objects.all().count()
+	if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+		num_posts = kwargs.get('num_posts')
+		visible = 40
+		upper = num_posts
+		lower = upper - visible
+		size = Group.objects.all().count()
+		comment = Comment.objects.count()
+		post = Post.objects.count()
 
-        qs = Group.objects.all()
-        # you cannot pass in a JSON response as a query set directly – so creating an empty dictionary and looping through an object and appending it to the dictionary is a solution.
-        data = []
-        for item in qs:
-            item = {
-                'slug': item.slug,
-                'name': item.name,
-                'description': item.description,
-            }
-            data.append(item)
-        return JsonResponse({'data':data[lower:upper], 'size':size })
+		qs = Group.objects.all().order_by(Lower('name'))
+		# you cannot pass in a JSON response as a query set directly – so creating an empty dictionary and looping through an object and appending it to the dictionary is a solution.
+		data = []
+		for item in qs:
+			item = {
+					'slug': item.slug,
+					'name': item.name,
+					'description': item.description,
+					'member': True if request.user in item.members.all() else False,
+				}
+			data.append(item)
+		return JsonResponse({'data':data[lower:upper], 'size':size })
+
+
+
+
 
 
 

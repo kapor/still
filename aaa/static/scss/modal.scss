@@ -5,6 +5,9 @@ $secondary: #F2F2F2;
 $accent1: #8F00FF;
 $accent2: #00FF7F;
 
+@import "functions";
+@import "variables";
+@import "transitions";
 
 
 /***** MODAL DIALOG ****/
@@ -99,15 +102,130 @@ $accent2: #00FF7F;
 
 
 
+/////////////////////////
+
+
+.modal_inner_content {
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  position: relative;
+  width: auto;
+  padding: 20px;
+  pointer-events: none;
+  background-color: white;
+}
+
+.modal_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 20px;
+
+  h2 {
+  	padding: 0px
+  }
+
+  img {
+  	height: 56px;
+  	width: 56px;
+  }
+}
+
+.button_container_modal,
+.button_container_modal form {
+  margin: 40px 0px 0px 0px; 
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+}
+
+.button_container_modal .button_accent,
+.button_container_modal .button_secondary {
+  gap: 12px;
+  width: 100%;
+}
+
+
+
+
+
+.modal-open {
+  // Kill the scroll on the body
+  overflow: hidden;
+
+  .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: 0;
+
+}
+
+.modal_dialog {
+    position: relative;
+    width: auto;
+    /* pointer-events: none; */
+    max-width: 800px;
+    margin: auto;
+    padding: 40px;
+    background-color: white;
+
+}
+
+
+// Actual modal
+.modal_content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  pointer-events: auto;
+  outline: 0;
+}
+
+// Modal background
+.modal_backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  // Fade for backdrop
+  &.fade { opacity: 0; }
+  &.show { opacity: 80; }
+}
 
 
 
 
 
 
+// Measure scrollbar width for padding body during modal show/hide
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
 
 
-
+.close_x {
+	background-color: none;
+	cursor: pointer;
+}
 
 
 
