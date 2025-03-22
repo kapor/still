@@ -136,7 +136,7 @@ class LeaveGroup(LoginRequiredMixin, RedirectView):
 
 
 @login_required
-def ListGroupCreate(request):
+def list_groups_create(request):
 	form = GroupForm(request.POST or None)
 	qs = Group.objects.all().order_by(Lower('name'))
 
@@ -157,7 +157,7 @@ def ListGroupCreate(request):
 
 
 ## def load_post(request, num_posts):
-def LoadGroup(request, **kwargs):
+def load_group(request, **kwargs):
 	if request.headers.get('x-requested-with') == 'XMLHttpRequest':
 		num_posts = kwargs.get('num_posts')
 		visible = 40

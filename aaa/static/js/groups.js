@@ -1,6 +1,6 @@
 const group_list = document.getElementById('group_list')
 const loader = document.getElementById('loader_container')
-const load = document.getElementById('load_button')
+const endbox = document.getElementById('endbox')
 const nomore = document.getElementById('nomore')
 
 const url = window.location.href
@@ -90,7 +90,12 @@ const getData = () => {
 					`}
 					`
 				});
-			}, 50)
+			}, 100)
+
+			setTimeout(()=> {
+				endbox.classList.remove('not_visible')
+			}, 150)
+
 			console.log(response.size)
 			if (response.size === 0) {
 				nomore.textContent = 'Nothing yet'
@@ -134,7 +139,7 @@ modal_form.addEventListener('submit', e => {
 			///use backticks to inject html
 				`
 				<a href="${url}${response.slug}">
-			    <div class="card" style="background-color:#c8ff83">
+			    <div class="card" style="background-color:#f6ceff">
 			    <h3 class='name'>${response.name}</h3>
 				<div class="leave_join">Just added</div>
 			     
@@ -164,7 +169,39 @@ modal_form.addEventListener('submit', e => {
 
 
 
+/////////////////////////////////////////
+/// CLOSE MODAL ==> FORM RESET
 
+
+const cancel_button = document.getElementById('cancel_button');
+const form = document.getElementById('group_form');
+const close_x = document.getElementById('close_x');
+const modal_dialog = document.getElementById('modal_dialog'); 
+
+cancel_button.addEventListener('click', function() {
+	form.reset();
+	console.log("hello")
+});
+
+close_x.addEventListener('click', function() {
+	form.reset();
+	console.log("two")
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    document.getElementById('group_form').reset();
+  }
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === modal_dialog) {
+    form.reset();
+	console.log("three")
+  } else {
+  	// Do nothing
+  }
+});
 
 
 

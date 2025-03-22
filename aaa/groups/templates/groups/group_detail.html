@@ -18,12 +18,13 @@
 
       <div class="group_count">
         <div class="group_count_row">
-          <span class="badge">{{ group.members.count }}</span>
-          Member{{ group.members.count | pluralize }}
+					Member{{ group.members.count | pluralize }}:<span class="badge">{{ group.members.count }}</span>
         </div>
         <div class="group_count_row">
-          <span class="badge">{{ group.posts.count }}</span>
-          Post{{ group.posts.count | pluralize }}
+          Post{{ group.posts.count | pluralize }}:<span class="badge">{{ group.posts.count }}</span>
+        </div>
+        <div class="group_count_row">
+          Comment{{ comment.count | pluralize }}:<span class="badge">{{ comment.count }}</span>
         </div>
       </div>
 
@@ -81,7 +82,7 @@
 		<h3 class="h3">Posts</h3>
 		{% for item in group.posts.all %}
 
-			{% include 'includes/_post.html' with delete=True %}
+			{% include 'includes/_post.html' with delete=True group=False %}
 
   	{% empty %}
   		<h3>Nobody has posted yet.</h3>
@@ -94,7 +95,7 @@
 		<h3 class="h3">Comments</h3>
 		{% for item in comment  %}
 
-			{% include 'includes/_comment.html' with delete=True %}
+			{% include 'includes/_comment.html' with delete=True group=False %}
 
   	{% empty %}
   		<h3>Nobody has commented yet.</h3>

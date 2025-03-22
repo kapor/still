@@ -64,14 +64,14 @@ $accent2: #00FF7F;
 	animation-timing-function: ease;
 }
 
-#modal.closing {
+.modal.closing {
 	/* Animate when closing */
 	animation-name: fadeOut;
 	animation-duration:20ms;
 	animation-timing-function: ease;
 }
 
-#modal.closing > .modal_content {
+.modal.closing > .modal_content {
 	/* Animate when closing */
 	animation-name: fadeOutUp;
 	animation-duration: 20ms;
@@ -132,11 +132,13 @@ $accent2: #00FF7F;
 
 .button_container_modal,
 .button_container_modal form {
-  margin: 40px 0px 0px 0px; 
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  width: 100%;
+	margin: 40px 0px 0px 0px;
+	display: flex;
+	padding: 40px 0px 0px 0px;
+	flex-direction: row;
+	border-top: 1px #CCCCCC dotted;
+	gap: 12px;
+	width: 100%;
 }
 
 .button_container_modal .button_accent,
@@ -214,24 +216,23 @@ $accent2: #00FF7F;
 
 // Measure scrollbar width for padding body during modal show/hide
 .modal-scrollbar-measure {
-  position: absolute;
-  top: -9999px;
-  width: 50px;
-  height: 50px;
-  overflow: scroll;
+	position: absolute;
+	top: -9999px;
+	width: 50px;
+	height: 50px;
+	overflow: scroll;
 }
 
 
-.close_x {
+#close_x {
 	background-color: none;
 	cursor: pointer;
 }
 
 
-
-
-
-
+.errorlist {
+	display: none;
+}
 
 
 

@@ -619,14 +619,14 @@ input.button_accent_large a,
   animation-timing-function: ease;
 }
 
-#modal.closing {
+.modal.closing {
   /* Animate when closing */
   animation-name: fadeOut;
   animation-duration: 20ms;
   animation-timing-function: ease;
 }
 
-#modal.closing > .modal_content {
+.modal.closing > .modal_content {
   /* Animate when closing */
   animation-name: fadeOutUp;
   animation-duration: 20ms;
@@ -692,7 +692,9 @@ input.button_accent_large a,
 .button_container_modal form {
   margin: 40px 0px 0px 0px;
   display: flex;
+  padding: 40px 0px 0px 0px;
   flex-direction: row;
+  border-top: 1px #CCCCCC dotted;
   gap: 12px;
   width: 100%;
 }
@@ -763,9 +765,13 @@ input.button_accent_large a,
   overflow: scroll;
 }
 
-.close_x {
+#close_x {
   background-color: none;
   cursor: pointer;
+}
+
+.errorlist {
+  display: none;
 }
 
 /*|||||||||||||||||||*/

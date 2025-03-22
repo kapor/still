@@ -34,16 +34,16 @@
               @{{ item.user.username }}
               </a>
             {% endif %}
-              commented in
+              commented
             <!-- GROUP -->    
-            {% if item.group %}
+            {% if group %} in 
               <span class="group-name">
                 <a href="{{ item.group.get_absolute_url }}">
-                {{item.group.name}}
+                {{ item.group.name }}
                 </a>
-                {{item.created_at}}
               </span>
             {% endif %}
+            {{ item.created_at|naturaltime }}
           </span>
         </div>
 

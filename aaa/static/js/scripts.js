@@ -112,7 +112,3 @@ $('#modal_trigger').click(function(){
 
 
 
-
-
-
-

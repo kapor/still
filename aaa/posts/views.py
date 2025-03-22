@@ -7,6 +7,7 @@ from groups.models import Group, Comment
 from blog.models import Blog
 from shelf.models import Shelves
 from django.db import transaction
+from django.core import serializers
 
 from django.utils import timezone
 from django.http import Http404
@@ -23,6 +24,7 @@ from django.views.generic import View, TemplateView, ListView, DetailView, FormV
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
+from django.views.generic.edit import FormMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import PrefetchRelatedMixin
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
@@ -38,68 +40,89 @@ User = get_user_model()
 
 # Modal View
 
-@login_required
-def AddPost(request):
-    if request.method != 'POST':
-        form = PostForm(user=request.user)	
-    else:
-        form = PostForm(data=request.POST, user=request.user)
-        if form.is_valid():
-            form.instance.user = request.user
-            post = form.save(commit=False)
-            post.save()
-            photo = form.save()
-            messages.success(request, 'Post added')
-            return redirect('posts:all')
-    context = {'form':form}
-    return render(request, 'posts/post_modal.html', context)
+# @login_required
+# def AddPost(request):
+#     if request.method != 'POST':
+#         form = PostForm(user=request.user)	
+#     else:
+#         form = PostForm(data=request.POST, user=request.user)
+#         if form.is_valid():
+#             form.instance.user = request.user
+#             post = form.save(commit=False)
+#             post.save()
+#             photo = form.save()
+#             messages.success(request, 'Post added')
+#             return redirect('posts:all')
+#     context = {'form':form}
+#     return render(request, 'posts/post_modal.html', context)
 
 
 
-class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
-	fields = ('message', 'group')
-	model = models.Post
-	template_name = 'posts/post_modal.html'
-	success_url = reverse_lazy('posts:all')
+# class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
+# 	fields = ('message', 'group')
+# 	model = models.Post
+# 	template_name = 'posts/post_modal.html'
+# 	success_url = reverse_lazy('posts:all')
 
-	# Used to connect the post to the user 
-	def form_valid(self, form):
-		self.object = form.save(commit=False)
-		self.object.user = self.request.user
-		self.object.save
-		return super().form_valid(form)
+# 	# Used to connect the post to the user 
+# 	def form_valid(self, form):
+# 		self.object = form.save(commit=False)
+# 		self.object.user = self.request.user
+# 		self.object.save
+# 		return super().form_valid(form)
 
 
 
 
 # Shows lists of posts for user and/or group
-class PostList(PrefetchRelatedMixin, generic.ListView):
-    model = models.Post
-    prefetch_related = ('user', 'group')
-    fields = ('message', 'group', 'image')
-    template_name = 'posts/posts.html'
+@login_required
+def list_post_create(request):
+    form = PostForm(request.POST, user=request.user)
+    post_list = Post.objects.all().order_by('-created_at')
 
-    @login_required
-    def post(request):
-        form = PostForm(request.POST or None)
-        qs = Post.objects.all().order_by('created_at')
+    if request.accepts('application/json'):
+        if form.is_valid():
+            instance = form.save(commit=False)
+            form.instance.user = request.user
+            instance.save()
+            photo = form.save()
+            messages.success(request, 'Post added')
+            return JsonResponse({
+                'user': instance.user.username,
+                'message': instance.message
+            })
 
-        if request.accepts('application/json'):
-            if form.is_valid():
-                form.instance.user = request.user
-                post = form.save(commit=False)
-                post.save()
-                photo = form.save()
-                messages.success(request, 'Post added')
-                return JsonResponse({
-                    'user': instance.user,
-                    'created_at': instance.created_at,
-                    'message': instance.message,
-                    'group': instance.group,
-                    'image': instance.image,
-                })
+    return render(request, 'posts/posts.html', {'form': form, 'post_list': post_list})
 
-        return render(request, 'posts/posts.html', {'form': form})
+
+
+
+
+## def load_post(request, num_posts):
+# def load_post(request, **kwargs):
+#     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+#         num_posts = kwargs.get('num_posts')
+#         visible = 20
+#         upper = num_posts
+#         lower = upper - visible
+#         size = Post.objects.all().count()
+#         group = serializers.serialize('json', Group.objects.all())
+
+#         qs = Post.objects.all().order_by('created_at')
+#         # you cannot pass in a JSON response as a query set directly – so creating an empty dictionary and looping through an object and appending it to the dictionary is a solution.
+#         data = []
+#         for item in qs:
+#             item = {
+#                     'created_at': item.created_at,
+#                     'message': item.message,
+#                     'user': item.user.username,
+#                     'group': item.group,
+#                 }
+#             data.append(item)
+
+#         return JsonResponse({'data':data[lower:upper], 'size': size})
+
+
 
 
 

@@ -8,7 +8,6 @@
 <div {% if item|is_app:"posts" %} class="post3" {% endif %} id="post_list">
 {% endif %}
 
-    <div>
 
       <div class="post_message_group">
 
@@ -36,12 +35,12 @@
             @{{ item.user.username }}
             </a>
           {% endif %}
-          posted in
+          posted 
           <!-- GROUP -->    
-          {% if item.group %}
+          {% if group %} in 
             <span class="group-name">
               <a href="{{ item.group.get_absolute_url }}">
-              {{item.group.name}}
+              {{ item.group.name }}
               </a>
             </span>
           {% endif %}
@@ -51,7 +50,7 @@
 
       </div>
 
-    </div>
+
 
 
 

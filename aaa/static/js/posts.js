@@ -5,6 +5,10 @@ const nomore = document.getElementById('nomore')
 
 const url = window.location.href
 
+const id_message = document.getElementById('id_message')
+const id_group = document.getElementById('id_group')
+const id_image = document.getElementById('id_image')
+
 const post_form = document.getElementById('post_form')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 console.log('csrf', csrf[0].value)
@@ -32,6 +36,7 @@ const handle_alerts = (type, msg) => {
 ////////////////////////////
 ////////////////////////////
 // load more
+
 /*let visible = 20
 
 const getData = () => {
@@ -51,22 +56,22 @@ const getData = () => {
 					post_content.innerHTML += 
 					///use backticks to inject html
 					`
-					<div id="post_list">
-					  <div>
+					<div class="post3" id="post_list">
+						<div>
 					    <div class="post_message_group">
 					      <div class="button_group">
 					        <div class="post_message">
-					        <a href="${url}${item.slug}"><h3>${item.message}</h3></a>
+					        <a href="#"><h3>${item.message}</h3></a>
 					        </div>
 					      </div>
 					    </div>    
 
 					    <span class="username">
-					      <a href="${url}${item.user.username}">${item.user.username}</a>posted in
+					      <a href="#">${item.user}</a> posted in
 					    <span class="group-name">
-					    <a href="${url}${item.group.name}">${item.group.name}</a>
+					    <a href="#">${item.group}</a>
 					    </span>${item.created_at}</span>
-					  </div>
+						</div>
 					</div>
 					`
 				});
@@ -111,29 +116,31 @@ post_form.addEventListener('submit', e => {
 		success: function(response) {
 			console.log(response)
 			// places post at top of post_content
-/*			post_content.insertAdjacentHTML('afterbegin',
+			post_content.insertAdjacentHTML('afterbegin',
 			///use backticks to inject html
 				`
 					<div id="post_list">
-					  <div>
+					  <div class="post3">
+
 					    <div class="post_message_group">
+
 					      <div class="button_group">
 					        <div class="post_message">
-					        <a href="${url}/user/${item.user}"><h3>${item.message}</h3></a>
+					        <a href="/user/${response.user}"><h3>${response.message}</h3></a>
 					        </div>
 					      </div>
-					    </div>    
 
-					    <span class="username">
-					      <a href="${url}${item.user.username}">${item.user.username}</a>posted in
-					    <span class="group-name">
-					    <a href="${url}${item.group.name}">${item.group.name}</a>
-					    </span>${item.created_at}</span>
+						    <span class="username">
+						      <a href="${url}${response.user}">@${response.user}</a> posted this just now
+								</span>
+
+							</div>
+
 					  </div>
 					</div>
 				`
-			)*/
-			$('#post_form').modal('hide')
+			)
+			$('#modal_form').modal('hide')
 			handle_alerts('message_success', 'New post added')
 			document.getElementById("post_form").reset()
 		},
@@ -144,18 +151,39 @@ post_form.addEventListener('submit', e => {
 	})
 })
 
+/////////////////////////////////////////
+/// CLOSE MODAL ==> FORM RESET
+
+
+const form = document.getElementById('post_form');
+const cancel_button = document.getElementById('cancel_button');
+const close_x = document.getElementById('close_x');
+const modal_dialog = document.getElementById('modal_dialog'); 
+
+cancel_button.addEventListener('click', function() {
+	form.reset();
+});
+
+close_x.addEventListener('click', function() {
+	form.reset();
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    document.getElementById('post_form').reset();
+  }
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === modal_dialog) {
+    form.reset();
+  } else {
+  	// Do nothing
+  }
+});
 
 
 
 
 
 
-
-
-/*load_button.addEventListener('click', () => {
-	loader.classList.remove('not_visible')
-	visible += 40
-	getData()
-})
-
-getData()*/

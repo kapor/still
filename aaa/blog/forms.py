@@ -37,11 +37,31 @@ class BlogForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		self.fields['title'].widget.attrs.update({'class': 'field_char', 'placeholder': 'Enter text'})
-		self.fields['message'].widget.attrs.update({'class': 'field_description', 'placeholder': 'Enter text'})
-		self.fields['author'].widget.attrs.update({'class': 'field_select', 'placeholder': 'Select Author'})
-		self.fields['tags'].widget.attrs.update({'class': 'field_char', 'placeholder': 'A comma-separated list of tags.'})
-		self.fields['image'].widget.attrs.update({'class': 'field_image'})
+
+		self.fields['title'].widget.attrs.update({
+			'class': 'field_char', 
+			'placeholder': 'Enter text'
+		})
+
+		self.fields['message'].widget.attrs.update({
+			'class': 'field_description', 
+			'placeholder': 'Enter text'
+		})
+
+		self.fields['author'].widget.attrs.update({
+			'class': 'field_select', 
+			'placeholder': 'Select Author'
+		})
+
+		self.fields['tags'].widget.attrs.update({'class': 'field_char', 
+			'placeholder': 'A comma-separated list of tags.'
+		})
+
+		self.fields['image'].widget.attrs.update({
+			'class': 'field_image',
+			'id': 'id_image'
+		})
+		
 		for field in self.fields.values():
 			self.fields['image'].required = False
 
