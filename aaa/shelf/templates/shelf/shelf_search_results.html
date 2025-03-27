@@ -1,12 +1,22 @@
-<!-- shelf/shelf_search_results.html -->
-{% extends "shelf/shelf_base.html" %}
+<!-- aaa/templates/shelf/shelf_search_results.html -->
+{% extends "base.html" %}
+{% load static %}
 
-{% block pre_shelf %}
+{% block scripts %} 
+<script src="{% static 'js/shelf.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+shelf
+{% endblock title %}
+
+
+{% block content %}
 <div class="top_part">
   <div class="header">
   {% if user.is_superuser %}
   <h1>Shelves: organize stuff.</h1>
-  <h2><a hx-get="{% url 'shelf:add' %}" hx-target="body" hx-swap="beforeend">Add an item to your shelf.</a></h2>
+  <h2><a data-toggle="modal" data-target="#modal_form">Add an item to your shelf.</a></h2>
 
   {% else %}
   <h1>Shelves</h1>
@@ -18,9 +28,6 @@
 </div>
 
 
-{% endblock %}
-
-{% block shelf_content %}
 
 
 
@@ -106,14 +113,15 @@
 
 
 
+
+
+
+
 </div>
 
-
-
-
-
-
 {% endif %}
+
+{% include 'shelf/modal.html' %}
 
 
 {% endblock %}

@@ -43,13 +43,13 @@ select {
 
 div label {
   width: auto;
-  font-family: $font-stack1;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  font-family: Helvetica neue, sans-serif;
+  letter-spacing: 1px;
+  text-transform: none;
   display: inline-block;
   text-align: left;
-  color: $accent1;
-  padding: 40px 0px 16px 0px;
+  color: $primary;
+  padding: 20px 0px 16px 0px;
   font-size: 20px;
   border: none;
 }

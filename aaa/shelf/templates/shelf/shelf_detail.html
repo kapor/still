@@ -1,23 +1,24 @@
-{% extends "shelf/shelf_base.html" %}
-{% block body_block %}
+<!-- aaa/templates/shelf/shelf.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block scripts %} 
+<script src="{% static 'js/shelf.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+{{ obj.title }}
+{% endblock title %}
 
 
+{% block content %}
 
-	{% block content %}
-
-	<div>
-
-	
-<!-- 	{% if shelfdetail.image %}
-	<div class="shelf_background_image" style="background-image: url( /media/{{ shelfdetail.image }});"></div>
-	{% else %}
-	<div class="shelf_background_image" style="background-image: url( /media/covers/blank.jpg);"></div>
-	{% endif %} -->
+<div class="shelf_detail">
 
 	<div class="shelf_top_detail">	
 		<div class=crop_detail>
-			{% if shelfdetail.image %}
-			<img class="photo_detail" src="/media/{{ shelfdetail.image }}">
+			{% if obj.image %}
+			<img class="photo_detail" src="/media/{{ obj.image }}">
 			{% else %}
 			<img class="photo_blank" src="/media/covers/blank.jpg">
 			{% endif %}
@@ -26,133 +27,137 @@
 		{% if user.is_superuser %}
 			<!-- EDIT / ROMOVE  -->
 			<div class="button_container">
-			<a onClick="javascript:history.go(-1);"><div class="button_accent">
-				Back
-			</div></a>
-			<a href="{% url 'shelf:edit' pk=shelfdetail.pk %}"><div class="button_secondary">
-				Edit
-			</div></a>
-			<a href="{% url 'shelf:delete' pk=shelfdetail.pk %}"><div class="button_secondary">
-			 	Delete
-			</div></a>
+				<a onClick="javascript:history.go(-1);"><div class="button_accent">
+					Back
+				</div></a>
+				<a data-toggle="modal" data-target="#modal_form"><div class="button_secondary">
+					Edit
+				</div></a>
+				<a href="{% url 'shelf:delete' pk=obj.pk %}"><div class="button_secondary">
+				 	Delete
+				</div></a>
 			</div>
 		{% else %}
 		{% endif %}
-
 	</div>
-
+	<div id="loader_container">
+		<div id="loader"></div>
+	</div>
 
 	<div class="shelf_info">
 
-		{% if shelfdetail.title %}
+		{% if obj.title %}
 		<div class="label_info">
 			<p>Title:</p>
-			<h2>{{ shelfdetail.title }}</h2>
+			<h2>{{ obj.title }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
 
-		{% if shelfdetail.author %}
+		{% if obj.author %}
 		<div class="label_info">
 			<p>Author:</p>
-			<h2>{{ shelfdetail.author }}</h2>
+			<h2>{{ obj.author }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
 
-		{% if shelfdetail.year %}
+		{% if obj.year %}
 		<div class="label_info">
 			<p>Year:</p>
-			<h2>{{ shelfdetail.year }}</h2>
+			<h2>{{ obj.year }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
 
-		{% if shelfdetail.publisher %}
+		{% if obj.publisher %}
 		<div class="label_info">
 			<p>Publisher:</p>
-			<h2>{{ shelfdetail.publisher }}</h2>
+			<h2>{{ obj.publisher }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
 
-		{% if shelfdetail.artist %}
+		{% if obj.artist %}
 		<div class="label_info">
 			<p>Artist:</p>
-			<h2>{{ shelfdetail.artist }}</h2>
+			<h2>{{ obj.artist }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
 
-		{% if shelfdetail.quality %}
+		{% if obj.quality %}
 		<div class="label_info">
 			<p>Quality:</p>
-			<h2>{{ shelfdetail.quality }}</h2>
+			<h2>{{ obj.quality }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
 
-		{% if shelfdetail.price %}
+		{% if obj.price %}
 		<div class="label_info">
 			<p>Price:</p>
-			<h2>{{ shelfdetail.price }}</h2>
+			<h2>{{ obj.price }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
 
-		{% if shelfdetail.location %}
+		{% if obj.location %}
 		<div class="label_info">
 			<p>Location:</p>
-			<h2>{{ shelfdetail.location }}</h2>
+			<h2>{{ obj.location }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
 
+		{% if obj.tags.all %}
 		<div class="label_info">
 			<p>Tags:</p>
 			<h2>
-			{% for tags in shelfdetail.tags.all %}
+			{% for tags in obj.tags.all %}
 			{{ tags }}{% if not forloop.last %},{% endif %}
 			{% endfor %}
 			</h2>
 		</div>
+		{% else %}
+		{% endif %}
 
-		{% if shelfdetail.weight %}
+		{% if obj.weight %}
 		<div class="label_info">
 			<p>Weight:</p>
-			<h2>{{ shelfdetail.weight }}</h2>
+			<h2>{{ obj.weight }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
 
-		{% if shelfdetail.pages %}
+		{% if obj.pages %}
 		<div class="label_info">
 			<p>Pages:</p>
-			<h2>{{ shelfdetail.pages }}</h2>
+			<h2>{{ obj.pages }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
 
-	<!-- 	{% if shelfdetail.isbn %}
+	<!-- 	{% if obj.isbn %}
 		<div class="label_info">
 			<p>ISBN:</p>
-			<h2>{{ shelfdetail.isbn | cut:".0" }}</h2>
+			<h2>{{ obj.isbn | cut:".0" }}</h2>
 		</div>
 		{% else %}
 		{% endif %} -->
 
-		{% if shelfdetail.description %}
+		{% if obj.description %}
 		<div class="label_info">
 			<p>Description:</p>
-			<h2>{{ shelfdetail.description }}</h2>
+			<h2>{{ obj.description }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
 
-		{% if shelfdetail.notes %}
+		{% if obj.notes %}
 		<div class="label_info">
 			<p>Notes:</p>
-			<h2>{{ shelfdetail.notes }}</h2>
+			<h2>{{ obj.notes }}</h2>
 		</div>
 		{% else %}
 		{% endif %}
@@ -161,5 +166,18 @@
 
 </div>
 
-	{% endblock %}
+
+
+{% include 'shelf/modal.html' %}
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

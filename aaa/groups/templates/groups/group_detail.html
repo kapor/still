@@ -79,7 +79,7 @@
 {% block group_content %}
 
 <div class="group_detail_lists">
-		<h3 class="h3">Posts</h3>
+		<h3 class="h3"><a href="{% url 'posts:all' %}">Posts</a></h3>
 		{% for item in group.posts.all %}
 
 			{% include 'includes/_post.html' with delete=True group=False %}
@@ -139,6 +139,10 @@
 	</div> -->
 {% else %}
 {% endif %}
+
+
+
+
 
 
 

@@ -27,12 +27,12 @@ select {
 div label {
   width: auto;
   font-family: Helvetica neue, sans-serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-transform: none;
   display: inline-block;
   text-align: left;
-  color: #8F00FF;
-  padding: 40px 0px 16px 0px;
+  color: #333;
+  padding: 20px 0px 16px 0px;
   font-size: 20px;
   border: none;
 }
@@ -540,6 +540,31 @@ input.button_accent_large a,
   border: 2px white solid;
 }
 
+/* TABS */
+.tab_headers {
+  margin-bottom: 40px;
+}
+
+.tab_content {
+  display: none;
+}
+
+.tab_content.active {
+  display: block;
+}
+
+.tab_headers .tab_header {
+  border: 1px solid white;
+  padding: 20px 24px;
+}
+
+.tab_header.active {
+  border: 1px solid #8f00ff;
+  border-radius: 2px;
+  background-color: #8f00ff;
+  color: white;
+}
+
 .fade {
   transition: opacity 0.15s linear;
 }
@@ -734,15 +759,6 @@ input.button_accent_large a,
   background-color: white;
 }
 
-.modal_content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  pointer-events: auto;
-  outline: 0;
-}
-
 .modal_backdrop {
   position: fixed;
   top: 0;
@@ -755,6 +771,20 @@ input.button_accent_large a,
 }
 .modal_backdrop.show {
   opacity: 80;
+}
+
+.modal > .modal_dialog {
+  width: 80%;
+  margin: auto;
+  max-width: 800px;
+  border: 20px #FFFFFF solid;
+  border-radius: 0px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.01);
+  background-color: white;
+  padding: 20px;
+  animation-name: fadeInDown;
+  animation-duration: 100ms;
+  animation-timing-function: ease;
 }
 
 .modal-scrollbar-measure {
@@ -1533,6 +1563,13 @@ h3 p {
   margin-inline-end: 8px;
   max-width: 1000px;
 }
+h3 .draft_indicator,
+h3 p .draft_indicator {
+  color: #8F00FF;
+  font-family: Helvetica neue, sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+}
 
 h4,
 h4 p {
@@ -1777,12 +1814,15 @@ section {
   padding-top: 40px;
 }
 
-.group_detail_lists .h3 {
+.group_detail_lists .h3,
+.group_detail_lists .h3 a {
   padding-top: 40px;
   padding-bottom: 20px;
   border-bottom: 1px dotted black;
   margin-bottom: 20px;
   max-width: 1400px;
+  font-family: Helvetica neue, sans-serif;
+  color: #333;
 }
 
 .description p {
@@ -1994,35 +2034,6 @@ ul.paginate li.active {
   display: none;
 }
 
-#group_list #loader_container {
-  position: fixed; /* SET TO FIXED */
-  top: 0;
-  left: 0;
-  width: 100vw; /* USE VIEWPORT UNITS */
-  height: 100vh; /* USE VIEWPORT UNITS */
-  z-index: 1001; /* MOVE Z-INDEX HERE! */
-}
-#group_list #loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 8vmax;
-  height: 8vmax;
-  margin: -4vmax; /* ADD THIS (half the W/H) */
-  border-radius: 50%;
-  border: 10px solid transparent;
-  border-top-color: #8F00FF;
-  animation: spin 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-}
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 #alert_box {
   animation-name: fadeOut;
   animation-duration: 20ms;
@@ -2033,21 +2044,27 @@ ul.paginate li.active {
   display: none;
 }
 
+#nomore {
+  cursor: default;
+}
+
+.post_message h3 {
+  padding-bottom: 8px;
+}
+
 #group_list #loader_container {
-  position: fixed; /* SET TO FIXED */
-  top: 0;
-  left: 0;
-  width: 100vw; /* USE VIEWPORT UNITS */
-  height: 100vh; /* USE VIEWPORT UNITS */
-  z-index: 1001; /* MOVE Z-INDEX HERE! */
+  position: fixed;
+  top: 600px;
+  left: 50%;
+  z-index: 1001;
 }
 #group_list #loader {
-  position: absolute;
+  position: relative;
   left: 50%;
   top: 50%;
-  width: 8vmax;
-  height: 8vmax;
-  margin: -4vmax; /* ADD THIS (half the W/H) */
+  width: 80px;
+  height: 80px;
+  margin: -4vmax;
   border-radius: 50%;
   border: 10px solid transparent;
   border-top-color: #8F00FF;
@@ -2062,12 +2079,33 @@ ul.paginate li.active {
   }
 }
 
-#nomore {
-  cursor: default;
+#loader_container {
+  position: fixed;
+  top: 800px;
+  left: 50%;
+  z-index: 1001;
 }
 
-.post_message h3 {
-  padding-bottom: 8px;
+#loader {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 80px;
+  height: 80px;
+  margin: -4vmax;
+  border-radius: 50%;
+  border: 10px solid transparent;
+  border-top-color: #8F00FF;
+  animation: spin 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

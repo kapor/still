@@ -34,45 +34,42 @@ class BlogForm(forms.ModelForm):
 	image = forms.ImageField()
 	update = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
+	class Meta():
+		model = Blog
+		fields = ('title', 'user', 'message', 'tags', 'image')
+
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-
 		self.fields['title'].widget.attrs.update({
-			'class': 'field_char', 
-			'placeholder': 'Enter text'
+		'class': 'field_char', 
+		'placeholder': 'Enter text', 
+		'id': 'id_title',
 		})
-
 		self.fields['message'].widget.attrs.update({
-			'class': 'field_description', 
-			'placeholder': 'Enter text'
+		'class': 'field_description', 
+		'placeholder': 'Enter text',
+		'id': 'id_message',
 		})
-
-		self.fields['author'].widget.attrs.update({
-			'class': 'field_select', 
-			'placeholder': 'Select Author'
+		self.fields['user'].widget.attrs.update({
+		'class': 'field_select', 
+		'placeholder': 'Select User',
+		'id': 'id_user',
 		})
-
-		self.fields['tags'].widget.attrs.update({'class': 'field_char', 
-			'placeholder': 'A comma-separated list of tags.'
+		self.fields['tags'].widget.attrs.update({
+		'class': 'field_char', 
+		'placeholder': 'A comma-separated list of tags.',
 		})
-
 		self.fields['image'].widget.attrs.update({
-			'class': 'field_image',
-			'id': 'id_image'
+		'class': 'field_image',
+		'id': 'id_image',
 		})
-		
 		for field in self.fields.values():
 			self.fields['image'].required = False
 
-	class Meta():
-		model = Blog
-		fields = ('title', 'author', 'message', 'tags', 'image')
 
-		widgets = {
-			'message':forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'}),
-			# 'image':file_input_initial(attrs={'class': 'field_image'})
-		}
+
+
 
 
 
@@ -86,19 +83,39 @@ class BlogUpdate(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		self.fields['title'].widget.attrs.update({'class': 'field_char', 'placeholder': 'Enter text'})
-		self.fields['message'].widget.attrs.update({'class': 'field_description', 'placeholder': 'Enter text'})
-		self.fields['author'].widget.attrs.update({'class': 'field_select', 'placeholder': 'Select Author'})
-		self.fields['tags'].widget.attrs.update({'class': 'field_char', 'placeholder': 'A comma-separated list of tags.'})
-		self.fields['image'].widget.attrs.update({'class': 'field_image'})
+		self.fields['title'].widget.attrs.update({
+		'class': 'field_char', 
+		'placeholder': 'Enter text', 
+		'id': 'id_title',
+		})
+		self.fields['message'].widget.attrs.update({
+		'class': 'field_description', 
+		'placeholder': 'Enter text',
+		'id': 'id_message',
+		})
+		self.fields['user'].widget.attrs.update({
+		'class': 'field_select', 
+		'placeholder': 'Select user',
+		'id': 'id_user',
+		})
+		self.fields['tags'].widget.attrs.update({
+		'class': 'field_char', 
+		'placeholder': 'A comma-separated list of tags.',
+		})
+		self.fields['image'].widget.attrs.update({
+		'class': 'field_image',
+		'id': 'id_image',
+		})
 		for field in self.fields.values():
 			self.fields['image'].required = False
 
 	class Meta():
 		model = Blog
-		fields = ('title', 'author', 'message', 'tags', 'image')
+		fields = ('title', 'user', 'message', 'tags', 'image')
 
 		widgets = {
 			'message':forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'}),
 			# 'image':file_input_initial(attrs={'class': 'field_image'})
 		}
+
+

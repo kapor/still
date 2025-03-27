@@ -1,0 +1,26 @@
+<!-- shelf/modal.html -->
+{% extends "base_modal.html" %}
+{% load static %}
+
+
+
+
+{% block modal_title %}
+  {% if obj.title %}
+    Edit This Item
+  {% else %}
+    Add an Item
+  {% endif %}
+{% endblock %}
+
+      
+
+{% block modal_form %} 
+<form method="POST" action="#" id="shelf_form">
+{% endblock %}
+
+
+{% block buttons %}
+<button type="button" class="button_secondary" data-dismiss="modal" id="cancel_button">I don't want to</button>
+<input type="submit" value="Add" class="button_accent"></input>
+{% endblock %}

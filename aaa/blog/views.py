@@ -2,30 +2,109 @@ from . import models
 from . import forms
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse, reverse_lazy
 from .models import Blog, Tags
 from .forms import BlogForm, BlogUpdate
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
-from django.contrib import messages
+from django.contrib import messages 
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView
 
-
-# Create your views here.
-
+#importing get_user_model allows us to asign User to it
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 
 class BlogListView(ListView):
 	model = Blog
-	template_name = 'blog/blog_list.html'
+	template_name = 'blog/blog.html'
+	paginate_by = 4
 
-	def get_queryset(self):
-		return Blog.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['form'] = forms.BlogForm(self.request.POST, self.request.FILES)
+		context['Published'] = Blog.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+		context['Drafts'] = Blog.objects.filter(published_date__isnull=True).order_by('-created_at')
+
+		return context
+
+
+	def post(self, request, *args, **kwargs):
+		form = forms.BlogForm(self.request.POST, self.request.FILES)
+
+		if request.accepts('application/json'):
+			if form.is_valid():
+				instance = form.save(commit=False)
+				instance.save()
+				photo = form.save()
+				form.save_m2m()
+				return JsonResponse({
+					'title': instance.title,
+					'message': instance.message,
+	                # 'image': instance.image,
+				})
+
+		return render(request, 'blog/blog.html', {'form': form })
+
+
+
+def blog_main(request):
+	view = BlogListView.as_view()
+	return view(request)
+
+
+
+
+# @login_required
+# def add_blog(request):
+# 	form = BlogForm(request.POST)
+
+# 	if request.accepts('application/json'):
+# 		form = forms.BlogForm(request.POST, request.FILES)
+# 		if form.is_valid():
+# 			instance = form.save(commit=False)
+# 			instance.save()
+# 			photo = form.save()
+# 			form.save_m2m()
+# 			return JsonResponse({
+# 				'title': instance.title,
+# 				'message': instance.message,
+# 				'created_at': instance.created_at,
+#                 'image': instance.image,
+# 			})
+# 	return render(request, 'blog/blog.html', {'form': form })
+
+
+
+
+# class BlogPublishListView(LoginRequiredMixin, ListView):
+# 	model = Blog
+# 	login_url = "/login/"
+# 	template_name = 'blog/published.html'
+# 	# returning all posts that are null (isnull=true)
+# 	def get_queryset(self):
+# 		return Blog.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+
+
+# class BlogDraftListView(LoginRequiredMixin, ListView):
+# 	model = Blog
+# 	login_url = "/login/"
+# 	template_name = 'blog/drafts.html'
+# 	# returning all posts that are null (isnull=true)
+# 	def get_queryset(self):
+# 		return Blog.objects.filter(published_date__isnull=True).order_by('-created_at')
+
+
+
+
+
+
+
 
 
 class BlogDetailView(DetailView):
@@ -34,34 +113,17 @@ class BlogDetailView(DetailView):
 	template_name = 'blog/blog_detail.html'
 
 
+# class AddBlog(LoginRequiredMixin, CreateView):
+# 	model = Blog
+# 	login_url = "/login/"
+# 	template_name = 'blog/modal.html'
+# 	form_class = BlogForm
+# 	required = False
 
+# 	def post(self, request, *args, **kwargs):
+# 		messages.success(self.request, "Post successfully added")
+# 		return super().post(request, *args, **kwargs)
 
-class AddBlog(LoginRequiredMixin, CreateView):
-	model = Blog
-	login_url = "/login/"
-	template_name = 'blog/blog_modal.html'
-	form_class = BlogForm
-	required = False
-	success_url = reverse_lazy('blog:draft_list')
-
-	def post(self, request, *args, **kwargs):
-		messages.success(self.request, "Post successfully added")
-		return super().post(request, *args, **kwargs)
-
-
-
-# @login_required
-# def AddBlog(request):
-#     form = BlogForm(request.POST, request.FILES)
-#     if request.method == 'POST':
-#         images = request.FILES.getlist('image')  
-#         for image in images:
-#             image_ins = Image(image = image)
-#             image_ins.save()
-#         return redirect('blog_form2')
-#     else:
-#         form = forms.BlogForm()
-#     return render(request, 'blog/blog_modal.html',{'form':form})
 
 
 
@@ -79,9 +141,6 @@ class BlogUpdateView(LoginRequiredMixin, UpdateView):
 		return super().post(request, *args, **kwargs)
 
 
-
-
-
 class BlogDelete(LoginRequiredMixin, DeleteView):
 	model = Blog
 	template_name = 'blog/blog_confirm_delete.html'
@@ -91,8 +150,6 @@ class BlogDelete(LoginRequiredMixin, DeleteView):
 	def post(self, request, *args, **kwargs):
 		messages.success(self.request, "Post successfully deleted")
 		return super().post(request, *args, **kwargs)
-
-
 
 
 class BlogDeleteDraft(LoginRequiredMixin, DeleteView):
@@ -105,17 +162,6 @@ class BlogDeleteDraft(LoginRequiredMixin, DeleteView):
 		messages.success(self.request, "Post successfully deleted")
 		return super().post(request, *args, **kwargs)
 
-
-
-
-class BlogDraftListView(LoginRequiredMixin, ListView):
-	model = Blog
-	login_url = "/login/"
-	template_name = 'blog/draft_list.html'
-	redirect_field_name = "blog/draft_list.html'"
-	# returning all posts that are null (isnull=true)
-	def get_queryset(self):
-		return Blog.objects.filter(published_date__isnull=True).order_by('-created_at')
 
 
 
@@ -134,12 +180,85 @@ def blog_publish(request, pk):
 
 
 
-
 #################################################
+#################################################
+#################################################
+#################################################
+# NOT IN USE
+#################################################
+#################################################
+#################################################
+#################################################
+
+
+
+
+
+# @login_required
+# def list_blog_create(request):
+# 	form = BlogForm(request.POST)
+# 	blog_list = Blog.objects.all().order_by('-created_at')
+
+# 	if request.accepts('application/json'):
+# 		if form.is_valid():
+# 			instance = form.save(commit=False)
+# 			instance.save()
+# 			photo = form.save()
+# 			form.save_m2m()
+# 			messages.success(request, 'Post added')
+# 			return JsonResponse({
+# 				'title': instance.title,
+# 				'message': instance.message,
+# 				'created_at': instance.created_at,
+# 				'image': instance.image
+# 			})
+
+# 	return render(request, 'blog/blog.html', {'form': form, 'blog_list': blog_list})
+
+
+# 	def post(self, request, *args, **kwargs):
+# 		messages.success(self.request, "Post successfully added")
+# 		return super().post(request, *args, **kwargs)
+
+
+
+class AddBlog(LoginRequiredMixin, CreateView):
+	model = Blog
+	login_url = "/login/"
+	template_name = 'blog/drafts.html'
+	form_class = BlogForm
+	required = False
+
+	def add_blog(request):
+		form = BlogForm(request.POST)
+
+		if request.accepts('application/json'):
+			form = forms.BlogForm(request.POST, request.FILES)
+			if form.is_valid():
+				instance = form.save(commit=False)
+				instance.save()
+				photo = form.save()
+				form.save_m2m()
+				messages.success(request, 'Post added')
+				return JsonResponse({
+					'title': instance.title,
+					'message': instance.message,
+					'created_at': instance.created_at,
+	                'image': instance.image,
+				})
+
+		return render(request, {'form': form, 'blog_list': blog_list})
+
+		def post(self, request, *args, **kwargs):
+			messages.success(self.request, "Post successfully added")
+			return super().post(request, *args, **kwargs)
+
+
+
+
+
 # COMMENTS
 #################################################
-
-
 
 
 
@@ -156,6 +275,7 @@ def add_comment_to_blog(request, pk):
 	else:
 		form = BlogCommentForm()
 	return render(request, 'blog/comment_form.html',{'form':form})
+
 
 
 

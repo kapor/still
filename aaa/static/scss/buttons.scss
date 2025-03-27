@@ -239,3 +239,44 @@ input.button_accent_large,
 }
 
 
+
+
+
+/* TABS */
+
+
+.tab_headers {
+  margin-bottom: 40px;
+}
+
+.tab_content {
+  display: none;
+}
+
+.tab_content.active {
+  display: block;
+}
+
+.tab_headers .tab_header {
+  border: 1px solid white;
+  padding: 20px 24px;
+}
+
+.tab_header.active {
+  border: 1px solid #8f00ff;
+  border-radius: 2px;
+  background-color: #8f00ff;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+

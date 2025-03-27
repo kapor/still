@@ -654,6 +654,13 @@ h3 p {
   padding-bottom: 4px;  
   margin-inline-end: 8px;
   max-width: 1000px;
+
+  .draft_indicator {
+    color: $accent1;
+    font-family: $font-stack1;
+    font-size: 24px;
+    line-height: 32px;
+  }
 }
 
 
@@ -930,13 +937,18 @@ section {
   padding-top: 40px;
 }
 
-.group_detail_lists .h3 {
+.group_detail_lists .h3,
+.group_detail_lists .h3 a {
   padding-top: 40px;
   padding-bottom: 20px;
   border-bottom: 1px dotted black;
   margin-bottom: 20px;
   max-width: 1400px;
+  font-family: $font-stack1;
+  color: $primary;
 }
+
+
 
 
 .description p {
@@ -1182,39 +1194,6 @@ ul.paginate li.active {
   display: none;
 }
 
-#group_list {
-
-
-  #loader_container {
-    position: fixed;      /* SET TO FIXED */
-    top: 0;
-    left: 0;
-    width: 100vw;         /* USE VIEWPORT UNITS */ 
-    height: 100vh;        /* USE VIEWPORT UNITS */
-    z-index: 1001;        /* MOVE Z-INDEX HERE! */
-  }
-
-  #loader {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 8vmax;
-    height: 8vmax;
-    margin: -4vmax;       /* ADD THIS (half the W/H) */
-    border-radius: 50%;
-    border: 10px solid transparent;
-    border-top-color: $accent1;
-    animation: spin 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-  }
-
-  @keyframes spin {
-    0%   {transform: rotate(0deg);}
-    100% {transform: rotate(360deg);}
-  }
-
-
-}
-
 
 
 #alert_box {
@@ -1231,29 +1210,39 @@ ul.paginate li.active {
 
 
 
+#nomore {
+  cursor: default;
+}
+
+
+.post_message h3 {
+  padding-bottom: 8px;
+}
+
+
 
 #group_list {
 
 
   #loader_container {
-    position: fixed;      /* SET TO FIXED */
-    top: 0;
-    left: 0;
-    width: 100vw;         /* USE VIEWPORT UNITS */ 
-    height: 100vh;        /* USE VIEWPORT UNITS */
-    z-index: 1001;        /* MOVE Z-INDEX HERE! */
+    position: fixed;
+    top: 600px;
+    left: 50%;
+    // width: 100vw;
+    // height: 100vh;
+    z-index: 1001;
   }
 
   #loader {
-    position: absolute;
+    position: relative; 
     left: 50%;
     top: 50%;
-    width: 8vmax;
-    height: 8vmax;
-    margin: -4vmax;       /* ADD THIS (half the W/H) */
+    width: 80px;
+    height: 80px;
+    margin: -4vmax;
     border-radius: 50%;
     border: 10px solid transparent;
-    border-top-color: $accent1;
+    border-top-color: #8F00FF;
     animation: spin 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
   }
 
@@ -1265,14 +1254,35 @@ ul.paginate li.active {
 
 }
 
-#nomore {
-  cursor: default;
+#loader_container {
+  position: fixed;
+  top: 800px;
+  left: 50%;
+  // width: 100vw;
+  // height: 100vh;
+  z-index: 1001;
+}
+
+#loader {
+  position: relative; 
+  left: 50%;
+  top: 50%;
+  width: 80px;
+  height: 80px;
+  margin: -4vmax;
+  border-radius: 50%;
+  border: 10px solid transparent;
+  border-top-color: #8F00FF;
+  animation: spin 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+@keyframes spin {
+  0%   {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
 }
 
 
-.post_message h3 {
-  padding-bottom: 8px;
-}
+
 
 
 

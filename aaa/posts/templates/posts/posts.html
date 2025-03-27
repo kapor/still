@@ -46,15 +46,9 @@ posts
 
 
 <div id="post_content">
-
 {% for item in post_list %}
-
-{% include 'includes/_post.html' with delete=True %}
-
-
+{% include 'includes/_post.html' with delete=True group=True %}
 {% endfor %}
-
-
 </div>
 
 

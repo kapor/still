@@ -175,25 +175,14 @@ $accent2: #00FF7F;
 }
 
 .modal_dialog {
-    position: relative;
-    width: auto;
-    /* pointer-events: none; */
-    max-width: 800px;
-    margin: auto;
-    padding: 40px;
-    background-color: white;
-
-}
-
-
-// Actual modal
-.modal_content {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%; 
-  pointer-events: auto;
-  outline: 0;
+  width: auto;
+  /* pointer-events: none; */
+  max-width: 800px;
+  margin: auto;
+  padding: 40px;
+  background-color: white;
+
 }
 
 // Modal background
@@ -209,6 +198,19 @@ $accent2: #00FF7F;
   &.show { opacity: 80; }
 }
 
+.modal > .modal_dialog {
+    width: 80%;
+    margin: auto;
+    max-width: 800px;
+    border: 20px #FFFFFF solid;
+    border-radius: 0px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.01);
+    background-color: white;
+    padding: 20px;
+    animation-name: fadeInDown;
+    animation-duration: 100ms;
+    animation-timing-function: ease;
+}
 
 
 

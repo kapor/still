@@ -9,16 +9,21 @@ from posts import urls
 
 urlpatterns = [
 
-    path('', views.BlogListView.as_view(), name='blog_list'),
+    # path('', views.list_blog_create, name='blog_list'),
+    # path('drafts/', views.list_draft_create, name='draft_list'),
+    # path('', views.BlogListView.as_view(), name='blog_list'),
+    path('', views.blog_main, name='blog_list'),
+
+    # path('published/', views.BlogPublishListView.as_view(), name='published'),
+    # path('drafts/', views.BlogDraftListView.as_view(), name='drafts'),
+
     path('blog/<int:pk>/', views.BlogDetailView.as_view(), name='blog_detail'),
 
-    path('blog/new/', views.AddBlog.as_view(), name='add'),
+    # path('blog/new/', views.AddBlog.as_view(), name='add'),
     # path('blog/new/', views.AddBlog, name='add'), 
 
     path('blog/<int:pk>/edit/', views.BlogUpdateView.as_view(), name='blog_edit'),
     path('blog/<int:pk>/delete/', views.BlogDelete.as_view(), name='blog_delete'),
-    
-    path('drafts/', views.BlogDraftListView.as_view(), name='draft_list'),
     path('blog/<int:pk>/delete/', views.BlogDeleteDraft.as_view(), name='blog_delete_draft'),
     
     path('post/<int:pk>/comment/', views.add_comment_to_blog, name='add_comment_to_blog'),

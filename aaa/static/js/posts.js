@@ -28,77 +28,14 @@ const handle_alerts = (type, msg) => {
 
 
 
-
-
-
-////////////////////////////
-////////////////////////////
-////////////////////////////
-////////////////////////////
-// load more
-
-/*let visible = 20
-
-const getData = () => {
-
-	$.ajax({
-		type: 'GET',
-		url: `/posts/${visible}/`,
-		success: function(response){
-			console.log(response)
-			///this is grabbing the response 'data' from the view "load_post"...
-			const data = response.data
-			setTimeout(()=> {
-				loader.classList.add('not_visible')
-				console.log(data)
-				///...and looping it through an array to inject html into the #post_content div
-				data.forEach(item => {
-					post_content.innerHTML += 
-					///use backticks to inject html
-					`
-					<div class="post3" id="post_list">
-						<div>
-					    <div class="post_message_group">
-					      <div class="button_group">
-					        <div class="post_message">
-					        <a href="#"><h3>${item.message}</h3></a>
-					        </div>
-					      </div>
-					    </div>    
-
-					    <span class="username">
-					      <a href="#">${item.user}</a> posted in
-					    <span class="group-name">
-					    <a href="#">${item.group}</a>
-					    </span>${item.created_at}</span>
-						</div>
-					</div>
-					`
-				});
-			}, 50)
-			console.log(response.size)
-			if (response.size === 0) {
-				nomore.textContent = 'Nothing yet'
-			}
-			else if (response.size <= visible) {
-				load_button.classList.add('not_visible')
-				nomore.textContent = 'the end'
-			}
-		},
-		error: function(error){
-			console.log(error) 
-		}
-	})
-
-}*/
-
-
-
 ////////////////////////////
 ////////////////////////////
 ////////////////////////////
 ////////////////////////////
 // form stuff
+
+
+
 
 post_form.addEventListener('submit', e => {
 	e.preventDefault()
@@ -126,7 +63,7 @@ post_form.addEventListener('submit', e => {
 
 					      <div class="button_group">
 					        <div class="post_message">
-					        <a href="/user/${response.user}"><h3>${response.message}</h3></a>
+					        <a href="${url}${response.group}"><h3>${response.message}</h3></a>
 					        </div>
 					      </div>
 

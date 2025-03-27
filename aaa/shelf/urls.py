@@ -6,19 +6,20 @@ from shelf import views
 from . import views
 
 
-
+app_name = 'shelf'
 
 urlpatterns = [
 
-    path('shelf', views.ShelfListView.as_view(), name='shelf'),
+    # path('', views.ShelfListView.as_view(), name='shelf'),
     # path('entry/', views.ShelfEntry, name='entry'),
     # modal
-    path('add/', views.ShelfAdd, name='add'),
-    path('shelf/<int:pk>/', views.ShelfDetailView.as_view(), name='detail'),
-    path('shelf/<int:pk>/edit/', views.Edit_Item.as_view(), name='edit'),
-    path('shelf/<int:pk>/delete', views.Delete_Item.as_view(), name='delete'),
+    path('', views.shelf_list_create, name='shelf'),
+    path('<int:pk>/', views.shelf_detail_view, name='detail'),
+    path('<int:pk>/', views.Edit_Item.as_view(), name='edit'),
+    # path('shelf/<int:pk>/', views.shelf_detail_edit, name='edit')
+    path('<int:pk>/delete', views.Delete_Item.as_view(), name='delete'),
 
-    path('shelf/', views.SearchView.as_view(), name='search'),
+    path('search/', views.SearchView.as_view(), name='search'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

@@ -7,7 +7,7 @@ from groups.models import Group, Comment
 from blog.models import Blog
 from shelf.models import Shelves
 from django.db import transaction
-from django.core import serializers
+from django.core.serializers import serialize
 
 from django.utils import timezone
 from django.http import Http404
@@ -79,6 +79,7 @@ User = get_user_model()
 def list_post_create(request):
     form = PostForm(request.POST, user=request.user)
     post_list = Post.objects.all().order_by('-created_at')
+    group = Group.objects.all()
 
     if request.accepts('application/json'):
         if form.is_valid():
@@ -89,13 +90,17 @@ def list_post_create(request):
             messages.success(request, 'Post added')
             return JsonResponse({
                 'user': instance.user.username,
-                'message': instance.message
+                'message': instance.message,
+                'group': instance.group,
             })
 
-    return render(request, 'posts/posts.html', {'form': form, 'post_list': post_list})
+    context = {
+        'form': form, 
+        'post_list': post_list
+    }
 
 
-
+    return render(request, 'posts/posts.html', context)
 
 
 ## def load_post(request, num_posts):

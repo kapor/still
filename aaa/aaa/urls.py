@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.conf.urls.static import static, settings
 from django.urls import include, path
 from . import views
+
 app_name = 'aaa'
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls', namespace="posts")),
+    path('shelf/', include('shelf.urls', namespace="shelf")),
     path('updates/', include(('blog.urls', 'blog'), namespace='updates')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('accounts/', include('django.contrib.auth.urls')),
@@ -37,7 +39,6 @@ urlpatterns = [
     path('contact/', include('contact.urls', namespace="contact")),
 
     path('', include('blog.urls')),
-    path('', include(('shelf.urls', 'shelf'), namespace='shelf')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
