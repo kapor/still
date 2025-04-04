@@ -13,9 +13,14 @@
 
 {% block content %}
 
-<div class="shelf_detail">
+<div class="shelf_detail" id="shelf_detail">
 
-	<div class="shelf_top_detail">	
+	<div id="loader_container">
+		<div id="loader"></div>
+	</div>
+
+
+	<div class="shelf_top_detail" id="shelf_data_top">	
 		<div class=crop_detail>
 			{% if obj.image %}
 			<img class="photo_detail" src="/media/{{ obj.image }}">
@@ -27,24 +32,19 @@
 		{% if user.is_superuser %}
 			<!-- EDIT / ROMOVE  -->
 			<div class="button_container">
-				<a onClick="javascript:history.go(-1);"><div class="button_accent">
-					Back
-				</div></a>
-				<a data-toggle="modal" data-target="#modal_form"><div class="button_secondary">
+				<button class="button_accent" id="back_button">Back</button>
+				<a data-toggle="modal" data-target="#modal_form"><div class="button_secondary" id="shelf_edit">
 					Edit
 				</div></a>
-				<a href="{% url 'shelf:delete' pk=obj.pk %}"><div class="button_secondary">
+				<a href="{% url 'shelf:delete' pk=obj.pk %}"><div class="button_secondary" id="shelf_delete">
 				 	Delete
 				</div></a>
 			</div>
 		{% else %}
 		{% endif %}
 	</div>
-	<div id="loader_container">
-		<div id="loader"></div>
-	</div>
 
-	<div class="shelf_info">
+	<div class="shelf_info" id="shelf_data_bottom">
 
 		{% if obj.title %}
 		<div class="label_info">
@@ -138,13 +138,13 @@
 		{% else %}
 		{% endif %}
 
-	<!-- 	{% if obj.isbn %}
+		{% if obj.isbn %}
 		<div class="label_info">
 			<p>ISBN:</p>
 			<h2>{{ obj.isbn | cut:".0" }}</h2>
 		</div>
 		{% else %}
-		{% endif %} -->
+		{% endif %}
 
 		{% if obj.description %}
 		<div class="label_info">
@@ -165,6 +165,7 @@
 
 
 </div>
+
 
 
 

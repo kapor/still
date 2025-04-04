@@ -89,6 +89,7 @@ def shelf_list_create(request):
             instance = form.save(commit=False)
             form.instance.user = request.user
             photo = form.save()
+            messages.success(request, 'New item added')
             instance.save()
             return JsonResponse({
                 'title': instance.title,
@@ -122,6 +123,36 @@ def shelf_detail_view(request, pk):
     context = {'obj': obj, 'form': form} 
 
     return render(request, 'shelf/shelf_detail.html', context)
+
+
+def shelf_detail_data(request, pk):
+    obj = Shelves.objects.get(pk=pk)
+    data = {
+        'id': obj.id,
+        'title': obj.title,
+        'author': obj.author,
+        'year': obj.year,
+        'type': obj.type,
+        'publisher': obj.publisher,
+        'artist': obj.artist,
+        'quality': obj.quality,
+        'price': obj.price,
+        'location': obj.location,
+        'genre': obj.genre,
+        # 'tags': obj.tags,
+        'weight': obj.weight,
+        'pages': obj.pages,
+        'isbn': obj.isbn,
+        'description': obj.description,
+        'notes': obj.notes,
+        # 'image': obj.image,
+
+        #another way to add permissions is to compare the "user" who authored the item and the user who's currently "logged_in"
+        'user': obj.user.username,
+        'logged_in': request.user.username
+    }
+
+    return JsonResponse({'data': data})
 
 
 

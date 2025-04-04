@@ -1,5 +1,5 @@
 <!-- aaa/templates/posts/posts.html -->
-{% extends "base.html" %}
+{% extends "posts/base.html" %}
 {% load static %}
 
 {% block scripts %} 
@@ -20,12 +20,11 @@ posts
       <a href="{% url 'for_user' username=user.username %}">
       {{user.username}}</a><br>
         These are posts<br>
-      {% if user.is_superuser %}
+
       <a data-toggle="modal" data-target="#modal_form">
       Create one
       </a>
-      {% else %}
-      {% endif %}
+
     </h1>
   </div>
 
@@ -47,13 +46,9 @@ posts
 
 <div id="post_content">
 {% for item in post_list %}
-{% include 'includes/_post.html' with delete=True group=True %}
+{% include 'includes/_post.html' with delete=False group=True %}
 {% endfor %}
 </div>
-
-
-
-
 
 {% include 'posts/modal.html' %}
 

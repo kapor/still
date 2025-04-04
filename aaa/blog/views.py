@@ -132,7 +132,7 @@ class BlogDetailView(DetailView):
 class BlogUpdateView(LoginRequiredMixin, UpdateView):
 	model = Blog
 	login_url = "login"
-	template_name = 'blog/blog_form.html'
+	template_name = 'blog/blog_modal_edit.html'
 	form_class = BlogUpdate
 	required = False
 

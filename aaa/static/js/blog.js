@@ -1,27 +1,11 @@
 const tab2 = document.getElementById('tab2')
 
-const url = window.location.href
-
 const id_title = document.getElementById('id_title')
 const id_message = document.getElementById('id_message')
 const id_image = document.getElementById('id_image')
 
 const modal_form = document.getElementById('modal_form')
-const csrf = document.getElementsByName('csrfmiddlewaretoken')
-console.log('csrf', csrf[0].value)
 
-const alert_box = document.getElementById('alert_box')
-
-
-
-const handle_alerts = (type, msg) => {
-    alert_box.innerHTML =
-    `
-      <div class="${type}">
-        ${msg}
-      </div>
-    `
-}
 
 
 

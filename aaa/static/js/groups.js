@@ -1,9 +1,10 @@
-const group_list = document.getElementById('group_list')
 const loader = document.getElementById('loader_container')
-const endbox = document.getElementById('endbox')
+const load = document.getElementById('load_button')
 const nomore = document.getElementById('nomore')
 
-const url = window.location.href
+
+
+const group_list = document.getElementById('group_list')
 
 const id_name = document.getElementById('id_name')
 const id_description = document.getElementById('id_description')
@@ -11,21 +12,8 @@ const id_slug = document.getElementById('id_slug')
 const id_member = document.getElementsByClassName('leave_join')
 
 const modal_form = document.getElementById('modal_form')
-const csrf = document.getElementsByName('csrfmiddlewaretoken')
-console.log('csrf', csrf[0].value)
-
-const alert_box = document.getElementById('alert_box')
 
 
-
-const handle_alerts = (type, msg) => {
-    alert_box.innerHTML =
-    `
-      <div class="${type}">
-        ${msg}
-      </div>
-    `
-}
 
 
 
@@ -145,8 +133,8 @@ modal_form.addEventListener('submit', e => {
 			     
 			      <div class="card_lower">
 					${response.description ? 
-						`<div class="description">${response.description}</div>`: 
-						`<div class="description">No description yet.</div>`}
+						`<div class="description" style="color:black">${response.description}</div>`: 
+						`<div class="description" style="color:black">No description yet.</div>`}
 
 			      </div>
 

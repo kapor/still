@@ -41,41 +41,6 @@ class Post(models.Model):
 
 
 
-# class Product(models.Model):
-#     name = models.CharField(max_length=255)
-#     price = models.FloatField(null=True, blank=True)
-#     description = models.TextField(null=True, blank=True)
-
-#     class Meta:
-#         verbose_name_plural = "Products"
-#         ordering = ('id',)
-
-#     def __str__(self):
-#         return self.name
-
-
-
-# class Birdies(models.Model):
-#     user = models.ForeignKey('auth.User', related_name='users', on_delete=models.CASCADE)
-#     size_choices = [
-#         ('Extra-Small', 'Extra-Small'),
-#         ('Small', 'Small'),
-#         ('Medium', 'Medium'),
-#         ('Large', 'Large'),
-#         ('Extra-Large', 'Extra-Large'),
-#     ]
-#     name = models.CharField(max_length=255)
-#     description = models.TextField(null=True, blank=True)
-#     tags = TaggableManager(blank=False)
-#     image = models.ImageField(upload_to=get_upload_path, default="images/blank.jpg", blank=True)
-#     size = models.CharField(max_length=30, choices=size_choices)
-
-#     class Meta:
-#         verbose_name_plural = "Birds"
-#         ordering = ['name']
-
-#     def __str__(self):
-#         return self.name
 
 
 

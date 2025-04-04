@@ -1,30 +1,49 @@
 const post_content = document.getElementById('post_content')
-const loader = document.getElementById('loader_container')
-const load = document.getElementById('load_button')
-const nomore = document.getElementById('nomore')
-
-const url = window.location.href
-
 const id_message = document.getElementById('id_message')
 const id_group = document.getElementById('id_group')
 const id_image = document.getElementById('id_image')
 
+const remove = document.getElementById('delete_button')
+
 const post_form = document.getElementById('post_form')
-const csrf = document.getElementsByName('csrfmiddlewaretoken')
-console.log('csrf', csrf[0].value)
+const url_delete = window.location.href + "delete/"
 
-const alert_box = document.getElementById('alert_box')
+const form_edit = document.getElementById('edit_form')
+const form_delete = document.getElementById('delete_form')
 
 
+/////////////////////////////////////////
+/// CLOSE MODAL ==> FORM RESET
 
-const handle_alerts = (type, msg) => {
-    alert_box.innerHTML =
-    `
-      <div class="${type}">
-        ${msg}
-      </div>
-    `
-}
+
+const form = document.getElementById('post_form');
+const cancel_button = document.getElementById('cancel_button');
+const close_x = document.getElementById('close_x');
+const modal_dialog = document.getElementById('modal_dialog'); 
+
+cancel_button.addEventListener('click', function() {
+	document.getElementById('post_form').reset();
+});
+
+close_x.addEventListener('click', function() {
+	document.getElementById('post_form').reset();
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    document.getElementById('post_form').reset();
+  }
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === modal_dialog) {
+    form.reset();
+  } else {
+  	// Do nothing
+  }
+});
+
+
 
 
 
@@ -33,6 +52,7 @@ const handle_alerts = (type, msg) => {
 ////////////////////////////
 ////////////////////////////
 // form stuff
+
 
 
 
@@ -78,6 +98,7 @@ post_form.addEventListener('submit', e => {
 				`
 			)
 			$('#modal_form').modal('hide')
+			/*window.location = document.location;*/
 			handle_alerts('message_success', 'New post added')
 			document.getElementById("post_form").reset()
 		},
@@ -88,36 +109,50 @@ post_form.addEventListener('submit', e => {
 	})
 })
 
-/////////////////////////////////////////
-/// CLOSE MODAL ==> FORM RESET
 
 
-const form = document.getElementById('post_form');
-const cancel_button = document.getElementById('cancel_button');
-const close_x = document.getElementById('close_x');
-const modal_dialog = document.getElementById('modal_dialog'); 
 
-cancel_button.addEventListener('click', function() {
-	form.reset();
-});
 
-close_x.addEventListener('click', function() {
-	form.reset();
-});
 
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    document.getElementById('post_form').reset();
-  }
-});
+////////////////////////////
+////////////////////////////
+////////////////////////////
+////////////////////////////
+// DELETE STUFF
 
-window.addEventListener('click', (event) => {
-  if (event.target === modal_dialog) {
-    form.reset();
-  } else {
-  	// Do nothing
-  }
-});
+
+
+
+form_delete.addEventListener('submit', e=> {
+	e.preventDefault()
+
+	const message = document.getElementById('message')
+	const success_url = "posts/"
+
+	$.ajax({
+		type: 'POST',
+		url: url_delete,
+		data: {
+			'csrfmiddlewaretoken': csrf[0].value,
+		},
+		success: function(response) {
+			// history.go(-2)
+			window.location = document.referrer;
+			// history.back(-2).location.reload();
+			// window.location.href = window.location.origin
+			handle_alerts('alert_error', 'Post Deleted')
+			localStorage.setItem('message', post_message.value)
+		},
+		error: function(error) {
+			console.log(error)
+			handle_alerts('alert_error', 'An error occurred')
+		}
+
+	})
+
+})
+
+
 
 
 

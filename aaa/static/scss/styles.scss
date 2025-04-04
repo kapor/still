@@ -682,6 +682,25 @@ h4 p {
   max-width: 1000px;
 }
 
+h5,
+h5 p {
+  font-family: $font-stack1;
+  color: $primary;
+  text-transform: none;
+  list-style-type: none;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 32px;
+  line-height: 40px;
+  text-decoration: none;
+  margin: 0px;  
+  padding: 0px;
+  padding-bottom: 4px;  
+  margin-inline-end: 8px;
+  max-width: 1000px;
+
+}
+
 
 
 
@@ -852,7 +871,7 @@ section {
 
 .paginate .active a {
   background-color: red;
-  color: white;
+  color: $accent1;
   text-align: center;
   padding: 10px 16px;
   font-weight: 400;
@@ -1017,12 +1036,13 @@ ul.paginate li {
 
 
 ul.paginate li.active {
-  background-color: $accent1;
-  color: white;
+  background-color: white;
+  color: $accent1;
   text-align: center;
   padding: 6px 10px;
   font-weight: 400;
   line-height: 40px;
+  border-bottom: 2px solid $accent1;
 }
 
 
@@ -1145,7 +1165,7 @@ ul.paginate li.active {
 
 .post_message {
   max-width: 1000px;
-  padding-bottom: 8px;
+  padding-bottom: 4px;
 }
 
 .post_text {

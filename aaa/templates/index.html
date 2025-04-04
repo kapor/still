@@ -35,13 +35,14 @@ home
 
 {% if item|is_app:"groups" %}
 
-{% include 'includes/_comment.html' with delete=True group=True %}
+{% include 'includes/_comment.html' with delete=False group=True %}
 
 <!-- POST -->
 
 {% elif item|is_app:"posts" %}
 
-{% include 'includes/_post.html' with delete=True group=True %}
+{% include 'includes/_post.html' with delete=False group=True %}
+
 
 <!-- BLOG -->
 

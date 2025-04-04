@@ -1,3 +1,8 @@
+<!-- aaa/posts/templates/posts/post_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
 {% load my_filters %}
 {% load humanize %}
 
@@ -14,7 +19,7 @@
         <div class="button_group">
           <!-- TITLE/MESSAGE -->
           <div class="post_message">
-            <a href="#">
+            <a href="{{ item.group.get_absolute_url }}">
               <h3 id="message">{{ item.message | safe }}</h3>
             </a>
           </div>
@@ -27,7 +32,7 @@
             {% endif %}
           <!-- DELETE BUTTON -->
               {% if details %}
-              <button href="#" class="modal_button_xsmall" id="detail_button">Details</button>
+              <button href="{{ item.get_absolute_url }}" class="modal_button_xsmall" id="detail_button">Details</button>
               {% else %}
               {% endif %}
         </div>
@@ -61,5 +66,4 @@
 
 
 
-
-
+{% endblock %}

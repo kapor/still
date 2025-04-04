@@ -91,7 +91,7 @@ def list_post_create(request):
             return JsonResponse({
                 'user': instance.user.username,
                 'message': instance.message,
-                'group': instance.group,
+                # 'group': instance.group,
             })
 
     context = {
@@ -101,6 +101,9 @@ def list_post_create(request):
 
 
     return render(request, 'posts/posts.html', context)
+
+
+
 
 
 ## def load_post(request, num_posts):
@@ -157,13 +160,30 @@ def PostGroup(request):
 
 
 # Basic post detail view
-class PostDetail(PrefetchRelatedMixin, generic.DetailView, LoginRequiredMixin):
-	model = models.Post
-	prefetch_related = ('user', 'group')
+# class PostDetail(PrefetchRelatedMixin, generic.DetailView, LoginRequiredMixin):
+#     model = models.Post
+#     prefetch_related = ('user', 'group')
+#     template_name = 'posts/post_detail.html'
 
-	def get_queryset(self):
-		queryset = super().get_queryset()
-		return queryset.filter(user__username__iexact = self.kwargs.get('username'))
+#     def get_queryset(self):
+#         queryset = super().get_queryset()
+#         return queryset.filter(user__username__iexact = self.kwargs.get('username'))
+
+
+
+# post detail form
+def post_detail(request, pk):
+    obj = Posts.objects.get(pk=pk)
+    form = PostForm()
+    context = {
+        'obj': obj,
+        'form': form,
+    }
+    return render(request, 'posts/detail.html', context)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user__username__iexact = self.kwargs.get('username'))
 
 
 
@@ -173,15 +193,25 @@ class EditPost(LoginRequiredMixin, UpdateView):
 
 
 
-class DeletePost(LoginRequiredMixin, PrefetchRelatedMixin, generic.DeleteView):
-    model = models.Post
-    prefetch_related = ('user', 'group')
-    template_name = 'posts/post_confirm_delete.html'
-    success_url = '/'
 
-    def post(self, request, *args, **kwargs):
-        messages.success(self.request, "Post removed")
-        return super().post(request, *args, **kwargs)
+
+
+def delete_post(request, pk):
+    if request.accepts('application/json'):
+        # Attempt to retrieve and delete the object
+        try:
+            obj = Posts.objects.get(pk=pk)
+            obj.delete()
+            # Construct the URL for the success page using reverse
+            success_url = reverse("posts:posts")
+            # Return a JSON response with the redirect URL
+            return JsonResponse({'redirect_url': success_url})
+        except MyModel.DoesNotExist:
+            return JsonResponse({'error': 'Something went wrong'}, status=404)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+    
+
 
 
 

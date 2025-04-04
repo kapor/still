@@ -1,5 +1,8 @@
 <!-- aaa/groups/templates/groups/groups_detail.html -->
-{% extends "groups/group_base.html" %}
+{% extends "groups/base.html" %}
+{% load my_filters %}
+{% load humanize %}
+
 
 {% block pre_group %}
 
@@ -36,7 +39,7 @@
 
 	<div class="button_container">
 		<a href="{% url 'groups:all' %}"><div class="button_accent">
-			All Groups
+			View All Groups
 		</div></a>
 		{% if user in group.members.all %}
 		<a href="{% url 'groups:leave' slug=group.slug %}" ><div class="button_secondary">
@@ -56,6 +59,9 @@
 	</div>
 {% else %}
 	<div class="button_container">
+		<a href="{% url 'groups:all' %}"><div class="button_accent">
+			View All Groups
+		</div></a>
 		{% if user in group.members.all %}
 		<a href="{% url 'groups:leave' slug=group.slug %}" ><div class="button_secondary">
 			Leave
@@ -65,9 +71,6 @@
 			Join
 		</div></a>
 		{% endif %}
-		<a href="{% url 'groups:all' %}"><div class="button_accent">
-			Back to Groups
-		</div></a>
 	</div>
 {% endif %}
 
@@ -81,21 +84,51 @@
 <div class="group_detail_lists">
 		<h3 class="h3"><a href="{% url 'posts:all' %}">Posts</a></h3>
 		{% for item in group.posts.all %}
-
-			{% include 'includes/_post.html' with delete=True group=False %}
+			
+			{% include 'includes/_post.html' with delete=False group=False details=True %}
 
   	{% empty %}
   		<h3>Nobody has posted yet.</h3>
 		{% endfor %}
+
+
 </div>
-
-
 
 <div class="group_detail_lists">
 		<h3 class="h3">Comments</h3>
 		{% for item in comment  %}
 
-			{% include 'includes/_comment.html' with delete=True group=False %}
+	
+		<div class="post2" id="post_list">
+	    <div>
+	    <!-- TITLE/MESSAGE -->
+	      <div class="post_message_group">
+	        <div class="button_group">
+	          <div class="post_message">
+	             <h3>{{ item.message | safe }}</h3>
+	          </div>
+	          <!-- DELETE BUTTON -->
+	            {% if user.is_superuser or item.user == user and not hide_delete %}
+	            <a href="{% url 'groups:commentdelete' pk=item.pk %}">
+	              <div class="modal_button_xsmall">remove</div>
+	            </a>
+	            {% endif %}
+	        </div>
+	        <!-- USER/URL/TIMESTAMP -->        
+	        <span class="username">
+	          {% if user %}
+	            <a href="{% url 'for_user' username=item.user.username %}">
+	            @{{ item.user.username }}
+	            </a>
+	          {% endif %}
+	            commented
+	          {{ item.created_at|naturaltime }}
+	        </span>
+	      </div>
+
+	    </div>
+	  </div>
+
 
   	{% empty %}
   		<h3>Nobody has commented yet.</h3>
@@ -142,7 +175,10 @@
 
 
 
-
+{% for item in group.posts.all %}
+	{% include 'posts/modal.html' %}
+	{% include 'posts/modal_delete.html' %}
+{% endfor %}
 
 
 

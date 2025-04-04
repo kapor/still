@@ -1,5 +1,5 @@
 <!-- aaa/posts/templates/posts/posts/post_confirm_delete.html -->
-{% extends "base.html" %}
+{% extends "posts/base.html" %}
 {% load bootstrap5 %}
 
 
@@ -20,9 +20,8 @@
 	        <div class="button_container_modal">
 						{% csrf_token %}
 
-				<a _="on click trigger closeModal"><div class="button_secondary" id="modal_close">Cancel</div></a>
-				<input type="hidden" name="redirect_url" value="{{ request.META.HTTP_REFERER }}">
-				<input type="submit" value="Confirm" class="button_danger" _="on click trigger closeModal">
+				<button class="button_secondary" _="on click trigger closeModal">Cancel</button>
+				<button type="submit" value="Confirm" class="button_danger" _="on click trigger closeModal">Confirm</button>
 	        </div>
 	  	</form>
 

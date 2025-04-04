@@ -535,7 +535,11 @@ input.button_accent_large a,
   color: #222;
 }
 
-#load_button,
+#load_button {
+  border: 2px white solid;
+  background-color: #75ffba;
+}
+
 #nomore {
   border: 2px white solid;
 }
@@ -709,8 +713,8 @@ input.button_accent_large a,
   padding: 0px;
 }
 .modal_header img {
-  height: 56px;
-  width: 56px;
+  height: 40px;
+  width: 40px;
 }
 
 .button_container_modal,
@@ -1589,6 +1593,24 @@ h4 p {
   max-width: 1000px;
 }
 
+h5,
+h5 p {
+  font-family: Helvetica neue, sans-serif;
+  color: #333;
+  text-transform: none;
+  list-style-type: none;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 32px;
+  line-height: 40px;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 4px;
+  margin-inline-end: 8px;
+  max-width: 1000px;
+}
+
 #group_container {
   font-family: Helvetica neue, sans-serif;
   display: -ms-flexbox;
@@ -1742,7 +1764,7 @@ section {
 
 .paginate .active a {
   background-color: red;
-  color: white;
+  color: #8F00FF;
   text-align: center;
   padding: 10px 16px;
   font-weight: 400;
@@ -1885,12 +1907,13 @@ ul.paginate li {
 }
 
 ul.paginate li.active {
-  background-color: #8F00FF;
-  color: white;
+  background-color: white;
+  color: #8F00FF;
   text-align: center;
   padding: 6px 10px;
   font-weight: 400;
   line-height: 40px;
+  border-bottom: 2px solid #8F00FF;
 }
 
 .paginate .disabled a {
@@ -1994,7 +2017,7 @@ ul.paginate li.active {
 
 .post_message {
   max-width: 1000px;
-  padding-bottom: 8px;
+  padding-bottom: 4px;
 }
 
 .post_text {

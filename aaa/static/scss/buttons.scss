@@ -233,7 +233,11 @@ input.button_accent_large,
 }
 
 
-#load_button,
+#load_button {
+  border: 2px white solid;
+  background-color: #75ffba;
+}
+
 #nomore {
   border: 2px white solid;
 }

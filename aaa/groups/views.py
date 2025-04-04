@@ -50,7 +50,7 @@ def SingleGroup(request, slug):
 		form = CommentForm()
 
 		context = {'comment': comment, 'group': group, 'form': form}
-	return render(request, 'groups/group_detail.html', context)
+	return render(request, 'groups/detail.html', context)
 
 
 

@@ -1,8 +1,8 @@
-const shelf_table = document.getElementById('shelf_table')
-const shelf_form = document.getElementById('shelf_form')
-const modal_form = document.getElementById('modal_form')
+const loader = document.getElementById('loader_container')
+const load = document.getElementById('load_button')
+const nomore = document.getElementById('nomore')
 
-const url = window.location.href
+const shelf_table = document.getElementById('shelf_table')
 
 const title = document.getElementById('id_title')
 const author = document.getElementById('id_author')
@@ -21,29 +21,53 @@ const description = document.getElementById('id_description')
 const notes = document.getElementById('id_notes')
 const image = document.getElementById('id_image')
 
-const csrf = document.getElementsByName('csrfmiddlewaretoken')
-console.log('csrf', csrf[0].value)
 
-const alert_box = document.getElementById('alert_box')
+const url_data = window.location.href + "data"
+const edit = document.getElementById('shelf_edit')
+const shelf_detail = document.getElementById('shelf_detail')
+const remove = document.getElementById('shelf_delete')
+const data_top = document.getElementById('shelf_data_top')
+const data_bottom = document.getElementById('shelf_data_bottom')
 
 
-const handle_alerts = (type, msg) => {
-	setTimeout(()=> {
-  alert_box.innerHTML =
-  `
-    <div class="${type}">
-      ${msg}
-    </div>
-  `
-  }, 150)
-}
+/////////////////////////////////////////
+/// CLOSE MODAL ==> FORM RESET
+
+
+const form = document.getElementById('shelf_form');
+const cancel_button = document.getElementById('cancel_button');
+const close_x = document.getElementById('close_x');
+const modal_dialog = document.getElementById('modal_dialog'); 
+
+
+cancel_button.addEventListener('click', function() {
+	form.reset();
+});
+
+close_x.addEventListener('click', function() {
+	form.reset();
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    document.getElementById('shelf_form').reset();
+  }
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === modal_dialog) {
+    form.reset();
+  } else {
+  	// Do nothing
+  }
+});
 
 
 ////////////////////////////
 ////////////////////////////
 ////////////////////////////
 ////////////////////////////
-// form stuff
+// form stuff (adding an item)
 
 document.getElementById('shelf_form').addEventListener('submit', function(e) {
   e.preventDefault(); // Prevent the default form submission
@@ -140,37 +164,52 @@ document.getElementById('shelf_form').addEventListener('submit', function(e) {
 
 
 
-/////////////////////////////////////////
-/// CLOSE MODAL ==> FORM RESET
 
 
-const form = document.getElementById('shelf_form');
-const cancel_button = document.getElementById('cancel_button');
-const close_x = document.getElementById('close_x');
-const modal_dialog = document.getElementById('modal_dialog'); 
 
 
-cancel_button.addEventListener('click', function() {
-	form.reset();
-});
+////////////////////////////
+////////////////////////////
+////////////////////////////
+////////////////////////////
+// form stuff (editing an item)
 
-close_x.addEventListener('click', function() {
-	form.reset();
-});
 
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    document.getElementById('shelf_form').reset();
-  }
-});
 
-window.addEventListener('click', (event) => {
-  if (event.target === modal_dialog) {
-    form.reset();
-  } else {
-  	// Do nothing
-  }
-});
+$.ajax({
+	type: 'GET',
+	url: url_data,
+	success: function(response) {
+		console.log(response)
+		const data = response.data
+
+		// another way to add permissions is to compare the "user" who authored the item and the user who's currently "logged_in"
+/*		if (data.logged_in !== data.user ) {
+			console.log('different')
+		} else {
+			console.log('the_same')
+		}
+*/
+/*		const label_info = document.createElement('div')
+		title.setAttribute('class', 'label_info')
+		shelf_detail.appendChild(data_top)
+		shelf_detail.appendChild(data_bottom)*/
+
+
+		loader.classList.add('not_visible')
+	},
+	error: function(error) {
+		console.log(error)
+	}
+})
+
+
+
+
+
+
+
+
 
 
 

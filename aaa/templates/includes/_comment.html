@@ -20,7 +20,7 @@
           </div>
           <!-- DELETE BUTTON -->
           {% if delete %}
-            {% if user.is_superuser or post.user == user and not hide_delete %}
+            {% if user.is_superuser or item.user == user and not hide_delete %}
             <a href="{% url 'groups:commentdelete' pk=item.pk %}">
               <div class="modal_button_xsmall">remove</div>
             </a>

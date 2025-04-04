@@ -34,9 +34,7 @@
     {% if user.is_authenticated %}
       {% if blog_detail.published_date %}
       <div class="button_container">
-        <a href="{% url 'blog:blog_list' %}"><div class="button_accent">
-          All Posts
-        </div></a>
+        <button class="button_accent" id="back_button">Back</button>
         <a href="{% url 'blog_edit' pk=blog_detail.pk %}"><div class="button_secondary">
           Edit
         </div></a>
@@ -46,9 +44,7 @@
       </div>
       {% else %}
       <div class="button_container"> 
-        <a href="{% url 'blog:blog_list' %}"><div class="button_accent">
-          All Posts
-        </div></a>
+        <button class="button_accent" id="back_button">Back</button>
         <a href="{% url 'blog_edit' pk=blog_detail.pk %}"><div class="button_secondary">
           Edit
         </div></a>
