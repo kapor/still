@@ -7,6 +7,13 @@ const id_image = document.getElementById('id_image')
 const modal_form = document.getElementById('modal_form')
 
 
+const back = document.getElementById('back_button')
+
+// BACK BUTTON
+back.addEventListener('click', ()=> {
+    // history.back()
+    window.location = document.referrer;
+})
 
 
 

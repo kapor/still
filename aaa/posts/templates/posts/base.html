@@ -2,20 +2,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block scripts %} 
-<script src="{% static 'js/posts.js' %}" defer></script>
-{% endblock %}
+	{% block scripts %} 
+	<script src="{% static 'js/posts.js' %}" defer></script>
+	{% endblock %}
 
-{% block title %}
-posts
-{% endblock title %}
+	{% block title %}
+	posts
+	{% endblock title %}
 
 {% block content %}
 
-<div>
-	{% block postcontent %}{% endblock %}
-</div>
-
+	<div>
+	{% block postcontent %}
+	{% endblock %}
+	</div>
 
 
 {% endblock %}

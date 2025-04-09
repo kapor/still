@@ -74,33 +74,29 @@ User = get_user_model()
 
 
 
+
 # Shows lists of posts for user and/or group
 @login_required
 def list_post_create(request):
-    form = PostForm(request.POST, user=request.user)
+    form = PostForm(request.POST or None, user=request.user)
     post_list = Post.objects.all().order_by('-created_at')
     group = Group.objects.all()
 
     if request.accepts('application/json'):
         if form.is_valid():
-            instance = form.save(commit=False)
             form.instance.user = request.user
+            instance = form.save(commit=False)
             instance.save()
-            photo = form.save()
             messages.success(request, 'Post added')
             return JsonResponse({
                 'user': instance.user.username,
                 'message': instance.message,
-                # 'group': instance.group,
             })
 
-    context = {
-        'form': form, 
-        'post_list': post_list
-    }
+
+    return render(request, 'posts/posts.html', {'form': form, 'post_list': post_list})
 
 
-    return render(request, 'posts/posts.html', context)
 
 
 
@@ -157,7 +153,9 @@ def PostGroup(request):
 
 
 
-
+class EditPost(LoginRequiredMixin, UpdateView):
+    model = models.Post
+    login_url = "login"
 
 # Basic post detail view
 # class PostDetail(PrefetchRelatedMixin, generic.DetailView, LoginRequiredMixin):
@@ -173,10 +171,10 @@ def PostGroup(request):
 
 # post detail form
 def post_detail(request, pk):
-    obj = Posts.objects.get(pk=pk)
+    item = Post.objects.get(pk=pk)
     form = PostForm()
     context = {
-        'obj': obj,
+        'item': item,
         'form': form,
     }
     return render(request, 'posts/detail.html', context)
@@ -187,23 +185,17 @@ def post_detail(request, pk):
 
 
 
-class EditPost(LoginRequiredMixin, UpdateView):
-	model = models.Post
-	login_url = "login"
-
-
-
-
 
 
 def delete_post(request, pk):
     if request.accepts('application/json'):
         # Attempt to retrieve and delete the object
         try:
-            obj = Posts.objects.get(pk=pk)
+            obj = Post.objects.get(pk=pk)
             obj.delete()
             # Construct the URL for the success page using reverse
-            success_url = reverse("posts:posts")
+            success_url = reverse("posts:all")
+            messages.success(request, 'Post Deleted')
             # Return a JSON response with the redirect URL
             return JsonResponse({'redirect_url': success_url})
         except MyModel.DoesNotExist:

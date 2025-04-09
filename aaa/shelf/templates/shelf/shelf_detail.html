@@ -1,175 +1,167 @@
 <!-- aaa/templates/shelf/shelf.html -->
-{% extends "base.html" %}
+{% extends "shelf/base.html" %}
 {% load static %}
 
-{% block scripts %} 
-<script src="{% static 'js/shelf.js' %}" defer></script>
-{% endblock %}
 
-{% block title %}
-{{ obj.title }}
-{% endblock title %}
+{% block shelf_content %}
 
+	<div class="shelf_detail" id="shelf_detail">
 
-{% block content %}
-
-<div class="shelf_detail" id="shelf_detail">
-
-	<div id="loader_container">
-		<div id="loader"></div>
-	</div>
+		<div id="loader_container">
+			<div id="loader"></div>
+		</div>
 
 
-	<div class="shelf_top_detail" id="shelf_data_top">	
-		<div class=crop_detail>
-			{% if obj.image %}
-			<img class="photo_detail" src="/media/{{ obj.image }}">
+		<div class="shelf_top_detail" id="shelf_data_top">	
+			<div class=crop_detail>
+				{% if obj.image %}
+				<img class="photo_detail" src="/media/{{ obj.image }}">
+				{% else %}
+				<img class="photo_blank" src="/media/covers/blank.jpg">
+				{% endif %}
+			</div>
+
+			{% if user.is_superuser %}
+				<!-- EDIT / ROMOVE  -->
+				<div class="button_container">
+					<button class="button_accent" id="back_button">Back</button>
+					<a data-toggle="modal" data-target="#modal_form"><div class="button_secondary" id="shelf_edit">
+						Edit
+					</div></a>
+					<a href="{% url 'shelf:delete' pk=obj.pk %}"><div class="button_secondary" id="shelf_delete">
+					 	Delete
+					</div></a>
+				</div>
 			{% else %}
-			<img class="photo_blank" src="/media/covers/blank.jpg">
 			{% endif %}
 		</div>
 
-		{% if user.is_superuser %}
-			<!-- EDIT / ROMOVE  -->
-			<div class="button_container">
-				<button class="button_accent" id="back_button">Back</button>
-				<a data-toggle="modal" data-target="#modal_form"><div class="button_secondary" id="shelf_edit">
-					Edit
-				</div></a>
-				<a href="{% url 'shelf:delete' pk=obj.pk %}"><div class="button_secondary" id="shelf_delete">
-				 	Delete
-				</div></a>
+		<div class="shelf_info" id="shelf_data_bottom">
+
+			{% if obj.title %}
+			<div class="label_info">
+				<p>Title:</p>
+				<h2>{{ obj.title }}</h2>
 			</div>
-		{% else %}
-		{% endif %}
-	</div>
+			{% else %}
+			{% endif %}
 
-	<div class="shelf_info" id="shelf_data_bottom">
+			{% if obj.author %}
+			<div class="label_info">
+				<p>Author:</p>
+				<h2>{{ obj.author }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
 
-		{% if obj.title %}
-		<div class="label_info">
-			<p>Title:</p>
-			<h2>{{ obj.title }}</h2>
+			{% if obj.year %}
+			<div class="label_info">
+				<p>Year:</p>
+				<h2>{{ obj.year }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
+
+			{% if obj.publisher %}
+			<div class="label_info">
+				<p>Publisher:</p>
+				<h2>{{ obj.publisher }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
+
+			{% if obj.artist %}
+			<div class="label_info">
+				<p>Artist:</p>
+				<h2>{{ obj.artist }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
+
+			{% if obj.quality %}
+			<div class="label_info">
+				<p>Quality:</p>
+				<h2>{{ obj.quality }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
+
+			{% if obj.price %}
+			<div class="label_info">
+				<p>Price:</p>
+				<h2>{{ obj.price }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
+
+			{% if obj.location %}
+			<div class="label_info">
+				<p>Location:</p>
+				<h2>{{ obj.location }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
+
+			{% if obj.tags.all %}
+			<div class="label_info">
+				<p>Tags:</p>
+				<h2>
+				{% for tags in obj.tags.all %}
+				{{ tags }}{% if not forloop.last %},{% endif %}
+				{% endfor %}
+				</h2>
+			</div>
+			{% else %}
+			{% endif %}
+
+			{% if obj.weight %}
+			<div class="label_info">
+				<p>Weight:</p>
+				<h2>{{ obj.weight }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
+
+			{% if obj.pages %}
+			<div class="label_info">
+				<p>Pages:</p>
+				<h2>{{ obj.pages }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
+
+			{% if obj.isbn %}
+			<div class="label_info">
+				<p>ISBN:</p>
+				<h2>{{ obj.isbn | cut:".0" }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
+
+			{% if obj.description %}
+			<div class="label_info">
+				<p>Description:</p>
+				<h2>{{ obj.description }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
+
+			{% if obj.notes %}
+			<div class="label_info">
+				<p>Notes:</p>
+				<h2>{{ obj.notes }}</h2>
+			</div>
+			{% else %}
+			{% endif %}
 		</div>
-		{% else %}
-		{% endif %}
 
-		{% if obj.author %}
-		<div class="label_info">
-			<p>Author:</p>
-			<h2>{{ obj.author }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
 
-		{% if obj.year %}
-		<div class="label_info">
-			<p>Year:</p>
-			<h2>{{ obj.year }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
-
-		{% if obj.publisher %}
-		<div class="label_info">
-			<p>Publisher:</p>
-			<h2>{{ obj.publisher }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
-
-		{% if obj.artist %}
-		<div class="label_info">
-			<p>Artist:</p>
-			<h2>{{ obj.artist }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
-
-		{% if obj.quality %}
-		<div class="label_info">
-			<p>Quality:</p>
-			<h2>{{ obj.quality }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
-
-		{% if obj.price %}
-		<div class="label_info">
-			<p>Price:</p>
-			<h2>{{ obj.price }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
-
-		{% if obj.location %}
-		<div class="label_info">
-			<p>Location:</p>
-			<h2>{{ obj.location }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
-
-		{% if obj.tags.all %}
-		<div class="label_info">
-			<p>Tags:</p>
-			<h2>
-			{% for tags in obj.tags.all %}
-			{{ tags }}{% if not forloop.last %},{% endif %}
-			{% endfor %}
-			</h2>
-		</div>
-		{% else %}
-		{% endif %}
-
-		{% if obj.weight %}
-		<div class="label_info">
-			<p>Weight:</p>
-			<h2>{{ obj.weight }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
-
-		{% if obj.pages %}
-		<div class="label_info">
-			<p>Pages:</p>
-			<h2>{{ obj.pages }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
-
-		{% if obj.isbn %}
-		<div class="label_info">
-			<p>ISBN:</p>
-			<h2>{{ obj.isbn | cut:".0" }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
-
-		{% if obj.description %}
-		<div class="label_info">
-			<p>Description:</p>
-			<h2>{{ obj.description }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
-
-		{% if obj.notes %}
-		<div class="label_info">
-			<p>Notes:</p>
-			<h2>{{ obj.notes }}</h2>
-		</div>
-		{% else %}
-		{% endif %}
 	</div>
 
 
-</div>
 
 
-
-
-{% include 'shelf/modal.html' %}
+	{% include 'shelf/modal.html' %}
 
 
 

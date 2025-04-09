@@ -1,0 +1,21 @@
+<!-- shelf/base.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block scripts %} 
+<script src="{% static 'js/shelf.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+posts
+{% endblock title %}
+
+{% block content %}
+
+	<div>
+	{% block shelf_content %}
+	{% endblock %}
+	</div>
+
+
+{% endblock %}

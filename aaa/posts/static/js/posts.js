@@ -3,13 +3,9 @@ const id_message = document.getElementById('id_message')
 const id_group = document.getElementById('id_group')
 const id_image = document.getElementById('id_image')
 
-const remove = document.getElementById('delete_button')
-
 const post_form = document.getElementById('post_form')
-const url_delete = window.location.href + "delete/"
+const url_delete = window.location.href + "/delete/"
 
-const form_edit = document.getElementById('edit_form')
-const form_delete = document.getElementById('delete_form')
 
 
 /////////////////////////////////////////
@@ -46,6 +42,9 @@ window.addEventListener('click', (event) => {
 
 
 
+console.log('hello world')
+console.log(window.location)
+
 
 ////////////////////////////
 ////////////////////////////
@@ -57,8 +56,9 @@ window.addEventListener('click', (event) => {
 
 
 
+let newPostId = null
 post_form.addEventListener('submit', e => {
-	e.preventDefault()
+	e.preventDefault(
 
 	$.ajax({
 		type: 'POST',
@@ -72,6 +72,7 @@ post_form.addEventListener('submit', e => {
 		},
 		success: function(response) {
 			console.log(response)
+			newPostId = response.id
 			// places post at top of post_content
 			post_content.insertAdjacentHTML('afterbegin',
 			///use backticks to inject html
@@ -98,59 +99,19 @@ post_form.addEventListener('submit', e => {
 				`
 			)
 			$('#modal_form').modal('hide')
-			/*window.location = document.location;*/
+			//window.location = document.location
 			handle_alerts('message_success', 'New post added')
 			document.getElementById("post_form").reset()
+			//window.location.reload();
+			window.location = document.referrer;
 		},
 		error: function(error) {
 			console.log(error)
 			handle_alerts('message_success', 'Something went wrong...')
 		}
-	})
+	}))
 })
 
-
-
-
-
-
-////////////////////////////
-////////////////////////////
-////////////////////////////
-////////////////////////////
-// DELETE STUFF
-
-
-
-
-form_delete.addEventListener('submit', e=> {
-	e.preventDefault()
-
-	const message = document.getElementById('message')
-	const success_url = "posts/"
-
-	$.ajax({
-		type: 'POST',
-		url: url_delete,
-		data: {
-			'csrfmiddlewaretoken': csrf[0].value,
-		},
-		success: function(response) {
-			// history.go(-2)
-			window.location = document.referrer;
-			// history.back(-2).location.reload();
-			// window.location.href = window.location.origin
-			handle_alerts('alert_error', 'Post Deleted')
-			localStorage.setItem('message', post_message.value)
-		},
-		error: function(error) {
-			console.log(error)
-			handle_alerts('alert_error', 'An error occurred')
-		}
-
-	})
-
-})
 
 
 

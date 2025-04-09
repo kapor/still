@@ -31,7 +31,7 @@ class PostForm(forms.ModelForm):
  
 	class Meta:
 		model = Post
-		fields = ['message', 'group', 'image']
+		fields = ['message', 'group']
 
 	def __init__(self, *args, user=None, **kwargs):
 		qs = Group.objects.filter(members=user)
@@ -50,14 +50,14 @@ class PostForm(forms.ModelForm):
 			'id': 'id_group'
 		})
 
-		self.fields['image'].widget.attrs.update({
-			'class': 'field_image', 
-			'placeholder': '',
-			'id': 'id_image'
-		})
+		# self.fields['image'].widget.attrs.update({
+		# 	'class': 'field_image', 
+		# 	'placeholder': '',
+		# 	'id': 'id_image'
+		# })
 
-		for field in self.fields.values():
-			self.fields['image'].required = False
+		# for field in self.fields.values():
+		# 	self.fields['image'].required = False
 
 
 

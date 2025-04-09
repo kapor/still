@@ -31,7 +31,7 @@
           <span class="username">
             {% if user %}
               <a href="{% url 'for_user' username=item.user.username %}">
-              @{{ item.user.username }}
+              {{ item.user.username }}
               </a>
             {% endif %}
               commented

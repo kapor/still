@@ -1,69 +1,80 @@
-<!-- aaa/posts/templates/posts/post_detail.html -->
-{% extends 'base.html' %}
-
-{% block content %}
-
+<!-- aaa/templates/posts/posts.html -->
+{% extends "posts/base.html" %}
+{% load static %}
 {% load my_filters %}
 {% load humanize %}
 
 
-{% if modal %}
-<div class="post_modal" id="post_list">
-{% else %}
-<div {% if item|is_app:"posts" %} class="post3" {% endif %} id="post_list">
-{% endif %}
+{% block scripts %} 
+<script src="{% static 'js/detail.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+posts
+{% endblock title %}
 
 
-      <div class="post_message_group">
+{% block content %}
 
-        <div class="button_group">
-          <!-- TITLE/MESSAGE -->
-          <div class="post_message">
-            <a href="{{ item.group.get_absolute_url }}">
-              <h3 id="message">{{ item.message | safe }}</h3>
-            </a>
-          </div>
-          <!-- DELETE BUTTON -->
-            {% if user.is_superuser or item.user == user and not hide_delete %}
-              {% if delete %}
-              <button class="modal_button_xsmall" id="delete_button" data-toggle="modal" data-target="#delete_modal">remove</button>
-              {% else %}
-              {% endif %}
-            {% endif %}
-          <!-- DELETE BUTTON -->
-              {% if details %}
-              <button href="{{ item.get_absolute_url }}" class="modal_button_xsmall" id="detail_button">Details</button>
-              {% else %}
-              {% endif %}
-        </div>
-        <!-- USER/URL/TIMESTAMP -->        
-        <span class="username">
-          {% if user %}
-            <a href="{% url 'for_user' username=item.user.username %}">
-            @{{ item.user.username }}
-            </a>
-          {% endif %}
-          posted 
-          <!-- GROUP -->    
-          {% if group %} in 
-            <span class="group_name">
-              <a href="{{ item.group.get_absolute_url }}">
-              {{ item.group.name }}
-              </a>
-            </span>
-          {% endif %}
-          {{ item.created_at|naturaltime }}
-        </span>
-        
+  <div class="post_modal" id="post_list">
 
+  <div class="post_message_group">
+
+    <div class="button_group">
+      <!-- TITLE/MESSAGE -->
+      <div class="post_message">
+          <h2 id="message">{{ item.message | safe }}</h2>
       </div>
+      <!-- DELETE BUTTON -->
+        {% if user.is_superuser or item.user == user and not hide_delete %}
+          {% if delete %}
+          <button class="modal_button_xsmall" id="delete_button" data-toggle="modal" data-target="#delete_modal">remove</button>
+          {% else %}
+          {% endif %}
+        {% endif %}
+    </div>
+    <!-- USER/URL/TIMESTAMP -->        
+    <span class="username_detail">
+        <a href="{% url 'for_user' username=item.user.username %}">
+        {{ item.user.username }}
+        </a>
+      posted 
+      <!-- GROUP -->    
+       in 
+        <a href="{{ item.group.get_absolute_url }}">
+        {{ item.group.name }}
+        </a>
+      {{ item.created_at|naturaltime }}
+    </span>
+    
 
+  </div>
 
 
 
 
   </div>
 
+{% if user.is_authenticated %}
+  {% if user.is_superuser %}
+  <!-- EDIT / ROMOVE  -->
+    <div class="button_container">
+      <button class="button_accent" id="back_button">Back</button>
+      <button class="button_secondary">Edit</button>
+      <button class="button_secondary" id="delete_button" data-toggle="modal" data-target="#delete_modal" style="background-color:red; color:white">Delete</button>
+    </div>
+  {% else %}
+    <div class="button_container">
+      <button class="button_accent" id="back_button">Back</button>
+    </div>
+  {% endif %}
+{% endif %}
 
+
+{% include 'posts/modal_delete.html' %}
+{% include 'posts/modal.html' %}
+
+
+{% include 'includes/message.html' %}
 
 {% endblock %}

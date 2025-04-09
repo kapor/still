@@ -264,11 +264,15 @@ input.button_accent_large,
 .tab_headers .tab_header {
   border: 1px solid white;
   padding: 20px 24px;
+  font-family: $font-stack1;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  border-radius: 4px;
 }
 
 .tab_header.active {
-  border: 1px solid #8f00ff;
-  border-radius: 2px;
   background-color: #8f00ff;
   color: white;
 }

@@ -21,7 +21,12 @@
           </div>
           <!-- USER/URL/TIMESTAMP -->
           <span class="username">
-              Created
+            {% if user %}
+              <a href="{% url 'for_user' username=item.user.username %}">
+              {{ item.user }}
+              </a>
+            {% endif %}
+              drafted this 
               {{ item.created_at|naturaltime }}
             <br>
           </span>

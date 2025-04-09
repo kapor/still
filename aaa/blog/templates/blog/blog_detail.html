@@ -1,9 +1,9 @@
-{% extends 'blog/blog_base.html' %}
-{% block content %}
+{% extends 'blog/base.html' %}
+
+{% block blog_content %}
 
 
-<div class="postlist">
-
+  <div class="postlist">
 
     <div class="blog_post">
       <h3>{{ blog_detail.title }}</h3>
@@ -15,8 +15,6 @@
       </div>
     </div>
 
-
-
     <div class="crop_detail">
       {% if blog_detail.image %}
       <img src="{{ blog_detail.image.url }}">
@@ -25,44 +23,42 @@
       {% endif %}
     </div>
 
+  </div>
 
-
-</div>
-
-{% if user.is_superuser %}
-<!-- EDIT / ROMOVE  -->
-    {% if user.is_authenticated %}
-      {% if blog_detail.published_date %}
-      <div class="button_container">
-        <button class="button_accent" id="back_button">Back</button>
-        <a href="{% url 'blog_edit' pk=blog_detail.pk %}"><div class="button_secondary">
-          Edit
-        </div></a>
-        <a href="{% url 'blog_delete' pk=blog_detail.pk %}"><div class="button_secondary">
-          Delete
-        </div></a>
-      </div>
-      {% else %}
-      <div class="button_container"> 
-        <button class="button_accent" id="back_button">Back</button>
-        <a href="{% url 'blog_edit' pk=blog_detail.pk %}"><div class="button_secondary">
-          Edit
-        </div></a>
-       <a href="{% url 'blog_delete' pk=blog_detail.pk %}"><div class="button_secondary">
-          Delete
-        </div></a>
-        <a href="{% url 'blog_publish' pk=blog_detail.pk %}">
-        <div class="button_action" href="{% url 'blog_publish' pk=blog_detail.pk %}" >
-          Publish
-        </div></a>
-      </div>
+  {% if user.is_superuser %}
+  <!-- EDIT / ROMOVE  -->
+      {% if user.is_authenticated %}
+        {% if blog_detail.published_date %}
+        <div class="button_container">
+          <button class="button_accent" id="back_button">Back</button>
+          <a href="{% url 'blog_edit' pk=blog_detail.pk %}"><div class="button_secondary">
+            Edit
+          </div></a>
+          <a href="{% url 'blog_delete' pk=blog_detail.pk %}"><div class="button_secondary">
+            Delete
+          </div></a>
+        </div>
+        {% else %}
+        <div class="button_container"> 
+          <button class="button_accent" id="back_button">Back</button>
+          <a href="{% url 'blog_edit' pk=blog_detail.pk %}"><div class="button_secondary">
+            Edit
+          </div></a>
+         <a href="{% url 'blog_delete' pk=blog_detail.pk %}"><div class="button_secondary">
+            Delete
+          </div></a>
+          <a href="{% url 'blog_publish' pk=blog_detail.pk %}">
+          <div class="button_action" href="{% url 'blog_publish' pk=blog_detail.pk %}" >
+            Publish
+          </div></a>
+        </div>
+        {% endif %}
       {% endif %}
-    {% endif %}
-{% else %}
-{% endif %}
+  {% else %}
+  {% endif %}
 
 
-<hr>
+  <hr>
 
 {% endblock %}
 

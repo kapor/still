@@ -407,6 +407,7 @@ li a.nav_link,
 
 .post_modal {
   border: none;
+  padding: 20px 0px 20px 0px;
 }
 
 .post_message_group {
@@ -1204,6 +1205,20 @@ ul.paginate li.active {
   transform: translate(-50%, -50%);
 }
 
+
+.username_detail {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-weight: 400;
+  font-family: Courier new, Roboto;
+  font-size: 24px;
+  line-height: 32px;
+}
 
 
 //////////////////////////////////////

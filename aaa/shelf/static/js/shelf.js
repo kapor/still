@@ -63,6 +63,16 @@ window.addEventListener('click', (event) => {
 });
 
 
+const back = document.getElementById('back_button')
+
+// BACK BUTTON
+back.addEventListener('click', ()=> {
+    // history.back()
+    window.location = document.referrer;
+})
+
+
+
 ////////////////////////////
 ////////////////////////////
 ////////////////////////////

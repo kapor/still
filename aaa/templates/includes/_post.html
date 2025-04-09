@@ -14,9 +14,15 @@
         <div class="button_group">
           <!-- TITLE/MESSAGE -->
           <div class="post_message">
-            <a href="#">
+            {% if post_url %}
+            <a href="{% url 'posts:post_detail' pk=item.pk %}">
               <h3 id="message">{{ item.message | safe }}</h3>
             </a>
+            {% else %}
+            <a href="{{ item.group.get_absolute_url }}">
+              <h3 id="message">{{ item.message | safe }}</h3>
+            </a>
+            {% endif %}
           </div>
           <!-- DELETE BUTTON -->
             {% if user.is_superuser or item.user == user and not hide_delete %}
@@ -27,7 +33,9 @@
             {% endif %}
           <!-- DELETE BUTTON -->
               {% if details %}
-              <button href="#" class="modal_button_xsmall" id="detail_button">Details</button>
+              <a href="{% url 'posts:post_detail' pk=item.pk %}">
+              <div class="modal_button_xsmall" id="detail_button">details</div>
+              </a>
               {% else %}
               {% endif %}
         </div>
@@ -35,7 +43,7 @@
         <span class="username">
           {% if user %}
             <a href="{% url 'for_user' username=item.user.username %}">
-            @{{ item.user.username }}
+            {{ item.user.username }}
             </a>
           {% endif %}
           posted 

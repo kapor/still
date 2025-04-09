@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from . import views
+from posts import urls
 
 app_name = 'groups'
 
@@ -22,6 +23,8 @@ urlpatterns = [
     # path('<slug>/new', views.GroupPost.as_view(), name='groupost'),
 
     path('formbutton', views.GroupPostFormButton.as_view(), name='formbutton'),
+
+
 
 ]
 

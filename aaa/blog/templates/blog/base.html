@@ -1,24 +1,23 @@
-<!-- groups/base.html -->
+<!-- blog/base.html -->
 {% extends 'base.html' %}
 {% load static %}
 
 {% block scripts %} 
 <!-- <script src="{% static 'js/posts.js' %}" defer></script> -->
-<script src="{% static 'js/groups.js' %}" defer></script>
+<script src="{% static 'js/blog.js' %}" defer></script>
 {% endblock %}
 
 {% block title %}
-groups
+blog
 {% endblock title %}
 
 {% block content %}
 
 	<div>
-	{% block group_content %}
+	{% block blog_content %}
 	{% endblock %}
 	</div>
 
 
 {% endblock %}
-
 

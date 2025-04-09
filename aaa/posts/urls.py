@@ -11,8 +11,8 @@ urlpatterns = [
     # path('', views.PostList.as_view(), name='all'),
     # path('<int:num_posts>/', views.load_post, name='load'),
 
-    # path('by/<username>/<pk>', views.PostDetail.as_view(), name='single'),
-    path('<username>/<pk>', views.post_detail, name='post_detail'),
+    # path('<pk>', views.PostDetail.as_view(), name='single'),
+    path('<pk>', views.post_detail, name='post_detail'),
     # path('delete/<pk>', views.DeletePost.as_view(), name='delete'),
 
     path('<pk>/delete/', views.delete_post, name='delete'),
@@ -24,6 +24,8 @@ urlpatterns = [
     # path('add/', views.AddPost, name='add'),
 
     path('postadd/', views.PostGroup, name='postgroup'),
+
+
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

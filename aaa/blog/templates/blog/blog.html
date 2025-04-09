@@ -1,74 +1,63 @@
 <!-- aaa/templates/blog/blog.html -->
-{% extends "base.html" %}
+{% extends "blog/base.html" %}
 {% load static %}
 
-{% block scripts %} 
-<script src="{% static 'js/blog.js' %}" defer></script>
-{% endblock %}
 
-{% block title %}
-blog
-{% endblock title %}
+{% block blog_content %}
 
 
+  <div class="top_part">
+    <div class="header">
+    {% if user.is_superuser %}
+    <h1 id="modal_add">Blog:<a data-toggle="modal" data-target="#modal_form">Add</a></h1>
+    {% else %}
+    <h1>Blog</h1>
+    {% endif %}
+      <p class="big_p">
+      Cupcake ipsum dolor sit amet marzipan chocolate cake icing donut. Sugar plum wafer jelly-o oat cake tootsie roll. Powder cake croissant soufflé icing chocolate shortbread I love. Caramels marshmallow candy canes dessert powder croissant chocolate. Gummi bears cotton candy sweet roll croissant sweet roll croissant I love. Brownie danish jujubes I love sugar plum powder liquorice. Tiramisu tart biscuit pastry topping pudding. Candy pastry pastry I love I love cotton candy liquorice bonbon bear claw.
+      </p>
+    </div>
+  </div>
 
 
-
-{% block content %}
-
-
-<div class="top_part">
-  <div class="header">
   {% if user.is_superuser %}
-  <h1 id="modal_add">Blog:<a data-toggle="modal" data-target="#modal_form">Add</a></h1>
+  <div class="tabs">
+
+    <div class="tab_headers">
+      <button class="tab_header active" data-tab="tab1" href="#published">
+        Published
+      </button>
+      <button class="tab_header" data-tab="tab2" href="#drafts">
+        Drafts
+      </button>
+    </div>
+
+    <div class="tab_contents" id="post_content">
+      <div id="tab1" class="tab_content active">
+          {% for item in Published %}
+          {% include 'includes/_blog.html' %}
+          {% endfor %}
+          {% include 'includes/paginate.html' %} 
+      </div>
+      <div id="tab2" class="tab_content">
+          {% for item in Drafts %}
+          {% include 'includes/_draft.html' %}
+          {% endfor %}
+      </div>
+    </div>
+
+  </div>
   {% else %}
-  <h1>Blog</h1>
+    {% for item in Published %}
+    {% include 'includes/_blog.html' %}
+    {% endfor %}
   {% endif %}
-    <p class="big_p">
-    Cupcake ipsum dolor sit amet marzipan chocolate cake icing donut. Sugar plum wafer jelly-o oat cake tootsie roll. Powder cake croissant soufflé icing chocolate shortbread I love. Caramels marshmallow candy canes dessert powder croissant chocolate. Gummi bears cotton candy sweet roll croissant sweet roll croissant I love. Brownie danish jujubes I love sugar plum powder liquorice. Tiramisu tart biscuit pastry topping pudding. Candy pastry pastry I love I love cotton candy liquorice bonbon bear claw.
-    </p>
-  </div>
-</div>
-
-
-{% if user.is_superuser %}
-<div class="tabs">
-
-  <div class="tab_headers">
-    <button class="tab_header active" data-tab="tab1" href="#published">
-      Published
-    </button>
-    <button class="tab_header" data-tab="tab2" href="#drafts">
-      Drafts
-    </button>
-  </div>
-
-  <div class="tab_contents" id="post_content">
-    <div id="tab1" class="tab_content active">
-        {% for item in Published %}
-        {% include 'includes/_blog.html' %}
-        {% endfor %}
-        {% include 'includes/paginate.html' %} 
-    </div>
-    <div id="tab2" class="tab_content">
-        {% for item in Drafts %}
-        {% include 'includes/_draft.html' %}
-        {% endfor %}
-    </div>
-  </div>
-
-</div>
-{% else %}
-  {% for item in Published %}
-  {% include 'includes/_blog.html' %}
-  {% endfor %}
-{% endif %}
 
 
 
 
 
-{% include 'blog/modal.html' %}
+  {% include 'blog/modal.html' %}
 
 
 {% endblock %}

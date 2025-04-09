@@ -132,12 +132,13 @@ def IndexLoad(request):
 
 def User_Activity(request, username):
     user = get_object_or_404(User, username=username)
-    activity = Post.objects.filter(user=user).order_by('created_at')
+    post = Post.objects.filter(user=user).order_by('created_at')
     comment = Comment.objects.filter(user=user).order_by('created_at')
     shelf = Shelves.objects.filter(user=user).order_by('created_at')
+    blog = Blog.objects.filter(user=user).filter(published_date__lte=timezone.now()).order_by('-published_date')
 
 
-    activity_list = list(chain(activity, comment, shelf))
+    activity_list = list(chain(post, comment, shelf, blog))
 
     sorted_objects = sorted(
         activity_list,

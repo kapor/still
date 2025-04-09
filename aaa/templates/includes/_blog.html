@@ -21,12 +21,16 @@
           </div>
           <!-- USER/URL/TIMESTAMP -->
           <span class="username">
-              Published
+            {% if user %}
+              <a href="{% url 'for_user' username=item.user.username %}">
+              {{ item.user }}
+              </a>
+            {% endif %}
+              published this 
               {{ item.created_at|naturaltime }}
             <br>
           </span>
         </div>
-
       </div>
 
       <!-- IMAGE -->

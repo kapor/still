@@ -1,6 +1,5 @@
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 const url = window.location.href
-const back = document.getElementById('back_button')
 
 const alert_box = document.getElementById('alert_box')
 
@@ -14,10 +13,6 @@ const handle_alerts = (type, msg) => {
     `
 }
 
-back.addEventListener('click', ()=> {
-    // history.back()
-    window.location = document.referrer;
-})
 
 
 // When the user scrolls down 80px from the top of the document, resize the navbar

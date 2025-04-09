@@ -1,25 +1,26 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'blog/base.html' %}
 
 
-<div class="forms">
 
-  <div class="top_part">
-    <h1>  
-      Add Comment
-    </h1>
+{% block blog_content %}
+
+  <div class="forms">
+
+    <div class="top_part">
+      <h1>  
+        Add Comment
+      </h1>
+    </div>
+
+    <form method="POST" class="post-form">
+      {{form}}
+      {% csrf_token %}
+      <input type="submit" class="btn" value="Submit">
+      <div class="cancel"><a onClick="javascript:history.go(-1);">Cancel</a></div>
+    </form>
   </div>
 
-  <form method="POST" class="post-form">
-    {{form}}
-    {% csrf_token %}
-    <input type="submit" class="btn" value="Submit">
-    <div class="cancel"><a onClick="javascript:history.go(-1);">Cancel</a></div>
-  </form>
-</div>
-
-<script>var editor = new MediumEditor('.editable');</script>
+  <script>var editor = new MediumEditor('.editable');</script>
 
 
 {% endblock %}

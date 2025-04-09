@@ -9,61 +9,61 @@ home
 
 {% block content %}
 
-<div class="top_part">
-  <div class="header">
-    {% if user.is_authenticated %}
-    <h1>Hey
-      <!-- link to all the user's posts -->
-      <a href="{% url 'for_user' username=user.username %}">
-      {{user.username}}</a>.
-    </h1>
-    {% else %}
-    <h1>Hey you.</h1>
-    {% endif %}
-    <p class="big_p">
-      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+  <div class="top_part">
+    <div class="header">
+      {% if user.is_authenticated %}
+      <h1>Hey
+        <!-- link to all the user's posts -->
+        <a href="{% url 'for_user' username=user.username %}">
+        {{user.username}}</a>
+      </h1>
+      {% else %}
+      <h1>Hey you.</h1>
+      {% endif %}
+      <p class="big_p">
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+    </div>
   </div>
-</div>
 
-<!-- {% include 'includes/search_home.html' %}  -->
+  <!-- {% include 'includes/search_home.html' %}  -->
 
-<div>
-{% for item in page_obj %}
+  <div>
+  {% for item in page_obj %}
 
-<!-- GROUP -->
+  <!-- GROUP -->
 
-{% if item|is_app:"groups" %}
+  {% if item|is_app:"groups" %}
 
-{% include 'includes/_comment.html' with delete=False group=True %}
+  {% include 'includes/_comment.html' with delete=False group=True %}
 
-<!-- POST -->
+  <!-- POST -->
 
-{% elif item|is_app:"posts" %}
+  {% elif item|is_app:"posts" %}
 
-{% include 'includes/_post.html' with delete=False group=True %}
-
-
-<!-- BLOG -->
-
-{% elif item|is_app:"blog" %}
-
-{% include 'includes/_blog.html' %}
-
-<!-- SHELF -->
-
-{% elif item|is_app:"shelf" %}
-
-{% include 'includes/_shelf.html' %}
+  {% include 'includes/_post.html' with delete=False group=True %}
 
 
-{% endif %}
+  <!-- BLOG -->
 
-{% endfor %}
+  {% elif item|is_app:"blog" %}
+
+  {% include 'includes/_blog.html' with user=True %}
+
+  <!-- SHELF -->
+
+  {% elif item|is_app:"shelf" %}
+
+  {% include 'includes/_shelf.html' %}
 
 
-{% include 'includes/paginate.html' %}
-</div>
+  {% endif %}
+
+  {% endfor %}
+
+
+  {% include 'includes/paginate.html' %}
+  </div>
 
 
 
