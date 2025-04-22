@@ -1,3 +1,4 @@
+from django.conf.urls.static import static, settings
 from django.contrib import admin
 from django.urls import include, path
 from . import views
@@ -26,5 +27,5 @@ urlpatterns = [
 
 
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

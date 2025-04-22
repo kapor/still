@@ -195,9 +195,15 @@ label {
 }
 
 .image_cover_container {
-  margin-top: 20px;
+  margin-top: 10px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 4px;
 }
 
+.widget_input_text {
+  margin-top: 10px;
+}
 
 .field_select {
   line-height: 30px;
@@ -341,5 +347,50 @@ label .text {
 #postform {
   max-width: 600px;
 }
+
+#id_tags_helptext {
+  display: none;
+}
+
+.modal_image_thumb {
+  overflow: hidden;
+  height: 120px;
+  width: 120px;
+}
+
+.modal_image_thumb img {
+  width: auto;
+  height: 120px;
+}
+.modal_image_thumb_container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  padding-top: 20px;
+}
+
+
+.form_container_wide {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.form_container_left,
+.form_container_right {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
 
 

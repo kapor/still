@@ -24,20 +24,44 @@
             </a>
             {% endif %}
           </div>
+
+        {% if user.is_authenticated %}
+          <div class="feed_buttons">
           <!-- DELETE BUTTON -->
             {% if user.is_superuser or item.user == user and not hide_delete %}
               {% if delete %}
-              <button class="modal_button_xsmall" id="delete_button" data-toggle="modal" data-target="#delete_modal">remove</button>
+              <button class="modal_button_xsmall" id="delete_button" data-toggle="modal" data-target="#delete_modal">Remove</button>
               {% else %}
               {% endif %}
             {% endif %}
           <!-- DELETE BUTTON -->
               {% if details %}
               <a href="{% url 'posts:post_detail' pk=item.pk %}">
-              <div class="modal_button_xsmall" id="detail_button">details</div>
+              <div class="modal_button_xsmall" id="detail_button">Details</div>
               </a>
               {% else %}
               {% endif %}
+          <!-- LIKE/UNLIKE BUTTON -->
+              {% if like %}
+              <form class="like_unlike_post_form" data_form_id="{{ item.id }}">
+                
+                <button href="{% url 'posts:like_unlike' %}" class="modal_button_xsmall" id="like_unlike_post_{{ item.id }}">
+                {% if item.liked.count > 0 %}
+                  {% if request.user in item.liked.all %}
+                  Unlike  | {{ item.liked.count }}
+                  {% else %}
+                  Like  | {{ item.liked.count }}
+                  {% endif %}
+                {% else %}
+                  Like  | {{ item.liked.count }}
+                {% endif %}
+                </button>
+              </form>
+              {% else %}
+              {% endif %}
+          </div>
+        {% endif %}
+        
         </div>
         <!-- USER/URL/TIMESTAMP -->        
         <span class="username">
@@ -61,8 +85,17 @@
 
       </div>
 
-
-
+      <!-- IMAGE -->
+      {% if image %}
+      <div class="crop">
+        <a href="{% url 'posts:post_detail' pk=item.pk %}">
+        {% if item.image %}
+        <img src="/media/{{ item.image }}">
+        {% else %}
+        {% endif %}
+        </a>
+      </div>
+      {% endif %}
 
 
   </div>

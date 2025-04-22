@@ -30,6 +30,13 @@
 {% include 'includes/_post.html' with delete=False group=True %}
 
 
+<!-- CHIRP -->
+
+{% elif item|is_app:"chirps" %}
+
+{% include 'includes/_chirp.html' with delete=False group=True %}
+
+
 <!-- BLOG -->
 
 {% elif item|is_app:"blog" %}

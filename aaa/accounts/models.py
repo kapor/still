@@ -29,4 +29,3 @@ class UserInfo(auth.models.User, auth.models.PermissionsMixin):
 
 
 
-

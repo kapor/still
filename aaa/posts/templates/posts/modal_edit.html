@@ -1,0 +1,59 @@
+<!-- post/modal_edit.html -->
+
+<div class="modal" id="modal_form" tabindex="-1" role="dialog">
+
+  <div class="modal_dialog" role="document">
+
+
+
+    <div class="modal_header">
+        <h5>Update Post</h5>
+        <div id="close_x" data-dismiss="modal">
+        <img src="/media/images/icons/24x24_close.svg">
+        </div>
+    </div>
+    
+
+
+
+    <form action="#" id="edit_form" method="POST" enctype="multipart/form-data">
+
+
+        <div class="form_container">
+
+          <label for="id_message">Message:</label>
+          <textarea name="message" cols="40" rows="10" class="field_description" placeholder="What are you going to say?" id="id_message" required=""></textarea>
+          
+          <label for="id_image">Update Image:</label>
+          <input type="file" name="image" accept="image/*" class="field_image" placeholder="" id="id_image">
+
+          <div class="modal_image_enlarged_container"> 
+          <div class="modal_image_enlarged not_visible" id="modal_image_large"> 
+          <img src="{{ item.image.url }}">
+          </div>
+          </div>
+
+          <div id="shader"></div>
+          <div class="modal_image_thumb_container"> 
+          <div class="modal_image_thumb"> 
+          <img src="{{ item.image.url }}" id="modal_image_thumb">
+          </div>
+          <p class="current_image">current image</p>
+          </div>
+
+          {% csrf_token %}
+
+        </div>
+
+
+      <div class="button_container_modal">
+        <button type="button" class="button_secondary" data-dismiss="modal" id="cancel_button">I've changed my mind</button>
+        <input type="submit" value="Update" class="button_accent"></input>
+      </div>
+
+    </form>
+  
+  </div>
+
+
+</div>

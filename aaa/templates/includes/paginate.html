@@ -1,8 +1,14 @@
 <ul class="paginate">
+
+{% if page_obj.paginator.num_pages == 1 %}
+
+{% else %}
     <!-- if there's a previous page, show a back arrow -->
     {% if page_obj.has_previous %}
         <!-- <a href="?page=1"><</a> -->
+    <li class="page_arrow">
         <a href="?page=1"><<</a>
+    </li>
     {% else %}
     <!-- otherwise, dont display anything -->
         <li style="display:none">
@@ -43,6 +49,7 @@
     {% else %}
         <!-- dont show anything -->
     {% endif %}
+{% endif %}
 </ul>
 
 

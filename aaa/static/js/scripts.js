@@ -1,5 +1,4 @@
-const csrf = document.getElementsByName('csrfmiddlewaretoken')
-const url = window.location.href
+
 
 const alert_box = document.getElementById('alert_box')
 
@@ -13,6 +12,14 @@ const handle_alerts = (type, msg) => {
     `
 }
 
+$(document).ready(function() {
+    setTimeout(function() {
+        $('.alert_error').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
+
 
 
 // When the user scrolls down 80px from the top of the document, resize the navbar
@@ -25,12 +32,16 @@ function scrollNav() {
     document.getElementById("nav_bar").style.padding="20px 24px";
     document.getElementById("navbar_right").style.lineHeight = "24px";
     document.getElementById("navbar_left").style.lineHeight = "24px";
+    document.getElementById("logout").style.height = "24px";
+    //document.getElementById("logo").style.height = "24px";
   } else {
     document.getElementById("nav_bar").style.margin = "0px 0px";
     document.getElementById("nav_bar").style.boxShadow = "0px 0px 0px #CCC";
     document.getElementById("nav_bar").style.padding="20px 32px";
     document.getElementById("navbar_right").style.lineHeight = "48px";
     document.getElementById("navbar_left").style.lineHeight = "48px";
+    document.getElementById("logout").style.height = "48px";
+    //document.getElementById("logo").style.height = "48px";
   }
 };
 
@@ -69,60 +80,66 @@ $(document).ready(function() {
 
 
 
-/* ++++++++++ ESCAPE KEY TO CLOSE MODAL ++++++++++ */
-
-/*document.addEventListener('keydown', function(event) {
-    if (event.keyCode === 27) {
-        const modal = document.querySelector('.modal'); // Replace '.modal' with the actual selector of your modal
-        if (modal && modal.style.display !== 'none') {
-            const closeButton = modal.querySelector('#modal_close'); // Replace '.close-button' with the actual selector of your close button
-            if (closeButton) {
-                closeButton.click();
-            }
-        }
-    }
-});*/
 
 
-/* ++++++++++ DISABLE SCROLLBAR ++++++++++ */
 
-/*$('.modal_underlay').click(function(){
-    $('.body_block').css("overflow", "visible");
-    $('body').css("overflow", "visible");
+
+// MODAL IMAGE ENLARGE
+document.addEventListener('DOMContentLoaded', function() {
+const image_small = document.getElementById('modal_image_thumb');
+const image_large = document.getElementById('modal_image_large');
+const modal_form = document.getElementById('modal_form');
+const shader = document.getElementById('shader');
+
+image_small.style.cursor = "pointer";
+image_large.style.cursor = "pointer";
+shader.style.cursor = "pointer";
+
+image_small.addEventListener('click', () => {
+image_large.classList.remove('not_visible')
+shader.style.display = "block";
 });
 
-$('#modal_close').click(function(){
-    $('.body_block').css("overflow", "visible");
-    $('body').css("overflow", "visible");
+image_large.addEventListener('click', () => {
+image_large.classList.add('not_visible')
+shader.style.display = "none";
 });
 
-$(document).keyup(function(e) {
-    if (e.key === "Escape") { 
-        $('.body_block').css("overflow", "visible");
-        $('body').css("overflow", "visible");
-}
+shader.addEventListener('click', () => {
+image_large.classList.add('not_visible')
+shader.style.display = "none";
 });
 
-$('.modal_button_xsmall').click(function(){
-    $('.body_block').css("overflow", "hidden");
-    $('body').css("overflow", "hidden");
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    image_large.classList.add('not_visible')
+    shader.style.display = "none";
+  }
 });
 
-$('#modal_trigger').click(function(){
-    $('.body_block').css("overflow", "hidden");
-    $('body').css("overflow", "hidden");
+window.addEventListener('click', (event) => {
+  if (event.target === modal_form) {
+    image_large.classList.add('not_visible')
+    shader.style.display = "none";
+  } else {
+    // Do nothing
+  }
+});
+})
+
+/*image_small.forEach(header => {
+    header.addEventListener('click', () => {
+        // Deactivate all tabs and content
+        tabHeaders.forEach(h => h.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        // Activate the clicked tab and corresponding content
+        header.classList.add('active');
+        const tabId = header.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+    });
 });
 */
-
-
-////////////////////////////////
-
-
-
-
-
-
-
 
 
 

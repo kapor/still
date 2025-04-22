@@ -1,11 +1,20 @@
-<!-- aaa/templates/index.html -->
-{% extends 'base.html' %}
-
+<!-- index.html -->
+{% extends "base.html" %}
+{% load static %}
 {% load my_filters %}
+{% load humanize %}
+
+
+{% block scripts %} 
+<script src="{% static 'js/index.js' %}" defer></script>
+<script src="{% static 'js/post_like.js' %}" defer></script>
+<script src="{% static 'js/chirp_like.js' %}" defer></script>
+{% endblock %}
 
 {% block title %}
-home
+Still Here
 {% endblock title %}
+
 
 {% block content %}
 
@@ -35,20 +44,25 @@ home
 
   {% if item|is_app:"groups" %}
 
-  {% include 'includes/_comment.html' with delete=False group=True %}
+  {% include 'includes/_comment.html' with delete=False group=True post_url=True details=True %}
 
   <!-- POST -->
 
   {% elif item|is_app:"posts" %}
 
-  {% include 'includes/_post.html' with delete=False group=True %}
+  {% include 'includes/_post.html' with delete=False details=True group=True like=True image=False  %}
 
+  <!-- CHIRP -->
+
+  {% elif item|is_app:"chirps" %}
+
+  {% include 'includes/_chirp.html' with delete=False details=True group=True like=True image=False %}
 
   <!-- BLOG -->
 
   {% elif item|is_app:"blog" %}
 
-  {% include 'includes/_blog.html' with user=True %}
+  {% include 'includes/_blog.html' with user=True image=True %}
 
   <!-- SHELF -->
 

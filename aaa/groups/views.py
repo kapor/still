@@ -1,15 +1,18 @@
 # aaa/groups/forms.html 
-from . import models
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, ListView, DetailView, FormView, CreateView, UpdateView, DeleteView, RedirectView
 from django.contrib import messages
 from django.db.models.functions import Lower
+
+from . import models
 from groups.models import Group, GroupMember, Comment
 from groups.forms import GroupForm, CommentForm
 from posts.forms import PostFormGroup, PostForm
 from posts.models import Post
+from chirps.models import Post as Chirp
+
 from django.http import Http404
 from django.views import generic
 from django.db import IntegrityError
@@ -17,6 +20,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
+
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.forms.models import inlineformset_factory
 from django.forms import modelformset_factory
@@ -36,6 +40,7 @@ def SingleGroup(request, slug):
 	group = get_object_or_404(Group, slug=slug)
 	comment = Comment.objects.filter(group=group)
 	post = Post.objects.filter(group=group)
+	chirp = Chirp.objects.filter(group=group)
 	context = {}
 	if request.method == 'POST':
 		form = CommentForm(request.POST)
@@ -49,7 +54,7 @@ def SingleGroup(request, slug):
 	else:
 		form = CommentForm()
 
-		context = {'comment': comment, 'group': group, 'form': form}
+		context = {'comment': comment, 'group': group, 'form': form, 'chirp': chirp}
 	return render(request, 'groups/detail.html', context)
 
 

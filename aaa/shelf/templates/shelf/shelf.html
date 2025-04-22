@@ -1,9 +1,21 @@
-<!-- aaa/templates/shelf/shelf.html -->
-{% extends "shelf/base.html" %}
+<!-- shelf/shelf.html -->
+{% extends "base.html" %}
 {% load static %}
+{% load my_filters %}
+{% load humanize %}
 
 
-{% block shelf_content %}
+{% block scripts %} 
+<script src="{% static 'js/shelf.js' %}" defer></script>
+<script src="{% static 'js/shelf_like.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+{{ user }}'s shelf
+{% endblock title %}
+
+
+{% block content %}
 
 	<div class="top_part">
 	  <div class="header">
@@ -38,6 +50,7 @@
 				<th class="col_header">Author</th>
 				<th class="col_header">Tags</th>
 				<th class="col_header">User</th>
+				<!-- <th class="col_header">Like</th> -->
 				<th class="col_header">Image</th>
 			</thead>
 
@@ -47,21 +60,31 @@
 
 			<tr id="shelf_row">
 
-				{% if shelf.year == 0 %}
+			<!-- YEAR -->
+				{% if shelf.year == None %}
+				<td>––</td>
+				{% elif shelf.year == 0 %}
 				<td>––</td>
 				{% else %}
 				<td>{{ shelf.year }}</td>
 				{% endif %}
 
+			<!-- TITLE -->
 				<td><a href="{{ shelf.id }}">{{ shelf.title }}</a></td>
 
-
-				{% if shelf.author == 'N/A' %}
+			<!-- AUTHOR -->
+				{% if shelf.author == '' %}
+				<td>––</td>
+				{% elif shelf.author == None %}
+				<td>––</td>
+				{% elif shelf.author == 'N/A' %}
 				<td>––</td>
 				{% else %}
 				<td>{{ shelf.author }}</td>
 				{% endif %}
 
+
+			<!-- TAGS -->
 				{% if shelf.tags.all %}
 					<td>{% for tags in shelf.tags.all %}
 					<tag class="taggy">{{ tags }}</tag>
@@ -71,8 +94,31 @@
 				<td>––</td>
 				{% endif %}
 
+			<!-- USER -->
 				<td>{{ shelf.user }}</td>
 
+			<!-- LIKE -->
+<!-- 				{% if like %}
+				<td>
+					<form class="like_unlike_post_form" data_form_id="{{ item.id }}">
+						<button href="{% url 'posts:like_unlike' %}" class="modal_button_xsmall" id="like_unlike_post_{{ item.id }}">
+							{% if item.liked.count > 0 %}
+							{% if request.user in item.liked.all %}
+								Unlike  | {{ item.liked.count }}
+							{% else %}
+								Like  | {{ item.liked.count }}
+							{% endif %}
+							{% else %}
+								Like  | {{ item.liked.count }}
+							{% endif %}
+						</button>
+					</form>
+				</td>
+				{% else %}
+				<td>––</td>
+				{% endif %} -->
+
+			<!-- IMAGE -->
 				<td>
 					<div class=cover_crop>
 						{% if shelf.image %}

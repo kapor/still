@@ -1,4 +1,4 @@
-<!-- aaa/accounts/templates/accounts/signup.html -->
+<!-- /accounts/signup.html -->
 {% extends 'base.html' %}
 {% load bootstrap5 %}
 
@@ -21,7 +21,7 @@
 
 			<!-- USERNAME -->
 			<div>
-				<label class="form-label" for="id_username">Username</label>
+				<label class="form-label" for="id_username">A Name:</label>
 				<input type="text" name="username" maxlength="150" autofocus="" class="field_char" placeholder=""  required="" id="id_username">
 			    <small class="form-text text-muted">
 			    	Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
@@ -30,14 +30,14 @@
 
 			<!-- EMAIL -->
 			<div>
-				<label class="form-label" for="id_email">Email</label>
+				<label class="form-label" for="id_email">Email:</label>
 				<input type="email" name="email" maxlength="254" class="field_char" placeholder="" title="" id="id_email">
 			</div>
 
 
 			<!-- PASSWORD 1 -->
 			<div>
-				<label class="form-label" for="id_password1">Password</label>
+				<label class="form-label" for="id_password1">Password:</label>
 				<input type="password" name="password1" autocomplete="new-password" class="field_char" placeholder="" required="" id="id_password1">
 			    <small class="form-text text-muted">
 			    	<ul>
@@ -51,7 +51,7 @@
 
 			<!-- PASSWORD 2 -->
 			<div>
-				<label class="form-label" for="id_password2">Password Again</label>
+				<label class="form-label" for="id_password2">Password Confirm:</label>
 				<input type="password" name="password2" autocomplete="new-password" class="field_char" placeholder="" required="" id="id_password2">
 			    <small class="form-text text-muted">Enter the same password as before, for verification.</small>
 			</div>

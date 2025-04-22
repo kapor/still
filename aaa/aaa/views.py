@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from django.views.generic import ListView, TemplateView, View
 from posts.models import Post
+from chirps.models import Post as Chirp
 from blog.models import Blog
 from shelf.models import Shelves
 from groups.models import Group, Comment
@@ -49,11 +50,12 @@ class Activity(ListView):
     def get(self, request):
 
         post = Post.objects.all()
+        chirp = Chirp.objects.all()
         comment = Comment.objects.all()
         blog = Blog.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
         shelf = Shelves.objects.all()
 
-        combined_list = list(chain(post, comment, blog, shelf))
+        combined_list = list(chain(post, chirp, comment, blog, shelf))
 
 
         sorted_objects = sorted(
@@ -133,12 +135,13 @@ def IndexLoad(request):
 def User_Activity(request, username):
     user = get_object_or_404(User, username=username)
     post = Post.objects.filter(user=user).order_by('created_at')
+    chirp = Chirp.objects.filter(user=user).order_by('created_at')
     comment = Comment.objects.filter(user=user).order_by('created_at')
     shelf = Shelves.objects.filter(user=user).order_by('created_at')
     blog = Blog.objects.filter(user=user).filter(published_date__lte=timezone.now()).order_by('-published_date')
 
 
-    activity_list = list(chain(post, comment, shelf, blog))
+    activity_list = list(chain(post, chirp, comment, shelf, blog))
 
     sorted_objects = sorted(
         activity_list,

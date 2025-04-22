@@ -9,13 +9,13 @@
         <div>
           <!-- TITLE/MESSAGE -->
           <div class="post_message">
-            <a href="{% url 'blog_detail' pk=item.pk %}">
+            <a href="{% url 'blog:blog_detail' pk=item.pk %}">
             <h3>{{ item.title }} <span class="draft_indicator">[draft]</span></h3> 
             </a>
           </div>
           <!-- MESSAGE/TEXT -->
           <div class="post_text">
-            <a href="{% url 'blog_detail' pk=item.pk %}">
+            <a href="{% url 'blog:blog_detail' pk=item.pk %}">
               <p>{{ item.message | safe }}</p>
             </a>
           </div>
@@ -36,7 +36,7 @@
 
       <!-- IMAGE -->
       <div class="crop">
-        <a href="{% url 'blog_detail' pk=item.pk %}">
+        <a href="{% url 'blog:blog_detail' pk=item.pk %}">
         {% if item.image %}
         <img src="/media/{{ item.image }}">
         {% else %}

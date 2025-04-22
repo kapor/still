@@ -1,5 +1,5 @@
 <!-- aaa/templates/posts/posts.html -->
-{% extends "posts/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 
@@ -50,10 +50,14 @@ posts
 
 
   <div id="post_content">
-  {% for item in post_list %}
-  {% include 'includes/_post.html' with url=True delete=False group=True details=True %}
+  {% for item in page_obj %}
+  {% include 'includes/_post.html' with post_url=True delete=False group=True details=True like=True %}
   {% endfor %}
+  {% include 'includes/paginate.html' %} 
   </div>
+
+
+
 
   {% include 'posts/modal.html' %}
 

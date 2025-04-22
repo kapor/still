@@ -25,8 +25,9 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls', namespace="posts")),
+    path('chirps/', include('chirps.urls', namespace="chirps")),
+    path('blog/', include('blog.urls', namespace="blog")),
     path('shelf/', include('shelf.urls', namespace="shelf")),
-    path('updates/', include(('blog.urls', 'blog'), namespace='updates')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('groups/', include('groups.urls', namespace='groups')),
@@ -38,7 +39,6 @@ urlpatterns = [
 
     path('contact/', include('contact.urls', namespace="contact")),
 
-    path('', include('blog.urls')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

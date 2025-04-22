@@ -1,12 +1,13 @@
-<!-- aaa/templates/posts/posts.html -->
-{% extends "posts/base.html" %}
+<!-- posts/detail.html -->
+{% extends "base.html" %}
 {% load static %}
 {% load my_filters %}
 {% load humanize %}
 
 
 {% block scripts %} 
-<script src="{% static 'js/detail.js' %}" defer></script>
+<script src="{% static 'js/post_detail.js' %}" defer></script>
+<script src="{% static 'js/post_like.js' %}" defer></script>
 {% endblock %}
 
 {% block title %}
@@ -16,37 +17,33 @@ posts
 
 {% block content %}
 
-  <div class="post_modal" id="post_list">
+{% include 'posts/modal_edit.html' %}
+{% include 'posts/modal_delete.html' %}
+{% include 'posts/modal.html' %}
+
+  <div id="post_list">
 
   <div class="post_message_group">
 
-    <div class="button_group">
-      <!-- TITLE/MESSAGE -->
+    <div class="post_post">
       <div class="post_message">
-          <h2 id="message">{{ item.message | safe }}</h2>
+          <h2 id="message" class="message_info">{{ item.message }}</h2>
       </div>
-      <!-- DELETE BUTTON -->
-        {% if user.is_superuser or item.user == user and not hide_delete %}
-          {% if delete %}
-          <button class="modal_button_xsmall" id="delete_button" data-toggle="modal" data-target="#delete_modal">remove</button>
-          {% else %}
-          {% endif %}
-        {% endif %}
+         
+      <div class="username_detail">
+        <a href="{% url 'for_user' username=item.user.username %}">{{ item.user.username }}</a>
+          posted in 
+        <a href="{{ item.group.get_absolute_url }}"><span id="group">{{ item.group.name }}</span></a>
+          {{ item.created_at|naturaltime }}
+      </div>
     </div>
-    <!-- USER/URL/TIMESTAMP -->        
-    <span class="username_detail">
-        <a href="{% url 'for_user' username=item.user.username %}">
-        {{ item.user.username }}
-        </a>
-      posted 
-      <!-- GROUP -->    
-       in 
-        <a href="{{ item.group.get_absolute_url }}">
-        {{ item.group.name }}
-        </a>
-      {{ item.created_at|naturaltime }}
-    </span>
-    
+
+    <div class="crop_detail">
+      {% if item.image %}
+      <img src="{{ item.image.url }}">
+      {% else %}
+      {% endif %}
+    </div>
 
   </div>
 
@@ -57,22 +54,52 @@ posts
 
 {% if user.is_authenticated %}
   {% if user.is_superuser %}
-  <!-- EDIT / ROMOVE  -->
     <div class="button_container">
-      <button class="button_accent" id="back_button">Back</button>
-      <button class="button_secondary">Edit</button>
-      <button class="button_secondary" id="delete_button" data-toggle="modal" data-target="#delete_modal" style="background-color:red; color:white">Delete</button>
+      <!-- BACK -->
+      <a href="{{ item.group.get_absolute_url }}"><div class="button_accent" id="back_button">{{ item.group.name }}</div></a>
+      <!-- <button class="button_accent" id="back_button">Back</button> -->
+      <!-- EDIT -->
+      <button class="button_secondary" id="edit_button" data-toggle="modal" data-target="#modal_form">Edit</button>
+      <!-- REMOVE -->
+      <button class="button_secondary" id="delete_button" data-toggle="modal" data-target="#delete_modal">Delete</button>
+      <!-- LIKE/UNLIKE -->
+      <form class="like_unlike_post_form" data_form_id="{{ item.id }}" style="margin:0px">
+        <button href="{% url 'posts:like_unlike' %}" class="button_secondary" id="like_unlike_post_{{ item.id }}">
+        {% if item.liked.count > 0 %}
+          {% if request.user in item.liked.all %}
+          Unlike  | {{ item.liked.count }}
+          {% else %}
+          Like  | {{ item.liked.count }}
+          {% endif %}
+        {% else %}
+          Like  | {{ item.liked.count }}
+        {% endif %}
+        </button>
+      </form>
     </div>
   {% else %}
     <div class="button_container">
-      <button class="button_accent" id="back_button">Back</button>
+      <a href="{{ item.group.get_absolute_url }}"><div class="button_accent" id="back_button">{{ item.group.name }}</div></a>
+      <!-- <button class="button_accent" id="back_button">Back</button> -->
+      <!-- LIKE/UNLIKE -->
+      <form class="like_unlike_post_form" data_form_id="{{ item.id }}" style="margin:0px">
+        <button href="{% url 'posts:like_unlike' %}" class="button_secondary" id="like_unlike_post_{{ item.id }}">
+        {% if item.liked.count > 0 %}
+          {% if request.user in item.liked.all %}
+          Unlike  | {{ item.liked.count }}
+          {% else %}
+          Like  | {{ item.liked.count }}
+          {% endif %}
+        {% else %}
+          Like  | {{ item.liked.count }}
+        {% endif %}
+        </button>
+      </form>
     </div>
   {% endif %}
 {% endif %}
 
 
-{% include 'posts/modal_delete.html' %}
-{% include 'posts/modal.html' %}
 
 
 {% include 'includes/message.html' %}

@@ -6,117 +6,14 @@ const id_image = document.getElementById('id_image')
 
 const modal_form = document.getElementById('modal_form')
 
-
-const back = document.getElementById('back_button')
-
-// BACK BUTTON
-back.addEventListener('click', ()=> {
-    // history.back()
-    window.location = document.referrer;
-})
+const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
 
-
-////////////////////////////
-////////////////////////////
-////////////////////////////
-////////////////////////////
-// form stuff
+const form = document.getElementById('blog_form');
 
 
+const url = window.location.href
 
-blog_form.addEventListener('submit', e => {
-	e.preventDefault()
-
-	$.ajax({
-
-		type: 'POST',
-		url: '',
-		datatype: 'JSON',
-		data: {
-			// how to access the form token
-			'csrfmiddlewaretoken': csrf[0].value,
-			'title': id_title.value,
-			'message': id_message.value,
-		},
-			success: function(response) {
-				console.log(response)
-			// places post at top of post_content
-			tab2.insertAdjacentHTML('afterbegin',
-			///use backticks to inject html
-				`
-			  <div class="post4" id="post_list">
-
-			      <div class="post_message_group">
-
-			        <div>
-			          <!-- TITLE/MESSAGE -->
-			          <div class="post_message">
-			            <a href="{% url 'blog_detail' pk=item.pk %}">
-			            <h3>${response.title}<span class="draft_indicator"> [draft]</span></h3> 
-			            </a>
-			          </div>
-			          <!-- MESSAGE/TEXT -->
-			          <div class="post_text">
-			            <a href="{% url 'blog_detail' pk=item.pk %}">
-			              <p>${response.message}</p>
-			            </a>
-			          </div>
-			          <!-- USER/URL/TIMESTAMP -->
-			          <span class="username">
-			              Created just now
-			            <br>
-			          </span>
-			        </div>
-
-			      </div>
-
-			  </div>
-				`
-			)
-			$('#modal_form').modal('hide')
-			handle_alerts('message_success', 'New post added in "Drafts"')
-			document.getElementById("blog_form").reset()
-		  },
-
-			error: function(error) {
-				console.log(error)
-				handle_alerts('message_success', 'Something went wrong...')
-			},
-
-	})
-});
-
-/////////////////////////////////////////
-/// CLOSE MODAL ==> FORM RESET
-
-
-const form = document.getElementById('modal_form');
-const cancel_button = document.getElementById('cancel_button');
-const close_x = document.getElementById('close_x');
-const modal_dialog = document.getElementById('modal_dialog'); 
-
-cancel_button.addEventListener('click', function() {
-	form.reset();
-});
-
-close_x.addEventListener('click', function() {
-	form.reset();
-});
-
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    document.getElementById('blog_form').reset();
-  }
-});
-
-window.addEventListener('click', (event) => {
-  if (event.target === modal_dialog) {
-    form.reset();
-  } else {
-  	// Do nothing
-  }
-});
 
 
 // PUBLISH/DRAFT TABS
@@ -152,27 +49,141 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+const csrftoken = getCookie('csrftoken');
 
-/*blog_form.addEventListener('submit', function(event) {
-  // Prevent the default form submission behavior
-  event.preventDefault();
+////////////////////////////
+////////////////////////////
+////////////////////////////
+////////////////////////////
+// form stuff
 
-  // Submit the form data using AJAX
-  fetch(blog_form.action, {
+////////////////////////////
+////////////////////////////
+////////////////////////////
+////////////////////////////
+// form stuff (adding an item)
+
+document.getElementById('blog_form').addEventListener('submit', function(e) {
+  e.preventDefault(); // Prevent the default form submission
+
+  fetch(this.action, {
     method: 'POST',
-    body: new FormData(blog_form),
+    body: new FormData(this),
     headers: {
-      'X-Requested-With': 'XMLHttpRequest' //Identify AJAX request for Django
+      'X-Requested-With': 'XMLHttpRequest', 
     }
   })
   .then(response => {
     if (response.ok) {
-      // Reload the page
       window.location.reload();
+      // handle_alerts('message_success', 'New item added') // Reload the page on success
     } else {
-      // Handle errors if needed
+      // Handle errors, e.g., display an error message
       console.error('Error submitting form');
     }
+  })
+  .catch(error => {
+    console.error('Network error:', error);
   });
 });
-*/
+
+
+
+
+/*blog_form.addEventListener('submit', e => {
+	e.preventDefault()
+
+	$.ajax({
+
+		type: 'POST',
+		url: '',
+		datatype: 'JSON',
+		data: {
+			// how to access the form token
+			'csrfmiddlewaretoken': csrf[0].value,
+			'title': id_title.value,
+			'message': id_message.value,
+		},
+			success: function(response) {*/
+				// console.log(response)
+			// places post at top of post_content
+				/*tab2.insertAdjacentHTML('afterbegin',
+				///use backticks to inject html
+					`
+				  <div class="post4" id="post_list">
+
+				      <div class="post_message_group">
+
+				        <div>
+				          <!-- TITLE/MESSAGE -->
+				          <div class="post_message">
+				            <a href="{% url 'blog_detail' pk=item.pk %}">
+				            <h3>${response.title}<span class="draft_indicator"> [draft]</span></h3> 
+				            </a>
+				          </div>
+				          <!-- MESSAGE/TEXT -->
+				          <div class="post_text">
+				            <a href="{% url 'blog_detail' pk=item.pk %}">
+				              <p>${response.message}</p>
+				            </a>
+				          </div>
+				          <!-- USER/URL/TIMESTAMP -->
+				          <span class="username">
+				              Created just now
+				            <br>
+				          </span>
+				        </div>
+
+				      </div>
+
+				  </div>
+					`
+				)*/
+/*			$('#modal_form').modal('hide')
+			handle_alerts('message_success', 'New post added in "Drafts"')
+			document.getElementById("blog_form").reset()
+		  },
+
+			error: function(error) {
+				console.log(error)
+				handle_alerts('message_success', 'Something went wrong...')
+			},
+
+	})
+});*/
+
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+/// CLOSE MODAL ==> FORM RESET
+
+
+const b_form = document.getElementById('blog_form');
+const cancel_button = document.getElementById('cancel_button');
+const close_x = document.getElementById('close_x');
+const modal_dialog = document.getElementById('modal_dialog'); 
+
+cancel_button.addEventListener('click', function() {
+	document.getElementById('blog_form').reset();
+});
+
+close_x.addEventListener('click', function() {
+	document.getElementById('blog_form').reset();
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    document.getElementById('blog_form').reset();
+  }
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === modal_dialog) {
+    b_form.reset();
+  } else {
+  	// Do nothing
+  }
+});
+
+

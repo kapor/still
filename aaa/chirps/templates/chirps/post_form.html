@@ -1,0 +1,21 @@
+
+		<form method="POST" action="{% url 'posts:create' %}" id="postForm">
+
+
+
+			<div class="form_container">
+				{% csrf_token %}
+				{{ form }}
+			</div>
+
+
+      <div class="button_container">
+	      	<a href="{{ groups.get_absolute_url }}">
+						<div class="button_secondary">
+							Cancel
+						</div>
+					</a>
+          <input type="submit" value="Add" class="button_accent">
+      </div>
+	</form>
+

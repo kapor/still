@@ -1,3 +1,6 @@
+const csrf = document.getElementsByName('csrfmiddlewaretoken')
+const url = window.location.href
+
 const loader = document.getElementById('loader_container')
 const load = document.getElementById('load_button')
 const nomore = document.getElementById('nomore')

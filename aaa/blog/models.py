@@ -10,6 +10,7 @@ User = get_user_model()
 
 
 
+
 def get_upload_path(instance, filename):
     return 'images/{0}/{1}'.format(instance.user, filename)
 
@@ -17,6 +18,7 @@ class Blog(models.Model):
 	user = models.ForeignKey(User, related_name='blog_user', null=False, on_delete=models.CASCADE)
 	title = models.CharField(max_length=200)
 	message = models.TextField(unique=False)
+	liked = models.ManyToManyField(User, blank=True)
 	created_at = models.DateTimeField(auto_now=True)
 	published_date = models.DateTimeField(blank=True, null=True)
 	tags = TaggableManager(blank=True)
@@ -29,18 +31,17 @@ class Blog(models.Model):
 		self.published_date = timezone.now()
 		self.save()
 
+	# like button
+	@property
+	def like_count(self):
+		return self.liked.all().count() 
+
 	def get_absolute_url(self):
-		return reverse("blog_detail", kwargs={'pk':self.pk})
+		return reverse("blog:blog_detail", kwargs={'pk':self.pk})
 
 	class Meta:
 		ordering = ['-created_at']
 		verbose_name_plural = "Blog"
-
-
-
-
-
-
 
 
 
