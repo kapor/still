@@ -138,11 +138,11 @@ class BlogDetailView(DetailView):
 # 	model = Blog
 # 	login_url = "login"
 # 	template_name = 'blog/blog_modal_edit.html'
-# 	form_class = BlogUpdate
+# 	form_class = Blog
 # 	required = False
 
 # 	def post(self, request, *args, **kwargs):
-# 		messages.success(self.request, "Post successfully updated")
+# 		messages.success(self.request, "Post updated")
 # 		return super().post(request, *args, **kwargs)
 
 

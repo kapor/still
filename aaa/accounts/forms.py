@@ -36,6 +36,13 @@ class UserForm(UserCreationForm):
 			self.fields['photo'].required = False
 
 
+class UserInfoForm(forms.ModelForm):
+	class Meta:
+		model = UserInfo
+		fields = ('bio', 'picture',)
+
+
+
 
 
 

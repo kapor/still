@@ -1,17 +1,14 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.urls import reverse, reverse_lazy
-from groups.models import Group, Comment
-from blog.models import Blog
-from shelf.models import Shelves
-from posts.models import Post
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView
 # from .forms import UserForm1, UserForm2
 from . import forms
+from .models import UserInfo
 
 # Create your views here.
 
@@ -20,17 +17,38 @@ from . import forms
 class SignUp(CreateView):
 	form_class = forms.UserForm
 	success_url = reverse_lazy('login')
-	template_name = 'accounts/signup.html'
+	template_name = 'reg/signup.html'
 
 
 
-
-
-# Modal View
 class Login(CreateView):
-	template_name = 'accounts/login.html'
+	template_name = 'reg/login.html'
 	fields = ('username', 'password')
 	success_url = reverse_lazy('home')
+
+# Modal View
+class LoginModal(CreateView):
+    template_name = 'reg/login_modal.html'
+    fields = ('username', 'password')
+
+    def get_success_url(self):
+        return self.request.META.get('HTTP_REFERER', '/')
+
+
+def user_info_view(request):
+    obj = get_object_or_404(UserInfo, user=request.user)
+    form = UserInfoForm(request.Post or None, request.FILES or None, instance=obj)
+
+    if request.accepts('application/json'):
+        if form.is_valid():
+            instance = form.save()
+            return JsonResponse({
+                'bio': instance.bio,
+                'picture': instance.picture.url,
+                'user': instance.user.username
+            })
+    context = {'obj': obj, 'form': form,}
+    return render(request, 'accounts/profile.html', context)
 
 
 

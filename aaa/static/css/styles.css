@@ -1108,6 +1108,12 @@ li a.nav_link,
   line-height: 24px;
 }
 
+a:not([href]):not([tabindex]) {
+  color: #8F00FF;
+  cursor: pointer;
+  line-height: 24px;
+}
+
 .nav_link img {
   filter: invert(12%) sepia(85%) saturate(7294%) hue-rotate(276deg) brightness(96%) contrast(121%);
   transition: 0.2s;

@@ -25,7 +25,7 @@ class Shelves(models.Model):
 	user = models.ForeignKey('auth.User', related_name='shelf_user', on_delete=models.CASCADE)
 	title = models.CharField(max_length=1000, blank=True, null=True)
 	author = models.CharField(max_length=1000, blank=True, null=True)
-	year = models.IntegerField(blank=True, null=True, default='0')
+	year = models.IntegerField(blank=True, null=True)
 	type = models.CharField(max_length=500, blank=True, null=True)
 	publisher = models.CharField(max_length=500, blank=True, null=True)
 	artist = models.CharField(max_length=500, blank=True, null=True)
@@ -60,3 +60,10 @@ class Shelves(models.Model):
 	@property
 	def like_count(self):
 		return self.liked.all().count() 
+
+
+	def save(self, *args, **kwargs):
+		self.clean()
+		super().save(*args, **kwargs)
+
+

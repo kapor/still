@@ -16,6 +16,9 @@ def get_upload_path(instance, filename):
 # Create your models here.
 class UserInfo(auth.models.User, auth.models.PermissionsMixin):
 	user = models.OneToOneField('auth.User', related_name='acct_user', on_delete=models.CASCADE)
+	bio = models.TextField(blank=True)
+	created = models.DateTimeField(auto_now=True)
+	updated = models.DateTimeField(auto_now_add=True)
 	picture = models.ImageField(upload_to=get_upload_path, default="profile_pics/blank.jpg", blank=True)
 	
 	def __str__(self):

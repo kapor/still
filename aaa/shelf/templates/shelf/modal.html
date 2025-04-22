@@ -51,7 +51,8 @@
           </div>
 
           <!-- IMAGE -->
-          {{ form2 }}
+          <label for="id_image">Image:</label>
+          <input type="file" name="image" accept="image/*" class="field_image" placeholder="" id="id_image">
 
           {% csrf_token %}
 

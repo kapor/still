@@ -27,7 +27,8 @@ urlpatterns = [
     path('<int:pk>/update/', views.edit_post, name='edit'),
     path('<int:pk>/delete/', views.delete_post, name='delete'),
     path('<int:pk>/data/', views.blog_detail_data, name='blog_detail_data'),
-    # path('<int:pk>/edit/', views.BlogUpdateView.as_view(), name='blog_edit'),
+
+    # path('<int:pk>/update/', views.BlogUpdateView.as_view(), name='edit'),
 
 
 

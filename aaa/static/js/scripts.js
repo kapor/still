@@ -143,4 +143,39 @@ window.addEventListener('click', (event) => {
 
 
 
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+/// CLOSE MODAL ==> FORM RESET
+
+
+const login_form = document.getElementById('login_form');
+const login_cancel_button = document.getElementById('login_cancel_button');
+const login_close_x = document.getElementById('login_close_x');
+const modal_login = document.getElementById('modal_login'); 
+
+login_cancel_button.addEventListener('click', function() {
+  document.getElementById('login_form').reset();
+});
+
+login_close_x.addEventListener('click', function() {
+  document.getElementById('login_form').reset();
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    document.getElementById('login_form').reset();
+  }
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === modal_login) {
+    login_form.reset();
+  } else {
+    // Do nothing
+  }
+});
+
+
 
