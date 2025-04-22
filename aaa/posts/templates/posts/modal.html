@@ -1,0 +1,23 @@
+<!-- posts/modal.html -->
+{% extends "base_modal.html" %}
+{% load static %}
+
+
+
+
+{% block modal_title %} 
+Add a post
+{% endblock %}
+
+
+      
+
+{% block modal_form %} 
+<form method="POST" action="" id="post_form" enctype="multipart/form-data">
+{% endblock %}
+
+
+{% block buttons %}
+<button type="button" class="button_secondary" data-dismiss="modal" id="cancel_button">I don't want to</button>
+<input type="submit" value="Add" class="button_accent"></input>
+{% endblock %}

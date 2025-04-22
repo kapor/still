@@ -1,0 +1,24 @@
+<!-- groups/base.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block scripts %} 
+<!-- <script src="{% static 'js/posts.js' %}" defer></script> -->
+<script src="{% static 'js/groups.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+groups
+{% endblock title %}
+
+{% block content %}
+
+	<div>
+	{% block group_content %}
+	{% endblock %}
+	</div>
+
+
+{% endblock %}
+
+

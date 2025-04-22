@@ -5,43 +5,77 @@
 {% if modal %}
 <div class="post_modal" id="post_list">
 {% else %}
-<div {% if item|is_app:"posts" %} class="post3" {% else %} {% endif %} id="post_list">
+<div {% if item|is_app:"posts" %} class="post3" {% endif %} id="post_list">
 {% endif %}
 
-    <div>
 
       <div class="post_message_group">
 
         <div class="button_group">
           <!-- TITLE/MESSAGE -->
           <div class="post_message">
-            <a href="{{ item.group.get_absolute_url }}">
-              <h3>{{ item.message | safe }}</h3>
+            {% if post_url %}
+            <a href="{% url 'posts:post_detail' pk=item.pk %}">
+              <h3 id="message">{{ item.message | safe }}</h3>
             </a>
+            {% else %}
+            <a href="{{ item.group.get_absolute_url }}">
+              <h3 id="message">{{ item.message | safe }}</h3>
+            </a>
+            {% endif %}
           </div>
+
+        {% if user.is_authenticated %}
+          <div class="feed_buttons">
           <!-- DELETE BUTTON -->
-            {% if user.is_superuser or post.user == user and not hide_delete %}
+            {% if user.is_superuser or item.user == user and not hide_delete %}
               {% if delete %}
-              <a hx-get="{% url 'posts:delete' pk=item.pk %}" hx-target="body" hx-swap="beforeend">
-                <div class="modal_button_xsmall">remove</div>
-              </a>
+              <button class="modal_button_xsmall" id="delete_button" data-toggle="modal" data-target="#delete_modal">Remove</button>
               {% else %}
               {% endif %}
             {% endif %}
+          <!-- DELETE BUTTON -->
+              {% if details %}
+              <a href="{% url 'posts:post_detail' pk=item.pk %}">
+              <div class="modal_button_xsmall" id="detail_button">Details</div>
+              </a>
+              {% else %}
+              {% endif %}
+          <!-- LIKE/UNLIKE BUTTON -->
+              {% if like %}
+              <form class="like_unlike_post_form" data_form_id="{{ item.id }}">
+                
+                <button href="{% url 'posts:like_unlike' %}" class="modal_button_xsmall" id="like_unlike_post_{{ item.id }}">
+                {% if item.liked.count > 0 %}
+                  {% if request.user in item.liked.all %}
+                  Unlike  | {{ item.liked.count }}
+                  {% else %}
+                  Like  | {{ item.liked.count }}
+                  {% endif %}
+                {% else %}
+                  Like  | {{ item.liked.count }}
+                {% endif %}
+                </button>
+              </form>
+              {% else %}
+              {% endif %}
+          </div>
+        {% endif %}
+        
         </div>
         <!-- USER/URL/TIMESTAMP -->        
         <span class="username">
           {% if user %}
             <a href="{% url 'for_user' username=item.user.username %}">
-            @{{ item.user.username }}
+            {{ item.user.username }}
             </a>
           {% endif %}
-          posted in
+          posted 
           <!-- GROUP -->    
-          {% if item.group %}
-            <span class="group-name">
+          {% if group %} in 
+            <span class="group_name">
               <a href="{{ item.group.get_absolute_url }}">
-              {{item.group.name}}
+              {{ item.group.name }}
               </a>
             </span>
           {% endif %}
@@ -51,47 +85,22 @@
 
       </div>
 
-    </div>
+      <!-- IMAGE -->
+      {% if image %}
+      <div class="crop">
+        <a href="{% url 'posts:post_detail' pk=item.pk %}">
+        {% if item.image %}
+        <img src="/media/{{ item.image }}">
+        {% else %}
+        {% endif %}
+        </a>
+      </div>
+      {% endif %}
 
-<!-- <script>
-
-  function getCookie(name) {
-      let cookieValue = null;
-      if (document.cookie && document.cookie !== '') {
-          const cookies = document.cookie.split(';');
-          for (let i = 0; i < cookies.length; i++) {
-              const cookie = cookies[i].trim();
-              if (cookie.startsWith(name + '=')) {
-                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                  break;
-              }
-          }
-      }
-      return cookieValue;
-  }
-  
-  const csrfToken = getCookie('csrftoken');
-
-
-$.ajax({
-  const csrftoken = "{{ csrf_token }}";
-  url: "{% url 'posts:delete' pk=item.pk %}",
-  type: 'DELETE',
-  data: $('posts.PostForm').serialize(),
-  headers: {'X-CSRFToken': csrfToken},
-
-  success: function(response) {
-    // Check for a success signal in the response
-    if (response.success) {
-      window.location.reload();
-    } else {
-        // Handle errors or other outcomes
-    }
-  },
-  error: function(error) {
-    // Handle AJAX errors
-  }
-});
-</script> -->
 
   </div>
+
+
+
+
+

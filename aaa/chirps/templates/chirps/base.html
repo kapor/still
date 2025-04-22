@@ -1,0 +1,21 @@
+<!-- posts/base.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+	{% block scripts %} 
+	
+	{% endblock %}
+
+	{% block title %}
+	posts
+	{% endblock title %}
+
+{% block content %}
+
+	<div>
+	{% block postcontent %}
+	{% endblock %}
+	</div>
+
+
+{% endblock %}

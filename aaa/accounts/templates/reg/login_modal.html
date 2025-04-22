@@ -1,0 +1,48 @@
+<!-- account/login_modal.html -->
+
+<div class="modal" id="modal_login" tabindex="-1" role="dialog">
+
+  <div class="modal_dialog" role="document">
+
+
+
+    <div class="modal_header">
+        <h5>Login</h5>
+        <div id="login_close_x" data-dismiss="modal">
+        <img src="/media/images/icons/24x24_close.svg">
+        </div>
+    </div>
+    
+
+
+    <form action="#" id="login_form" method="POST" enctype="multipart/form-data">
+
+
+        <div class="form_container">
+
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="" class="field_char">
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="" class="field_char">
+            </div>
+
+
+            {% csrf_token %}
+
+        </div>
+
+
+        <div class="button_container_modal">
+            <button type="button" class="button_secondary" data-dismiss="modal" id="login_cancel_button">Nevermind</button>
+            <input type="submit" value="Login" class="button_accent"></input>
+        </div>
+
+    </form>
+
+    </div>
+
+
+</div>

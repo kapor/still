@@ -1,0 +1,30 @@
+
+<!-- old styling, not in use -->
+<div class="draft_post">
+
+  <div class="crop">
+    {% if item.image %}
+      <a href="{% url 'blog_detail' pk=item.pk %}">
+      <img src="/media/{{ item.image }}">
+      </a>
+    {% else %}
+      <a href="{% url 'blog_detail' pk=item.pk %}">
+      <img src="/media/images/blank.jpg">
+      </a>
+    {% endif %}
+  </div>
+
+
+  <div class="blog_post">
+    <a href="{% url 'blog_detail' pk=item.pk %}">
+    <h3>{{ item.title }}</h3>
+    </a>
+    <time class="time">
+    <p>{{ item.published_date | date:'d M Y' }}</p>
+    </time>
+    <div class="description">
+    {{ item.text | safe }}
+    </div>
+  </div>
+
+</div>

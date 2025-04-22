@@ -1,0 +1,102 @@
+{% load my_filters %}
+{% load humanize %}
+
+
+
+<div {% if item|is_app:"chirps" %} class="post6" {% endif %} id="post_list">
+
+
+
+      <div class="post_message_group">
+
+        <div class="button_group">
+          <!-- TITLE/MESSAGE -->
+          <div class="post_message">
+            {% if post_url %}
+            <a href="{% url 'chirps:post_detail' pk=item.pk %}">
+              <h3 id="message">{{ item.message | safe }}</h3>
+            </a>
+            {% else %}
+            <a href="{{ item.group.get_absolute_url }}">
+              <h3 id="message">{{ item.message | safe }}</h3>
+            </a>
+            {% endif %}
+          </div>
+          
+        {% if user.is_authenticated %}
+            <div class="feed_buttons">
+          <!-- DELETE BUTTON -->
+            {% if user.is_superuser or item.user == user and not hide_delete %}
+              {% if delete %}
+              <button class="modal_button_xsmall" id="delete_button" data-toggle="modal" data-target="#delete_modal">Remove</button>
+              {% else %}
+              {% endif %}
+            {% endif %}
+          <!-- DETAILS BUTTON -->
+              {% if details %}
+              <button onclick="document.location='{% url "chirps:post_detail" pk=item.pk %}'" class="modal_button_xsmall" id="detail_button">Details</button>
+              {% else %}
+              {% endif %}
+          <!-- LIKE/UNLIKE BUTTON -->
+              {% if like %}
+              <form class="like_unlike_form" data_form_id="{{ item.id }}">
+                
+                <button href="{% url 'chirps:like_unlike' %}" class="modal_button_xsmall" id="like_unlike_chirp_{{ item.id }}">
+                {% if item.liked.count > 0 %}
+                  {% if request.user in item.liked.all %}
+                  Unlike  | {{ item.liked.count }}
+                  {% else %}
+                  Like  | {{ item.liked.count }}
+                  {% endif %}
+                {% else %}
+                  Like  | {{ item.liked.count }}
+                {% endif %}
+                </button>
+              </form>
+              {% else %}
+              {% endif %}
+            </div>
+        {% endif %}
+
+        </div>
+        <!-- USER/URL/TIMESTAMP -->        
+        <span class="username">
+          {% if user %}
+            <a href="{% url 'for_user' username=item.user.username %}">
+            {{ item.user.username }}
+            </a>
+          {% endif %}
+          posted 
+          <!-- GROUP -->    
+          {% if group %} in 
+            <span class="group_name">
+              <a href="{{ item.group.get_absolute_url }}">
+              {{ item.group.name }}
+              </a>
+            </span>
+          {% endif %}
+          {{ item.created_at|naturaltime }}
+        </span>
+        
+
+      </div>
+
+      <!-- IMAGE -->
+      {% if image %}
+      <div class="crop">
+        <a href="{% url 'chirps:post_detail' pk=item.pk %}">
+        {% if item.image %}
+        <img src="/media/{{ item.image }}">
+        {% else %}
+        {% endif %}
+        </a>
+      </div>
+      {% endif %}
+
+
+  </div>
+
+
+
+
+

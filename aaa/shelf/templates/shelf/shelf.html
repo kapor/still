@@ -1,0 +1,157 @@
+<!-- shelf/shelf.html -->
+{% extends "base.html" %}
+{% load static %}
+{% load my_filters %}
+{% load humanize %}
+
+
+{% block scripts %} 
+<script src="{% static 'js/shelf.js' %}" defer></script>
+<script src="{% static 'js/shelf_like.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+{{ user }}'s shelf
+{% endblock title %}
+
+
+{% block content %}
+
+	<div class="top_part">
+	  <div class="header">
+	  {% if user.is_superuser %}
+	  <h1>Shelves: organize stuff.</h1>
+	  <h2><a data-toggle="modal" data-target="#modal_form">Add an item to your shelf.</a></h2>
+
+	  {% else %}
+	  <h1>Shelves</h1>
+	  {% endif %}
+	    <p class="big_p">
+	    Cupcake ipsum dolor sit amet marzipan chocolate cake icing donut. Sugar plum wafer jelly-o oat cake tootsie roll. Powder cake croissant soufflé icing chocolate shortbread I love. Caramels marshmallow candy canes dessert powder croissant chocolate. Gummi bears cotton candy sweet roll croissant sweet roll croissant I love. Brownie danish jujubes I love sugar plum powder liquorice. Tiramisu tart biscuit pastry topping pudding. Candy pastry pastry I love I love cotton candy liquorice bonbon bear claw.
+	    </p>
+	  </div>
+	</div>
+
+
+
+
+
+	{% if user.is_authenticated %}
+
+
+		{% include 'includes/search_shelf.html' %} 
+
+
+
+		<table class="shelf_grid">
+			<thead class="col_header_header">
+				<th class="col_header">Year</th>
+				<th class="col_header">Title</th>
+				<th class="col_header">Author</th>
+				<th class="col_header">Tags</th>
+				<th class="col_header">User</th>
+				<!-- <th class="col_header">Like</th> -->
+				<th class="col_header">Image</th>
+			</thead>
+
+
+			<tbody id="shelf_table">
+			{% for shelf in page_obj %}
+
+			<tr id="shelf_row">
+
+			<!-- YEAR -->
+				{% if shelf.year == None %}
+				<td>––</td>
+				{% elif shelf.year == 0 %}
+				<td>––</td>
+				{% else %}
+				<td>{{ shelf.year }}</td>
+				{% endif %}
+
+			<!-- TITLE -->
+				<td><a href="{{ shelf.id }}">{{ shelf.title }}</a></td>
+
+			<!-- AUTHOR -->
+				{% if shelf.author == '' %}
+				<td>––</td>
+				{% elif shelf.author == None %}
+				<td>––</td>
+				{% elif shelf.author == 'N/A' %}
+				<td>––</td>
+				{% else %}
+				<td>{{ shelf.author }}</td>
+				{% endif %}
+
+
+			<!-- TAGS -->
+				{% if shelf.tags.all %}
+					<td>{% for tags in shelf.tags.all %}
+					<tag class="taggy">{{ tags }}</tag>
+					{% endfor %}
+				</td>
+				{% else %}
+				<td>––</td>
+				{% endif %}
+
+			<!-- USER -->
+				<td>{{ shelf.user }}</td>
+
+			<!-- LIKE -->
+<!-- 				{% if like %}
+				<td>
+					<form class="like_unlike_post_form" data_form_id="{{ item.id }}">
+						<button href="{% url 'posts:like_unlike' %}" class="modal_button_xsmall" id="like_unlike_post_{{ item.id }}">
+							{% if item.liked.count > 0 %}
+							{% if request.user in item.liked.all %}
+								Unlike  | {{ item.liked.count }}
+							{% else %}
+								Like  | {{ item.liked.count }}
+							{% endif %}
+							{% else %}
+								Like  | {{ item.liked.count }}
+							{% endif %}
+						</button>
+					</form>
+				</td>
+				{% else %}
+				<td>––</td>
+				{% endif %} -->
+
+			<!-- IMAGE -->
+				<td>
+					<div class=cover_crop>
+						{% if shelf.image %}
+						<img class="cover_photo" src="/media/{{ shelf.image }}">
+						{% else %}
+						<img class="photo_blank" src="/media/shelves/blank.jpg">
+						{% endif %}
+					</div>
+				</td>
+
+			</tr>
+
+			{% endfor %}
+
+		</tbody>
+			</table>
+
+
+
+
+
+
+
+
+		{% include 'includes/paginate.html' %} 
+
+
+
+	</div>
+
+	{% endif %}
+
+	{% include 'shelf/modal.html' %}
+
+
+{% endblock %}

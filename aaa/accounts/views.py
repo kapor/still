@@ -1,114 +1,108 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.urls import reverse, reverse_lazy
-from groups.models import Group, Comment
-from blog.models import Blog
-from shelf.models import Shelves
-from posts.models import Post
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView
-from .forms import UserForm1, UserForm2
+# from .forms import UserForm1, UserForm2
 from . import forms
+from .models import UserInfo
+
 # Create your views here.
 
 
 
 class SignUp(CreateView):
-	form_class = forms.UserCreateForm
+	form_class = forms.UserForm
 	success_url = reverse_lazy('login')
-	template_name = 'accounts/signup.html'
+	template_name = 'reg/signup.html'
 
 
-# Modal View
+
 class Login(CreateView):
-	template_name = 'accounts/login.html'
+	template_name = 'reg/login.html'
 	fields = ('username', 'password')
 	success_url = reverse_lazy('home')
 
+# Modal View
+class LoginModal(CreateView):
+    template_name = 'reg/login_modal.html'
+    fields = ('username', 'password')
+
+    def get_success_url(self):
+        return self.request.META.get('HTTP_REFERER', '/')
 
 
-class reg():
+def user_info_view(request):
+    obj = get_object_or_404(UserInfo, user=request.user)
+    form = UserInfoForm(request.Post or None, request.FILES or None, instance=obj)
 
-    def reg_join(request):
+    if request.accepts('application/json'):
+        if form.is_valid():
+            instance = form.save()
+            return JsonResponse({
+                'bio': instance.bio,
+                'picture': instance.picture.url,
+                'user': instance.user.username
+            })
+    context = {'obj': obj, 'form': form,}
+    return render(request, 'accounts/profile.html', context)
 
-        registered = False
 
-        user_form = UserForm1()
-        prof_form = UserForm2()
 
-        if request.method == 'POST':
-            user_form = forms.UserForm1(data=request.POST)
-            prof_form = forms.UserForm2(data=request.POST)
+# class reg():
 
-            if user_form.is_valid() and prof_form.is_valid():
+#     def reg_join(request):
 
-                user = user_form.save()
-                user.set_password(user.password)
-                user.save()
+#         registered = False
 
-                profile = prof_form.save(commit=False)
-                profile.user = user
+#         user_form = UserForm1()
+#         prof_form = UserForm2()
 
-                if 'picture' in request.FILES:
-                    profile.picture = request.FILES['picture']
+#         if request.method == 'POST':
+#             user_form = forms.UserForm1(data=request.POST)
+#             prof_form = forms.UserForm2(data=request.POST)
 
-                profile.save()
+#             if user_form.is_valid() and prof_form.is_valid():
 
-                registered = True
-                login(request, user)
-                return HttpResponseRedirect(reverse('home'))
+#                 user = user_form.save()
+#                 user.set_password(user.password)
+#                 user.save()
+
+#                 profile = prof_form.save(commit=False)
+#                 profile.user = user
+
+#                 if 'picture' in request.FILES:
+#                     profile.picture = request.FILES['photo']
+
+#                 profile.save()
+
+#                 registered = True
+#                 login(request, user)
+#                 return HttpResponseRedirect(reverse('home'))
                 
-            else:
-                print(user_form.errors, prof_form.errors)
+#             else:   
+#                 print(user_form.errors, prof_form.errors)
 
-        else:
-            user_form = UserForm1()
-            prof_form = UserForm2()
+#         else:
+#             user_form = UserForm1()
+#             prof_form = UserForm2()
 
-        return render(request, 'reg/join.html',{'user_form':user_form, 'prof_form':prof_form, 'registered':registered})
-
-
-
-    @login_required #decorator
-    def reg_loggedin(request):
-        logout(request)
-        return render(request, 'base/user.html', {})
-
-    @login_required #decorator
-    def reg_logout(request):
-        logout(request)
-        return render(request, 'accounts/login.html', {})
+#         return render(request, 'reg/join.html',{'user_form':user_form, 'prof_form':prof_form, 'registered':registered})
 
 
 
+    # @login_required #decorator
+    # def reg_loggedin(request):
+    #     logout(request)
+    #     return render(request, 'base/user.html', {})
 
-def User_Activity(request, username):
-    user = get_object_or_404(User, username=username)
-    activity = models.Post.objects.filter(user=user).order_by('created_at')
-    comment = Comment.objects.filter(user=user).order_by('created_at')
-    shelf = Shelves.objects.filter(user=user).order_by('created_at')
-
-
-    activity_list = list(chain(activity, comment, shelf))
-
-    sorted_objects = sorted(
-        activity_list,
-        key=lambda obj: obj.created_at if hasattr(obj, 'created_at') else datetime(1970, 1, 1),
-        reverse=True
-    )
-
-    # Paginate combined list
-    paginator = Paginator(sorted_objects, 80) 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-    context = {
-        'user': user,
-        'page_obj': page_obj,
-    }
-    return render(request, 'posts/user_post_list.html', context)
+    # @login_required #decorator
+    # def reg_logout(request):
+    #     logout(request)
+    #     return render(request, 'accounts/login.html', {})
 
 
 

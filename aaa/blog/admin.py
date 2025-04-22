@@ -5,3 +5,4 @@ from blog.models import Blog, Tags
 admin.site.register(Blog)
 admin.site.register(Tags)
 
+

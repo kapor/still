@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from django.views.generic import ListView, TemplateView, View
 from posts.models import Post
+from chirps.models import Post as Chirp
 from blog.models import Blog
 from shelf.models import Shelves
 from groups.models import Group, Comment
@@ -38,19 +39,7 @@ User = get_user_model()
 class Home(TemplateView):
     template_name = "index.html"
 
-class IndexView(ListView):
-    model = Group
-    template_name = "index.html"
-    context_object_name = "index_grid"
-    paginate_by = 20
-    ordering = "name"
-    # new method added ⬇️
 
-    def get_template_names(self, *args, **kwargs):
-        if self.request.htmx:
-            return "index_grid.html"
-        else:
-            return self.template_name
 
 
 
@@ -61,11 +50,12 @@ class Activity(ListView):
     def get(self, request):
 
         post = Post.objects.all()
+        chirp = Chirp.objects.all()
         comment = Comment.objects.all()
         blog = Blog.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
         shelf = Shelves.objects.all()
 
-        combined_list = list(chain(post, comment, blog, shelf))
+        combined_list = list(chain(post, chirp, comment, blog, shelf))
 
 
         sorted_objects = sorted(
@@ -139,28 +129,19 @@ def IndexLoad(request):
     return render(request, 'index_load.html', context)
 
 
-def load_more(request):
-    offset = request.GET.get('offset')
-    offset_int = int(offset)
-    limit = 20
-    # group_obj = group.objects.all()[offset_int:offset_int+limit]
-    group_obj = list(Group.objects.values()[offset_int:offset_int+limit])
-    data = {
-        'groups': group_obj
-    }
-    return JsonResponse(data=data)
-
 
 
 
 def User_Activity(request, username):
     user = get_object_or_404(User, username=username)
-    activity = Post.objects.filter(user=user).order_by('created_at')
+    post = Post.objects.filter(user=user).order_by('created_at')
+    chirp = Chirp.objects.filter(user=user).order_by('created_at')
     comment = Comment.objects.filter(user=user).order_by('created_at')
     shelf = Shelves.objects.filter(user=user).order_by('created_at')
+    blog = Blog.objects.filter(user=user).filter(published_date__lte=timezone.now()).order_by('-published_date')
 
 
-    activity_list = list(chain(activity, comment, shelf))
+    activity_list = list(chain(post, chirp, comment, shelf, blog))
 
     sorted_objects = sorted(
         activity_list,

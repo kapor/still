@@ -8,45 +8,55 @@
 
 <div class="top_part">
   <div class="header">
-    <h1>@{{ user.username }}'s activity</h1>
+    <h1>{{ user.username }}'s activity</h1>
   </div>
 </div>
 
 
 
-  {% for item in page_obj %}
+<div>
+{% for item in page_obj %}
 
-  <!-- GROUP -->
+<!-- GROUP -->
 
-  {% if item|is_app:"groups" %}
+{% if item|is_app:"groups" %}
 
-    {% include 'includes/_comment.html' with delete=True %}
+{% include 'includes/_comment.html' with delete=False group=True %}
 
-  <!-- POST -->
+<!-- POST -->
 
-  {% elif item|is_app:"posts" %}
+{% elif item|is_app:"posts" %}
 
-    {% include 'includes/_post.html' with delete=True %}
+{% include 'includes/_post.html' with delete=False group=True %}
 
-  <!-- BLOG -->
 
-  {% elif item|is_app:"blog" %}
+<!-- CHIRP -->
 
-    {% include 'includes/_blog.html' with user=False %}
+{% elif item|is_app:"chirps" %}
 
-  <!-- SHELF -->
+{% include 'includes/_chirp.html' with delete=False group=True %}
 
-  {% elif item|is_app:"shelf" %}
 
-    {% include 'includes/_shelf.html' %}
+<!-- BLOG -->
+
+{% elif item|is_app:"blog" %}
+
+{% include 'includes/_blog.html' with user=True %}
+
+<!-- SHELF -->
+
+{% elif item|is_app:"shelf" %}
+
+{% include 'includes/_shelf.html' %}
+
 
 {% endif %}
 
 {% endfor %}
 
+
 {% include 'includes/paginate.html' %}
 </div>
-
 
 
 

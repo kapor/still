@@ -1,0 +1,31 @@
+{% load i18n %}
+{% load widget_tweaks %}
+
+
+
+{% if widget.value %}
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} />
+
+<div class="widget_input_text">
+    <!-- "Currently:" -->
+<!-- {{ widget.initial_text }}: --> 
+Current image
+</div>
+
+
+<div class="image_cover_container">
+  <a href="{{ widget.value.url }}" target="_blank">
+  <img src="{{ widget.value.url }}" alt="image" class="image_cover">
+  </a>
+</div>
+
+{% else %}
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} />
+{% endif %}
+
+
+
+
+
+
+

@@ -5,11 +5,17 @@
 
 {% block scripts %} {% endblock %}
 
+<title>
+{% block title %} {% endblock title %}
+</title>
+
 </head>
 
 
 <body>
+<div id="alert_box">
 {% include 'includes/message.html' %}
+</div>
 
 {% include 'includes/nav_desktop.html' %} 
 
@@ -26,13 +32,10 @@
 {% endblock %}
 
 
-
-
 </div>
 {# SCRIPTS #}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
-
 
 
 </html>

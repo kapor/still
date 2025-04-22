@@ -1,0 +1,74 @@
+<!-- aaa/templates/posts/posts.html -->
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block scripts %} 
+<script src="{% static 'js/posts.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+posts
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+  <div class="top_part">
+
+    <div class="header">
+      {% if user.is_authenticated %}
+      <h1>Hey
+        <!-- link to all the user's posts -->
+        <a href="{% url 'for_user' username=user.username %}">
+        {{user.username}}</a><br>
+          These are posts<br>
+
+        <a data-toggle="modal" data-target="#modal_form">
+        Create one
+        </a>
+
+      </h1>
+    </div>
+
+  {% else %}
+
+    <div class="header">
+      <h1>Hey.<br>
+          These are posts<br>
+      </h1>
+    </div>
+    
+  {% endif %}
+
+  </div>
+
+  <div>
+
+
+
+  <div id="post_content">
+  {% for item in page_obj %}
+  {% include 'includes/_post.html' with post_url=True delete=False group=True details=True like=True %}
+  {% endfor %}
+  {% include 'includes/paginate.html' %} 
+  </div>
+
+
+
+
+  {% include 'posts/modal.html' %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

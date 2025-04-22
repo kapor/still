@@ -8,45 +8,58 @@
 <div {% if item|is_app:"groups" %} class="post2" {% else %} class="post3" {% endif %} id="post_list">
 {% endif %}
 
-    <div>
+
     <!-- TITLE/MESSAGE -->
       <div class="post_message_group">
 
         <div class="button_group">
+          <!-- TITLE/MESSAGE -->
           <div class="post_message">
+            {% if post_url %}
             <a href="{{ item.group.get_absolute_url }}">
-              <h3>{{ item.message | safe }}</h3>
+              <h3 id="message">{{ item.message | safe }}</h3>
             </a>
-          </div>
-          <!-- DELETE BUTTON -->
-          {% if delete %}
-            {% if user.is_superuser or post.user == user and not hide_delete %}
-            <a href="{% url 'groups:commentdelete' pk=item.pk %}">
-              <div class="modal_button_xsmall">remove</div>
-            </a>
+            {% else %}
+              <h3 id="message">{{ item.message | safe }}</h3>
             {% endif %}
-          {% endif %}
+          </div>
+
+        {% if user.is_authenticated %}
+          <div class="feed_buttons">
+            <!-- DELETE BUTTON -->
+            {% if delete %}
+              {% if user.is_superuser or item.user == user and not hide_delete %}
+              <button onclick="document.location='{% url 'groups:commentdelete' pk=item.pk %}'" class="modal_button_xsmall">Remove</button>
+              {% endif %}
+            {% endif %}
+            <!-- DETAILS BUTTON -->
+            {% if details %}
+              <button onclick="document.location='{{ item.group.get_absolute_url }}'" class="modal_button_xsmall">Details</button>
+            {% endif %}
+          </div>
+        {% endif %}
+        
         </div>
+
           <!-- USER/URL/TIMESTAMP -->        
           <span class="username">
             {% if user %}
               <a href="{% url 'for_user' username=item.user.username %}">
-              @{{ item.user.username }}
+              {{ item.user.username }}
               </a>
             {% endif %}
-              commented in
+              commented
             <!-- GROUP -->    
-            {% if item.group %}
-              <span class="group-name">
+            {% if group %} in 
+              <span class="group_name">
                 <a href="{{ item.group.get_absolute_url }}">
-                {{item.group.name}}
+                {{ item.group.name }}
                 </a>
-                {{item.created_at}}
               </span>
             {% endif %}
+            {{ item.created_at|naturaltime }}
           </span>
         </div>
 
-    </div>
 
   </div>

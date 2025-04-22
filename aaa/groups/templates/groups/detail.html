@@ -1,0 +1,161 @@
+<!-- /groups/posts.html -->
+{% extends "base.html" %}
+{% load static %}
+{% load my_filters %}
+{% load humanize %}
+
+
+{% block scripts %} 
+<script src="{% static 'js/group_detail.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+groups: {{ group.name }}
+{% endblock title %}
+
+
+
+{% block content %}
+
+
+	<div class="top_part">
+		<div class="header">
+			<h2>{{ group.name }}</h2>
+
+			<div class="group_description">
+				{% if group.description %}
+				<h3>{{group.description}}</h3>
+				{% else %}
+				<h3>No description yet.</h3>
+				{% endif %}
+			</div>
+
+	      <div class="group_count">
+	        <div class="group_count_row">
+			Member{{ group.members.count | pluralize }}:<span class="badge">{{ group.members.count }}</span>
+	        </div>
+	        <div class="group_count_row">
+	          Post{{ group.posts.count | pluralize }}:<span class="badge">{{ group.posts.count }}</span>
+	        </div>
+	        <div class="group_count_row">
+	          Comment{{ comment.count | pluralize }}:<span class="badge">{{ comment.count }}</span>
+	        </div>
+	      </div>
+
+		</div>
+	</div>
+
+
+	{% if user.is_superuser %}
+
+		<div class="button_container">
+			<a href="{% url 'groups:all' %}"><div class="button_accent">
+				View All Groups
+			</div></a>
+			{% if user in group.members.all %}
+			<a href="{% url 'groups:leave' slug=group.slug %}" ><div class="button_secondary">
+				Leave
+			</div></a>
+				{% else %}
+			<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action">
+				Join
+			</div></a>
+			{% endif %}
+			{% if user.is_superuser %}
+			<a href="{% url 'groups:delete' slug=group.slug %}"><div class="button_secondary">
+				Remove Group
+			</div></a>
+			{% else %}
+			{% endif %}
+		</div>
+	{% else %}
+		<div class="button_container">
+			<button class="button_accent" id="back_button">Back</button>
+			<a href="{% url 'groups:all' %}"><div class="button_accent">
+				View All Groups
+			</div></a>
+			{% if user in group.members.all %}
+			<a href="{% url 'groups:leave' slug=group.slug %}" ><div class="button_secondary">
+				Leave
+			</div></a>
+				{% else %}
+			<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action">
+				Join
+			</div></a>
+			{% endif %}
+		</div>
+	{% endif %}
+
+	<div class="group_detail_lists">
+			<h3 class="h3"><a href="{% url 'chirps:all' %}">Chirps</a></h3>
+			{% for item in chirp %}
+				
+				{% include 'includes/_chirp.html' with post_url=True delete=False group=False details=True like=True %}
+
+	  		{% empty %}
+	  		<h3>Nobody has posted yet.</h3>
+			{% endfor %}
+
+
+	</div>
+
+	<div class="group_detail_lists">
+			<h3 class="h3"><a href="{% url 'posts:all' %}">Posts</a></h3>
+			{% for item in group.posts.all %}
+				
+				{% include 'includes/_post.html' with post_url=True delete=False group=False details=True like=True %}
+
+	  		{% empty %}
+	  		<h3>Nobody has posted yet.</h3>
+			{% endfor %}
+
+
+	</div>
+
+	<div class="group_detail_lists">
+			<h3 class="h3">Comments</h3>
+			{% for item in comment  %}
+
+		
+  			{% include 'includes/_comment.html' with delete=True group=True post_url=False %}
+
+	  		{% empty %}
+	  		<h3>Nobody has commented yet.</h3>
+			{% endfor %}
+	</div>
+
+
+
+	{% if user in group.members.all %}
+	<div class="docked_container">
+		<div class="search_bar">
+			<form method="post">
+				{% csrf_token %}
+			    <input type="text" name="message" class="field_small" placeholder="Make a comment" required="" id="id_message">
+			    <input type="submit" value="Add" class="button_small">
+			</form>
+		</div>
+	</div>
+	{% else %}
+	{% endif %}
+
+	{% if user in group.members.all %}
+
+	{% else %}
+	{% endif %}
+
+
+
+
+	{% include 'posts/modal.html' %}
+	{% include 'posts/modal_delete.html' %}
+
+
+
+
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,59 @@
+<!-- blog/modal.html -->
+
+<div class="modal" id="modal_form" tabindex="-1" role="dialog">
+
+  <div class="modal_dialog" role="document">
+
+
+
+    <div class="modal_header">
+        <h5>Add entry</h5>
+        <div id="close_x" data-dismiss="modal">
+        <img src="/media/images/icons/24x24_close.svg">
+        </div>
+    </div>
+    
+
+
+
+	<form method="POST" action="#" id="blog_form" enctype="multipart/form-data">
+
+
+        <div class="form_container">
+
+<!--           <div> 
+          <label for="id_title">Title:</label>
+          <input type="text" name="title" maxlength="200" class="field_char" placeholder="Enter text" id="id_title" required>
+          </div>
+
+          <div>
+          <label for="id_message">Message:</label>
+          <textarea name="message" cols="40" rows="10" class="field_description" placeholder="Enter text" id="id_message" required></textarea>
+          </div>
+
+          <div>
+          <label for="id_tags">Tags:</label>
+          <div class="helptext" id="id_tags_helptext">A comma-separated list of tags.</div>
+          <input type="text" name="tags" class="field_char" placeholder="A comma-separated list of tags." aria-describedby="id_tags_helptext" id="id_tags">
+          </div>
+
+          <div>
+          <label for="id_image">Image:</label>
+          <input type="file" name="image" accept="image/*" class="field_image" placeholder="" id="id_image">
+          </div> -->
+          {{ form }}
+          {% csrf_token %}
+
+        </div>
+    
+      <div class="button_container_modal">
+			<button type="button" class="button_secondary" data-dismiss="modal" id="cancel_button">I don't want to</button>
+			<input type="submit" value="Add" class="button_accent"></input>
+      </div>
+    </form>
+
+
+  </div>
+</div>
+
+

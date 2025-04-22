@@ -22,59 +22,46 @@ class file_input_edit(forms.ClearableFileInput):
 
     
 
-class PostForm(forms.Form):
-	message = forms.CharField(widget=forms.Textarea)
-	image = forms.ImageField(label="Image", required=False)
+class PostForm(forms.ModelForm):
 	group = forms.ModelChoiceField(
 		label="Group",
 		required=True,
 		queryset=Group.objects.all(),
 		)
-
-
+	image = forms.ImageField(
+		widget=file_input_initial,
+		)
+ 
 	class Meta:
 		model = Post
-		fields = ['message', 'group']
+		fields = ['message', 'group', 'image']
 
 	def __init__(self, *args, user=None, **kwargs):
 		qs = Group.objects.filter(members=user)
 		super().__init__(*args, **kwargs)
-		self.fields['message'].widget.attrs.update({'class':'field_description'})
+
+		self.fields['message'].widget.attrs.update({
+			'class': 'field_description', 
+			'placeholder': 'What are you going to say?',
+			'id': 'id_message'
+		})
+
 		self.fields['group'].queryset = qs
-		self.fields['group'].widget.attrs.update({'class': 'field_select', 'placeholder': ''})
-		self.fields['image'].widget.attrs.update({'class': 'field_image'})
+		self.fields['group'].widget.attrs.update({
+			'class': 'field_select', 
+			'placeholder': 'Select from your groups', 
+			'id': 'id_group'
+		})
+
+		self.fields['image'].widget.attrs.update({
+			'class': 'field_image', 
+			'placeholder': '',
+			'id': 'id_image'
+		})
+
 		for field in self.fields.values():
 			self.fields['image'].required = False
 
-
-
-
-
-# class PostFormGroup(forms.ModelForm):
-# 	message = forms.CharField()
-# 	group = forms.ModelChoiceField(label="group", required=False, queryset=Group.objects.all(), widget=post_group())
-
-
-
-# 	class Meta:
-# 		model = Post
-# 		fields = ['message', 'group']
-
-# 	def __init__(self, *args, user=None, **kwargs):
-# 		qs = Group.objects.filter(members=user)
-# 		super().__init__(*args, **kwargs)
-# 		self.fields['group'].queryset = qs
-# 		self.fields['message'].widget.attrs.update({'class': 'field_char', 'placeholder': ''})
-# 		self.fields['group'].widget.attrs.update({'class': 'field_select', 'placeholder': ''})
-
-
-
-
-# 	def __init__(self, *args, **kwargs):
-# 		user = kwargs.pop('user', None)  # Get the user from kwargs, if provided
-# 		super().__init__(*args, **kwargs)
-# 		if user:
-# 			self.instance.group = user # Automatically set the foreign key
 
 
 
@@ -92,6 +79,47 @@ class PostFormGroup(forms.ModelForm):
 
 
 
+
+class EditForm(forms.Form):
+ 
+	# group = forms.ModelChoiceField(
+	# 	label="Group",
+	# 	required=True,
+	# 	queryset=Group.objects.all(),
+	# 	)
+	image = forms.ImageField(
+		widget=file_input_edit,
+		)
+ 
+	# class Meta:
+	# 	model = Post
+	# 	fields = ['message', 'image']
+
+	def __init__(self, *args, user=None, **kwargs):
+		#qs = Group.objects.filter(members=user)
+		super().__init__(*args, **kwargs)
+
+		self.fields['message'].widget.attrs.update({
+			'class': 'field_description', 
+			'placeholder': 'What are you going to say?',
+			'id': 'id_message'
+		})
+
+		# self.fields['group'].queryset = qs
+		# self.fields['group'].widget.attrs.update({
+		# 	'class': 'field_select', 
+		# 	'placeholder': 'Select from your groups', 
+		# 	'id': 'id_group'
+		# })
+
+		self.fields['image'].widget.attrs.update({
+			'class': 'field_image', 
+			'placeholder': '',
+			'id': 'id_image'
+		})
+
+		for field in self.fields.values():
+			self.fields['image'].required = False
 
 
 

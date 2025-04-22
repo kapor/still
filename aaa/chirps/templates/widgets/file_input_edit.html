@@ -1,0 +1,59 @@
+{% load i18n %}
+{% load widget_tweaks %}
+
+
+<!-- {% if widget.is_initial %}
+<div class="widget_input_text">
+    "Change:"
+    {{ widget.input_text }}:
+</div>
+{% endif %} -->
+
+
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} />
+
+
+{% if widget.value.url %}
+
+<div class="image_cover_container">
+
+
+    <div class="widget_input_text">
+        <!-- "Currently:" -->
+    <!-- {{ widget.initial_text }}: --> 
+    Current image
+    </div>
+
+    <a href="{{ widget.value.url }}" target="_blank">
+    <img src="{{ widget.value.url }}" alt="image" class="image_cover">
+    </a>
+
+    {% if not widget.required %}
+    <label for="{{ widget.checkbox_id }}">
+        <span class="widget_checkbox">
+        <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}" />
+            {{ widget.clear_checkbox_label }}
+        </span>
+    </label>
+    {% endif %}
+</div>
+
+
+
+{% else %}
+<!--     <div class="widget_input_text">
+    Placeholder Image:
+    </div>
+    <a href="/media/images/blank.jpg" target="_blank">
+    <img src="/media/images/blank.jpg" alt="image" class="image_cover">
+    </a> -->
+{% endif %}
+
+
+
+
+
+
+
+
+

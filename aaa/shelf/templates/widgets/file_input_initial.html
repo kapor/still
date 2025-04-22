@@ -1,46 +1,28 @@
+<!-- shelf/templates/widgets/file_input_initial.html -->
 {% load i18n %}
 {% load widget_tweaks %}
 
 
-<!-- {% if widget.is_initial %}
-<div class="widget_input_text">
-    "Change:"
-    {{ widget.input_text }}:
-</div>
-{% endif %} -->
 
-
+{% if widget.value %}
 <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} />
 
 <div class="widget_input_text">
     <!-- "Currently:" -->
-{{ widget.initial_text }}:
+<!-- {{ widget.initial_text }}: --> 
+Current image
 </div>
 
 
 <div class="image_cover_container">
-{% if widget.value %}
   <a href="{{ widget.value.url }}" target="_blank">
   <img src="{{ widget.value.url }}" alt="image" class="image_cover">
   </a>
-{% else %}
-  <a href="/media/images/blank.jpg" target="_blank">
-  <img src="/media/images/blank.jpg" alt="image" class="image_cover">
-  </a>
-{% endif %}
 </div>
 
-<!-- {% if not widget.required %}
-
-<label for="{{ widget.checkbox_id }}">
-<input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}" />
-    {{ widget.clear_checkbox_label }}
-</label>
-{% endif %} -->
-
-<br/>
-
-
+{% else %}
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} />
+{% endif %}
 
 
 

@@ -20,7 +20,7 @@
           </div>
         <!-- DELETE BUTTON -->
           {% if delete %}
-            {% if user.is_superuser or post.user == user and not hide_delete %}
+            {% if user.is_superuser or item.user == user and not hide_delete %}
             <a hx-get="{% url 'shelf:delete' pk=item.pk %}" hx-target="body" hx-swap="beforeend">
               <div class="modal_button_xsmall">remove</div>
             </a>
@@ -28,28 +28,22 @@
           {% endif %}
         </div>
         <!-- TEXT/MESSAGE -->
-          {% if item.description == None %}
-          {% else %}
+          {% if item.description %}
           <div class="post_text">
             <a href="{% url 'shelf:detail' pk=item.pk %}">
               <p>{{ item.description | safe }}</p>
             </a>
           </div>
+          {% else %}
           {% endif %}
         <!-- USER/URL/TIMESTAMP -->
           <span class="username">
-
           {% if user %}
-            <a href="{% url 'for_user' username=item.user.username %}">
-            @{{ item.user }}
-            </a>
+            <a href="{% url 'for_user' username=item.user.username %}">{{ item.user }}</a>
           {% endif %}
-
-            added this to a
-            <a href="{% url 'shelf:shelf' %}">
-            shelf
-            </a>
+            added this to a <a href="{% url 'shelf:shelf' %}">shelf</a>
           </span>
+            {{ item.created_at|naturaltime }}
         </div>
       </div>
 

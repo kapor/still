@@ -1,0 +1,7 @@
+<!-- blog/templates/blog/published.html -->
+
+<div id="post_content">
+  {% for item in blog_list %}
+  {% include 'includes/_blog.html' with delete=True %}
+  {% endfor %}
+</div>

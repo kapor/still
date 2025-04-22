@@ -1,0 +1,23 @@
+<!-- aaa/groups/templates/groups/modal.html -->
+{% extends "base_modal.html" %}
+{% load static %}
+
+
+
+
+{% block modal_title %} 
+Create a group
+{% endblock %}
+
+
+      
+
+{% block modal_form %} 
+<form method="POST" action="#" id="group_form">
+{% endblock %}
+
+
+{% block buttons %}
+<button type="button" class="button_secondary" data-dismiss="modal" id="cancel_button">I don't want to</button>
+<input type="submit" value="Create" class="button_accent"></input>
+{% endblock %}

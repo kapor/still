@@ -1,0 +1,128 @@
+<!-- blog/blog.html -->
+{% extends "base.html" %}
+{% load static %}
+{% load my_filters %}
+{% load humanize %}
+
+
+{% block scripts %} 
+<script src="{% static 'js/blog_detail.js' %}" defer></script>
+<script src="{% static 'js/blog_like.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+updates / {{ blog_detail.title }}
+{% endblock title %}
+
+
+{% block content %}
+
+{% include 'blog/modal_edit.html' %}
+{% include 'blog/modal_delete.html' %}
+
+  <div class="postlist">
+
+    <div class="blog_post">
+      {% if user.is_authenticated %}
+        {% if blog_detail.published_date %}
+        <h3>{{ blog_detail.title }}</h3>
+        {% else %}
+        <h3>{{ blog_detail.title }} <span class="draft_indicator">[draft]</span></h3>
+        {% endif %}
+      {% else %}
+      <h3>{{ blog_detail.title }}</h3>
+      {% endif %}
+
+      <div class="time">
+      <p>{{ blog_detail.published_date | date:'d M Y' }}</p>
+      </div>
+      <div class="description">
+      {{ blog_detail.message | safe }}
+      </div>
+    </div>
+
+    <!-- TAGS -->
+    {% if blog_detail.tags.all %}
+      <td>{% for tags in blog_detail.tags.all %}
+      <tag class="taggy">{{ tags }}</tag>
+      </td>
+    {% endfor %}
+    {% else %}
+    {% endif %}
+
+    <div class="crop_detail">
+      {% if blog_detail.image %}
+      <img src="{{ blog_detail.image.url }}">
+      {% else %}
+      <!-- <img src="/media/images/blank.jpg"> -->
+      {% endif %}
+    </div>
+
+  </div>
+
+  {% if user.is_superuser %}
+  <!-- EDIT / ROMOVE  -->
+      {% if user.is_authenticated %}
+        {% if blog_detail.published_date %}
+        <div class="button_container">
+          <a href="{% url 'blog:blog_main' %}"><div class="button_accent">
+            All Entries
+          </div></a>
+          <!-- <button class="button_accent" id="back_button">Back</button> -->
+          <button class="button_secondary" id="edit_button" data-toggle="modal" data-target="#modal_form">Edit</button>
+          <!-- REMOVE -->
+          <button class="button_secondary" id="delete_button" data-toggle="modal" data-target="#delete_modal" >Delete</button>
+          <!-- LIKE/UNLIKE BUTTON -->
+          <form class="like_unlike_blog_form" data_form_id="{{ blog_detail.id }}" style="margin:0px">
+            <button href="{% url 'blog:like_unlike' %}" class="button_secondary" id="like_unlike_blog_{{ blog_detail.id }}">
+              {% if request.user in blog_detail.liked.all %}
+              Unlike  | {{ blog_detail.liked.count }}
+              {% else %}
+              Like  | {{ blog_detail.liked.count }}
+              {% endif %}
+            </button>
+          </form>
+        </div>
+        {% else %}
+        <div class="button_container"> 
+          <a href="{% url 'blog:blog_main' %}"><div class="button_accent">
+            All Entries
+          </div></a>
+          <!-- <button class="button_accent" id="back_button">Back</button> -->
+          <button class="button_secondary" id="edit_button" data-toggle="modal" data-target="#modal_form">Edit</button>
+          <!-- REMOVE -->
+          <button class="button_secondary" id="delete_button" data-toggle="modal" data-target="#delete_modal" >Delete</button>
+          <a href="{% url 'blog:blog_publish' pk=blog_detail.pk %}">
+          <div class="button_action" href="{% url 'blog:blog_publish' pk=blog_detail.pk %}" >
+            Publish
+          </div></a>
+
+        </div>
+        {% endif %}
+      {% endif %}
+  {% else %}
+        <div class="button_container"> 
+          <a href="{% url 'blog:blog_main' %}"><div class="button_accent">
+            All Entries
+          </div></a>
+
+        {% if user.is_authenticated %}
+          <!-- LIKE/UNLIKE BUTTON -->
+          <form class="like_unlike_blog_form" data_form_id="{{ blog_detail.id }}" style="margin:0px">
+            <button href="{% url 'blog:like_unlike' %}" class="button_secondary" id="like_unlike_blog_{{ blog_detail.id }}">
+              {% if request.user in blog_detail.liked.all %}
+              Unlike  | {{ blog_detail.liked.count }}
+              {% else %}
+              Like  | {{ blog_detail.liked.count }}
+              {% endif %}
+            </button>
+          </form>
+        {% endif %}
+        </div>
+  {% endif %}
+
+
+
+{% endblock %}
+
+

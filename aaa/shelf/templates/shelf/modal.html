@@ -1,0 +1,70 @@
+<!-- blog/modal.html -->
+
+<div class="modal" id="modal_form" tabindex="-1" role="dialog">
+
+  <div class="modal_dialog" role="document">
+
+
+
+    <div class="modal_header">
+        <h5>Add an Item</h5>
+        <div id="close_x" data-dismiss="modal">
+        <img src="/media/images/icons/24x24_close.svg">
+        </div>
+    </div>
+    
+
+
+
+    <form action="#" id="shelf_form" method="POST" enctype="multipart/form-data">
+
+
+        <div class="form_container">
+
+          <!-- TITLE -->
+          <div>
+          <label for="id_title">Title:</label>
+          <input type="text" name="title" maxlength="200" class="field_char" id="id_title" required="">
+          </div>
+
+          <!-- AUTHOR -->
+          <div>
+          <label for="id_author">Author:</label>
+          <input type="text" name="author" maxlength="500" class="field_char" placeholder="" id="id_author">
+          </div>
+
+          <!-- YEAR -->
+          <div>
+          <label for="id_year">Year:</label>
+          <input type="number" name="year" class="field_int" placeholder="" id="id_year">
+          </div>
+
+          <!-- TAGS -->
+          <label for="id_tags">Tags:</label>
+          <input class="field_char" type="text" name="tags" id="id_tags" placeholder='A comma-separated list of tags'>
+    
+
+          <!-- DESCRIPTION -->
+          <div>
+          <label for="id_description">Description:</label>
+          <textarea name="description" rows="10" class="field_description" id="id_description"></textarea>
+          </div>
+
+          <!-- IMAGE -->
+          <label for="id_image">Image:</label>
+          <input type="file" name="image" accept="image/*" class="field_image" placeholder="" id="id_image">
+
+          {% csrf_token %}
+
+        </div>
+
+
+        <div class="button_container_modal">
+          <button type="button" class="button_secondary" data-dismiss="modal" id="cancel_button">I don't want to</button>
+          <input type="submit" value="Add" class="button_accent"></input>
+        </div>
+    </form>
+
+
+  </div>
+</div>

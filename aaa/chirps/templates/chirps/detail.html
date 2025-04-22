@@ -1,0 +1,102 @@
+<!-- chirps/detail.html -->
+{% extends "base.html" %}
+{% load static %}
+{% load my_filters %}
+{% load humanize %}
+
+
+{% block scripts %} 
+<script src="{% static 'js/chirp_detail.js' %}" defer></script>
+<script src="{% static 'js/chirp_like.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+posts
+{% endblock title %}
+
+
+{% block content %}
+
+{% include 'chirps/modal_edit.html' %}
+{% include 'chirps/modal_delete.html' %}
+{% include 'chirps/modal.html' %}
+
+  <div id="post_list">
+
+  <div class="post_message_group">
+
+    <div class="post_post">
+
+      <div class="post_message">
+      <h2 id="message" class="message_info">{{ item.message }}</h2>
+      </div>
+
+      <div class="username_detail">
+      <a href="{% url 'for_user' username=item.user.username %}">{{ item.user.username }}</a>
+      posted in 
+      <a href="{{ item.group.get_absolute_url }}"><span id="group">{{ item.group.name }}</span></a>
+      {{ item.created_at|naturaltime }}
+      </div>
+
+    </div>
+
+      {% if item.image %}
+      <div class="crop_detail">
+        <img src="{{ item.image.url }}">
+      </div>
+      {% else %}
+      {% endif %}
+
+  </div>
+
+
+
+
+  </div>
+
+{% if user.is_authenticated %}
+  {% if user.is_superuser %}
+    <div class="button_container">
+      <!-- BACK -->
+      <a href="{{ item.group.get_absolute_url }}"><div class="button_accent" id="back_button">{{ item.group.name }}</div></a>
+      <!-- <button class="button_accent" id="back_button">Back</button> -->
+      <!-- EDIT -->
+      <button class="button_secondary" id="edit_button" data-toggle="modal" data-target="#modal_edit">Edit</button>
+      <!-- REMOVE -->
+      <button class="button_secondary" id="delete_button" data-toggle="modal" data-target="#delete_modal" >Delete</button>
+      <!-- LIKE/UNLIKE BUTTON -->
+          <form class="like_unlike_form" data_form_id="{{ item.id }}" style="margin:0px">
+            <button href="{% url 'chirps:like_unlike' %}" class="button_secondary" id="like_unlike_chirp_{{ item.id }}">
+              {% if request.user in item.liked.all %}
+              Unlike  | {{ item.liked.count }}
+              {% else %}
+              Like  | {{ item.liked.count }}
+              {% endif %}
+            </button>
+          </form>
+        </div>
+    </div>
+  {% else %}
+    <div class="button_container">
+      <a href="{{ item.group.get_absolute_url }}"><div class="button_accent" id="back_button">{{ item.group.name }}</div></a>
+      <!-- <button class="button_accent" id="back_button">Back</button> -->
+      <!-- LIKE/UNLIKE BUTTON -->
+          <form class="like_unlike_form" data_form_id="{{ item.id }}" style="margin:0px">
+            <button href="{% url 'chirps:like_unlike' %}" class="button_secondary" id="like_unlike_chirp_{{ item.id }}">
+              {% if request.user in item.liked.all %}
+              Unlike  | {{ item.liked.count }}
+              {% else %}
+              Like  | {{ item.liked.count }}
+              {% endif %}
+            </button>
+          </form>
+    </div>
+  {% endif %}
+{% endif %}
+
+
+
+
+{% include 'includes/message.html' %}
+
+{% endblock %}
