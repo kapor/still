@@ -19,12 +19,6 @@ import os
 
 
 
-
-
-
-    
-
-
 # class SearchView(ListView):
 #     model = Shelves
 #     template_name = 'shelf/shelf_search_results.html'
@@ -49,8 +43,6 @@ import os
 #         page_obj = context['page_obj']
 #         context['query'] = self.request.GET.get('q', '')
 #         return context
-
-
 
 
 
