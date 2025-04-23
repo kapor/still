@@ -149,7 +149,7 @@ window.addEventListener('click', (event) => {
 ////////////////////////////////////////////////////////
 /// CLOSE MODAL ==> FORM RESET
 
-
+/*
 const login_form = document.getElementById('login_form');
 const login_cancel_button = document.getElementById('login_cancel_button');
 const login_close_x = document.getElementById('login_close_x');
@@ -178,4 +178,4 @@ window.addEventListener('click', (event) => {
 });
 
 
-
+*/

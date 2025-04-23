@@ -7,7 +7,7 @@
 
 
     <div class="modal_header">
-        <h5>Update entry</h5>
+        <h5>Edit entry</h5>
         <div id="close_x" data-dismiss="modal">
         <img src="/media/images/icons/24x24_close.svg">
         </div>
@@ -30,10 +30,10 @@
           <textarea name="message" cols="40" rows="10" class="field_description" placeholder="What are you going to say?" id="id_message" required=""></textarea>
           
           <!-- TAGS -->
-          <div>
+<!--           <div>
           <label for="id_tags">Tags:</label>
           <input class="field_char"  id="id_tags" value="{% for tags in blog_detail.tags.all %}{{ tags }}{% if not forloop.last %}, {% endif %}{% endfor %}">
-          </div>
+          </div> -->
 
           <!-- IMAGE -->
           <label for="id_image">Image:</label>

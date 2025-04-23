@@ -13,21 +13,12 @@ from taggit.forms import TagField, TagWidget
 
 
 
-
-
-
-
 class file_input_initial(forms.ClearableFileInput):
     template_name = 'widgets/file_input_initial.html'
 
 
-
-
 class file_input_edit(forms.ClearableFileInput):
     template_name = 'widgets/file_input_edit.html'
-
-
-
 
 
 class BlogForm(forms.ModelForm):
@@ -69,10 +60,6 @@ class BlogForm(forms.ModelForm):
 		})
 		for field in self.fields.values():
 			self.fields['image'].required = False
-
-
-
-
 
 
 

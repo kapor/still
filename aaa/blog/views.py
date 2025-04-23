@@ -29,7 +29,6 @@ def blog_list_create(request):
 	published = Blog.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 	drafts = Blog.objects.filter(published_date__isnull=True).order_by('-created_at')
 
-
 	combined_list = list(chain(published, drafts))
 
 	sorted_objects = sorted(
@@ -38,11 +37,9 @@ def blog_list_create(request):
 		reverse=True
 	)
 
-
 	paginator = Paginator(published, 20) 
 	page_number = request.GET.get('page', 1)
 	page_obj = paginator.get_page(page_number)
-
 
 	if request.accepts('application/json'):
 		if form.is_valid():
@@ -106,9 +103,6 @@ def blog_detail_data(request, pk):
 
 
 
-
-
-
 @login_required
 def like_unlike_blog(request):
     if request.accepts('application/json'):
@@ -124,9 +118,6 @@ def like_unlike_blog(request):
         return JsonResponse({'liked': liked, 'count': obj.like_count})
 
 
-
-
-
 class BlogDetailView(DetailView):
 	model = Blog
 	context_object_name = 'blog_detail'
@@ -134,22 +125,27 @@ class BlogDetailView(DetailView):
 
 
 
-# class BlogUpdateView(LoginRequiredMixin, UpdateView):
-# 	model = Blog
-# 	login_url = "login"
-# 	template_name = 'blog/blog_modal_edit.html'
-# 	form_class = Blog
-# 	required = False
+# def update_post(request, pk):
+# 	instance = get_object_or_404(Blog, pk=pk)
 
-# 	def post(self, request, *args, **kwargs):
-# 		messages.success(self.request, "Post updated")
-# 		return super().post(request, *args, **kwargs)
+# 	if request.method == 'POST':
+# 		form = BlogUpdate(request.POST, instance=instance)
+
+# 		if form.is_valid():
+# 			form.save()
+# 			return JsonResponse({'status': 'success', 'message': 'Post Updated'})
+# 		else:
+# 			return JsonResponse({'status': 'error', 'errors': form.errors})
+
+# 	context = {'form': form, 'instance': instance}
+# 	return render(request, 'blog/blog_modal_edit.html', context)
 
 
 
 def edit_post(request, pk):
 	if request.method == 'POST' and request.accepts('application/json'):
 		obj = get_object_or_404(Blog, pk=pk)
+
 		if 'image' in request.FILES:
 			obj.image = request.FILES['image']
 
@@ -160,27 +156,11 @@ def edit_post(request, pk):
 		messages.success(request, 'Post Updated')
 		obj.save(update_fields=['image', 'title', 'message'])
 
-
-
 		return redirect('blog:blog_detail', pk=pk)
 	else:
 		return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
 
 
-
-
-
-
-
-class BlogDeleteDraft(LoginRequiredMixin, DeleteView):
-	model = Blog
-	template_name = 'blog/blog_confirm_delete.html'
-	success_url = reverse_lazy('blog:blog_list')
-	
-
-	def post(self, request, *args, **kwargs):
-		messages.success(self.request, "Post successfully deleted")
-		return super().post(request, *args, **kwargs)
 
 
 @login_required(login_url='login')
