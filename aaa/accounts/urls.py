@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path
 from . import views
-from .views import LoginModal, user_info_view
+from .views import LoginModal
 
 app_name = 'accounts'
 
@@ -15,7 +15,7 @@ urlpatterns = [
 	path("signup/", views.SignUp.as_view(template_name='reg/signup.html'), name="signup"),
 	
 
-	path("profile/", views.user_info_view, name="profile"),
+	# path("profile/", views.user_info_view, name="profile"),
 
 
 ]

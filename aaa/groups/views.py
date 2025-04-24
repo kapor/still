@@ -41,24 +41,57 @@ def SingleGroup(request, slug):
 	comment = Comment.objects.filter(group=group)
 	post = Post.objects.filter(group=group)
 	chirp = Chirp.objects.filter(group=group)
+	form_a = CommentForm()
+	form_b = PostForm()
 	context = {}
-	if request.method == 'POST':
-		form = CommentForm(request.POST)
-		if form.is_valid():
-			comment = form.save(commit=False)
-			comment.group = group
-			comment.user = request.user
-			comment.save()
-			messages.success(request, 'Comment added')
-			return redirect('groups:single', slug=slug)
-	else:
-		form = CommentForm()
 
-		context = {'comment': comment, 'group': group, 'form': form, 'chirp': chirp}
+	if request.method == 'POST' and request.accepts('application/json'):
+		if 'submit_a' in request.POST:
+			form_a = CommentForm(request.POST)
+			if form_a.is_valid():
+				comment = form_a.cleaned_data
+				comment = form_a.save(commit=False)
+				comment.group = group
+				comment.user = request.user
+				comment.save()
+				messages.success(request, 'Comment added')
+				return redirect('groups:single', slug=slug)
+	else:
+		form_a = CommentForm()
+
+	context = {'comment': comment, 'group': group, 'form_a': form_a, 'chirp': chirp}
+
 	return render(request, 'groups/detail.html', context)
 
 
+# @login_required
+# def group_post(request, slug):
 
+# 	if request.accepts('application/json'):
+# 		if 'submit_b' in request.POST:
+# 			form_b = PostForm(request.POST or None, request.FILES, user=request.user)
+# 			group = get_object_or_404(Group, slug=slug)
+# 			if form_b.is_valid():
+# 				form_b.instance.user = request.user
+# 				instance = form_b.save(commit=False)
+# 				instance.save()
+# 				messages.success(request, 'Post added')
+# 				return JsonResponse({
+# 					'user': instance.user.username,
+# 					'message': instance.message,
+# 				})
+
+# 	context = {'form_b': form_b, 'group': group}
+
+# 	return render(request, 'groups/modal_post.html', context)
+
+
+def group_post(request):
+	if request.accepts('application/json'):
+		if 'submit_b' in request.POST:
+			form_b = PostForm(request.POST or None, request.FILES, user=request.user)
+			return JsonResponse({'message': 'Form 1 submitted successfully'})
+	return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
 
@@ -184,8 +217,6 @@ def load_group(request, **kwargs):
 				}
 			data.append(item)
 		return JsonResponse({'data':data[lower:upper], 'size':size })
-
-
 
 
 

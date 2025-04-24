@@ -1,7 +1,18 @@
 // GROUPS
 const back = document.getElementById('back_button')
-const url = window.location.href + "/data/"
+const url = window.location.href + "data/"
 
+const post_content = document.getElementById('post_content')
+const id_message = document.getElementById('id_message')
+const id_group = document.getElementById('id_group')
+const id_image = document.getElementById('id_image')
+
+const post_form = document.getElementById('post_form')
+const url_delete = window.location.href + "/delete/"
+
+const csrf = document.getElementsByName('csrfmiddlewaretoken')
+
+console.log('csrf', csrf[0].value)
 
 
 console.log('detail')
@@ -122,5 +133,76 @@ const likeUnlikePost = () => {
 
 
 likeUnlikePost()
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+/// CLOSE MODAL ==> FORM RESET
+
+
+const form = document.getElementById('post_form');
+const cancel_button = document.getElementById('cancel_button');
+const close_x = document.getElementById('close_x');
+const modal_dialog = document.getElementById('modal_dialog'); 
+
+cancel_button.addEventListener('click', function() {
+	document.getElementById('post_form').reset();
+});
+
+close_x.addEventListener('click', function() {
+	document.getElementById('post_form').reset();
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    document.getElementById('post_form').reset();
+  }
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === modal_dialog) {
+    form.reset();
+  } else {
+  	// Do nothing
+  }
+});
+
+
+
+
+
+
+
+form.addEventListener('submit', function(e) {
+	e.preventDefault();
+	const formData = new FormData(form);
+	$.ajax({
+		type: 'POST',
+		url: '',
+		data: formData,
+		processData: false,
+		contentType: false,
+    	headers: {'X-CSRFToken': csrftoken},
+		success: function(response) {
+			likeUnlikePost()
+			$('#modal_form').modal('hide')
+			document.getElementById("post_form").reset()
+			window.location.reload();
+		},
+		error: function(error) {
+			console.log(error)
+		}
+	});
+});
+
+
 
 

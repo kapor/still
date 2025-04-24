@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView
 # from .forms import UserForm1, UserForm2
 from . import forms
-from .models import UserInfo
 
 # Create your views here.
 
@@ -35,20 +34,7 @@ class LoginModal(CreateView):
         return self.request.META.get('HTTP_REFERER', '/')
 
 
-def user_info_view(request):
-    obj = get_object_or_404(UserInfo, user=request.user)
-    form = UserInfoForm(request.Post or None, request.FILES or None, instance=obj)
 
-    if request.accepts('application/json'):
-        if form.is_valid():
-            instance = form.save()
-            return JsonResponse({
-                'bio': instance.bio,
-                'picture': instance.picture.url,
-                'user': instance.user.username
-            })
-    context = {'obj': obj, 'form': form,}
-    return render(request, 'accounts/profile.html', context)
 
 
 

@@ -42,4 +42,4 @@ class CommentForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		self.fields['message'].widget.attrs.update({'class': 'field_small', 'placeholder': 'Make a comment'})
+		self.fields['message'].widget.attrs.update({'class': 'field_small', 'id': 'id_message', 'placeholder': 'Make a comment'})

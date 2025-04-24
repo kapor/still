@@ -65,6 +65,9 @@ groups: {{ group.name }}
 			<a href="{% url 'groups:delete' slug=group.slug %}"><div class="button_secondary">
 				Remove Group
 			</div></a>
+<!-- 			<a data-toggle="modal" data-target="#modal_form"><div class="button_secondary">
+				Post
+			</div></a> -->
 			{% else %}
 			{% endif %}
 		</div>
@@ -82,6 +85,9 @@ groups: {{ group.name }}
 			<a href="{% url 'groups:join' slug=group.slug %}"><div class="button_action">
 				Join
 			</div></a>
+<!-- 			<a data-toggle="modal" data-target="#modal_form"><div class="button_secondary">
+				Post
+			</div></a> -->
 			{% endif %}
 		</div>
 	{% endif %}
@@ -117,7 +123,7 @@ groups: {{ group.name }}
 			{% for item in comment  %}
 
 		
-  			{% include 'includes/_comment.html' with delete=True group=True post_url=False %}
+  			{% include 'includes/_comment.html' with delete=True group=True post_url=False group=False %}
 
 	  		{% empty %}
 	  		<h3>Nobody has commented yet.</h3>
@@ -129,10 +135,10 @@ groups: {{ group.name }}
 	{% if user in group.members.all %}
 	<div class="docked_container">
 		<div class="search_bar">
-			<form method="post">
+			<form method="post" id="comment_form">
+				{{ form_a }}
 				{% csrf_token %}
-			    <input type="text" name="message" class="field_small" placeholder="Make a comment" required="" id="id_message">
-			    <input type="submit" value="Add" class="button_small">
+			    <input type="submit" value="Add" class="button_small" name="submit_a">
 			</form>
 		</div>
 	</div>
@@ -147,8 +153,9 @@ groups: {{ group.name }}
 
 
 
-	{% include 'posts/modal.html' %}
+	{% include 'groups/modal_post.html' %}
 	{% include 'posts/modal_delete.html' %}
+	{% include 'posts/modal_edit.html' %}
 
 
 

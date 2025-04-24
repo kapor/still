@@ -1,6 +1,5 @@
 from django import forms
 from django.forms import ModelForm 
-from accounts.models import UserInfo
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
@@ -36,10 +35,7 @@ class UserForm(UserCreationForm):
 			self.fields['photo'].required = False
 
 
-class UserInfoForm(forms.ModelForm):
-	class Meta:
-		model = UserInfo
-		fields = ('bio', 'picture',)
+
 
 
 

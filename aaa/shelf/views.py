@@ -8,7 +8,6 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import authenticate, login, logout
 from shelf.models import Shelves
-from accounts.models import UserInfo
 from django.db.models import Q
 from . import models, forms
 from .forms import ShelfEntryForm, SearchForm, ShelfUpdateForm

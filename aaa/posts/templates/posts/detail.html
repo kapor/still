@@ -31,7 +31,7 @@ posts
       </div>
          
       <div class="username_detail">
-        <a href="{% url 'for_user' username=item.user.username %}">{{ item.user.username }}</a>
+        <a href="{% url 'profiles:for_user' username=item.user.username %}">{{ item.user.username }}</a>
           posted in 
         <a href="{{ item.group.get_absolute_url }}"><span id="group">{{ item.group.name }}</span></a>
           {{ item.created_at|naturaltime }}

@@ -339,6 +339,10 @@ label .text {
   width: 100%;
 }
 
+#comment_form div {
+  width: 100%;
+}
+
 /*COLOR CHANGER*/
 /*Credit and Source: http://codepen.io/thapliyalshivam/pen/dvgXVO*/
 .loader {
@@ -1588,6 +1592,17 @@ hr {
   margin-bottom: 16px;
 }
 
+.profile_header {
+  padding: 40px 0px;
+}
+
+.profile_div {
+  width: 100%;
+  height: 4px;
+  background-color: #cccccc;
+  margin: 40px auto;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -2050,15 +2065,14 @@ section {
   font-size: 24px;
 }
 
-.shelf_top_detail {
+.shelf_top_detail,
+.profile_top_detail {
   display: flex;
   align-items: flex-end;
   width: 100%;
   height: auto;
   padding: 80px 0px 0px 0px;
   gap: 40px;
-  width: 100%;
-  border-radius: 4px;
   height: 500px;
   position: relative;
   overflow: hidden;
@@ -2067,11 +2081,15 @@ section {
   background-position-y: center;
 }
 
-.shelf_top_detail img {
+.profile_top_detail {
+  height: auto;
+}
+
+.shelf_top_detail img .profile_top_detail img {
   backdrop-filter: blur(10px);
 }
 
-.shelf_info {
+.content_info {
   margin-top: 80px;
 }
 
@@ -2092,6 +2110,11 @@ section {
   padding: 8px 0px 40px 0px;
   line-height: 56px;
   /* margin-inline-end: 20px; */
+}
+
+.profile_photo {
+  padding-top: 8px;
+  width: 400px;
 }
 
 .docked_container {

@@ -1,0 +1,56 @@
+<!-- groups/modal_post.html -->
+
+<div class="modal" id="modal_form" tabindex="-1" role="dialog">
+
+  <div class="modal_dialog" role="document">
+
+
+
+    <div class="modal_header">
+        <h5>Add a post</h5>
+        <div id="close_x" data-dismiss="modal">
+        <img src="/media/images/icons/24x24_close.svg">
+        </div>
+    </div>
+    
+
+
+
+        <form method="POST" action="" id="post_form" enctype="multipart/form-data">
+
+	        <div class="form_container">
+
+	        <div>
+		        <label for="id_message">Message:</label>
+		        <ul class="errorlist" id="id_message_error"><li>This field is required.</li></ul>
+		        <textarea name="message" cols="40" rows="10" class="field_description" placeholder="What are you going to say?" id="id_message" required="" aria-invalid="true" aria-describedby="id_message_error"></textarea>
+	    	</div>
+
+	        <div>
+		        <label for="id_group">Group:</label>
+		    	<select name="group" class="field_select" placeholder="Select from your groups" id="id_group" required="" aria-invalid="true" aria-describedby="id_group_error">
+		    		<option value="{{ group.name }}" selected>{{ group.name }}</option>
+		    	</select>
+	    	</div>
+
+
+			<div>
+			    <label for="id_image">Image:</label>
+				<input type="file" name="image" accept="image/*" class="field_image" placeholder="" id="id_image">
+		   	</div>
+
+            {% csrf_token %}
+
+        </div>
+
+
+        <div class="button_container_modal">
+			<button type="button" class="button_secondary" data-dismiss="modal" id="cancel_button">I don't want to</button>
+			<input type="submit" value="Add" class="button_accent" name="submit_b"></input>
+        </div>
+    </form>
+
+
+  </div>
+</div>
+

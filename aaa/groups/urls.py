@@ -8,6 +8,9 @@ app_name = 'groups'
 
 urlpatterns = [
     path('', views.list_groups_create, name='all'),
+    path('<slug>/post/', views.group_post, name='group_post'),
+
+
     path('<int:num_posts>/', views.load_group, name='load'),
 
     # path('grouplist', views.GroupView.as_view(), name='grouplist'),

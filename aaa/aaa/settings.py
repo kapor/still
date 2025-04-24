@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_select2',
     'posts',
+    'profiles',
     'chirps',
     'groups',
     'accounts',

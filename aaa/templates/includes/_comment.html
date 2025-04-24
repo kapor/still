@@ -44,7 +44,7 @@
           <!-- USER/URL/TIMESTAMP -->        
           <span class="username">
             {% if user %}
-              <a href="{% url 'for_user' username=item.user.username %}">
+              <a href="{% url 'profiles:for_user' username=item.user.username %}">
               {{ item.user.username }}
               </a>
             {% endif %}
