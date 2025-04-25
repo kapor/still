@@ -14,7 +14,7 @@ const form = document.getElementById('blog_form');
 
 const url = window.location.href
 
-
+console.log('blog')
 
 // PUBLISH/DRAFT TABS
 const tabHeaders = document.querySelectorAll('.tab_header');
@@ -63,7 +63,7 @@ const csrftoken = getCookie('csrftoken');
 ////////////////////////////
 // form stuff (adding an item)
 
-document.getElementById('blog_form').addEventListener('submit', function(e) {
+/*document.getElementById('blog_form').addEventListener('submit', function(e) {
   e.preventDefault(); // Prevent the default form submission
 
   fetch(this.action, {
@@ -75,7 +75,7 @@ document.getElementById('blog_form').addEventListener('submit', function(e) {
   })
   .then(response => {
     if (response.ok) {
-      window.location.reload();
+      // window.location.reload();
       // handle_alerts('message_success', 'New item added') // Reload the page on success
     } else {
       // Handle errors, e.g., display an error message
@@ -85,72 +85,38 @@ document.getElementById('blog_form').addEventListener('submit', function(e) {
   .catch(error => {
     console.error('Network error:', error);
   });
+});*/
+
+
+form.addEventListener('submit', function(e) {
+	e.preventDefault();
+	const formData = new FormData(form);
+	$.ajax({
+		type: 'POST',
+		url: '',
+		enctype: 'multipart/form-data',
+		data: formData,
+		processData: false,
+		contentType: false,
+    headers: {'X-CSRFToken': csrftoken, 'X-Requested-With': 'XMLHttpRequest', },
+
+		success: function(response) {
+			console.log("success")
+			$('#modal_form').modal('hide')
+			document.getElementById("blog_form").reset()
+			window.location.reload();
+			// handle_alerts('message_success', 'New item added')
+		},
+
+		error: function(error) {
+			console.log(error)
+			handle_alerts('message_success', 'Something went wrong...')
+		}
+	});
 });
 
 
 
-
-/*blog_form.addEventListener('submit', e => {
-	e.preventDefault()
-
-	$.ajax({
-
-		type: 'POST',
-		url: '',
-		datatype: 'JSON',
-		data: {
-			// how to access the form token
-			'csrfmiddlewaretoken': csrf[0].value,
-			'title': id_title.value,
-			'message': id_message.value,
-		},
-			success: function(response) {*/
-				// console.log(response)
-			// places post at top of post_content
-				/*tab2.insertAdjacentHTML('afterbegin',
-				///use backticks to inject html
-					`
-				  <div class="post4" id="post_list">
-
-				      <div class="post_message_group">
-
-				        <div>
-				          <!-- TITLE/MESSAGE -->
-				          <div class="post_message">
-				            <a href="{% url 'blog_detail' pk=item.pk %}">
-				            <h3>${response.title}<span class="draft_indicator"> [draft]</span></h3> 
-				            </a>
-				          </div>
-				          <!-- MESSAGE/TEXT -->
-				          <div class="post_text">
-				            <a href="{% url 'blog_detail' pk=item.pk %}">
-				              <p>${response.message}</p>
-				            </a>
-				          </div>
-				          <!-- USER/URL/TIMESTAMP -->
-				          <span class="username">
-				              Created just now
-				            <br>
-				          </span>
-				        </div>
-
-				      </div>
-
-				  </div>
-					`
-				)*/
-/*			$('#modal_form').modal('hide')
-			handle_alerts('message_success', 'New post added in "Drafts"')
-			document.getElementById("blog_form").reset()
-		  },
-
-			error: function(error) {
-				console.log(error)
-				handle_alerts('message_success', 'Something went wrong...')
-			},
-
-	})
-});*/
 
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////

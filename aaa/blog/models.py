@@ -22,7 +22,7 @@ class Blog(models.Model):
 	created_at = models.DateTimeField(auto_now=True)
 	published_date = models.DateTimeField(blank=True, null=True)
 	tags = TaggableManager(blank=True)
-	image = models.ImageField(upload_to=get_upload_path, default="/images/blank.jpg", verbose_name='Image', null=True, blank=True)
+	image = models.ImageField(upload_to=get_upload_path, verbose_name='Image', null=True, blank=True)
 
 	def __str__(self):
 		return self.title

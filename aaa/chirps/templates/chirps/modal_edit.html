@@ -26,6 +26,7 @@
             <label for="id_image">Update Image:</label>
             <input type="file" name="image" accept="image/*" class="field_image" placeholder="" id="id_image">
 
+            {% if item.image %}
             <div class="modal_image_enlarged_container"> 
             <div class="modal_image_enlarged not_visible" id="modal_image_large"> 
             <img src="{{ item.image.url }}">
@@ -39,6 +40,10 @@
             </div>
             <p class="current_image">current image</p>
             </div>
+
+            {% else %}
+            {% endif %}
+
 
             {% csrf_token %}
 

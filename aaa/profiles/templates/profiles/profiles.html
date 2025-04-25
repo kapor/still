@@ -21,24 +21,69 @@ My Profile
 
 <div class="profile_detail">
 
-	<div class="profile_top_detail">	
+
+		<div class="modal_image_enlarged_container"> 
+			<div class="modal_image_enlarged not_visible" id="modal_image_large"> 
+			<img src="{{ info.picture.url }}" id="info_image_large">
+			</div>
+		</div>
 
 
-		<div class=crop_detail id="crop_detail">
-			{% if info.picture %}
-			<img class="profile_photo" src="/media/{{ info.picture }}">
-			{% else %}
+		<div id="shader"></div>
+
+<!-- 		{% if info.picture %}
+		<div class="profile_crop_detail" id="profile_crop_detail" style="background-image: url( {{ info.picture.url }} )">
+		</div> -->
+<!-- 		{% else %}
+		<div class=profile_crop_detail id="profile_crop_detail">
 			<img class="photo_blank" src="/media/covers/blank.jpg">
-			{% endif %}
 		</div>
+		{% endif %} -->
+
+	<div class="content_info">
+		<div class="profile_info">
+
+			<div class="profile_left">
+
+				<label for="id_image">Picture:</label>
+				<div class="profile_crop_detail" id="profile_crop_detail" style="background-image: url( {{ info.picture.url }} )">
+				</div>
+
+			</div>
 
 
+			<div class="profile_right">
+				<form id="profile_form">
 
-		<div class="button_container">
+					<div class="label_info">
+						<label for="picture-clear_id">Currently:</label>
+						<input type="checkbox" name="picture-clear" id="picture-clear_id">
+						<label for="picture-clear_id">Clear</label>
+						<div class="custom_file_upload">
+							{{ info.picture }} 
+							<input type="file" id="fileInput" class="file-input">
+						</div>
 
-		</div>
+					</div>
 
+					<div class="label_info">
+						<label for="id_bio">Bio:</label>
+			           	<textarea name="bio" cols="40" rows="10" class="field_description" id="id_bio">{{ info.bio }}</textarea>
+			       	</div>
+
+			       	{% csrf_token %}
+
+			       	<div class="button_container">
+						<button type="submit" class="button_accent">Save</button>
+					</div>
+
+				</form>
+		   	</div>
+
+	   	</div>
 	</div>
+
+
 
 
 	<div class="content_info">

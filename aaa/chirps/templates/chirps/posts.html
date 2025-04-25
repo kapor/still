@@ -21,7 +21,7 @@ posts
       {% if user.is_authenticated %}
       <h1>Hey
         <!-- link to all the user's posts -->
-        <a href="{% url 'for_user' username=user.username %}">
+        <a href="{% url 'profiles:for_user' username=user.username %}">
         {{user.username}}</a><br>
           These are chirps<br>
 

@@ -343,6 +343,35 @@ label .text {
   width: 100%;
 }
 
+input::file-selector-button {
+  font-weight: 100;
+  padding: 0.5em;
+  border-radius: 2px;
+}
+
+.custom_file_upload {
+  position: relative;
+  padding: 10px;
+  cursor: pointer;
+  color: #333;
+  background-color: #EEEEEE;
+  border-radius: 2px;
+  line-height: 30px;
+  font-family: #F2F2F2;
+  font-size: 20px;
+  padding: 8px 14px;
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
 /*COLOR CHANGER*/
 /*Credit and Source: http://codepen.io/thapliyalshivam/pen/dvgXVO*/
 .loader {
@@ -876,8 +905,7 @@ input.button_accent_large a,
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 100%;
-  max-height: 100%;
+  width: auto;
   z-index: 20;
   border-radius: 8px;
   padding: 20px;
@@ -890,17 +918,30 @@ input.button_accent_large a,
 .modal_image_enlarged {
   transition: 0.2s;
   box-shadow: 0px 0px 0px #CCC;
+  z-index: 1052;
+  position: fixed;
+  cursor: pointer;
+}
+
+#modal_image_large {
+  z-index: 1052;
 }
 
 #shader {
   width: 100%;
   height: 100%;
-  background-color: #000000;
+  background-color: #222222;
   opacity: 70%;
+  z-index: 1051;
   display: none;
   top: 0;
   left: 0;
   position: fixed;
+  backdrop-filter: blur(2px);
+}
+
+body.modal_open {
+  overflow: hidden;
 }
 
 /*|||||||||||||||||||*/
@@ -1434,6 +1475,7 @@ a:not([href]):not([tabindex]) {
 .post5,
 .post6 {
   display: flex;
+  background-color: white;
 }
 
 .post {
@@ -1590,17 +1632,6 @@ hr {
 
 .top_part .header2 {
   margin-bottom: 16px;
-}
-
-.profile_header {
-  padding: 40px 0px;
-}
-
-.profile_div {
-  width: 100%;
-  height: 4px;
-  background-color: #cccccc;
-  margin: 40px auto;
 }
 
 * {
@@ -2065,34 +2096,6 @@ section {
   font-size: 24px;
 }
 
-.shelf_top_detail,
-.profile_top_detail {
-  display: flex;
-  align-items: flex-end;
-  width: 100%;
-  height: auto;
-  padding: 80px 0px 0px 0px;
-  gap: 40px;
-  height: 500px;
-  position: relative;
-  overflow: hidden;
-  background-size: contain;
-  background-position: center;
-  background-position-y: center;
-}
-
-.profile_top_detail {
-  height: auto;
-}
-
-.shelf_top_detail img .profile_top_detail img {
-  backdrop-filter: blur(10px);
-}
-
-.content_info {
-  margin-top: 80px;
-}
-
 .label_info p {
   font-size: 24px;
 }
@@ -2410,6 +2413,70 @@ ul.paginate li.active {
   font-weight: 100;
   display: none;
   line-height: 40px;
+}
+
+/* PROFILE */
+.profile_header {
+  padding: 40px 0px;
+}
+
+.profile_div {
+  width: 100%;
+  height: 4px;
+  background-color: #cccccc;
+  margin: 40px auto;
+}
+
+.profile_crop_detail {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-position-y: center;
+  height: 400px;
+  width: 400px;
+}
+
+.shelf_top_detail {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: auto;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  gap: 40px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  background-size: contain;
+  background-position: center;
+  background-position-y: center;
+}
+
+.profile_top_detail {
+  height: auto;
+}
+
+.shelf_top_detail img .profile_top_detail img {
+  backdrop-filter: blur(100px);
+}
+
+.content_info {
+  margin-top: 80px;
+}
+
+.profile_info {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  max-height: 460px;
+}
+
+.profile_right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /*# sourceMappingURL=styles.css.map */

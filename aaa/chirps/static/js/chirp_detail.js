@@ -79,6 +79,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'POST',
 			url: url_update,
+			enctype: 'multipart/form-data',
 			data: formData,
 			contentType: false,
 			processData: false,
@@ -179,7 +180,48 @@ if (deleted) {
 
 
 
+// MODAL IMAGE ENLARGE
+document.addEventListener('DOMContentLoaded', function() {
+const image_small = document.getElementById('modal_image_thumb');
+const image_large = document.getElementById('modal_image_large');
+const modal_form = document.getElementById('modal_form');
+const shader = document.getElementById('shader');
 
+image_small.style.cursor = "pointer";
+image_large.style.cursor = "pointer";
+shader.style.cursor = "pointer";
+
+image_small.addEventListener('click', () => {
+image_large.classList.remove('not_visible')
+shader.style.display = "block";
+});
+
+image_large.addEventListener('click', () => {
+image_large.classList.add('not_visible')
+shader.style.display = "none";
+});
+
+shader.addEventListener('click', () => {
+image_large.classList.add('not_visible')
+shader.style.display = "none";
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    image_large.classList.add('not_visible')
+    shader.style.display = "none";
+  }
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === modal_form) {
+    image_large.classList.add('not_visible')
+    shader.style.display = "none";
+  } else {
+    // Do nothing
+  }
+});
+})
 
 
 

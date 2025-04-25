@@ -213,6 +213,7 @@ form.addEventListener('submit', function(e) {
 	$.ajax({
 		type: 'POST',
 		url: '/posts/',
+		enctype: 'multipart/form-data',
 		data: formData,
 		processData: false,
 		contentType: false,

@@ -29,14 +29,6 @@ def blog_list_create(request):
 	published = Blog.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 	drafts = Blog.objects.filter(published_date__isnull=True).order_by('-created_at')
 
-	combined_list = list(chain(published, drafts))
-
-	sorted_objects = sorted(
-		combined_list,
-		key=lambda obj: obj.created_at if hasattr(obj, 'created_at') else datetime('published_date'),
-		reverse=True
-	)
-
 	paginator = Paginator(published, 20) 
 	page_number = request.GET.get('page', 1)
 	page_obj = paginator.get_page(page_number)
@@ -55,7 +47,7 @@ def blog_list_create(request):
 					# 'image': instance.image,
 				})
 
-	context = {'form': form, 'page_obj': page_obj, 'published': published, 'drafts': drafts, 'sorted_objects': sorted_objects}
+	context = {'form': form, 'page_obj': page_obj, 'published': published, 'drafts': drafts,}
 
 	return render(request, 'blog/blog.html', context)
 

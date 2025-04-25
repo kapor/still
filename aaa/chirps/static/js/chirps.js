@@ -210,6 +210,7 @@ form.addEventListener('submit', function(e) {
 	$.ajax({
 		type: 'POST',
 		url: '/chirps/',
+		enctype: 'multipart/form-data',
 		data: formData,
 		processData: false,
 		contentType: false,

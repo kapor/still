@@ -36,7 +36,7 @@ urlpatterns = [
 
     path("", views.Activity.as_view(), name="home"),
     path('results', views.Activity.SearchView.as_view(), name='index_search'),
-    # path('user/<username>', views.User_Activity, name='for_user'),
+    path('user/<username>', views.User_Activity, name='for_user'),
 
 
     path('contact/', include('contact.urls', namespace="contact")),

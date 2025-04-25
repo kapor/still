@@ -27,8 +27,12 @@
 		<li><a class="nav_link" href="{% url 'blog:blog_main' %}">Entries</a></li>
 		<li><a class="nav_link" href="{% url 'posts:all' %}">Posts</a></li>
 		<li><a class="nav_link" href="{% url 'chirps:all' %}">Chirps</a></li>
-		<li><a class="nav_link" href="{% url 'groups:all' %}>Groups</a></li>
+		<li><a class="nav_link" href="{% url 'groups:all' %}">Groups</a></li>
+		{% if user.profiles %}
 		<li><a class="nav_link" href="{% url 'profiles:for_user' username=user.username %}">User</a></li>
+		{% else %}
+		<li><a class="nav_link" href="{% url 'for_user' username=user.username %}">User</a></li>
+		{% endif %}
 		<li>
 			<form method="post" action="{% url 'logout' %}">{% csrf_token %}
     			<button id="logout" class="nav_link" type="submit">logout</button>

@@ -8,9 +8,6 @@
       <img src="/media/{{ item.image }}">
       </a>
     {% else %}
-      <a href="{% url 'blog_detail' pk=item.pk %}">
-      <img src="/media/images/blank.jpg">
-      </a>
     {% endif %}
   </div>
 
