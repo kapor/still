@@ -40,6 +40,29 @@ console.log('detail')
 console.log(window.location)
 
 
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+// MESSAGE CONFIRMATION TIMEOUT
+
+
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('#alert_box').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('.alert_error').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
 
 
 
@@ -93,6 +116,8 @@ $(document).ready(function() {
 			processData: false,
             headers: {'X-CSRFToken': csrftoken},
 			success: function(response) {
+				// window.location = document.referrer;
+				handle_alerts('message_success', 'Post Updated')
 				window.location.reload();
 			},
 			error: function(error) {
@@ -127,7 +152,8 @@ form_delete.addEventListener('submit', e=> {
 		},
 		success: function(response) {
 			// history.go(-2)
-			window.location = document.referrer;
+			// window.location = document.referrer;
+            window.location.href = response.redirect_url;
 			// console.log(response)
 			// history.back(-2).location.reload();
 			// window.location.href = window.location.origin

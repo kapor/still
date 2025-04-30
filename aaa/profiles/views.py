@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 
 from posts.models import Post
 from chirps.models import Post as Chirp
 from blog.models import Blog
 from shelf.models import Shelves
 from groups.models import Group, Comment
+from django.contrib import messages
 
 from itertools import chain, groupby
 from datetime import datetime
@@ -24,7 +26,7 @@ User = get_user_model()
 # Create your views here.
 
 
-
+@login_required
 def profile_view(request, username):
 	obj = Profile.objects.get(user=request.user)
 	user = get_object_or_404(User, username=username)
@@ -50,17 +52,18 @@ def profile_view(request, username):
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
 
-	if request.accepts('application/json'):
-		if form.is_valid():
-			instance.save()
-			messages.success(request, 'Profile Updated')
-			return JsonResponse({
-				'user': instance.user.username,
-				'picture': instance.picture,
-				'bio': instance.bio,
-			})
-
-
+	if request.user == info.user:
+		if request.accepts('application/json'):
+			if form.is_valid():
+				form.instance.user = request.user
+				instance = form.save(commit=False)
+				instance.save()
+				# messages.success(request, 'Profile Updated')
+				return JsonResponse({
+					'user': instance.user.username,
+					'picture': instance.picture.url,
+					'bio': instance.bio,
+				})
 
 
 	context = {'obj': obj, 'form': form, 'user': user, 'page_obj': page_obj, 'info': info}

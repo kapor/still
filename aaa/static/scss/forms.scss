@@ -153,6 +153,15 @@ div label {
 }
 
 
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+// FIELD DESIGN 1
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -171,6 +180,7 @@ div label {
   padding: 8px 14px;
   height: 56px;
   width: 100%;
+  white-space: pre-wrap;
 
   color: $primary;
   background-color: $background_color;
@@ -421,6 +431,137 @@ input::file-selector-button {
   opacity: 0;
   cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+// FIELD DESIGN 2
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+.field_char_2,
+.field_int_2,
+.field_decimal_2,
+.field_select_2,
+.field_float_2,
+.field_image_2,
+.field_description_2 {
+
+  line-height: 56px;
+  font-family: $font-stack1;
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: none;
+  list-style-type: none;
+  margin: 0px;
+
+  // padding: 8px 14px;
+  height: 56px;
+  width: 100%;
+  white-space: pre-wrap;
+
+  color: $primary;
+  background-color: white;
+
+  border: none;
+  resize: none;
+  vertical-align: top;
+  border-bottom: 1px solid black;
+}
+
+.field_image_2 {
+  padding: 14px;
+  height: auto;
+}
+
+.field_description_2 {
+  height: 300px;
+  overflow: scroll;
+}
+
+
+.field_select_2 {
+  line-height: 30px;
+  font-family: $font-stack2;
+  font-size: 20px;
+  
+  text-align: start;
+  text-rendering: auto;
+  text-indent: 0px;
+  text-shadow: none;
+
+  height: 56px;
+  display: inline-block;
+  appearance: none;
+  box-sizing: border-box;
+  align-items: center;
+  -webkit-rtl-ordering: logical;
+
+  background-color: $background_color;
+  cursor: default;
+  white-space: pre;
+  border: none;
+  padding: 8px 14px;
+}
+
+.fileUpload_2 {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.custom_file_upload_2 {
+  position: absolute;
+  overflow: hidden;
+  cursor: pointer;
+  color: #333;
+  background-color: #EEEEEE;
+  line-height: 30px;
+  font-family: $font-stack1;
+  font-size: 16px;
+  padding: 8px 14px;
+  width: inherit;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  bottom: 0px;
+  // height: 56px;
+}
+
+.custom_file_upload_2 span {
+  line-height: 30px;
+  font-family: $font-stack1;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.picture_title {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+
+
+
+
+
 
 
 

@@ -37,6 +37,34 @@ console.log('csrf', csrf[0].value)
 const url = window.location.href
 
 
+
+
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+// MESSAGE CONFIRMATION TIMEOUT
+
+
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('#alert_box').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('.alert_error').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
+
+
+
 /////////////////////////////////////////
 /// CLOSE MODAL ==> FORM RESET
 
@@ -116,8 +144,8 @@ form.addEventListener('submit', function(e) {
 			console.log("success")
 			$('#modal_form').modal('hide')
 			document.getElementById("shelf_form").reset()
+			handle_alerts('message_success', 'New item added')
 			window.location.reload();
-			// handle_alerts('message_success', 'New item added')
 		},
 
 		error: function(error) {

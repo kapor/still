@@ -13,6 +13,30 @@ console.log('csrf', csrf[0].value)
 const url = window.location.href
 
 
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+// MESSAGE CONFIRMATION TIMEOUT
+
+
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('#alert_box').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('.alert_error').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
+
 
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////

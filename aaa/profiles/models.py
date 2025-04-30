@@ -18,7 +18,7 @@ class Profile(models.Model):
 	bio = models.TextField(blank=True)
 	created = models.DateTimeField(auto_now=True)
 	updated = models.DateTimeField(auto_now_add=True)
-	picture = models.ImageField(upload_to=get_upload_path, default="profile_pics/blank.jpg", blank=True)
+	picture = models.ImageField(upload_to=get_upload_path, blank=True)
 
 	def __str__(self):
    		return f"{self.user.username}'s profile"

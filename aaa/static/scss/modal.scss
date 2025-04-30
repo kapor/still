@@ -242,6 +242,9 @@ $accent2: #00FF7F;
 	display: none;
 }
 
+#modal_image_large {
+	padding: 20px;
+}
 
 
 
@@ -250,12 +253,13 @@ $accent2: #00FF7F;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-  // max-width: 100%;
-  // max-height: 100%;
-	width: auto;
+	width: 100%;
+	// max-width: fit-content;
+	max-height: 1200px;
 	z-index: 20;
 	border-radius: 8px;
 	padding: 20px;
+	object-fit: contain;
 }
 
 
@@ -288,7 +292,7 @@ $accent2: #00FF7F;
   top: 0;
   left: 0;
   position: fixed;
-  backdrop-filter: blur(2px);
+  // backdrop-filter: blur(2px);
 }
 
 

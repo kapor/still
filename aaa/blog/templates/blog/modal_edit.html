@@ -22,23 +22,34 @@
         <div class="form_container">
 
           <!-- TITLE -->
+          <div>
           <label for="id_title">Title:</label>
-          <input type="text" name="title" maxlength="200" class="field_char" placeholder="Enter text" id="id_title" required="">
+          <input type="text" name="title" maxlength="200" class="field_char" placeholder="" id="id_title" required>
+          </div>
 
           <!-- MESSAGE -->
+          <div>
           <label for="id_message">Message:</label>
-          <textarea name="message" cols="40" rows="10" class="field_description" placeholder="What are you going to say?" id="id_message" required=""></textarea>
+          <textarea name="message" cols="40" rows="10" class="field_description" placeholder="" id="id_message" required>
+          </textarea>
+          </div>
           
           <!-- TAGS -->
-<!--           <div>
+          <div>
           <label for="id_tags">Tags:</label>
-          <input class="field_char"  id="id_tags" value="{% for tags in blog_detail.tags.all %}{{ tags }}{% if not forloop.last %}, {% endif %}{% endfor %}">
-          </div> -->
+          <div class="helptext" id="id_tags_helptext">A comma-separated list of tags.</div>
+          <input type="text" name="tags" class="field_char" placeholder="A comma-separated list of tags." aria-describedby="id_tags_helptext" id="id_tags">
+          </div>
 
           <!-- IMAGE -->
+          <div>
           <label for="id_image">Image:</label>
-          <input type="file" name="image" accept="image/*" class="field_image" placeholder="" id="id_image">
+          <input type="file" name="image" class="field_image" accept="image/*" id="id_image" />
+          <input type="hidden" name="update" value="True" id="id_update">
+          </div>
 
+
+          {% if blog_detail.image %}
           <div class="modal_image_enlarged_container"> 
           <div class="modal_image_enlarged not_visible" id="modal_image_large"> 
           <img src="{{ blog_detail.image.url }}">
@@ -52,7 +63,8 @@
           </div>
           <p class="current_image">current image</p>
           </div>
-
+          {% else %}
+          {% endif %}
 
           {% csrf_token %}
 

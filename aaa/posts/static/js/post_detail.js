@@ -38,6 +38,32 @@ console.log('detail')
 console.log(window.location)
 
 
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+// MESSAGE CONFIRMATION TIMEOUT
+
+
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('#alert_box').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('.alert_error').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
+
+
+
 ////////////////////////////
 ////////////////////////////
 ////////////////////////////
@@ -93,7 +119,7 @@ $(document).ready(function() {
 					// handle_alerts('alert_error', 'Post Deleted')*/
 				} else {
 					// console.log(error)
-					handle_alerts('alert_error', 'An error occurred')
+					handle_alerts('message_success', 'An error occurred')
 				}
 			},
 			error: function(error) {
@@ -129,12 +155,12 @@ form_delete.addEventListener('submit', e=> {
 		},
 		success: function(response) {
 			// history.go(-2)
-			window.location = document.referrer;
+			window.location.href = response.redirect_url;
 			// console.log(response)
 			// history.back(-2).location.reload();
 			// window.location.href = window.location.origin
 			// localStorage.setItem('message', post_message.value)
-			// handle_alerts('alert_error', 'Post Deleted')
+			handle_alerts('message_success', 'Post Deleted')
 		},
 		error: function(error) {
 			console.log(error)
@@ -181,7 +207,7 @@ const csrftoken = getCookie('csrftoken');
 const deleted = localStorage.getItem('title')
 
 if (deleted) {
-	handle_alerts('alert_error', 'Post Deleted')
+	handle_alerts('message_success', 'Post Deleted')
 	localStorage.clear()
 }
 
@@ -230,5 +256,7 @@ window.addEventListener('click', (event) => {
   }
 });
 })
+
+
 
 

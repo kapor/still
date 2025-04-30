@@ -2,7 +2,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% load my_filters %}
-{% load humanize %}
 
 
 {% block scripts %} 
@@ -23,6 +22,7 @@ updates / {{ blog_detail.title }}
   <div class="postlist">
 
     <div class="blog_post">
+      <!-- TITLE -->
       {% if user.is_authenticated %}
         {% if blog_detail.published_date %}
         <h3>{{ blog_detail.title }}</h3>
@@ -33,15 +33,23 @@ updates / {{ blog_detail.title }}
       <h3>{{ blog_detail.title }}</h3>
       {% endif %}
 
+      <!-- TIME  -->
       <div class="time">
-      <p>{{ blog_detail.published_date | date:'d M Y' }}</p>
+      {% if blog_detail.published_date %}
+      {{ blog_detail.published_date|date:'m.d.y | h:i:s' }}
+      {% else %}
+      {{ blog_detail.created_at|date:'m.d.y | h:i:s' }}
+      {% endif %}
       </div>
+      
+      <!-- MESSAGE -->
       <div class="description">
       {{ blog_detail.message | safe }}
       </div>
     </div>
 
     <!-- TAGS -->
+    <div class="tag_list">
     {% if blog_detail.tags.all %}
       <td>{% for tags in blog_detail.tags.all %}
       <tag class="taggy">{{ tags }}</tag>
@@ -49,8 +57,10 @@ updates / {{ blog_detail.title }}
     {% endfor %}
     {% else %}
     {% endif %}
+    </div>
 
-    <div class="crop_detail">
+    <!-- IMAGE -->
+    <div class="crop_detail" id="blog_image">
       {% if blog_detail.image %}
       <img src="{{ blog_detail.image.url }}">
       {% else %}

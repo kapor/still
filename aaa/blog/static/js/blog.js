@@ -15,6 +15,7 @@ const form = document.getElementById('blog_form');
 const url = window.location.href
 
 console.log('blog')
+console.log(window.location)
 
 // PUBLISH/DRAFT TABS
 const tabHeaders = document.querySelectorAll('.tab_header');
@@ -50,6 +51,34 @@ function getCookie(name) {
     return cookieValue;
 }
 const csrftoken = getCookie('csrftoken');
+
+
+
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+// MESSAGE CONFIRMATION TIMEOUT
+
+
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('#alert_box').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('.alert_error').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }, 3000); // 3000 milliseconds (3 seconds)
+});
+
+
 
 ////////////////////////////
 ////////////////////////////
@@ -98,14 +127,14 @@ form.addEventListener('submit', function(e) {
 		data: formData,
 		processData: false,
 		contentType: false,
-    headers: {'X-CSRFToken': csrftoken, 'X-Requested-With': 'XMLHttpRequest', },
+        headers: {'X-CSRFToken': csrftoken, 'X-Requested-With': 'XMLHttpRequest', },
 
 		success: function(response) {
+            handle_alerts('message_success', 'Item posted to drafts')
 			console.log("success")
 			$('#modal_form').modal('hide')
 			document.getElementById("blog_form").reset()
-			window.location.reload();
-			// handle_alerts('message_success', 'New item added')
+			// window.location.reload();
 		},
 
 		error: function(error) {
@@ -116,6 +145,14 @@ form.addEventListener('submit', function(e) {
 });
 
 
+
+
+function store() {
+  var txt = document.getElementById("id_message").value;
+  var txttostore = '<p>' + txt.replace(/\n/g, "</p>\n<p>") + '</p>';
+
+  console.log(txttostore);
+}
 
 
 ////////////////////////////////////////////////////////

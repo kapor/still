@@ -29,7 +29,7 @@ User = get_user_model()
 # Shows lists of posts for user and/or group
 @login_required
 def list_post_create(request):
-    form = PostForm(request.POST or None, request.FILES, user=request.user)
+    form = PostForm(request.POST or None, request.FILES or None, user=request.user)
     post_list = Post.objects.all().order_by('-created_at')
     group = Group.objects.all()
 
@@ -46,11 +46,27 @@ def list_post_create(request):
             return JsonResponse({
                 'user': instance.user.username,
                 'message': instance.message,
+                # 'image': instance.image.url,
             })
 
     context = {'form': form, 'post_list': post_list, 'page_obj': page_obj}
     
     return render(request, 'posts/posts.html', context)
+
+
+
+
+# def upload_multiple_files(request):
+#     if request.method == 'POST':
+#         form = MultipleFileInput(request.POST, request.FILES)
+#         if form.is_valid():
+#             uploaded_images = request.FILES.getlist('image')
+#             for image in image:
+#                 image.save()
+#         return HttpResponse("Files uploaded successfully!")
+#     else:
+#         form = MultipleFileInput()
+
 
 
 
@@ -181,6 +197,7 @@ def edit_post(request, pk):
             obj.image = request.FILES['image']
         obj.message = request.POST.get('message')
         # obj.group = request.POST.get('group')
+
         messages.success(request, 'Post Updated')
         obj.save(update_fields=['image', 'message'])
 
@@ -212,7 +229,6 @@ def post_detail_data(request, pk):
     }
 
     return JsonResponse({'data': data})
-
 
 
 

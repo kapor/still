@@ -14,8 +14,8 @@ urlpatterns = [
     path('<int:num_posts>/', views.load_group, name='load'),
 
     # path('grouplist', views.GroupView.as_view(), name='grouplist'),
-    path('new/', views.CreateGroup.as_view(), name='create'),
-    path('add/', views.AddGroup.as_view(), name='add'),
+    # path('new/', views.CreateGroup.as_view(), name='create'),
+    # path('add/', views.AddGroup.as_view(), name='add'),
     path('<slug>', views.SingleGroup, name='single'),
     path('<slug>/join', views.JoinGroup.as_view(), name='join'),
     path('<slug>/leave', views.LeaveGroup.as_view(), name='leave'),

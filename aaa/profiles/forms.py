@@ -14,11 +14,19 @@ class ProfileForm(forms.ModelForm):
 
 
         self.fields['bio'].widget.attrs.update({
-            'class': 'field_description', 
+            'class': 'field_description_2', 
             'id': 'id_bio'
         })
 
         self.fields['picture'].widget.attrs.update({
-            'class': 'field_image',
+            'class': 'field_image_2',
             'id': 'id_image'
         })
+
+
+# class ClearImageForm(forms.ModelForm):
+#     delete_image = forms.BooleanField(required=False, widget=forms.CheckboxInput)
+
+#     class Meta:
+#         model = Profile
+#         fields = ['picture']

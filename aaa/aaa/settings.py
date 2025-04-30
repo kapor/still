@@ -68,6 +68,8 @@ INSTALLED_APPS = [
 
 ]
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -151,6 +153,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+TIME_INPUT_FORMATS = [
+    "m/d/y H:M:S",  # '10/25/06 14:30:59'
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

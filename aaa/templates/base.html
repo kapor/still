@@ -13,9 +13,23 @@
 
 
 <body>
-<div id="alert_box">
+<!-- <div id="alert_box">
 {% include 'includes/message.html' %}
-</div>
+</div> -->
+
+
+
+{% if messages %}
+	{% for message in messages %}
+		<div id="alert_box">
+			<div class="message_success" role="alert" id="msg" >
+				{{ message }}
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}
+
+<div id="alert_box" role="alert" class="alert_box"></div>
 
 {% include 'includes/nav_desktop.html' %} 
 

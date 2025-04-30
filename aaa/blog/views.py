@@ -39,7 +39,7 @@ def blog_list_create(request):
 			instance = form.save(commit=False)
 			instance.save()
 			form.save_m2m()
-			messages.success(request, 'Item posted to drafts')
+			# messages.success(request, 'Item posted to drafts')
 			return JsonResponse({
 					'title': instance.title,
 					'message': instance.message,
@@ -61,17 +61,19 @@ def blog_main(request):
 
 # post detail
 def blog_detail(request, pk):
-    item = Blog.objects.get(pk=pk)
-    form = BlogUpdate()
-    context = {
-        'item': item,
-        'form': form,
-    }
-    return render(request, 'blog/detail.html', context)
+	item = Blog.objects.get(pk=pk)
+	form = BlogUpdate()
+	context = {
+		'item': item,
+		'form': form,
+	}
+	
+	return render(request, 'blog/detail.html', context)
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(user__username__iexact = self.kwargs.get('username'))
+	def get_queryset(self):
+		queryset = super().get_queryset()
+		return queryset.filter(user__username__iexact = self.kwargs.get('username'))
+
 
 
 
@@ -135,22 +137,24 @@ class BlogDetailView(DetailView):
 
 
 def edit_post(request, pk):
+	form = BlogForm(request.POST or None, request.FILES or None)
 	if request.method == 'POST' and request.accepts('application/json'):
-		obj = get_object_or_404(Blog, pk=pk)
+		if form.is_valid():
+			obj = get_object_or_404(Blog, pk=pk)
 
-		if 'image' in request.FILES:
-			obj.image = request.FILES['image']
+			if 'image' in request.FILES:
+				obj.image = request.FILES['image']
 
-		obj.title = request.POST.get('title')
-		obj.message = request.POST.get('message')
-		obj.tags = request.POST.get('tags')
+			obj.title = request.POST.get('title')
+			obj.message = request.POST.get('message')
+			obj.tags = request.POST.get('tags')
 
-		messages.success(request, 'Post Updated')
-		obj.save(update_fields=['image', 'title', 'message'])
+			obj.save(update_fields=['image', 'title', 'message'])
+			messages.success(request, 'Post Updated')
 
-		return redirect('blog:blog_detail', pk=pk)
-	else:
-		return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+			return redirect('blog:blog_detail', pk=pk)
+		else:
+			return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
 
 
 
@@ -163,7 +167,7 @@ def delete_post(request, pk):
             obj = Blog.objects.get(pk=pk)
             obj.delete()
             # Construct the URL for the success page using reverse
-            success_url = reverse("posts:all")
+            success_url = reverse("blog:blog_main")
             messages.success(request, 'Post Deleted')
             # Return a JSON response with the redirect URL
             return JsonResponse({'redirect_url': success_url})

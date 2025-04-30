@@ -9,6 +9,7 @@ from django_select2 import forms as s2forms
 from django_select2.forms import Select2MultipleWidget
 from django.forms import widgets
 from taggit.forms import TagField, TagWidget
+from django.utils.html import format_html
 
 
 
@@ -61,7 +62,11 @@ class BlogForm(forms.ModelForm):
 		for field in self.fields.values():
 			self.fields['image'].required = False
 
-
+	def clean_my_field(self):
+		data = self.cleaned_data['message']
+		data = data.replace('\n\n', '</p><p>')
+		data = data.replace('\n', '<br>')
+		return format_html('<p>{}</p>', data)
 
 
 class BlogUpdate(forms.ModelForm):
@@ -99,7 +104,11 @@ class BlogUpdate(forms.ModelForm):
 		for field in self.fields.values():
 			self.fields['image'].required = False
 
-
+	def clean_my_field(self):
+		data = self.cleaned_data['message']
+		data = data.replace('\n\n', '</p><p>')
+		data = data.replace('\n', '<br>')
+		return format_html('<p>{}</p>', data)
 
 
 

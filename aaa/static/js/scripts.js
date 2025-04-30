@@ -12,13 +12,13 @@ const handle_alerts = (type, msg) => {
     `
 }
 
-$(document).ready(function() {
-    setTimeout(function() {
-        $('.alert_error').fadeOut('slow', function() {
-            $(this).remove();
-        });
-    }, 3000); // 3000 milliseconds (3 seconds)
-});
+
+
+
+
+
+
+
 
 
 
@@ -33,6 +33,8 @@ function scrollNav() {
     document.getElementById("navbar_right").style.lineHeight = "24px";
     document.getElementById("navbar_left").style.lineHeight = "24px";
     document.getElementById("logout").style.height = "24px";
+    //document.getElementById("avatar_lockup").style.height = "24px";
+    // document.getElementById("user_label").style.lineHeight = "24px";
     //document.getElementById("logo").style.height = "24px";
   } else {
     document.getElementById("nav_bar").style.margin = "0px 0px";
@@ -41,6 +43,8 @@ function scrollNav() {
     document.getElementById("navbar_right").style.lineHeight = "48px";
     document.getElementById("navbar_left").style.lineHeight = "48px";
     document.getElementById("logout").style.height = "48px";
+    //document.getElementById("avatar_lockup").style.height = "48px";
+    // document.getElementById("user_label").style.lineHeight = "48px";
     //document.getElementById("logo").style.height = "48px";
   }
 };
@@ -65,18 +69,6 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 } 
-
-
-/* ++++++++++ MESSAGE CONFIRMATION TIMEOUT ++++++++++ */
-
-
-$(document).ready(function() {
-    setTimeout(function() {
-        $('.message_success').fadeOut('slow', function() {
-            $(this).remove();
-        });
-    }, 3000); // 3000 milliseconds (3 seconds)
-});
 
 
 

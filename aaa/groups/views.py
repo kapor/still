@@ -9,7 +9,7 @@ from django.db.models.functions import Lower
 from . import models
 from groups.models import Group, GroupMember, Comment
 from groups.forms import GroupForm, CommentForm
-from posts.forms import PostFormGroup, PostForm
+from posts.forms import PostForm
 from posts.models import Post
 from chirps.models import Post as Chirp
 
@@ -64,28 +64,6 @@ def SingleGroup(request, slug):
 	return render(request, 'groups/detail.html', context)
 
 
-# @login_required
-# def group_post(request, slug):
-
-# 	if request.accepts('application/json'):
-# 		if 'submit_b' in request.POST:
-# 			form_b = PostForm(request.POST or None, request.FILES, user=request.user)
-# 			group = get_object_or_404(Group, slug=slug)
-# 			if form_b.is_valid():
-# 				form_b.instance.user = request.user
-# 				instance = form_b.save(commit=False)
-# 				instance.save()
-# 				messages.success(request, 'Post added')
-# 				return JsonResponse({
-# 					'user': instance.user.username,
-# 					'message': instance.message,
-# 				})
-
-# 	context = {'form_b': form_b, 'group': group}
-
-# 	return render(request, 'groups/modal_post.html', context)
-
-
 def group_post(request):
 	if request.accepts('application/json'):
 		if 'submit_b' in request.POST:
@@ -102,9 +80,6 @@ def CommentDelete(request, pk):
     comment.delete()
     messages.success(request, 'Comment deleted')
     return redirect(request.META['HTTP_REFERER'])
-
-
-
 
 
 
@@ -153,26 +128,6 @@ class LeaveGroup(LoginRequiredMixin, RedirectView):
 
 
 
-## HTMX infinite scroll view
-
-# class GroupView(ListView):
-#     model = Group
-#     fields = ('name', 'description', 'members')
-#     template_name = "groups/groups.html"
-#     context_object_name = "grouplist"
-#     paginate_by = 20
-#     # ordering = 'pk'
-#     ordering = ['name']
-
-#     def get_template_names(self, *args, **kwargs):
-#         if self.request.htmx:
-#             return "groups/group_list.html"
-#         else:
-#             return self.template_name
-
-
-
-
 @login_required
 def list_groups_create(request):
 	form = GroupForm(request.POST or None)
@@ -189,6 +144,7 @@ def list_groups_create(request):
 			})
 
 	return render(request, 'groups/groups.html', {'form': form})
+
 
 
 
@@ -223,22 +179,24 @@ def load_group(request, **kwargs):
 
 
 
-class CreateGroup(LoginRequiredMixin, CreateView):
-	model = Group
-	form_class = GroupForm
+# class CreateGroup(LoginRequiredMixin, CreateView):
+# 	model = Group
+# 	form_class = GroupForm
 
 	# success_url = reverse_lazy('groups:all')
 
 
 
 # Modal View
-class AddGroup(LoginRequiredMixin, generic.CreateView):
-	template_name = 'groups/group_modal.html'
-	model = models.Group
-	context_object_name = 'addgroup'
-	form_class = GroupForm
+# class AddGroup(LoginRequiredMixin, generic.CreateView):
+# 	template_name = 'groups/group_modal.html'
+# 	model = models.Group
+# 	context_object_name = 'addgroup'
+# 	form_class = GroupForm
 
-
+# 	def get(self, *args, **kwargs):
+# 		messages.success(self.request, 'Group Added')
+# 		return super().delete(*args, **kwargs)
 
 
 
@@ -246,12 +204,15 @@ class DeleteGroup(LoginRequiredMixin, generic.DeleteView):
 	model = models.Group
 	context_object_name = 'deletegroup'
 	success_url = reverse_lazy('groups:all')
+	success_message = "Group Removed"
 
-	def delete(self, *args, **kwargs):
-		messages.success(self.request, 'Group Deleted')
-		return super().delete(*args, **kwargs)
+	def form_valid(self, form):
+		messages.success(self.request, 'Group Removed')
+		return super().form_valid(form)
 
-
+	def form_invalid(self, form):
+		messages.success(self.request, 'An Error Occured')
+		return super().form_invalid(form)
 
 
 class GroupPostFormButton(DetailView):

@@ -4,7 +4,7 @@ console.log(window.location)
 
 
 // MODAL IMAGE ENLARGE
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
 const image_small = document.getElementById('profile_crop_detail');
 const image_large = document.getElementById('modal_image_large');
 const modal_form = document.getElementById('modal_form');
@@ -55,11 +55,129 @@ window.addEventListener('click', (event) => {
     // Do nothing
   }
 });
-})
+})*/
 
 
-const profile_crop_detail = document.getElementById('profile_crop_detail')
-const profileForm = document.getElementById('profile_form')
+const uploaded_image = document.getElementById('uploaded_image')
+const form = document.getElementById('profile_form')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 const bioInput = document.getElementById('id_bio')
 const imageInput = document.getElementById('id_image')
+const clear = document.getElementById('picture_clear_id')
+const msg = document.getElementById('msg')
+const change_photo = document.getElementById('change_photo')
+const submit_button = document.getElementById('submit_button')
+const clear_container = document.getElementById('clear_container')
+const info_image_large = document.getElementById('info_image_large')
+
+
+
+
+
+
+
+form.addEventListener('submit', function(e) {
+	e.preventDefault();
+
+	const formData = new FormData(form);
+	formData.append('csrfmiddlewaretoken', csrf[0].value)
+	formData.append('bio', bioInput.value)
+	formData.append('picture', imageInput.files[0])
+
+	$.ajax({
+		type: 'POST',
+		url: '',
+		enctype: 'multipart/form-data',
+		data: formData,
+		headers: {'X-CSRFToken': csrf, 'X-Requested-With': 'XMLHttpRequest', },
+
+		success: function(response) {
+
+			console.log(response)
+			uploaded_image.innerHTML = `
+				<img src="${response.picture}" id="info_image_large">
+			`;
+
+			//clear.checked = false;
+			submit_button.className = "button_secondary";
+			submit_button.setAttribute('disabled', '');
+			submit_button.setAttribute('style', 'cursor: not-allowed;');
+			change_photo.innerHTML = `
+				Change Photo
+			`
+			bioInput.value = response.bio
+			$('#alert_box').show().html();
+			$('#alert_box').delay(5000).fadeOut(); 
+			handle_alerts('message_success', 'Profile Updated')
+			// $('#modal_form').modal('hide')
+			// document.getElementById("blog_form").reset()
+			// window.location.reload();
+			// msg.classList.remove('not_visible')
+		},
+
+		error: function(error) {
+			console.log(error)
+			handle_alerts('message_success', 'Something went wrong...')
+		},
+		processData: false,
+		contentType: false,
+		cache: false,
+	});
+});
+
+
+
+
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+// SUBMIT BUTTON ACTIVATE/DEACTIVATE TOGGLE
+
+
+
+document.getElementById("profile_form").addEventListener("change", function() {
+    document.getElementById("submit_button").disabled = false;
+			submit_button.className = "button_accent";
+			submit_button.setAttribute('style', '');
+});
+
+
+
+
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+// CLEAR FILE CHECKBOX
+
+
+
+/*document.addEventListener('DOMContentLoaded', function() {
+
+
+		function clearImage() {
+			imageInput.value = '';
+		};
+
+    clear.addEventListener('change', function() {
+        if (this.checked) {
+            clearImage();
+        }
+    });
+});
+
+*/
+
+
+
+/*imageInput.addEventListener('input', function() {
+  if (field.value) {
+    clear_container.style.display = 'block';
+  } else {
+    clear_container.style.display = 'none';
+  }
+});
+*/
+
+

@@ -16,18 +16,25 @@ My Profile
 {% block content %}
 
 <div class="top_part">
-	<h1>info: {{ user }}</h1>
-</div>
+	<div class="header">
+		<h2>User: {{ user }}</h2>
 
-<div class="profile_detail">
-
-
-		<div class="modal_image_enlarged_container"> 
-			<div class="modal_image_enlarged not_visible" id="modal_image_large"> 
-			<img src="{{ info.picture.url }}" id="info_image_large">
+		<div class="label_info" >
+			<div class="group_count">
+				<div class="group_count_row">
+				Joined: {{ user.date_joined|naturaltime }}
+				</div>
 			</div>
 		</div>
+	</div>
 
+
+</div>
+
+
+
+
+<div class="profile_detail">
 
 		<div id="shader"></div>
 
@@ -41,51 +48,74 @@ My Profile
 		{% endif %} -->
 
 	<div class="content_info">
+
+		
+		<form id="profile_form">
 		<div class="profile_info">
 
 			<div class="profile_left">
 
+			<div class="picture_title">
 				<label for="id_image">Picture:</label>
-				<div class="profile_crop_detail" id="profile_crop_detail" style="background-image: url( {{ info.picture.url }} )">
+
+<!-- 				<div class="clear_photo" id="clear">
+					<input type="checkbox" name="picture-clear_container" id="picture_clear_id">
+					<label for="picture_clear_id">Remove</label>
+				</div> -->
+	
+			</div>
+
+				<div class="profile_crop_detail" id="profile_crop_detail" style="background-image: url( /media/profile_pics/default/blank_01.jpg )">
+
+						{% if info.picture %}
+						<div class="custom_file_upload_2">
+							<span id="change_photo">Change photo</span>
+							<input type="file" id="id_image" class="file-input">
+						</div>
+						
+						{% else %}
+						<div class="custom_file_upload_2">
+						<!-- <input type="file" name="image" accept="image/*" class="field_image" placeholder="" id="id_image"> -->
+							<span id="change_photo">upload photo</span>
+							<input type="file" id="id_image" class="file-input">
+						</div>
+						{% endif %}
+
+						<div id="uploaded_image">
+						{% if info.picture %}
+						<img src="{{ info.picture.url }}" id="info_image_large">
+						{% else %}
+						<img class="photo_blank" id="info_image_large" src="/media/profile_pics/default/blank_01.jpg">
+						{% endif %}
+						</div>
 				</div>
 
 			</div>
 
 
 			<div class="profile_right">
-				<form id="profile_form">
-
-					<div class="label_info">
-						<label for="picture-clear_id">Currently:</label>
-						<input type="checkbox" name="picture-clear" id="picture-clear_id">
-						<label for="picture-clear_id">Clear</label>
-						<div class="custom_file_upload">
-							{{ info.picture }} 
-							<input type="file" id="fileInput" class="file-input">
-						</div>
-
-					</div>
+			
 
 					<div class="label_info">
 						<label for="id_bio">Bio:</label>
-			           	<textarea name="bio" cols="40" rows="10" class="field_description" id="id_bio">{{ info.bio }}</textarea>
+			           	<textarea name="bio" cols="40" rows="10" class="field_description_2" id="id_bio">{{ info.bio }}</textarea>
 			       	</div>
 
 			       	{% csrf_token %}
 
-			       	<div class="button_container">
-						<button type="submit" class="button_accent">Save</button>
+			       	<div class="button_container" id="submit_button_container">
+						<button id="submit_button" type="submit" class="button_secondary" style="cursor:not-allowed;" disabled>Save</button>
 					</div>
 
-				</form>
 		   	</div>
 
 	   	</div>
+	   	</form>
 	</div>
 
 
 
-
+<!-- 
 	<div class="content_info">
 
 		<div class="label_info">
@@ -104,64 +134,65 @@ My Profile
 		</div>
 
 	</div>
+ -->
 
-
-</div>
-
-<div class="profile_div"></div>
-
-
-<div class="profile_header">
-<h2>Activity:</h2>
 </div>
 
 
 
 
-<div>
-{% for item in page_obj %}
-
-<!-- GROUP -->
-
-{% if item|is_app:"groups" %}
-
-{% include 'includes/_comment.html' with delete=False group=True %}
-
-<!-- POST -->
-
-{% elif item|is_app:"posts" %}
-
-{% include 'includes/_post.html' with delete=False group=True %}
 
 
-<!-- CHIRP -->
+<div id="profile_activity">
+	<div class="profile_header">
+		<h2>Activity:</h2>
+	</div>
 
-{% elif item|is_app:"chirps" %}
+	<div>
+		{% for item in page_obj %}
 
-{% include 'includes/_chirp.html' with delete=False group=True %}
+		<!-- GROUP -->
 
+		{% if item|is_app:"groups" %}
 
-<!-- BLOG -->
+		{% include 'includes/_comment.html' with delete=False group=True %}
 
-{% elif item|is_app:"blog" %}
+		<!-- POST -->
 
-{% include 'includes/_blog.html' with user=True %}
+		{% elif item|is_app:"posts" %}
 
-<!-- SHELF -->
-
-{% elif item|is_app:"shelf" %}
-
-{% include 'includes/_shelf.html' %}
-
-
-{% endif %}
-
-{% endfor %}
+		{% include 'includes/_post.html' with delete=False group=True %}
 
 
-{% include 'includes/paginate.html' %}
+		<!-- CHIRP -->
+
+		{% elif item|is_app:"chirps" %}
+
+		{% include 'includes/_chirp.html' with delete=False group=True %}
+
+
+		<!-- BLOG -->
+
+		{% elif item|is_app:"blog" %}
+
+		{% include 'includes/_blog.html' with user=True %}
+
+		<!-- SHELF -->
+
+		{% elif item|is_app:"shelf" %}
+
+		{% include 'includes/_shelf.html' %}
+
+
+		{% endif %}
+
+		{% endfor %}
+
+
+		{% include 'includes/paginate.html' %}
+	</div>
+
 </div>
-
 
 
 
