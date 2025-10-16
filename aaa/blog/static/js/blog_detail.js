@@ -151,13 +151,7 @@ form_delete.addEventListener('submit', e=> {
 			'csrfmiddlewaretoken': csrf[0].value,
 		},
 		success: function(response) {
-			// history.go(-2)
-			// window.location = document.referrer;
             window.location.href = response.redirect_url;
-			// console.log(response)
-			// history.back(-2).location.reload();
-			// window.location.href = window.location.origin
-			// localStorage.setItem('message', post_message.value)
 			// handle_alerts('alert_error', 'Post Deleted')
 		},
 		error: function(error) {

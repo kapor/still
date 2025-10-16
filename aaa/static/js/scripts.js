@@ -21,7 +21,6 @@ const handle_alerts = (type, msg) => {
 
 
 
-
 // When the user scrolls down 80px from the top of the document, resize the navbar
 
 window.onscroll = function() {scrollNav()};

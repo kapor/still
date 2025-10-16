@@ -141,6 +141,7 @@ def list_groups_create(request):
 				'slug': instance.slug,
 				'name': instance.name,
 				'description': instance.description,
+				'message_success': "Group Added",
 			})
 
 	return render(request, 'groups/groups.html', {'form': form})

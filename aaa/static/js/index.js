@@ -26,10 +26,3 @@ const getCookie = (name) => {
 }
 const csrftoken = getCookie('csrftoken');
 
-// handles success messaging for deleted post
-const deleted = localStorage.getItem('title')
-
-if (deleted) {
-    handle_alerts('alert_error', 'Post Deleted')
-    localStorage.clear()
-}

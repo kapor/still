@@ -25,23 +25,15 @@ const modal_form = document.getElementById('modal_form')
 ////////////////////////////////////
 // MESSAGE CONFIRMATION TIMEOUT
 
-
-
 $(document).ready(function() {
     setTimeout(function() {
-        $('#alert_box').fadeOut('slow', function() {
+        $('.message_success').fadeOut('slow', function() {
             $(this).remove();
         });
     }, 3000); // 3000 milliseconds (3 seconds)
 });
 
-$(document).ready(function() {
-    setTimeout(function() {
-        $('.alert_error').fadeOut('slow', function() {
-            $(this).remove();
-        });
-    }, 3000); // 3000 milliseconds (3 seconds)
-});
+
 
 
 
@@ -148,6 +140,7 @@ modal_form.addEventListener('submit', e => {
 		},
 		success: function(response) {
 			console.log(response)
+			handle_alerts('message_success', 'New group added')
 			// places post at top of group_list
 			group_list.insertAdjacentHTML('afterbegin',
 			///use backticks to inject html
@@ -170,7 +163,6 @@ modal_form.addEventListener('submit', e => {
 			)
 			$('#modal_form').modal('hide')
 			document.getElementById("group_form").reset()
-			handle_alerts('message_success', 'New group added')
 		},
 		error: function(error) {
 			console.log(error)

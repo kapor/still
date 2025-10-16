@@ -194,13 +194,6 @@ def shelf_edit(request, pk):
 
 
 
-# class Edit_Item(LoginRequiredMixin, UpdateView):
-#     model = Shelves
-#     login_url = "login"
-#     template_name = 'shelf/shelf_form.html'
-#     redirect_field_name = 'shelf/detail.html'
-#     form_class = ShelfEntryForm
-#     context_object_name = 'edit'
 
 
 
@@ -236,15 +229,5 @@ def like_unlike_shelf(request):
             liked = True
             obj.liked.add(request.user)
         return JsonResponse({'liked': liked, 'count': obj.like_count})
-
-
-
-
-# class Delete_Item(LoginRequiredMixin, DeleteView):
-#     model = Shelves
-#     template_name = 'shelf/shelf_confirm_delete.html'
-#     success_url = reverse_lazy("shelf:shelf")
-
-
 
 

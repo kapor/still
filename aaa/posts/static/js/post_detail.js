@@ -156,10 +156,6 @@ form_delete.addEventListener('submit', e=> {
 		success: function(response) {
 			// history.go(-2)
 			window.location.href = response.redirect_url;
-			// console.log(response)
-			// history.back(-2).location.reload();
-			// window.location.href = window.location.origin
-			// localStorage.setItem('message', post_message.value)
 			handle_alerts('message_success', 'Post Deleted')
 		},
 		error: function(error) {
