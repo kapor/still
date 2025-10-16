@@ -11,6 +11,26 @@ _site/
 
 django-htmx/
 
+
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+*.bbprojectd
+_assets
+_archive
+_archive/
+_assets/
+_docs
+*.psd
+*.ai
+
+_sketches
+
 __pycache__/
 .urls.cpython-313.pyc
 .DS_Store
